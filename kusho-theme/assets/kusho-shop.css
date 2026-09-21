@@ -1,0 +1,422 @@
+/* ==========================================================================
+   Shop pages in the quiet-luxury direction: product page and collection page.
+   Loads after kusho-luxe.css on every page.
+   ========================================================================== */
+
+/* ---------------------------------------------------------------- product page: big gallery, thumbs beneath */
+@media screen and (min-width: 990px) {
+  .kpdp .kpdp__grid {
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+    gap: var(--sp-9);
+  }
+
+  .kpdp .kgal {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .kpdp .kgal__thumbs {
+    order: 2;
+    flex-direction: row;
+    align-self: auto;
+    contain: none;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0.3rem 0;
+  }
+}
+
+.kpdp .kgal__track {
+  border: 0;
+  background: var(--foam);
+}
+
+.kpdp .kgal__thumb {
+  width: 8rem;
+  height: 8rem;
+  border: 1px solid transparent;
+  border-radius: 0;
+  background: var(--foam);
+}
+
+.kpdp .kgal__thumb[aria-current="true"],
+.kpdp .kgal__thumb.is-active {
+  border-color: var(--kusho-green);
+}
+
+.kpdp .kgal__arrow,
+.kpdp .kgal__zoom,
+.kpdp .kgal__lb-close {
+  border: 0;
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.kpdp .kgal__counter {
+  border-radius: 0;
+}
+
+.kpdp .kgal__caption {
+  background: rgba(255, 255, 255, 0.92);
+  font-weight: 400;
+}
+
+/* ---------------------------------------------------------------- buy column */
+.kpdp .kpdp__info {
+  gap: var(--sp-5);
+}
+
+.kpdp .kpdp__crumbs,
+.kpdp .kpdp__crumb-list,
+.kpdp .kpdp__crumb-list a {
+  font-family: var(--font-ui);
+  font-size: var(--fs-label);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--stone);
+}
+
+.kpdp .kpdp__crumb-list a {
+  text-decoration: none;
+}
+
+.kpdp .kpdp__title {
+  font-size: var(--fs-h1);
+}
+
+.kpdp .kpdp__tagline {
+  color: var(--stone);
+  font-size: var(--fs-body);
+}
+
+.kpdp .kpdp__rating {
+  font-family: var(--font-ui);
+  font-size: var(--fs-small);
+}
+
+.kpdp .kpdp__stars {
+  color: var(--kusho-gold);
+}
+
+.kpdp .kprice--pdp {
+  font-size: 2.4rem;
+  font-weight: 400;
+}
+
+.kpdp .kprice--pdp .kprice__off {
+  padding: 0;
+  background: transparent;
+  color: var(--kusho-green);
+  font-size: var(--fs-label);
+  font-weight: 600;
+  letter-spacing: var(--track-label);
+}
+
+.kpdp .kpdp__save {
+  color: var(--kusho-green);
+  font-weight: 600;
+}
+
+/* Highlights: gold check marks between hairlines */
+.kpdp .kpdp__benefits {
+  display: grid;
+  gap: var(--sp-2);
+  margin: 0;
+  padding: var(--sp-4) 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  list-style: none;
+}
+
+.kpdp .kpdp__benefits li {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  font-size: var(--fs-small);
+  color: rgba(22, 33, 28, 0.85);
+}
+
+.kpdp .kpdp__check {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: var(--kusho-gold-mist);
+  color: var(--kusho-gold-text);
+}
+
+.kpdp .kpdp__mini-title,
+.kpdp .kopt__label,
+.kpdp .kdeliv__label {
+  font-family: var(--font-ui);
+  font-size: var(--fs-label);
+  font-weight: 600;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+}
+
+.kpdp .kopt__pill {
+  border-radius: 0;
+  padding: 0.8rem 1.4rem;
+  font-size: var(--fs-label);
+}
+
+.kpdp .kopt__pill[aria-checked="true"],
+.kpdp .kopt__pill.is-selected {
+  border-color: var(--kusho-green);
+  background: var(--white);
+  color: var(--kusho-green);
+}
+
+.kpdp .kqty {
+  border-radius: 0;
+  border: 1px solid var(--line);
+  background: var(--white);
+}
+
+.kpdp .kqty__btn {
+  background: transparent;
+}
+
+.kpdp .kpdp__atc.button {
+  --color-button: 4, 105, 56;
+  --color-button-text: 255, 255, 255;
+}
+
+.kpdp .kpdp__buynow.button {
+  margin-top: var(--sp-2);
+}
+
+/* Delivery check: inline, hairline, no box */
+.kpdp .kdeliv {
+  padding: var(--sp-4) 0 0;
+  border: 0;
+  border-top: 1px solid var(--line);
+  background: transparent;
+}
+
+.kpdp .kdeliv__label {
+  color: var(--ink);
+}
+
+.kpdp .kdeliv__label .kusho-icon {
+  color: var(--kusho-green);
+}
+
+.kpdp .kdeliv__input {
+  border-radius: 0;
+  padding-inline: 0;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background: transparent;
+  box-shadow: none;
+}
+
+.kpdp .kdeliv__input:focus-visible {
+  outline: 0;
+  border-bottom-color: var(--kusho-green);
+}
+
+.kpdp .kdeliv__btn.button {
+  --color-button: 22, 33, 28;
+  --color-button-text: 22, 33, 28;
+  min-height: 4.4rem;
+  padding-inline: var(--sp-5);
+  background: transparent;
+  box-shadow: inset 0 0 0 1px var(--ink);
+}
+
+@media (hover: hover) {
+  .kpdp .kdeliv__btn.button:hover {
+    --color-button-text: 255, 255, 255;
+    background: var(--ink);
+  }
+}
+
+/* Promises: one quiet row, no boxes */
+.kpdp .kpdp__trust {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-3) var(--sp-5);
+  margin: 0;
+  padding: var(--sp-4) 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  list-style: none;
+}
+
+.kpdp .kpdp__trust li {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font-family: var(--font-ui);
+  font-size: var(--fs-label);
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-align: left;
+  text-transform: uppercase;
+  color: rgba(22, 33, 28, 0.8);
+}
+
+.kpdp .kpdp__trust .kusho-icon {
+  width: 1.8rem;
+  height: 1.8rem;
+  color: var(--kusho-green);
+}
+
+@media screen and (min-width: 990px) {
+  .kpdp .kpdp__trust {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.kpdp .kpdp__link-btn {
+  font-family: var(--font-ui);
+  font-size: var(--fs-label);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--kusho-green);
+}
+
+/* Accordions: hairlines, thin uppercase titles */
+.kpdp .kacc__summary,
+.kpdp .kacc summary {
+  font-family: var(--font-display);
+  font-size: var(--fs-h4);
+  font-weight: 400;
+  letter-spacing: var(--track-heading);
+  text-transform: uppercase;
+}
+
+.kpdp .kacc,
+.kpdp .kacc__item,
+.kpdp .kspecs__row {
+  border-color: var(--line);
+}
+
+/* Reviews summary: no box */
+.krev .krev__summary {
+  padding: var(--sp-5) 0;
+  border: 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  background: transparent;
+}
+
+.krev .krev__score {
+  font-family: var(--font-display);
+  font-weight: 300;
+}
+
+.krev .krev__stars,
+.krev.krev .krating__star {
+  color: var(--kusho-gold);
+}
+
+.ksticky.ksticky {
+  border-top: 1px solid var(--line);
+  box-shadow: none;
+}
+
+/* ---------------------------------------------------------------- collection page */
+.kcol .kph__title {
+  margin-bottom: 0;
+}
+
+.kcol__count {
+  margin: var(--sp-4) 0 0;
+  color: var(--stone);
+}
+
+.kcol__photo {
+  aspect-ratio: 16 / 10;
+}
+
+@media screen and (min-width: 990px) {
+  .kcol__photo {
+    aspect-ratio: 5 / 3.4;
+  }
+}
+
+.kcol__nav {
+  margin-top: var(--sp-7);
+  border-top: 1px solid var(--line);
+}
+
+.kcol__nav-list {
+  display: flex;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  overflow-x: auto;
+  list-style: none;
+  scrollbar-width: none;
+}
+
+.kcol__nav-list::-webkit-scrollbar {
+  display: none;
+}
+
+.kcol__nav-link {
+  position: relative;
+  display: inline-block;
+  padding: var(--sp-4) var(--sp-5) var(--sp-4) 0;
+  margin-right: var(--sp-4);
+  color: var(--stone);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color var(--dur-base) var(--ease-foam);
+}
+
+.kcol__nav-link::after {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  right: var(--sp-5);
+  height: 1px;
+  background: var(--kusho-green);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--dur-base) var(--ease-foam);
+}
+
+.kcol__nav-link:hover,
+.kcol__nav-link.is-current {
+  color: var(--kusho-green);
+}
+
+.kcol__nav-link.is-current::after,
+.kcol__nav-link:hover::after {
+  transform: scaleX(1);
+}
+
+.facets-container {
+  border-bottom: 1px solid var(--line);
+  padding-bottom: var(--sp-3);
+  margin-bottom: var(--sp-6);
+}
+
+/* Cards: 4:5 photo on cream */
+.kcard__media {
+  aspect-ratio: 4 / 5;
+}
+
+.kcard__img {
+  object-fit: cover;
+}
+
+.kcard__body {
+  padding-top: var(--sp-4);
+}
+
+.kcard__title {
+  color: var(--ink);
+}

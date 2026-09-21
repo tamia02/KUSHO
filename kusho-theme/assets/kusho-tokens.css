@@ -4,8 +4,8 @@
    Every rem value below is therefore written as (px / 10).
 
    The look: near-monochrome (ink on white and cream), thin uppercase display type,
-   square corners, no drop shadows. Brand green is an accent, not a background.
-   Gold appears only as hairlines and tiny marks.
+   square corners, no drop shadows. Brand green is the action colour (buttons, links, small headings) and the deep-green
+   sections give the page rhythm. Gold appears as hairlines, marks and the small numbers.
    ========================================================================== */
 
 :root {
@@ -13,9 +13,9 @@
   --kusho-green: #046938;
   --kusho-green-deep: #034a28;
   --kusho-green-mist: #eef3f0;
-  --kusho-gold: #c9a961;
+  --kusho-gold: #d49e29;
   --kusho-gold-text: #8a6414; /* gold used as text under 24px */
-  --kusho-gold-mist: #f6f1e6;
+  --kusho-gold-mist: #f8efd9;
   --foam: #f5f4f0; /* warm off-white, the "paper" of the site */
   --white: #fff;
   --ink: #16211c;

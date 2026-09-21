@@ -1,0 +1,123 @@
+{{ 'kusho-page.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  comment
+    Collection header: title and description on the left, a lifestyle photo on the right, and a row of the
+    other collections underneath so people can move between Pillows, Cushions, Combos, Travel and Cars.
+    The photo is the collection's own image when it has one, otherwise a built-in lifestyle photo picked by handle.
+  endcomment
+  assign scene = section.settings.scene
+  if scene == 'auto'
+    case collection.handle
+      when 'pillows'
+        assign scene = 'sleep'
+      when 'cushions'
+        assign scene = 'work-2'
+      when 'travel'
+        assign scene = 'travel'
+      when 'cars'
+        assign scene = 'drive'
+      when 'combos'
+        assign scene = 'gift'
+      when 'best-sellers'
+        assign scene = 'sleep-2'
+      else
+        assign scene = 'strip-life'
+    endcase
+  endif
+  assign scene_file = 'kusho-photo-' | append: scene | append: '.webp'
+  assign has_photo = false
+  if section.settings.show_image
+    if collection.image != blank or scene != 'none'
+      assign has_photo = true
+    endif
+  endif
+  assign link_handles = section.settings.links | split: ','
+-%}
+
+<section class="kph kcol color-{{ section.settings.color_scheme }} gradient{% if has_photo %} kph--photo{% endif %}">
+  <div class="page-width kph__inner">
+    <div class="kph__copy">
+      <nav class="kph__crumbs" aria-label="{{ 'kusho.product.breadcrumb' | t }}">
+        <ol>
+          <li><a href="{{ routes.root_url }}">{{ 'kusho.product.home' | t }}</a></li>
+          <li aria-current="page"><span>{{ collection.title | escape }}</span></li>
+        </ol>
+      </nav>
+      {%- if section.settings.eyebrow != blank -%}<p class="ksec-eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+      <h1 class="kph__title">{{ collection.title | escape }}</h1>
+      {%- if section.settings.show_description and collection.description != blank -%}
+        <div class="kph__text rte">{{ collection.description }}</div>
+      {%- endif -%}
+      {%- if collection.all_products_count > 0 -%}
+        <p class="kcol__count kusho-label">{{ 'kusho.collection.count' | t: count: collection.all_products_count }}</p>
+      {%- endif -%}
+    </div>
+
+    {%- if has_photo -%}
+      <div class="kph__photo kcol__photo" data-reveal="image">
+        {%- if collection.image != blank -%}
+          {{ collection.image | image_url: width: 1200 | image_tag: loading: 'eager', widths: '600, 900, 1200', sizes: '(min-width: 990px) 44vw, 100vw', alt: collection.title }}
+        {%- else -%}
+          <img src="{{ scene_file | asset_url }}" alt="" width="1000" height="1000" loading="eager">
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+
+  {%- if link_handles.size > 0 -%}
+    <div class="page-width">
+      <nav class="kcol__nav" aria-label="{{ 'kusho.collection.browse' | t }}">
+        <ul class="kcol__nav-list" role="list">
+          {%- for handle in link_handles -%}
+            {%- assign h = handle | strip -%}
+            {%- assign c = collections[h] -%}
+            {%- if c != blank and c.title != blank -%}
+              <li>
+                <a class="kcol__nav-link kusho-label{% if c.handle == collection.handle %} is-current{% endif %}" href="{{ c.url }}"{% if c.handle == collection.handle %} aria-current="page"{% endif %}>{{ c.title | escape }}</a>
+              </li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      </nav>
+    </div>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Collection header",
+  "tag": "div",
+  "class": "kusho-collection-hero-section",
+  "settings": [
+    { "type": "color_scheme", "id": "color_scheme", "label": "Colour scheme", "default": "scheme-2" },
+    { "type": "text", "id": "eyebrow", "label": "Small heading", "default": "Shop" },
+    { "type": "checkbox", "id": "show_description", "label": "Show the collection description", "default": true },
+    { "type": "header", "content": "Photo" },
+    { "type": "checkbox", "id": "show_image", "label": "Show a photo", "default": true },
+    {
+      "type": "select",
+      "id": "scene",
+      "label": "Built-in photo",
+      "options": [
+        { "value": "auto", "label": "Pick by collection (recommended)" },
+        { "value": "none", "label": "No built-in photo" },
+        { "value": "sleep", "label": "Sleeping" },
+        { "value": "sleep-2", "label": "Sleeping (side)" },
+        { "value": "drive", "label": "Driving" },
+        { "value": "work", "label": "Working" },
+        { "value": "work-2", "label": "Working (chair)" },
+        { "value": "travel", "label": "Travelling" },
+        { "value": "gift", "label": "Gifting" }
+      ],
+      "default": "auto",
+      "info": "The collection's own image (Products → Collections) is used when it has one."
+    },
+    { "type": "header", "content": "Browse strip" },
+    { "type": "text", "id": "links", "label": "Collections to link, by handle", "default": "pillows, cushions, combos, travel, cars, best-sellers", "info": "Comma separated. Shown as a row of links under the header." }
+  ],
+  "presets": [
+    { "name": "Collection header" }
+  ]
+}
+{% endschema %}

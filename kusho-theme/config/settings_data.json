@@ -10,7 +10,7 @@
             "background": "#FFFFFF",
             "background_gradient": "",
             "text": "#16211C",
-            "button": "#16211C",
+            "button": "#046938",
             "button_label": "#FFFFFF",
             "secondary_button_label": "#16211C",
             "shadow": "#16211C"
@@ -21,7 +21,7 @@
             "background": "#F5F4F0",
             "background_gradient": "",
             "text": "#16211C",
-            "button": "#16211C",
+            "button": "#046938",
             "button_label": "#FFFFFF",
             "secondary_button_label": "#16211C",
             "shadow": "#16211C"
@@ -33,7 +33,7 @@
             "background_gradient": "",
             "text": "#FFFFFF",
             "button": "#FFFFFF",
-            "button_label": "#16211C",
+            "button_label": "#034A28",
             "secondary_button_label": "#FFFFFF",
             "shadow": "#16211C"
           }
@@ -43,7 +43,7 @@
             "background": "#EEF3F0",
             "background_gradient": "",
             "text": "#16211C",
-            "button": "#16211C",
+            "button": "#046938",
             "button_label": "#FFFFFF",
             "secondary_button_label": "#16211C",
             "shadow": "#16211C"
@@ -54,7 +54,7 @@
             "background": "#F6F1E6",
             "background_gradient": "",
             "text": "#16211C",
-            "button": "#16211C",
+            "button": "#046938",
             "button_label": "#FFFFFF",
             "secondary_button_label": "#16211C",
             "shadow": "#16211C"
@@ -66,7 +66,7 @@
             "background_gradient": "",
             "text": "#FFFFFF",
             "button": "#FFFFFF",
-            "button_label": "#16211C",
+            "button_label": "#034A28",
             "secondary_button_label": "#FFFFFF",
             "shadow": "#16211C"
           }

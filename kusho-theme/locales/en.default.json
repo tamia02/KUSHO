@@ -701,6 +701,13 @@
     },
     "float": {
       "kicker": "Chat on WhatsApp"
+    },
+    "collection": {
+      "count": {
+        "one": "{{ count }} product",
+        "other": "{{ count }} products"
+      },
+      "browse": "Browse collections"
     }
   }
 }

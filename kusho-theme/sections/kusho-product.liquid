@@ -166,19 +166,26 @@
           {%- endif -%}
         {%- endif -%}
 
-        {%- if product.metafields.kusho.key_benefits.value != blank -%}
-          <ul class="kpdp__benefits" role="list" aria-label="{{ 'kusho.product.key_benefits' | t }}">
-            {%- for line in benefits -%}
-              {%- assign item = line | strip -%}
-              {%- if item != blank -%}
-                <li>
-                  <span class="kpdp__check">{% render 'kusho-icon', name: 'check', size: 16 %}</span>
-                  <span>{{ item | escape }}</span>
-                </li>
-              {%- endif -%}
-            {%- endfor -%}
-          </ul>
-        {%- endif -%}
+        {%- liquid
+          assign highlight_lines = ''
+          if product.metafields.kusho.key_benefits.value != blank
+            assign highlight_lines = benefits
+          else
+            assign fallback = section.settings.highlight_1 | append: '||' | append: section.settings.highlight_2 | append: '||' | append: section.settings.highlight_3
+            assign highlight_lines = fallback | split: '||'
+          endif
+        -%}
+        <ul class="kpdp__benefits" role="list" aria-label="{{ 'kusho.product.key_benefits' | t }}">
+          {%- for line in highlight_lines -%}
+            {%- assign item = line | strip -%}
+            {%- if item != blank -%}
+              <li>
+                <span class="kpdp__check">{% render 'kusho-icon', name: 'check', size: 14 %}</span>
+                <span>{{ item | escape }}</span>
+              </li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
 
         {%- if product.metafields.kusho.best_for.value != blank -%}
           <div class="kpdp__bestfor">
@@ -294,7 +301,7 @@
               </button>
             </div>
 
-            <button type="button" class="button button--ink kpdp__buynow" data-buy-now {% unless current_variant.available %}disabled{% endunless %}>
+            <button type="button" class="button button--secondary kpdp__buynow" data-buy-now {% unless current_variant.available %}disabled{% endunless %}>
               {{ 'kusho.product.buy_now' | t }}
             </button>
           {%- endform -%}
@@ -555,6 +562,11 @@
       "type": "header",
       "content": "Trust row (confirm each claim is true)"
     },
+    { "type": "header", "content": "Highlights", "info": "Shown when the product has no kusho.key_benefits metafield." },
+    { "type": "text", "id": "highlight_1", "label": "Highlight 1", "default": "Memory foam that keeps its shape" },
+    { "type": "text", "id": "highlight_2", "label": "Highlight 2", "default": "Removable, machine-washable cover" },
+    { "type": "text", "id": "highlight_3", "label": "Highlight 3", "default": "Designed and tested in India" },
+    { "type": "header", "content": "Promises" },
     { "type": "text", "id": "trust_1", "label": "Promise 1", "default": "Delivery across India" },
     { "type": "text", "id": "trust_2", "label": "Promise 2", "default": "Cash on delivery" },
     { "type": "text", "id": "trust_3", "label": "Promise 3", "default": "7-day returns" },

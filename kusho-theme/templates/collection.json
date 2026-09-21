@@ -1,18 +1,21 @@
 {
   "sections": {
     "banner": {
-      "type": "main-collection-banner",
+      "type": "kusho-collection-hero",
       "settings": {
-        "show_collection_description": true,
-        "show_collection_image": false,
-        "color_scheme": "scheme-1"
+        "color_scheme": "scheme-2",
+        "eyebrow": "Shop",
+        "show_description": true,
+        "show_image": true,
+        "scene": "auto",
+        "links": "pillows, cushions, combos, travel, cars, best-sellers"
       }
     },
     "product-grid": {
       "type": "main-collection-product-grid",
       "settings": {
         "products_per_page": 12,
-        "columns_desktop": 4,
+        "columns_desktop": 3,
         "color_scheme": "scheme-1",
         "image_ratio": "square",
         "image_shape": "default",
@@ -24,8 +27,8 @@
         "filter_type": "vertical",
         "enable_sorting": true,
         "columns_mobile": "2",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "padding_top": 48,
+        "padding_bottom": 64
       }
     }
   },

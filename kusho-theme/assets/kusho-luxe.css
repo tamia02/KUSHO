@@ -8,7 +8,7 @@
 /* ---------------------------------------------------------------- announcement bar: slim, black */
 .kusho-announcement.kusho-announcement,
 .kusho-announcement.kusho-announcement--sale {
-  background: var(--ink);
+  background: var(--kusho-green-deep);
   color: var(--white);
   font-size: var(--fs-label);
   letter-spacing: var(--track-label);
@@ -220,7 +220,7 @@ html[data-kusho-scrolled] .template-index .section-header .header-wrapper {
 }
 
 .kprice__off {
-  color: var(--kusho-gold-text);
+  color: var(--kusho-green);
   font-size: var(--fs-label);
   letter-spacing: var(--track-label);
   text-transform: uppercase;
@@ -244,7 +244,7 @@ html[data-kusho-scrolled] .template-index .section-header .header-wrapper {
 .kbadge--bogo,
 .kbadge--new,
 .kbadge--limited {
-  background: var(--ink);
+  background: var(--kusho-green);
   color: var(--white);
 }
 
@@ -362,7 +362,7 @@ html[data-kusho-scrolled] .template-index .section-header .header-wrapper {
   content: '';
   width: 3.2rem;
   height: 1px;
-  background: var(--white);
+  background: var(--kusho-gold);
   transition: width var(--dur-settle) var(--ease-foam);
 }
 
@@ -383,7 +383,7 @@ html[data-kusho-scrolled] .template-index .section-header .header-wrapper {
 }
 
 .kcmp__tab[aria-selected='true'] {
-  border-bottom-color: var(--ink);
+  border-bottom-color: var(--kusho-green);
   background: transparent;
   color: var(--ink);
 }
@@ -525,7 +525,7 @@ html[data-kusho-scrolled] .template-index .section-header .header-wrapper {
   border-radius: 0;
   background: transparent;
   padding: 0;
-  color: var(--kusho-gold-text);
+  color: var(--kusho-green);
   font-size: var(--fs-label);
   letter-spacing: var(--track-label);
   text-transform: uppercase;
@@ -537,8 +537,8 @@ html[data-kusho-scrolled] .template-index .section-header .header-wrapper {
 
 /* ---------------------------------------------------------------- floating chat: ink, square-cornered badge stays round */
 .kusho-whatsapp.kusho-whatsapp {
-  background: var(--ink);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+  background: var(--kusho-green);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.16);
 }
 
 @media (hover: hover) {
@@ -560,8 +560,7 @@ html[data-kusho-scrolled] .template-index .section-header .header-wrapper {
 
 /* ---------------------------------------------------------------- footer: ink black, hairlines */
 .kfooter {
-  --color-background: 22, 33, 28;
-  background: var(--ink);
+  background: var(--kusho-green-deep);
 }
 
 .kfooter__heading {
@@ -752,4 +751,14 @@ html[data-kusho-scrolled] .template-index .section-header .header-wrapper {
   font-family: var(--font-ui);
   font-size: var(--fs-label);
   letter-spacing: var(--track-label);
+}
+
+/* On product pages the buy column runs down the right edge, so the chat button stays compact (icon only)
+   and never covers the pincode field or the buttons. */
+.template-product .kusho-whatsapp.kusho-whatsapp {
+  padding-right: 0.6rem;
+}
+
+.template-product .kusho-whatsapp .kusho-whatsapp__label {
+  display: none;
 }

@@ -329,7 +329,7 @@
         "r4"
       ],
       "settings": {
-        "color_scheme": "scheme-6",
+        "color_scheme": "scheme-3",
         "eyebrow": "Why Kusho",
         "heading": "The comfort you deserve, made for India",
         "text": "Our mission is to bring world-class comfort solutions within reach of every Indian home, office and traveller.",
@@ -369,7 +369,7 @@
         "b1": {
           "type": "panel",
           "settings": {
-            "color_scheme": "scheme-6",
+            "color_scheme": "scheme-3",
             "scene": "gift",
             "icon": "gift",
             "title": "Corporate gifting",
