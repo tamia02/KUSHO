@@ -10,6 +10,9 @@ const here = path.dirname(fileURLToPath(import.meta.url));
 const dataDir = path.resolve(here, '..', 'data');
 const readJson = (f) => JSON.parse(fs.readFileSync(path.join(dataDir, f), 'utf8'));
 
+// Real customer reviews pulled from the live store's Judge.me widget (recon/reviews.mjs)
+const reviewData = fs.existsSync(path.join(dataDir, 'reviews.json')) ? readJson('reviews.json') : {};
+
 const raw = readJson('products.json').products;
 const membership = readJson('collections.json');
 export const policies = readJson('policies.json');
@@ -115,8 +118,8 @@ const mapProduct = (p) => {
     selected_or_first_available_variant: variants.find((v) => v.available) || first,
     first_available_variant: first,
     metafields: {
-      reviews: review ? { rating: { value: { rating: review[0], scale_max: 5 } }, rating_count: { value: review[1] } } : {},
-      kusho: {},
+      reviews: reviewData[p.handle] && reviewData[p.handle].count > 0 ? { rating: { value: { rating: reviewData[p.handle].average, scale_max: 5 } }, rating_count: { value: reviewData[p.handle].count } } : review ? { rating: { value: { rating: review[0], scale_max: 5 } }, rating_count: { value: review[1] } } : {},
+      kusho: reviewData[p.handle] && reviewData[p.handle].reviews.length ? { reviews: { value: reviewData[p.handle].reviews } } : {},
     },
   };
 };

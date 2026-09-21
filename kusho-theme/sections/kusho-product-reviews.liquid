@@ -1,8 +1,14 @@
 {{ 'kusho-product.css' | asset_url | stylesheet_tag }}
 
 {%- liquid
+  comment
+    Score and count come from the standard reviews.rating metafields (Judge.me writes them).
+    The review list is rendered from the product's kusho.reviews JSON metafield when it exists, so the theme
+    can show reviews without an app widget. A Judge.me app block can still be added below.
+  endcomment
   assign review_count = product.metafields.reviews.rating_count.value | plus: 0
   assign review_average = product.metafields.reviews.rating.value.rating | plus: 0.0
+  assign review_list = product.metafields.kusho.reviews.value
 -%}
 
 <section class="krev kusho-section{% if section.blocks.size == 0 %} krev--solo{% endif %}" id="kusho-reviews" aria-labelledby="krev-title-{{ section.id }}">
@@ -25,6 +31,29 @@
       </div>
 
       <div class="krev__widget">
+        {%- if review_list != blank -%}
+          <ul class="krev__list" role="list">
+            {%- for r in review_list -%}
+              <li class="krev__item" data-reveal style="--ri: {{ forloop.index0 | at_most: 5 }};">
+                <div class="krev__head">
+                  <span class="krev__item-stars" role="img" aria-label="{{ 'kusho.product.rated' | t: rating: r.rating }}">
+                    {%- for i in (1..5) -%}<span class="krev__star{% if i > r.rating %} is-off{% endif %}">{% render 'kusho-icon', name: 'star', size: 14 %}</span>{%- endfor -%}
+                  </span>
+                  {%- if r.verified -%}<span class="krev__verified kusho-label">{% render 'kusho-icon', name: 'check', size: 12 %}{{ 'kusho.product.reviews.verified' | t }}</span>{%- endif -%}
+                </div>
+                {%- if r.title != blank -%}<p class="krev__item-title">{{ r.title | escape }}</p>{%- endif -%}
+                <p class="krev__body">{{ r.body | escape }}</p>
+                {%- if r.pictures.size > 0 -%}
+                  <ul class="krev__pics" role="list">
+                    {%- for pic in r.pictures limit: 3 -%}<li><img src="{{ pic }}" alt="" loading="lazy" width="120" height="120"></li>{%- endfor -%}
+                  </ul>
+                {%- endif -%}
+                <p class="krev__meta"><span class="krev__author">{{ r.author | escape }}</span>{% if r.date != blank %} · <time datetime="{{ r.date }}">{{ r.date | date: '%b %Y' }}</time>{% endif %}</p>
+                {%- if r.reply != blank -%}<p class="krev__reply"><span class="kusho-label">{{ 'kusho.product.reviews.reply' | t }}</span>{{ r.reply | escape }}</p>{%- endif -%}
+              </li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
         {%- for block in section.blocks -%}
           {%- if block.type == '@app' -%}
             {% render block %}

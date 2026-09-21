@@ -641,7 +641,9 @@
         "title": "Customer reviews",
         "based_on": "Based on {{ count }} reviews",
         "none": "No reviews yet. Be the first to share how it feels.",
-        "summary": "Rating summary"
+        "summary": "Rating summary",
+        "verified": "Verified buyer",
+        "reply": "Reply from Kusho"
       },
       "recos": {
         "title": "You may also like"

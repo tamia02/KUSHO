@@ -45,7 +45,7 @@
       }}
     {%- elsif section.settings.builtin_video != 'none' -%}
       {%- assign hero_clip = 'kusho-video-' | append: section.settings.builtin_video | append: '.mp4' -%}
-      <video class="kusho-video khero__video" muted loop playsinline preload="none" aria-hidden="true"><source src="{{ hero_clip | asset_url }}" type="video/mp4"></video>
+      <video class="kusho-video khero__video" muted loop playsinline preload="auto" aria-hidden="true"><source src="{{ hero_clip | asset_url }}" type="video/mp4"></video>
     {%- endif -%}
     <span class="khero__shade" aria-hidden="true"></span>
   </div>

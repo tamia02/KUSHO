@@ -303,9 +303,9 @@ html.kusho-snap .kslide {
     opacity: 0;
     transform: translateY(1.6rem);
     transition:
-      opacity var(--dur-story) var(--ease-foam),
-      transform var(--dur-story) var(--ease-foam);
-    transition-delay: calc(var(--d, 0) * 120ms);
+      opacity 550ms var(--ease-foam),
+      transform 650ms var(--ease-foam);
+    transition-delay: calc(var(--d, 0) * 70ms);
   }
 
   html[data-kusho-motion] .kslide.is-active [data-slide-item] {
@@ -318,9 +318,9 @@ html.kusho-snap .kslide {
     opacity: 0;
     transform: translateY(0.6em);
     transition:
-      opacity 700ms var(--ease-foam),
-      transform 900ms var(--ease-foam);
-    transition-delay: calc(var(--i, 0) * 60ms + 200ms);
+      opacity 500ms var(--ease-foam),
+      transform 650ms var(--ease-foam);
+    transition-delay: calc(var(--i, 0) * 40ms + 120ms);
   }
 
   html[data-kusho-motion] .kslide.is-active .kslide__word {
@@ -339,7 +339,7 @@ html.kusho-snap .kslide {
 
   /* Line drawing: each path draws in turn, the spine guide last, then the gold marks pop */
   html[data-kusho-motion] .kslide__line {
-    transition: stroke-dashoffset 1.4s var(--ease-foam);
+    transition: stroke-dashoffset 1s var(--ease-foam);
   }
 
   html[data-kusho-motion] .kslide.is-active .kslide__line {
@@ -347,23 +347,23 @@ html.kusho-snap .kslide {
   }
 
   html[data-kusho-motion] .kslide.is-active .kslide__line--pillow {
-    transition-delay: 300ms;
+    transition-delay: 200ms;
   }
 
   html[data-kusho-motion] .kslide.is-active .kslide__line--inner {
-    transition-delay: 800ms;
+    transition-delay: 500ms;
   }
 
   html[data-kusho-motion] .kslide.is-active .kslide__line--head {
-    transition-delay: 1100ms;
+    transition-delay: 750ms;
   }
 
   html[data-kusho-motion] .kslide.is-active .kslide__line--body {
-    transition-delay: 1500ms;
+    transition-delay: 1000ms;
   }
 
   html[data-kusho-motion] .kslide.is-active .kslide__line--spine {
-    transition-delay: 2000ms;
+    transition-delay: 1300ms;
   }
 
   html[data-kusho-motion] .kslide__dot {
@@ -378,15 +378,15 @@ html.kusho-snap .kslide {
   html[data-kusho-motion] .kslide.is-active .kslide__dot {
     opacity: 1;
     transform: scale(1);
-    transition-delay: 2600ms;
+    transition-delay: 1800ms;
   }
 
   html[data-kusho-motion] .kslide.is-active .kslide__dot:nth-of-type(2) {
-    transition-delay: 2750ms;
+    transition-delay: 1900ms;
   }
 
   html[data-kusho-motion] .kslide.is-active .kslide__dot:nth-of-type(3) {
-    transition-delay: 2900ms;
+    transition-delay: 2000ms;
   }
 }
 

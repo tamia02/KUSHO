@@ -220,25 +220,25 @@ kusho-hero {
    ========================================================================== */
 @media (prefers-reduced-motion: no-preference) {
   html[data-kusho-motion] .khero__eyebrow {
-    animation: khero-rise var(--dur-story) var(--ease-foam) 200ms both;
+    animation: khero-rise 600ms var(--ease-foam) 80ms both;
   }
 
   html[data-kusho-motion] .khero__word {
-    animation: khero-rise var(--dur-story) var(--ease-foam) both;
-    animation-delay: calc(var(--i) * 90ms + 350ms);
+    animation: khero-rise 600ms var(--ease-foam) both;
+    animation-delay: calc(var(--i) * 45ms + 160ms);
   }
 
   html[data-kusho-motion] .khero__sub,
   html[data-kusho-motion] .khero__actions {
-    animation: khero-rise var(--dur-story) var(--ease-foam) 1000ms both;
+    animation: khero-rise 600ms var(--ease-foam) 520ms both;
   }
 
   html[data-kusho-motion] .khero__scroll {
-    animation: khero-fade 1.2s var(--ease-foam) 1600ms both;
+    animation: khero-fade 800ms var(--ease-foam) 1000ms both;
   }
 
   html[data-kusho-motion] .khero__mouse span {
-    animation: khero-wheel 2.2s ease-in-out 2s infinite;
+    animation: khero-wheel 2.2s ease-in-out 1.4s infinite;
   }
 
   /* Slow Ken Burns on the photo, settling to rest */

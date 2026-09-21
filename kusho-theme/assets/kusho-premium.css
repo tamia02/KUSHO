@@ -18,8 +18,8 @@
   opacity: 1;
   transform: none;
   transition:
-    opacity 800ms var(--ease-foam) calc(var(--ri, 0) * 80ms),
-    transform 1000ms var(--ease-foam) calc(var(--ri, 0) * 80ms);
+    opacity 500ms var(--ease-foam) calc(var(--ri, 0) * 50ms),
+    transform 650ms var(--ease-foam) calc(var(--ri, 0) * 50ms);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -44,8 +44,8 @@
     opacity: 1;
     transform: none;
     transition:
-      opacity 600ms var(--ease-foam) calc(var(--w, 0) * 50ms + 100ms),
-      transform 800ms var(--ease-foam) calc(var(--w, 0) * 50ms + 100ms);
+      opacity 450ms var(--ease-foam) calc(var(--w, 0) * 35ms + 60ms),
+      transform 600ms var(--ease-foam) calc(var(--w, 0) * 35ms + 60ms);
   }
 }
 

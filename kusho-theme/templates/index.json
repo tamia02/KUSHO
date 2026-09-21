@@ -90,7 +90,7 @@
             "scene": "sleep",
             "icon": "moon",
             "title": "Sleep",
-            "text": "Pillows for calmer nights and easier mornings",
+            "text": "Pillows for calmer nights",
             "link": "/collections/pillows"
           }
         },
@@ -560,17 +560,132 @@
         "button_label": "See the pillows",
         "button_link": "/collections/pillows"
       }
+    },
+    "testimonials": {
+      "type": "kusho-testimonials",
+      "blocks": {
+        "r1": {
+          "type": "review",
+          "settings": {
+            "quote": "A drive of around 600 km never felt so easy. This was the comfort I deserved but could not have, until I used it.",
+            "name": "Gagan Singh",
+            "rating": 5,
+            "verified": true,
+            "product": "kusho-car-seat-cushion"
+          }
+        },
+        "r2": {
+          "type": "review",
+          "settings": {
+            "quote": "I recently bought the Kusho Dreamer Cervical Pillow and I am really happy with it. The pillow gives very good support.",
+            "name": "Sumran Talreja",
+            "rating": 5,
+            "verified": true,
+            "product": "kusho-cervical-butterfly-pillow"
+          }
+        },
+        "r3": {
+          "type": "review",
+          "settings": {
+            "quote": "I found this pillow very useful. The long time pain has gone now. Thanks to Kusho.",
+            "name": "Sorabh",
+            "rating": 5,
+            "verified": false,
+            "product": "kusho-cervical-butterfly-pillow"
+          }
+        },
+        "r4": {
+          "type": "review",
+          "settings": {
+            "quote": "Hands down the best upgrade for long drives. The spine support is a total game-changer.",
+            "name": "Gagan Singh",
+            "rating": 5,
+            "verified": true,
+            "product": "kusho-ultimate-pro-seating-combo"
+          }
+        },
+        "r5": {
+          "type": "review",
+          "settings": {
+            "quote": "I am genuinely impressed with the build quality of the cushion. Rare to find a product that actually delivers.",
+            "name": "Ashish Agrawal",
+            "rating": 5,
+            "verified": false,
+            "product": "kusho-tailbone-pro-cushion"
+          }
+        },
+        "r6": {
+          "type": "review",
+          "settings": {
+            "quote": "Best quality fabric and very comfortable cushion. Highly recommended.",
+            "name": "Prachi Lulla",
+            "rating": 5,
+            "verified": true,
+            "product": "kusho-tailbone-pro-cushion"
+          }
+        },
+        "r7": {
+          "type": "review",
+          "settings": {
+            "quote": "Very nice and comfy pillow. My daughter loves it.",
+            "name": "Himanshu Gupta",
+            "rating": 5,
+            "verified": true,
+            "product": "kusho-cuddle-sleep-pillow"
+          }
+        },
+        "r8": {
+          "type": "review",
+          "settings": {
+            "quote": "Mind blowing quality and fitting.",
+            "name": "Shivam",
+            "rating": 5,
+            "verified": false,
+            "product": "kusho-travel-neck-support"
+          }
+        },
+        "r9": {
+          "type": "review",
+          "settings": {
+            "quote": "This car neck cushion is amazing, and the delivery was on time.",
+            "name": "Murli Sharma",
+            "rating": 5,
+            "verified": false,
+            "product": "kusho-car-neck-support-broad"
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5",
+        "r6",
+        "r7",
+        "r8",
+        "r9"
+      ],
+      "settings": {
+        "color_scheme": "scheme-2",
+        "eyebrow": "Customer words",
+        "heading": "What people say after the first week",
+        "rating_text": "5.0 average across 22 reviews",
+        "instagram": "https://www.instagram.com/kusho.in",
+        "instagram_label": "More on Instagram"
+      }
     }
   },
   "order": [
     "hero",
     "slide-product",
     "slide-dark",
-    "ribbon",
     "need",
     "bestsellers",
+    "testimonials",
     "compare",
     "stack",
+    "ribbon",
     "why",
     "combos",
     "business",

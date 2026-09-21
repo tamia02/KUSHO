@@ -1,0 +1,250 @@
+/* Customer words (homepage) and the review list on product pages. Loaded globally after kusho-shop.css. */
+
+/* ---------------------------------------------------------------- homepage cards */
+.ktest__aside {
+  display: grid;
+  gap: var(--sp-2);
+  justify-items: start;
+}
+
+@media screen and (min-width: 750px) {
+  .ktest__aside {
+    justify-items: end;
+    text-align: right;
+  }
+}
+
+.ktest__rating {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: var(--fs-small);
+}
+
+.ktest__stars {
+  display: inline-flex;
+  color: var(--kusho-gold);
+}
+
+.ktest__track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: min(84vw, 34rem);
+  gap: var(--sp-3);
+  margin: 0;
+  padding: 0 0 var(--sp-2);
+  list-style: none;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.ktest__track::-webkit-scrollbar {
+  display: none;
+}
+
+@media screen and (min-width: 990px) {
+  .ktest__track {
+    grid-auto-columns: calc((100% - var(--sp-3) * 2) / 3);
+  }
+}
+
+.ktest__card {
+  display: grid;
+  align-content: start;
+  gap: var(--sp-3);
+  padding: var(--sp-6);
+  border: 1px solid var(--line);
+  background: var(--white);
+  scroll-snap-align: start;
+}
+
+.ktest__card-stars,
+.krev__item-stars {
+  display: inline-flex;
+  gap: 0.2rem;
+  color: var(--kusho-gold);
+}
+
+.ktest__star.is-off,
+.krev__star.is-off {
+  color: var(--line);
+}
+
+.ktest__quote {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-style: normal;
+}
+
+.ktest__quote p {
+  margin: 0;
+  font-family: var(--font-text);
+  font-size: var(--fs-body-lg);
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+.ktest__who {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-3);
+  margin: var(--sp-2) 0 0;
+  font-family: var(--font-ui);
+  font-size: var(--fs-small);
+  font-weight: 600;
+}
+
+.ktest__verified,
+.krev__verified {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--kusho-green);
+  font-weight: 600;
+}
+
+.ktest__product {
+  color: var(--stone);
+  text-decoration: none;
+}
+
+a.ktest__product:hover {
+  color: var(--kusho-green);
+}
+
+/* ---------------------------------------------------------------- product page list */
+.krev .krev__layout {
+  display: grid;
+  gap: var(--sp-6);
+}
+
+@media screen and (min-width: 990px) {
+  .krev .krev__layout {
+    grid-template-columns: 28rem minmax(0, 1fr);
+    gap: var(--sp-9);
+    align-items: start;
+  }
+
+  .krev .krev__summary {
+    position: sticky;
+    top: 12rem;
+  }
+}
+
+.krev__list {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.krev__item {
+  display: grid;
+  gap: var(--sp-2);
+  padding: var(--sp-5) 0;
+  border-top: 1px solid var(--line);
+}
+
+.krev__item:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.krev__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-3);
+}
+
+.krev__item-title {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: var(--fs-body);
+  font-weight: 600;
+}
+
+.krev__body {
+  max-width: 64ch;
+  margin: 0;
+  color: rgba(22, 33, 28, 0.85);
+  line-height: 1.7;
+}
+
+.krev__pics {
+  display: flex;
+  gap: var(--sp-2);
+  margin: var(--sp-2) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.krev__pics img {
+  display: block;
+  width: 9.6rem;
+  height: 9.6rem;
+  object-fit: cover;
+  background: var(--foam);
+}
+
+.krev__meta {
+  margin: 0;
+  color: var(--stone);
+  font-family: var(--font-ui);
+  font-size: var(--fs-small);
+}
+
+.krev__author {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.krev__reply {
+  display: grid;
+  gap: 0.4rem;
+  margin: var(--sp-2) 0 0;
+  padding: var(--sp-3) var(--sp-4);
+  border-left: 2px solid var(--kusho-gold);
+  background: var(--foam);
+  font-size: var(--fs-small);
+}
+
+.krev__reply .kusho-label {
+  color: var(--kusho-green);
+}
+
+/* Product page: the section's own stylesheet loads after this one, so these carry more weight */
+.krev.krev .krev__layout {
+  display: grid;
+  gap: var(--sp-6);
+  grid-template-columns: minmax(0, 1fr);
+}
+
+@media screen and (min-width: 990px) {
+  .krev.krev .krev__layout {
+    grid-template-columns: 28rem minmax(0, 1fr);
+    gap: var(--sp-9);
+  }
+}
+
+.krev.krev .krev__summary {
+  position: static;
+  padding: var(--sp-5) 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+@media screen and (min-width: 990px) {
+  .krev.krev .krev__summary {
+    position: sticky;
+    top: 12rem;
+  }
+}
+
+.krev.krev .krev__widget {
+  min-width: 0;
+}

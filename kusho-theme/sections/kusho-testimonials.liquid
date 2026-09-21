@@ -1,0 +1,81 @@
+{% comment %}
+  Customer words on the homepage. Each block is one review: quote, name, product, stars. The default blocks in
+  templates/index.json are real reviews copied from the store's Judge.me widget; edit or replace them in the editor.
+  Desktop shows a row of cards that scrolls sideways with snap; phones the same, one card at a time.
+{% endcomment %}
+{{ 'kusho-home.css' | asset_url | stylesheet_tag }}
+
+<section class="ktest kusho-section color-{{ section.settings.color_scheme }} gradient" aria-labelledby="ktest-title-{{ section.id }}">
+  <div class="page-width">
+    <div class="ksec-head ksec-head--row" data-reveal>
+      <div>
+        {%- if section.settings.eyebrow != blank -%}<p class="ksec-eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+        <h2 class="ksec-title" id="ktest-title-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
+      </div>
+      <div class="ktest__aside">
+        {%- if section.settings.rating_text != blank -%}
+          <p class="ktest__rating"><span class="ktest__stars" aria-hidden="true">{% for i in (1..5) %}{% render 'kusho-icon', name: 'star', size: 14 %}{% endfor %}</span>{{ section.settings.rating_text | escape }}</p>
+        {%- endif -%}
+        {%- if section.settings.instagram != blank -%}
+          <a class="kusho-link" href="{{ section.settings.instagram }}" target="_blank" rel="noopener">{{ section.settings.instagram_label | default: 'Follow on Instagram' | escape }}</a>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+
+  <div class="page-width">
+    <ul class="ktest__track" role="list">
+      {%- for block in section.blocks -%}
+        <li class="ktest__card" data-reveal style="--ri: {{ forloop.index0 | at_most: 6 }};" {{ block.shopify_attributes }}>
+          <span class="ktest__card-stars" role="img" aria-label="{{ block.settings.rating }} out of 5">
+            {%- for i in (1..5) -%}<span class="ktest__star{% if i > block.settings.rating %} is-off{% endif %}">{% render 'kusho-icon', name: 'star', size: 14 %}</span>{%- endfor -%}
+          </span>
+          <blockquote class="ktest__quote"><p>{{ block.settings.quote | escape }}</p></blockquote>
+          <p class="ktest__who">
+            <span class="ktest__name">{{ block.settings.name | escape }}</span>
+            {%- if block.settings.verified -%}<span class="ktest__verified kusho-label">{% render 'kusho-icon', name: 'check', size: 12 %}{{ 'kusho.product.reviews.verified' | t }}</span>{%- endif -%}
+          </p>
+          {%- if block.settings.product != blank -%}
+            <a class="ktest__product kusho-label" href="{{ block.settings.product.url }}">{{ block.settings.product.title | escape }}</a>
+          {%- elsif block.settings.product_text != blank -%}
+            <span class="ktest__product kusho-label">{{ block.settings.product_text | escape }}</span>
+          {%- endif -%}
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Customer words",
+  "tag": "div",
+  "class": "kusho-testimonials-section",
+  "max_blocks": 12,
+  "settings": [
+    { "type": "color_scheme", "id": "color_scheme", "label": "Colour scheme", "default": "scheme-2" },
+    { "type": "text", "id": "eyebrow", "label": "Small heading", "default": "Customer words" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "What people say after the first week" },
+    { "type": "text", "id": "rating_text", "label": "Rating line", "default": "Rated 5.0 by verified buyers" },
+    { "type": "url", "id": "instagram", "label": "Instagram link" },
+    { "type": "text", "id": "instagram_label", "label": "Instagram link label", "default": "More on Instagram" }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        { "type": "textarea", "id": "quote", "label": "Quote", "default": "The long time pain has gone now. Thanks to Kusho." },
+        { "type": "text", "id": "name", "label": "Name", "default": "Sorabh" },
+        { "type": "range", "id": "rating", "label": "Stars", "min": 1, "max": 5, "step": 1, "default": 5 },
+        { "type": "checkbox", "id": "verified", "label": "Verified buyer", "default": false },
+        { "type": "product", "id": "product", "label": "Product" },
+        { "type": "text", "id": "product_text", "label": "Product name (if no product is picked)" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "Customer words", "blocks": [ { "type": "review" }, { "type": "review" }, { "type": "review" } ] }
+  ]
+}
+{% endschema %}

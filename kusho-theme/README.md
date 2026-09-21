@@ -50,8 +50,11 @@ The logo is bundled (`assets/kusho-logo.png`, the official file from kusho.in), 
 Business details (3C VENTURES, address, GSTIN, support@kusho.in, +91 7049726060, WhatsApp, Instagram, Facebook,
 YouTube) come from the live site and sit in Theme settings → Kusho, where they can be edited.
 
-Star ratings read Shopify's standard `reviews.rating` / `reviews.rating_count` metafields.
-If the review app in use writes different metafields, edit `snippets/kusho-rating.liquid`.
+Star ratings read Shopify's standard `reviews.rating` / `reviews.rating_count` metafields (Judge.me writes them).
+The review list on the product page renders a `kusho.reviews` JSON metafield (list of {rating, author, title, body,
+date, verified, pictures}); the preview fills it with the 22 real reviews pulled from the live store's Judge.me widget
+(`recon/reviews.mjs`). On the live store, either keep Judge.me and add its app block to the "Product reviews" section,
+or sync reviews into that metafield. The homepage "Customer words" section holds nine of those real reviews as editable blocks.
 
 ## What is built
 
