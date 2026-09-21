@@ -560,3 +560,107 @@
   left: var(--sp-4);
   bottom: var(--sp-4);
 }
+
+/* ---------------------------------------------------------------- stacked gallery (product.stacked template)
+   Desktop: the photos run down the page and the buy column stays in view.
+   Phones: the stack scrolls vertically inside a frame the height of the screen, with snap and dots. */
+@media screen and (min-width: 990px) {
+  .kpdp.kpdp--stacked .kpdp__gallery {
+    position: static;
+  }
+
+  .kpdp.kpdp--stacked .kpdp__info {
+    position: sticky;
+    top: 12rem;
+  }
+}
+
+.kpdp .kgal--stacked {
+  position: relative;
+  display: block;
+}
+
+.kpdp .kgal__stack {
+  display: grid;
+  gap: 0.4rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.kpdp .kgal__stack-item {
+  position: relative;
+  aspect-ratio: 1;
+  background: var(--foam);
+}
+
+.kpdp .kgal__stack-item .kgal__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  cursor: default;
+}
+
+.kpdp .kgal__stack-dots,
+.kpdp .kgal__stack-hint {
+  display: none;
+}
+
+@media screen and (max-width: 989px) {
+  .kpdp .kgal__stack {
+    max-height: 78svh;
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+    overscroll-behavior-y: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .kpdp .kgal__stack-item {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    aspect-ratio: 1;
+  }
+
+  .kpdp .kgal__stack-dots {
+    position: absolute;
+    top: 50%;
+    right: var(--sp-3);
+    display: grid;
+    gap: 0.6rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    transform: translateY(-50%);
+  }
+
+  .kpdp .kgal__stack-dots li {
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.55);
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15);
+    transition: transform var(--dur-base) var(--ease-rebound), background-color var(--dur-base) var(--ease-foam);
+  }
+
+  .kpdp .kgal__stack-dots li.is-current {
+    background: var(--white);
+    transform: scale(1.5);
+  }
+
+  .kpdp .kgal__stack-hint {
+    position: absolute;
+    right: 0;
+    bottom: var(--sp-3);
+    left: 0;
+    display: block;
+    margin: 0;
+    color: var(--white);
+    text-align: center;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+    transition: opacity var(--dur-base) var(--ease-foam);
+  }
+
+  .kpdp .kgal__stack-hint.is-hidden {
+    opacity: 0;
+  }
+}

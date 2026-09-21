@@ -48,7 +48,7 @@
 -%}
 
 <section
-  class="kpdp"
+  class="kpdp{% if section.settings.gallery_layout == 'stacked' %} kpdp--stacked{% endif %}"
   data-kusho-product
   data-section-id="{{ section.id }}"
   data-currency="₹"
@@ -85,7 +85,7 @@
 
     <div class="kpdp__grid">
       <div class="kpdp__gallery">
-        {% render 'kusho-gallery', product: product, current_variant: current_variant, section_id: section.id %}
+        {% render 'kusho-gallery', product: product, current_variant: current_variant, section_id: section.id, layout: section.settings.gallery_layout %}
       </div>
 
       <div class="kpdp__info">
@@ -518,6 +518,17 @@
   "tag": "section",
   "class": "kusho-product-section",
   "settings": [
+    {
+      "type": "select",
+      "id": "gallery_layout",
+      "label": "Gallery layout",
+      "options": [
+        { "value": "carousel", "label": "Carousel (swipe sideways)" },
+        { "value": "stacked", "label": "Stacked (scroll down through the photos)" }
+      ],
+      "default": "carousel",
+      "info": "Use the product.stacked template to give one product the stacked gallery."
+    },
     {
       "type": "header",
       "content": "Delivery"

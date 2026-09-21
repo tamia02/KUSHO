@@ -68,7 +68,7 @@ async function page(pathname) {
     if (!product) return null;
     const tagline = product.metafields.kusho.tagline;
     return theme.renderPage({
-      template: 'product',
+      template: product.template_suffix ? 'product.' + product.template_suffix : 'product',
       pageType: 'product',
       path: pathname,
       title: product.title,

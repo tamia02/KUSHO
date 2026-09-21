@@ -465,3 +465,35 @@ const initProducts = (scope = document) => {
 
 initProducts();
 document.addEventListener('shopify:section:load', (event) => initProducts(event.target));
+
+/* Stacked gallery (product.stacked template): keep the side dots in step with the photo on screen,
+   hide the "swipe up" hint once the visitor has swiped, and jump to a colour's photo when a swatch is chosen. */
+(() => {
+  document.querySelectorAll('[data-stacked-gallery]').forEach((gallery) => {
+    const track = gallery.querySelector('[data-stack-track]');
+    const items = Array.from(gallery.querySelectorAll('[data-stack-item]'));
+    const dots = Array.from(gallery.querySelectorAll('[data-stack-dots] li'));
+    const hint = gallery.querySelector('[data-stack-hint]');
+    if (!track || !items.length) return;
+
+    const mark = (index) => dots.forEach((dot, i) => dot.classList.toggle('is-current', i === index));
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            mark(items.indexOf(entry.target));
+            if (hint && items.indexOf(entry.target) > 0) hint.classList.add('is-hidden');
+          }
+        });
+      },
+      { root: window.innerWidth < 990 ? track : null, threshold: 0.6 }
+    );
+    items.forEach((item) => io.observe(item));
+
+    // Variant swatches call goToMedia on <kusho-gallery>; offer the same hook here.
+    gallery.goToMedia = (mediaId) => {
+      const item = items.find((el) => Number(el.dataset.mediaId) === Number(mediaId));
+      if (item) item.scrollIntoView({ behavior: 'smooth', block: window.innerWidth < 990 ? 'start' : 'center' });
+    };
+  });
+})();

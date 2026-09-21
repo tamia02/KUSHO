@@ -39,6 +39,7 @@ Before the first push, **duplicate the live theme as a backup** (guide 14.2).
 | Blogs | The homepage and blog use the existing blog with the handle `news` |
 | Navigation | Create menus with the handles `footer-shop`, `footer-help`, `footer-company`, `footer-partner`; keep `main-menu` |
 | Pages | Assign each page its template: about-us → *page.about*, contact → *page.contact*, faqs → *page.faq*, corporate-gifting → *page.corporate-gifting*, become-a-retailer → *page.retailer*, campus-ambassador → *page.campus*, affiliate-program → *page.affiliate*, kusho-catalogue → *page.catalogue*, return-refund → *page* |
+| Products | The Dreamer Cervical Pillow uses the **product.stacked** template (Products → the product → Theme template), which lists its photos top to bottom instead of a carousel. Assign it to any product that should read that way |
 | Pages | Delete the duplicates `/pages/corporategifting` and `/pages/becomearetailer` (301 redirect to the hyphenated versions) |
 | Products → Tags | Optional badge tags: `badge:bestseller`, `badge:new`, `badge:limited`, `badge:bogo`, `badge:deal-of-the-day` |
 | Custom data → Product metafields | Namespace `kusho`. Create these and the product page fills itself in (empty ones simply do not show): |

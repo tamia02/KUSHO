@@ -97,6 +97,7 @@ const mapProduct = (p) => {
     id: p.id,
     title: p.title,
     handle: p.handle,
+    template_suffix: p.handle === 'kusho-cervical-butterfly-pillow' ? 'stacked' : '', // the one product with the vertical gallery (on Shopify: assign the product.stacked template)
     url: `/products/${p.handle}`,
     type: p.product_type,
     vendor: p.vendor,
