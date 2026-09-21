@@ -26,7 +26,7 @@ kusho-hero {
 
 @media screen and (max-width: 749px) {
   .khero--full {
-    min-height: 92svh;
+    min-height: 84svh;
   }
 }
 

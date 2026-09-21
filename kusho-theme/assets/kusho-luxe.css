@@ -275,20 +275,50 @@ html[data-kusho-scrolled] .template-index .section-header .header-wrapper {
   border-radius: 50%;
 }
 
-/* ---------------------------------------------------------------- section spacing: more air */
+/* ---------------------------------------------------------------- section spacing
+   48px on phones, 64px on desktop. Two sections meeting = 96 / 128px, which is enough air without the page
+   turning into a scroll of empty screens. */
 .kusho-section {
-  padding-block: var(--sp-9);
+  padding-block: var(--sp-7);
 }
 
 @media screen and (min-width: 990px) {
   .kusho-section {
-    padding-block: var(--sp-10);
+    padding-block: var(--sp-8);
   }
+}
+
+/* Full-screen opening slides only need to fill the screen on desktop; on phones they size to their content */
+@media screen and (max-width: 749px) {
+  .kslide {
+    min-height: 0;
+  }
+
+  .kslide__inner {
+    padding-block: var(--sp-7);
+  }
+
+  html.kusho-snap .kslide {
+    scroll-snap-align: none;
+  }
+}
+
+/* Section heads: less gap to the content below */
+.ksec-head {
+  margin-bottom: var(--sp-6);
+}
+
+.ksec-eyebrow {
+  margin-bottom: var(--sp-3);
+}
+
+.ksec-lead {
+  margin-top: var(--sp-3);
 }
 
 /* ---------------------------------------------------------------- text ribbon: thin, uppercase, quiet */
 .kribbon {
-  padding-block: var(--sp-6);
+  padding-block: var(--sp-5);
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
 }

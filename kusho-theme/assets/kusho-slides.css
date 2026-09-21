@@ -19,8 +19,23 @@ html.kusho-snap .kslide {
   position: relative;
   display: grid;
   align-items: center;
-  min-height: 100svh;
+  min-height: 92svh;
   overflow: hidden;
+}
+
+/* Phones: slides size to their content and do not snap */
+@media screen and (max-width: 749px) {
+  .kslide {
+    min-height: 0;
+  }
+
+  .kslide__inner {
+    padding-block: var(--sp-7);
+  }
+
+  html.kusho-snap .kslide {
+    scroll-snap-align: none;
+  }
 }
 
 .kslide__inner {

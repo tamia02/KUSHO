@@ -67,7 +67,7 @@
 /* ---------------------------------------------------------------- text ribbon */
 .kribbon {
   position: relative;
-  padding-block: var(--sp-6);
+  padding-block: var(--sp-5);
   overflow: hidden;
 }
 

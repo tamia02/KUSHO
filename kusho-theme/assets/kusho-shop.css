@@ -452,7 +452,7 @@
   position: relative;
   display: grid;
   align-items: end;
-  min-height: 78svh;
+  min-height: 64svh;
   overflow: hidden;
   color: var(--white);
   isolation: isolate;
@@ -460,7 +460,7 @@
 
 @media screen and (min-width: 990px) {
   .kpvid {
-    min-height: 88svh;
+    min-height: 76svh;
   }
 }
 
@@ -490,7 +490,7 @@
 .kpvid__content {
   display: grid;
   gap: var(--sp-6);
-  padding-block: var(--sp-8) var(--sp-7);
+  padding-block: var(--sp-8) var(--sp-6);
 }
 
 @media screen and (min-width: 990px) {
