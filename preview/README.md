@@ -43,6 +43,13 @@ A small "Local preview · data from kusho.in" pill sits bottom-left of every pag
 Add to cart and the cart drawer (buttons show a "preview only" message), collection filters
 (Shopify Search & Discovery), predictive search, customer accounts, and customer accounts. The delivery checker gives an estimate from a setting, not a courier lookup. They start working when the theme is connected to Shopify.
 
+## Host it for the client (no Shopify needed)
+
+ renders every page to static files in  (about 20 MB with the videos). The repo has a
+ that runs this build, so on Vercel just import the GitHub repo and deploy: every page, the phone
+frame at , the videos and the 404 page all work. Search and add-to-cart are display only, as in the
+local preview. Any static host works the same way (upload the  folder).
+
 ## Then connect the theme to Shopify
 
 ```bash

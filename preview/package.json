@@ -5,7 +5,8 @@
   "type": "module",
   "description": "Renders the Kusho Shopify theme locally with sample data. Preview only, never pushed to Shopify.",
   "scripts": {
-    "start": "node server.mjs"
+    "start": "node server.mjs",
+    "export": "node export.mjs"
   },
   "dependencies": {
     "liquidjs": "^10.21.0"

@@ -1,6 +1,9 @@
 # dependencies
 node_modules/
 
+# local preview build output (Vercel builds it)
+preview/dist/
+
 # local preview logs
 preview/*.log
 
