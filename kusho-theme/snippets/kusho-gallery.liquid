@@ -9,51 +9,13 @@
   - product: {Object} Product (required)
   - current_variant: {Object} Selected variant (required)
   - section_id: {String} Unique id (required)
-  - layout: {String} 'carousel' (default) or 'stacked' — stacked lists every photo top to bottom;
-    on desktop the page scrolls through them while the buy column stays put, on phones the stack
-    scrolls vertically inside its own frame (swipe up).
+  - layout: {String} 'carousel' (default) or 'stacked' — stacked keeps the thumbnails in a column on the
+    left at every screen size and the big photo moves up and down (swipe or scroll vertically, tap a thumbnail).
 {% endcomment %}
 
 {%- assign media_total = product.media.size -%}
 
-{%- if layout == 'stacked' -%}
-<div class="kgal kgal--stacked" data-stacked-gallery>
-  <ul class="kgal__stack kusho-hide-scrollbar" aria-label="{{ 'kusho.product.gallery.label' | t }}" data-stack-track>
-    {%- for media in product.media -%}
-      {%- liquid
-        assign slide_loading = 'lazy'
-        assign slide_priority = 'auto'
-        assign slide_alt = media.alt | default: product.title
-        if forloop.first
-          assign slide_loading = 'eager'
-          assign slide_priority = 'high'
-        endif
-      -%}
-      <li class="kgal__stack-item" data-stack-item="{{ forloop.index0 }}" data-media-id="{{ media.id }}">
-        {{
-          media
-          | image_url: width: 1400
-          | image_tag:
-            widths: '600, 900, 1200, 1400',
-            sizes: '(min-width: 990px) 54vw, 100vw',
-            loading: slide_loading,
-            fetchpriority: slide_priority,
-            alt: slide_alt,
-            class: 'kgal__img'
-        }}
-        {%- if media.alt != blank -%}<span class="kgal__caption">{{ media.alt | escape }}</span>{%- endif -%}
-      </li>
-    {%- endfor -%}
-  </ul>
-  {%- if media_total > 1 -%}
-    <ol class="kgal__stack-dots" role="list" aria-hidden="true" data-stack-dots>
-      {%- for media in product.media -%}<li{% if forloop.first %} class="is-current"{% endif %}></li>{%- endfor -%}
-    </ol>
-    <p class="kgal__stack-hint kusho-label" aria-hidden="true" data-stack-hint>{{ 'kusho.product.gallery.swipe_up' | t }}</p>
-  {%- endif -%}
-</div>
-{%- else -%}
-<kusho-gallery class="kgal" data-total="{{ media_total }}">
+<kusho-gallery class="kgal{% if layout == 'stacked' %} kgal--rail{% endif %}" data-total="{{ media_total }}"{% if layout == 'stacked' %} data-axis="y"{% endif %}>
   {%- if media_total > 1 -%}
     <div class="kgal__thumbs kusho-hide-scrollbar" role="group" aria-label="{{ 'kusho.product.gallery.label' | t }}">
       {%- for media in product.media -%}
@@ -146,4 +108,3 @@
     {%- endif -%}
   </dialog>
 </kusho-gallery>
-{%- endif -%}

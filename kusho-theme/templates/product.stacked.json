@@ -210,81 +210,90 @@
         "v1": {
           "type": "row",
           "settings": {
-            "label": "Core",
-            "kusho": "Memory foam that moulds to you and recovers its shape",
-            "rival": "Fibre or cotton fill that flattens within months",
+            "label": "Memory foam core",
+            "kusho": "Moulds to your shape and recovers every night",
+            "rival_has": false,
             "only": "all"
           }
         },
         "v2": {
           "type": "row",
           "settings": {
-            "label": "Shape",
-            "kusho": "Contoured, with a higher and a lower edge for side and back sleepers",
-            "rival": "Flat, so the neck tilts up or down",
+            "label": "Two heights in one pillow",
+            "kusho": "A higher and a lower edge for side and back sleepers",
+            "rival_has": false,
             "only": "pillow"
           }
         },
         "v3": {
           "type": "row",
           "settings": {
-            "label": "Shape",
-            "kusho": "Curved to the lower back and tailbone, holds its form all day",
-            "rival": "Flat or lumpy, slides off the chair",
+            "label": "Contoured to the spine",
+            "kusho": "Curved to the lower back and tailbone; holds its form all day",
+            "rival_has": false,
             "only": "cushion"
           }
         },
         "v4": {
           "type": "row",
           "settings": {
-            "label": "Fit",
-            "kusho": "Strap fixes it to the headrest; stays where you set it",
-            "rival": "Loose cushion that slips down the seat",
+            "label": "Strap fixes it to the headrest",
+            "kusho": "Stays exactly where you set it",
+            "rival_has": false,
             "only": "car"
           }
         },
         "v5": {
           "type": "row",
           "settings": {
-            "label": "Fit",
-            "kusho": "Wraps the neck with the opening at the front, packs small",
-            "rival": "Bulky and shifts as you move",
+            "label": "Wraps the neck, packs small",
+            "kusho": "Opening at the front, fits in a bag",
+            "rival_has": false,
             "only": "travel"
           }
         },
         "v6": {
           "type": "row",
           "settings": {
-            "label": "Cover",
-            "kusho": "Breathable bamboo cover, removable and machine-washable",
-            "rival": "Stitched on; needs the whole pillow cleaned",
+            "label": "Removable, washable cover",
+            "kusho": "Breathable bamboo cover; machine wash",
+            "rival_has": false,
             "only": "all"
           }
         },
         "v7": {
           "type": "row",
           "settings": {
-            "label": "Hygiene",
-            "kusho": "Hypoallergenic and dust-mite resistant",
-            "rival": "Collects dust and allergens over time",
+            "label": "Hypoallergenic, dust-mite resistant",
+            "kusho": "Safe for sensitive skin",
+            "rival_has": false,
             "only": "all"
           }
         },
         "v8": {
           "type": "row",
           "settings": {
-            "label": "Lifespan",
-            "kusho": "Keeps its support for years, no fluffing",
-            "rival": "Replace once it goes flat",
+            "label": "Keeps its support for years",
+            "kusho": "No fluffing, no going flat",
+            "rival_has": false,
             "only": "all"
           }
         },
         "v9": {
           "type": "row",
           "settings": {
-            "label": "Buying",
-            "kusho": "Cash on delivery, 7-day returns, warranty on defects",
-            "rival": "Varies",
+            "label": "Soft to the touch",
+            "kusho": "Pleasant fabric on the skin",
+            "rival_has": true,
+            "only": "all"
+          }
+        },
+        "v10": {
+          "type": "row",
+          "settings": {
+            "label": "Cash on delivery and 7-day returns",
+            "kusho": "Plus a warranty on manufacturing defects",
+            "rival_has": false,
             "only": "all"
           }
         }
@@ -298,12 +307,13 @@
         "v6",
         "v7",
         "v8",
-        "v9"
+        "v9",
+        "v10"
       ],
       "settings": {
         "color_scheme": "scheme-2",
         "eyebrow": "Why it is different",
-        "heading": "What changes when the support is right",
+        "heading": "What you get that a regular pillow does not",
         "note": "Based on the materials and construction of Kusho products. Individual comfort varies."
       }
     }

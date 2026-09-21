@@ -718,6 +718,10 @@
       "thanks": "Thank you",
       "use_code": "Use this code at checkout",
       "copy": "Copy"
+    },
+    "vs": {
+      "yes": "Yes",
+      "no": "No"
     }
   }
 }

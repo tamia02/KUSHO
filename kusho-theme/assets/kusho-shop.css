@@ -561,107 +561,78 @@
   bottom: var(--sp-4);
 }
 
-/* ---------------------------------------------------------------- stacked gallery (product.stacked template)
-   Desktop: the photos run down the page and the buy column stays in view.
-   Phones: the stack scrolls vertically inside a frame the height of the screen, with snap and dots. */
-@media screen and (min-width: 990px) {
-  .kpdp.kpdp--stacked .kpdp__gallery {
-    position: static;
-  }
-
-  .kpdp.kpdp--stacked .kpdp__info {
-    position: sticky;
-    top: 12rem;
-  }
-}
-
-.kpdp .kgal--stacked {
-  position: relative;
-  display: block;
-}
-
-.kpdp .kgal__stack {
+/* ---------------------------------------------------------------- vertical gallery (product.stacked template)
+   Thumbnails in a column on the left at every size; the big photo moves up and down with snap. */
+.kpdp .kgal--rail {
   display: grid;
-  gap: 0.4rem;
-  margin: 0;
+  grid-template-columns: 6.4rem minmax(0, 1fr);
+  gap: var(--sp-2);
+  align-items: start;
+}
+
+@media screen and (min-width: 990px) {
+  .kpdp .kgal--rail {
+    grid-template-columns: 8.8rem minmax(0, 1fr);
+    gap: var(--sp-3);
+  }
+}
+
+.kpdp .kgal--rail .kgal__thumbs {
+  order: -1;
+  flex-direction: column;
+  align-self: stretch;
+  contain: size;
   padding: 0;
-  list-style: none;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
-.kpdp .kgal__stack-item {
-  position: relative;
-  aspect-ratio: 1;
-  background: var(--foam);
-}
-
-.kpdp .kgal__stack-item .kgal__img {
+.kpdp .kgal--rail .kgal__thumb {
   width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+}
+
+.kpdp .kgal--rail .kgal__stage {
+  min-width: 0;
+}
+
+.kpdp .kgal--rail .kgal__track {
+  flex-direction: column;
+  height: auto;
+  aspect-ratio: 1;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  overscroll-behavior-y: contain;
+}
+
+.kpdp .kgal--rail .kgal__slide {
+  flex: 0 0 100%;
   height: 100%;
-  object-fit: cover;
-  cursor: default;
+  aspect-ratio: auto;
 }
 
-.kpdp .kgal__stack-dots,
-.kpdp .kgal__stack-hint {
-  display: none;
+/* Arrows become up and down, centred top and bottom */
+.kpdp .kgal--rail .kgal__stage .kgal__arrow {
+  top: auto;
+  left: 50%;
+  margin: 0;
+  transform: translateX(-50%) rotate(90deg);
 }
 
-@media screen and (max-width: 989px) {
-  .kpdp .kgal__stack {
-    max-height: 78svh;
-    overflow-y: auto;
-    scroll-snap-type: y mandatory;
-    overscroll-behavior-y: contain;
-    -webkit-overflow-scrolling: touch;
-  }
+.kpdp .kgal--rail .kgal__stage .kgal__arrow--prev {
+  top: var(--sp-3);
+}
 
-  .kpdp .kgal__stack-item {
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
-    aspect-ratio: 1;
-  }
+.kpdp .kgal--rail .kgal__stage .kgal__arrow--next {
+  bottom: var(--sp-3);
+  right: auto;
+}
 
-  .kpdp .kgal__stack-dots {
-    position: absolute;
-    top: 50%;
-    right: var(--sp-3);
-    display: grid;
-    gap: 0.6rem;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    transform: translateY(-50%);
-  }
-
-  .kpdp .kgal__stack-dots li {
-    width: 0.6rem;
-    height: 0.6rem;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.55);
-    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15);
-    transition: transform var(--dur-base) var(--ease-rebound), background-color var(--dur-base) var(--ease-foam);
-  }
-
-  .kpdp .kgal__stack-dots li.is-current {
-    background: var(--white);
-    transform: scale(1.5);
-  }
-
-  .kpdp .kgal__stack-hint {
-    position: absolute;
-    right: 0;
-    bottom: var(--sp-3);
-    left: 0;
-    display: block;
-    margin: 0;
-    color: var(--white);
-    text-align: center;
-    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
-    transition: opacity var(--dur-base) var(--ease-foam);
-  }
-
-  .kpdp .kgal__stack-hint.is-hidden {
-    opacity: 0;
+@media screen and (max-width: 749px) {
+  .kpdp .kgal--rail .kgal__stage .kgal__arrow {
+    display: inline-flex;
   }
 }
 
@@ -701,72 +672,68 @@
   border-color: var(--kusho-green);
 }
 
-/* ---------------------------------------------------------------- product page: Kusho vs regular */
+/* ---------------------------------------------------------------- product page: Kusho vs regular (ticks and crosses) */
 .kvs__table {
-  max-width: 96rem;
+  max-width: 84rem;
   margin: 0 auto;
   border-top: 1px solid var(--line);
 }
 
 .kvs__row {
   display: grid;
-  grid-template-columns: minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr) 8rem 8rem;
+  align-items: center;
   border-bottom: 1px solid var(--line);
 }
 
 @media screen and (min-width: 750px) {
   .kvs__row {
-    grid-template-columns: 14rem minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr) 16rem 16rem;
   }
 }
 
 .kvs__cell {
   display: flex;
-  align-items: flex-start;
-  gap: var(--sp-3);
-  padding: var(--sp-4) var(--sp-3);
-  font-size: var(--fs-small);
-  line-height: 1.55;
-}
-
-@media screen and (min-width: 750px) {
-  .kvs__cell {
-    padding: var(--sp-5) var(--sp-4);
-  }
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+  padding: var(--sp-4) var(--sp-2);
 }
 
 .kvs__cell--label {
-  padding-bottom: 0;
+  display: grid;
+  gap: 0.2rem;
+  align-content: center;
+  justify-content: start;
+  padding-left: 0;
+  text-align: left;
+}
+
+.kvs__feature {
+  font-family: var(--font-ui);
+  font-size: var(--fs-body);
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.kvs__detail {
   color: var(--stone);
+  font-size: var(--fs-small);
+  line-height: 1.5;
+}
+
+.kvs__cell--kusho {
+  background: var(--kusho-green-mist);
+}
+
+.kvs__row--head .kvs__cell {
+  gap: var(--sp-2);
+  padding-block: var(--sp-4);
   font-family: var(--font-ui);
   font-size: var(--fs-label);
   font-weight: 600;
   letter-spacing: var(--track-label);
-  text-transform: uppercase;
-}
-
-@media screen and (min-width: 750px) {
-  .kvs__cell--label {
-    padding-bottom: var(--sp-5);
-  }
-}
-
-.kvs__cell--kusho {
-  background: var(--white);
-  color: var(--ink);
-}
-
-.kvs__cell--rival {
-  color: var(--stone);
-}
-
-.kvs__row--head .kvs__cell {
-  align-items: center;
-  padding-block: var(--sp-4);
-  font-family: var(--font-display);
-  font-size: var(--fs-h4);
-  font-weight: 600;
-  letter-spacing: var(--track-heading);
+  text-align: center;
   text-transform: uppercase;
 }
 
@@ -775,45 +742,21 @@
 }
 
 .kvs__row--head .kvs__cell--rival {
-  font-weight: 400;
+  color: var(--stone);
 }
 
 .kvs__mark {
-  width: 2.8rem;
-  height: 2.8rem;
-}
-
-.kvs__head-short {
-  display: none;
-}
-
-@media screen and (max-width: 749px) {
-  .kvs__head-short {
-    display: inline;
-  }
-}
-
-@media screen and (max-width: 749px) {
-  .kvs__row--head .kvs__cell--label {
-    display: none;
-  }
-  .kvs__row--head {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  .kvs__head-full {
-    display: none;
-  }
+  width: 2.4rem;
+  height: 2.4rem;
 }
 
 .kvs__yes,
 .kvs__no {
   display: inline-flex;
-  flex: none;
   align-items: center;
   justify-content: center;
-  width: 2rem;
-  height: 2rem;
-  margin-top: 0.1rem;
+  width: 2.8rem;
+  height: 2.8rem;
   border-radius: 50%;
 }
 
@@ -823,19 +766,12 @@
 }
 
 .kvs__no {
-  position: relative;
-  border: 1px solid var(--line);
-}
-
-.kvs__no::after {
-  content: "";
-  width: 0.8rem;
-  height: 1px;
-  background: var(--stone);
+  background: #f3e3e1;
+  color: #a33a2f;
 }
 
 .kvs__note {
-  max-width: 96rem;
+  max-width: 84rem;
   margin: var(--sp-4) auto 0;
   color: var(--stone);
   font-size: var(--fs-micro);
