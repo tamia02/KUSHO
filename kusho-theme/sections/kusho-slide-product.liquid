@@ -1,8 +1,8 @@
+{% comment %}
+  Full-screen product slide (second screen of the homepage). One product on a clean cream field,
+  a row of category chips above it, name and price below. Part of the snap-scrolling opening sequence.
+{% endcomment %}
 {%- liquid
-  comment
-    Full-screen product slide (second screen of the homepage). One product on a clean cream field,
-    a row of category chips above it, name and price below. Part of the snap-scrolling opening sequence.
-  endcomment
   assign product = section.settings.product
   assign img = section.settings.image
   if img == blank and section.settings.image_index > 0 and product != blank

@@ -26,11 +26,26 @@ const TYPES = {
   '.woff2': 'font/woff2',
   '.webp': 'image/webp',
   '.html': 'text/html; charset=utf-8',
+  '.mp4': 'video/mp4',
 };
 
 const send = (res, status, body, type = 'text/html; charset=utf-8') => {
   res.writeHead(status, { 'Content-Type': type, 'Cache-Control': 'no-store' });
   res.end(body);
+};
+
+// MP4 with HTTP range support so the browser can seek and loop
+const streamVideo = (req, res, file) => {
+  const size = fs.statSync(file).size;
+  const range = /bytes=(d*)-(d*)/.exec(req.headers.range || '');
+  if (range) {
+    const start = range[1] ? Number(range[1]) : 0;
+    const end = range[2] ? Number(range[2]) : size - 1;
+    res.writeHead(206, { 'Content-Type': 'video/mp4', 'Accept-Ranges': 'bytes', 'Content-Range': 'bytes ' + start + '-' + end + '/' + size, 'Content-Length': end - start + 1 });
+    return fs.createReadStream(file, { start, end }).pipe(res);
+  }
+  res.writeHead(200, { 'Content-Type': 'video/mp4', 'Accept-Ranges': 'bytes', 'Content-Length': size });
+  return fs.createReadStream(file).pipe(res);
 };
 
 const heroImage = (name, ratio, w, h) => ({ src: `/mock/img/${name}`, alt: '', width: w, height: h, aspect_ratio: ratio, media_type: 'image' });
@@ -143,6 +158,7 @@ const server = http.createServer(async (req, res) => {
     if (pathname.startsWith('/assets/')) {
       const file = path.join(themeDir, 'assets', path.basename(pathname));
       if (!fs.existsSync(file)) return send(res, 404, 'Not found', 'text/plain');
+      if (path.extname(file) === '.mp4') return streamVideo(req, res, file);
       return send(res, 200, fs.readFileSync(file), TYPES[path.extname(file)] || 'application/octet-stream');
     }
 

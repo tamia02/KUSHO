@@ -43,6 +43,9 @@
           preload: 'none',
           class: 'kusho-video khero__video'
       }}
+    {%- elsif section.settings.builtin_video != 'none' -%}
+      {%- assign hero_clip = 'kusho-video-' | append: section.settings.builtin_video | append: '.mp4' -%}
+      <video class="kusho-video khero__video" muted loop playsinline preload="none" aria-hidden="true"><source src="{{ hero_clip | asset_url }}" type="video/mp4"></video>
     {%- endif -%}
     <span class="khero__shade" aria-hidden="true"></span>
   </div>
@@ -122,7 +125,21 @@
     { "type": "header", "content": "Photo or video" },
     { "type": "image_picker", "id": "image", "label": "Photo (landscape, at least 2000px wide)", "info": "A real photo of a person using a Kusho product. Leave empty to use the built-in photo." },
     { "type": "text", "id": "image_alt", "label": "Photo description", "default": "A woman sleeping peacefully on a Kusho pillow" },
-    { "type": "video", "id": "video", "label": "Video (optional)", "info": "Silent loop under 6 MB. Plays over the photo; the photo shows until it starts." },
+    {
+      "type": "select",
+      "id": "builtin_video",
+      "label": "Built-in video",
+      "options": [
+        { "value": "sleep", "label": "Sleeping on the pillow" },
+        { "value": "drive", "label": "Resting in the car" },
+        { "value": "work", "label": "At the desk" },
+        { "value": "travel", "label": "On the plane" },
+        { "value": "none", "label": "No video" }
+      ],
+      "default": "sleep",
+      "info": "The four Kusho clips ship with the theme. Uploading a video below replaces it."
+    },
+    { "type": "video", "id": "video", "label": "Your own video (optional)", "info": "Silent loop under 6 MB. Plays over the photo; the photo shows until it starts." },
     {
       "type": "select",
       "id": "height",

@@ -42,6 +42,10 @@
                     preload: 'none',
                     class: 'kusho-video kstack__video'
                 }}
+              {%- elsif block.settings.use_builtin_video -%}
+                {%- assign clip_name = block.settings.scene | remove: '-2' -%}
+                {%- assign clip = 'kusho-video-' | append: clip_name | append: '.mp4' -%}
+                <video class="kusho-video kstack__video" muted loop playsinline preload="none" aria-hidden="true"><source src="{{ clip | asset_url }}" type="video/mp4"></video>
               {%- endif -%}
             </span>
             <span class="kstack__shade" aria-hidden="true"></span>
@@ -90,7 +94,8 @@
           "default": "sleep-2"
         },
         { "type": "image_picker", "id": "image", "label": "Your own photo (optional)" },
-        { "type": "video", "id": "video", "label": "Video (optional)", "info": "Silent loop, 16:9, under 5 MB. Plays over the photo while the card is on screen." },
+        { "type": "checkbox", "id": "use_builtin_video", "label": "Play the built-in clip for this scene", "default": true },
+        { "type": "video", "id": "video", "label": "Your own video (optional)", "info": "Silent loop, 16:9, under 5 MB. Replaces the built-in clip." },
         { "type": "text", "id": "image_alt", "label": "Photo description" },
         { "type": "text", "id": "title", "label": "Title", "default": "Sleep" },
         { "type": "textarea", "id": "text", "label": "How to use it", "default": "Rest your head in the centre of the pillow so the curve supports your neck." },

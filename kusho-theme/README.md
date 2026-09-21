@@ -123,8 +123,10 @@ reviewed against advertising rules before launch.
 - **Where it lives:** tokens in `kusho-tokens.css`, global type and buttons in `kusho-base.css`, and the
   restyle of every component in `kusho-luxe.css` (loads last on every page). To go back to the brighter first
   build, remove `kusho-luxe.css` from `layout/theme.liquid` and restore the earlier tokens.
-- **Video slots:** the hero, each "how to use" card and the "Why Kusho" strip accept a silent looping video from
-  the theme editor. `kusho-video.js` plays a clip only while it is on screen, adds a pause button, and shows the
+- **Videos:** the four lifestyle clips (sleep, drive, work, travel) ship inside the theme as `assets/kusho-video-*.mp4`
+  (0.3 to 0.6 MB each), so the hero, the "how to use" cards and the product page's "See it in use" band play them with no
+  uploads. The product band picks the clip from the product (car, travel, cushion, else pillow); a `kusho.video` file
+  metafield on a product overrides it. Every slot also accepts an uploaded video from the theme editor. `kusho-video.js` plays a clip only while it is on screen, adds a pause button, and shows the
   photo instead for reduced-motion and data-saver visitors.
 
 ## Conventions
