@@ -1,0 +1,116 @@
+{% comment %}
+  "Kusho vs a regular pillow": a quiet two-column comparison. Rows come from blocks; the default rows in
+  templates/product.json are written per product family, and the right-hand column's name follows the product
+  (regular pillow / ordinary cushion / standard travel pillow). Each row has a short line for both sides, so
+  it reads like a fact sheet, not a scoreboard.
+{% endcomment %}
+{%- liquid
+  assign h = product.handle | downcase
+  assign t = product.type | downcase
+  assign rival = section.settings.rival_label
+  if rival == blank
+    if h contains 'travel'
+      assign rival = 'A standard travel pillow'
+    elsif t contains 'cushion' or h contains 'cushion' or h contains 'seat' or h contains 'lumbar'
+      assign rival = 'An ordinary cushion'
+    else
+      assign rival = 'A regular pillow'
+    endif
+  endif
+  assign family = 'pillow'
+  if h contains 'travel'
+    assign family = 'travel'
+  elsif h contains 'car'
+    assign family = 'car'
+  elsif t contains 'cushion' or h contains 'cushion' or h contains 'seat' or h contains 'lumbar' or h contains 'tailbone'
+    assign family = 'cushion'
+  endif
+-%}
+
+<section class="kvs kusho-section color-{{ section.settings.color_scheme }} gradient" aria-labelledby="kvs-title-{{ section.id }}">
+  <div class="page-width">
+    <div class="ksec-head ksec-head--center" data-reveal>
+      {%- if section.settings.eyebrow != blank -%}<p class="ksec-eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+      <h2 class="ksec-title" id="kvs-title-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
+      {%- if section.settings.text != blank -%}<p class="ksec-lead">{{ section.settings.text | escape }}</p>{%- endif -%}
+    </div>
+
+    <div class="kvs__table" role="table" aria-label="{{ section.settings.heading | escape }}" data-reveal>
+      <div class="kvs__row kvs__row--head" role="row">
+        <span class="kvs__cell kvs__cell--label" role="columnheader"></span>
+        <span class="kvs__cell kvs__cell--kusho" role="columnheader">
+          <img class="kvs__mark" src="{{ 'kusho-favicon.png' | asset_url }}" alt="" width="28" height="28">
+          <span class="kvs__head-full">{{ product.title | escape }}</span><span class="kvs__head-short">Kusho</span>
+        </span>
+        <span class="kvs__cell kvs__cell--rival" role="columnheader">{{ rival | escape }}</span>
+      </div>
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign show = true
+          if block.settings.only != 'all' and block.settings.only != family
+            assign show = false
+          endif
+        -%}
+        {%- if show -%}
+          <div class="kvs__row" role="row" {{ block.shopify_attributes }}>
+            <span class="kvs__cell kvs__cell--label" role="rowheader">{{ block.settings.label | escape }}</span>
+            <span class="kvs__cell kvs__cell--kusho" role="cell">
+              <span class="kvs__yes" aria-hidden="true">{% render 'kusho-icon', name: 'check', size: 14 %}</span>
+              <span>{{ block.settings.kusho | escape }}</span>
+            </span>
+            <span class="kvs__cell kvs__cell--rival" role="cell">
+              <span class="kvs__no" aria-hidden="true"></span>
+              <span>{{ block.settings.rival | escape }}</span>
+            </span>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    {%- if section.settings.note != blank -%}
+      <p class="kvs__note">{{ section.settings.note | escape }}</p>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product: Kusho vs regular",
+  "tag": "div",
+  "class": "kusho-product-vs-section",
+  "max_blocks": 8,
+  "settings": [
+    { "type": "color_scheme", "id": "color_scheme", "label": "Colour scheme", "default": "scheme-2" },
+    { "type": "text", "id": "eyebrow", "label": "Small heading", "default": "Why it is different" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "What changes when the support is right" },
+    { "type": "textarea", "id": "text", "label": "Text" },
+    { "type": "text", "id": "rival_label", "label": "Right-hand column name", "info": "Leave blank to match the product: regular pillow, ordinary cushion, standard travel pillow." },
+    { "type": "text", "id": "note", "label": "Footnote", "default": "Based on the materials and construction of Kusho products. Individual comfort varies." }
+  ],
+  "blocks": [
+    {
+      "type": "row",
+      "name": "Row",
+      "settings": [
+        { "type": "text", "id": "label", "label": "What", "default": "Core" },
+        { "type": "text", "id": "kusho", "label": "Kusho", "default": "Memory foam that moulds to you and recovers its shape" },
+        { "type": "text", "id": "rival", "label": "Regular", "default": "Fibre or cotton fill that flattens within months" },
+        {
+          "type": "select",
+          "id": "only",
+          "label": "Show for",
+          "options": [
+            { "value": "all", "label": "All products" },
+            { "value": "pillow", "label": "Pillows only" },
+            { "value": "cushion", "label": "Cushions only" },
+            { "value": "car", "label": "Car products only" },
+            { "value": "travel", "label": "Travel only" }
+          ],
+          "default": "all"
+        }
+      ]
+    }
+  ],
+  "presets": [ { "name": "Product: Kusho vs regular", "blocks": [ { "type": "row" }, { "type": "row" }, { "type": "row" } ] } ]
+}
+{% endschema %}

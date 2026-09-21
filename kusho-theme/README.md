@@ -44,6 +44,7 @@ Before the first push, **duplicate the live theme as a backup** (guide 14.2).
 | Products → Tags | Optional badge tags: `badge:bestseller`, `badge:new`, `badge:limited`, `badge:bogo`, `badge:deal-of-the-day` |
 | Custom data → Product metafields | Namespace `kusho`. Create these and the product page fills itself in (empty ones simply do not show): |
 | | `tagline` single line · `short_benefit` single line (cards) · `key_benefits`, `best_for`, `in_the_box`, `care`, `how_to`: multi-line text, **one item per line** |
+| | `before_image` / `after_image` (file): a product's own before/after photos for the slider; otherwise a built-in pair is picked by product family · `video` (file): its own lifestyle clip |
 | | `specs`: multi-line, one **`Label: value`** per line · `features`: one **`Title | text`** per line · `faqs`: one **`Question || Answer`** per line |
 | Discounts | Create the code **WELCOME10** (or change it in the Welcome offer popup section). The popup posts Shopify's customer form: email goes to the customer list with the tags newsletter and popup, the phone number is saved as a customer note. For SMS/WhatsApp-only capture use Shopify Forms or Klaviyo and switch the section off |
 | Product page → Offers | Offer blocks are display only. Each one must match a real discount rule in Shopify (or GoKwik) |

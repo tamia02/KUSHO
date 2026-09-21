@@ -1,0 +1,145 @@
+{% comment %}
+  Before / after on the product page. One drag slider, the scene chosen from the product unless the product
+  has its own kusho.before_image / kusho.after_image metafields or the section is set to a fixed scene.
+  Scenes (built-in photos): neck, rest, sleep, back, seat, sit, car, travel.
+{% endcomment %}
+<script src="{{ 'kusho-compare.js' | asset_url }}" defer="defer"></script>
+
+{%- liquid
+  assign scene = section.settings.scene
+  if scene == 'auto'
+    assign h = product.handle | downcase
+    if h contains 'car-seat' or h contains 'tailbone' or h contains 'seating'
+      assign scene = 'seat'
+    elsif h contains 'car'
+      assign scene = 'car'
+    elsif h contains 'travel'
+      assign scene = 'travel'
+    elsif h contains 'lumbar' or h contains 'posture' or h contains 'ergo' or h contains 'wedge'
+      assign scene = 'back'
+    elsif h contains 'cervical' or h contains 'contour' or h contains 'counter' or h contains 'butterfly'
+      assign scene = 'neck'
+    elsif h contains 'cuddle' or h contains 'baby'
+      assign scene = 'rest'
+    else
+      assign scene = 'sleep'
+    endif
+  endif
+  case scene
+    when 'car'
+      assign before_alt = 'Head slumped against a bare car headrest'
+      assign after_alt = 'Neck held in place by a Kusho car cushion'
+      assign caption = 'On the road'
+    when 'back'
+      assign before_alt = 'Slouching at a desk with a sore lower back'
+      assign after_alt = 'Sitting upright with a Kusho lumbar cushion'
+      assign caption = 'At the desk'
+    when 'seat'
+      assign before_alt = 'Sitting with tailbone discomfort'
+      assign after_alt = 'Sitting comfortably on a Kusho seat cushion'
+      assign caption = 'Long hours sitting'
+    when 'sit'
+      assign before_alt = 'Hunched over a laptop'
+      assign after_alt = 'Sitting straight with back support'
+      assign caption = 'At the desk'
+    when 'travel'
+      assign before_alt = 'Neck strained on a journey'
+      assign after_alt = 'Resting on a Kusho travel pillow'
+      assign caption = 'On a journey'
+    when 'rest'
+      assign before_alt = 'Waking up tired and stiff'
+      assign after_alt = 'Sleeping soundly on a Kusho pillow'
+      assign caption = 'Through the night'
+    when 'neck'
+      assign before_alt = 'Waking with a stiff neck'
+      assign after_alt = 'Neck aligned on a Kusho contoured pillow'
+      assign caption = 'Every morning'
+    else
+      assign before_alt = 'Neck tilted on a flat pillow'
+      assign after_alt = 'Neck supported on a Kusho pillow'
+      assign caption = 'Every night'
+  endcase
+  assign before_file = 'kusho-photo-cmp-' | append: scene | append: '-before.webp'
+  assign after_file = 'kusho-photo-cmp-' | append: scene | append: '-after.webp'
+  assign before_mf = product.metafields.kusho.before_image
+  assign after_mf = product.metafields.kusho.after_image
+-%}
+
+<section class="kcmp kpcmp kusho-section color-{{ section.settings.color_scheme }} gradient" aria-labelledby="kpcmp-title-{{ section.id }}">
+  <div class="page-width">
+    <kusho-compare class="kcmp__widget">
+      <div class="kcmp__intro" data-reveal>
+        <p class="ksec-eyebrow">{{ section.settings.eyebrow | default: caption | escape }}</p>
+        <h2 class="ksec-title" id="kpcmp-title-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
+        {%- if section.settings.text != blank -%}<p class="ksec-lead">{{ section.settings.text | escape }}</p>{%- endif -%}
+        <ul class="kpcmp__legend" role="list">
+          <li><span class="kpcmp__swatch kpcmp__swatch--before"></span>{{ section.settings.before_label | escape }}</li>
+          <li><span class="kpcmp__swatch kpcmp__swatch--after"></span>{{ section.settings.after_label | escape }}</li>
+        </ul>
+      </div>
+
+      <div class="kcmp__panels" data-reveal="image">
+        <div class="kcmp__panel" data-panel>
+          <div class="kcmp__stage" style="--pos: 58%;" data-stage>
+            <div class="kcmp__img kcmp__img--after">
+              {%- if after_mf != blank -%}
+                {{ after_mf | image_url: width: 1000 | image_tag: loading: 'lazy', widths: '500, 750, 1000', sizes: '(min-width: 990px) 560px, 100vw', alt: after_alt }}
+              {%- else -%}
+                <img src="{{ after_file | asset_url }}" alt="{{ after_alt }}" width="600" height="680" loading="lazy">
+              {%- endif -%}
+              <span class="kcmp__tag kcmp__tag--after">{{ section.settings.after_label | escape }}</span>
+            </div>
+            <div class="kcmp__img kcmp__img--before" data-before>
+              {%- if before_mf != blank -%}
+                {{ before_mf | image_url: width: 1000 | image_tag: loading: 'lazy', widths: '500, 750, 1000', sizes: '(min-width: 990px) 560px, 100vw', alt: before_alt }}
+              {%- else -%}
+                <img src="{{ before_file | asset_url }}" alt="{{ before_alt }}" width="600" height="680" loading="lazy">
+              {%- endif -%}
+              <span class="kcmp__tag kcmp__tag--before">{{ section.settings.before_label | escape }}</span>
+            </div>
+            <span class="kcmp__handle" aria-hidden="true">
+              <span class="kcmp__grip">{% render 'kusho-icon', name: 'chevron-left', size: 16 %}{% render 'kusho-icon', name: 'chevron-right', size: 16 %}</span>
+            </span>
+            <input class="kcmp__range" type="range" min="0" max="100" value="58" step="1" aria-label="{{ 'kusho.home.compare_label' | t }}" aria-valuetext="{{ 'kusho.home.compare_value' | t: pct: 58 }}" data-range>
+          </div>
+          <p class="kcmp__hint" aria-hidden="true">{% render 'kusho-icon', name: 'chevron-left', size: 16 %}{{ 'kusho.home.compare_hint' | t }}{% render 'kusho-icon', name: 'chevron-right', size: 16 %}</p>
+        </div>
+      </div>
+    </kusho-compare>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product: before and after",
+  "tag": "div",
+  "class": "kusho-product-compare-section",
+  "settings": [
+    { "type": "color_scheme", "id": "color_scheme", "label": "Colour scheme", "default": "scheme-1" },
+    {
+      "type": "select",
+      "id": "scene",
+      "label": "Photos",
+      "options": [
+        { "value": "auto", "label": "Match the product (recommended)" },
+        { "value": "neck", "label": "Stiff neck → contoured pillow" },
+        { "value": "rest", "label": "Tired morning → sound sleep" },
+        { "value": "sleep", "label": "Flat pillow → Kusho pillow" },
+        { "value": "back", "label": "Slouching → lumbar support" },
+        { "value": "seat", "label": "Sitting pain → seat cushion" },
+        { "value": "sit", "label": "Hunched → upright" },
+        { "value": "car", "label": "Bare headrest → car cushion" },
+        { "value": "travel", "label": "Strained → travel pillow" }
+      ],
+      "default": "auto",
+      "info": "A product's own kusho.before_image and kusho.after_image metafields always win."
+    },
+    { "type": "text", "id": "eyebrow", "label": "Small heading", "info": "Leave blank to use one that matches the photos." },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "The difference you feel by the first week" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Drag the handle. Support that keeps your spine in line is easier to live with, hour after hour." },
+    { "type": "text", "id": "before_label", "label": "Before label", "default": "Before" },
+    { "type": "text", "id": "after_label", "label": "After label", "default": "With Kusho" }
+  ],
+  "presets": [ { "name": "Product: before and after" } ]
+}
+{% endschema %}

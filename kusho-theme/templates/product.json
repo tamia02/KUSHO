@@ -191,11 +191,127 @@
         "heading": "Made for the way you rest",
         "text": "Memory foam that takes your shape, a cover that breathes, and support that keeps your neck and back where they should be."
       }
+    },
+    "before-after": {
+      "type": "kusho-product-compare",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "scene": "auto",
+        "heading": "The difference you feel by the first week",
+        "text": "Drag the handle. Support that keeps your spine in line is easier to live with, hour after hour.",
+        "before_label": "Before",
+        "after_label": "With Kusho"
+      }
+    },
+    "vs": {
+      "type": "kusho-product-vs",
+      "blocks": {
+        "v1": {
+          "type": "row",
+          "settings": {
+            "label": "Core",
+            "kusho": "Memory foam that moulds to you and recovers its shape",
+            "rival": "Fibre or cotton fill that flattens within months",
+            "only": "all"
+          }
+        },
+        "v2": {
+          "type": "row",
+          "settings": {
+            "label": "Shape",
+            "kusho": "Contoured, with a higher and a lower edge for side and back sleepers",
+            "rival": "Flat, so the neck tilts up or down",
+            "only": "pillow"
+          }
+        },
+        "v3": {
+          "type": "row",
+          "settings": {
+            "label": "Shape",
+            "kusho": "Curved to the lower back and tailbone, holds its form all day",
+            "rival": "Flat or lumpy, slides off the chair",
+            "only": "cushion"
+          }
+        },
+        "v4": {
+          "type": "row",
+          "settings": {
+            "label": "Fit",
+            "kusho": "Strap fixes it to the headrest; stays where you set it",
+            "rival": "Loose cushion that slips down the seat",
+            "only": "car"
+          }
+        },
+        "v5": {
+          "type": "row",
+          "settings": {
+            "label": "Fit",
+            "kusho": "Wraps the neck with the opening at the front, packs small",
+            "rival": "Bulky and shifts as you move",
+            "only": "travel"
+          }
+        },
+        "v6": {
+          "type": "row",
+          "settings": {
+            "label": "Cover",
+            "kusho": "Breathable bamboo cover, removable and machine-washable",
+            "rival": "Stitched on; needs the whole pillow cleaned",
+            "only": "all"
+          }
+        },
+        "v7": {
+          "type": "row",
+          "settings": {
+            "label": "Hygiene",
+            "kusho": "Hypoallergenic and dust-mite resistant",
+            "rival": "Collects dust and allergens over time",
+            "only": "all"
+          }
+        },
+        "v8": {
+          "type": "row",
+          "settings": {
+            "label": "Lifespan",
+            "kusho": "Keeps its support for years, no fluffing",
+            "rival": "Replace once it goes flat",
+            "only": "all"
+          }
+        },
+        "v9": {
+          "type": "row",
+          "settings": {
+            "label": "Buying",
+            "kusho": "Cash on delivery, 7-day returns, warranty on defects",
+            "rival": "Varies",
+            "only": "all"
+          }
+        }
+      },
+      "block_order": [
+        "v1",
+        "v2",
+        "v3",
+        "v4",
+        "v5",
+        "v6",
+        "v7",
+        "v8",
+        "v9"
+      ],
+      "settings": {
+        "color_scheme": "scheme-2",
+        "eyebrow": "Why it is different",
+        "heading": "What changes when the support is right",
+        "note": "Based on the materials and construction of Kusho products. Individual comfort varies."
+      }
     }
   },
   "order": [
     "main",
     "in-use",
+    "before-after",
+    "vs",
     "details",
     "reviews",
     "recommendations"
