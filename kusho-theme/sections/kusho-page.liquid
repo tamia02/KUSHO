@@ -1,0 +1,55 @@
+{{ 'kusho-page.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'kusho-page.js' | asset_url }}" defer="defer"></script>
+
+{%- liquid
+  assign wa_number = settings.kusho_whatsapp_number | remove: '+' | remove: ' ' | remove: '-'
+-%}
+
+<article class="kpage kusho-section">
+  <div class="page-width kpage__layout{% unless section.settings.show_toc %} kpage__layout--single{% endunless %}">
+    <div class="kpage__main">
+      <div class="kpage__content rte" data-page-content>
+        {{ page.content }}
+      </div>
+
+      {%- if section.settings.show_help -%}
+        <aside class="kpage__help" aria-label="{{ 'kusho.page.help_title' | t }}">
+          <h2 class="kpage__help-title">{{ 'kusho.page.help_title' | t }}</h2>
+          <p>{{ 'kusho.page.help_text' | t }}</p>
+          <div class="kpage__help-actions">
+            {%- if settings.kusho_whatsapp_number != blank -%}
+              <a class="button button--secondary" href="https://wa.me/{{ wa_number }}" target="_blank" rel="noopener">
+                {% render 'kusho-icon', name: 'whatsapp', size: 20 %}
+                {{ 'kusho.page.whatsapp' | t }}
+                <span class="visually-hidden">{{ 'accessibility.link_messages.new_window' | t }}</span>
+              </a>
+            {%- endif -%}
+            <a class="kusho-link" href="/pages/contact">{{ 'kusho.page.contact' | t }}</a>
+          </div>
+        </aside>
+      {%- endif -%}
+    </div>
+
+    {%- if section.settings.show_toc -%}
+      <nav class="kpage__toc" aria-label="{{ 'kusho.page.on_this_page' | t }}" data-toc hidden>
+        <p class="kpage__toc-title">{{ 'kusho.page.on_this_page' | t }}</p>
+        <ul class="kpage__toc-list" data-toc-list role="list"></ul>
+      </nav>
+    {%- endif -%}
+  </div>
+</article>
+
+{% schema %}
+{
+  "name": "Page content",
+  "tag": "div",
+  "class": "kusho-page-section",
+  "settings": [
+    { "type": "checkbox", "id": "show_toc", "label": "Show \"On this page\" links", "default": true, "info": "Built from the headings in the page." },
+    { "type": "checkbox", "id": "show_help", "label": "Show the help box at the end", "default": true }
+  ],
+  "presets": [
+    { "name": "Page content" }
+  ]
+}
+{% endschema %}

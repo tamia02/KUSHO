@@ -1,0 +1,30 @@
+{
+  "sections": {
+    "hero": {
+      "type": "kusho-page-hero",
+      "settings": {
+        "color_scheme": "scheme-2",
+        "eyebrow": "Catalogue",
+        "heading": "Kusho catalogue",
+        "text": "Everything Kusho makes for sleep, work and travel, in one place.",
+        "button_label": "Shop all products",
+        "button_link": "/collections/all"
+      }
+    },
+    "text": {
+      "type": "kusho-text",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "eyebrow": "Browse",
+        "heading": "See the full range",
+        "text": "<p>Explore pillows, cushions, travel comfort and combos. Need the catalogue for your business? Message us and we will send it across.</p>",
+        "button_label": "Contact us",
+        "button_link": "/pages/contact"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "text"
+  ]
+}

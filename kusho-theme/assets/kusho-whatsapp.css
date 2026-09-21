@@ -1,0 +1,138 @@
+/* Floating WhatsApp button (guide 10.6).
+   A deep-green pill with a white WhatsApp badge. Icon only on phones, icon and label on desktop.
+   Lifts above a sticky add-to-cart bar when --kusho-sticky-offset is set on <html> by the product page. */
+
+.kusho-whatsapp {
+  position: fixed;
+  z-index: 20;
+  right: var(--sp-4);
+  bottom: calc(var(--sp-4) + var(--kusho-sticky-offset, 0px) + env(safe-area-inset-bottom, 0px));
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: 0.6rem;
+  border-radius: var(--r-pill);
+  background: linear-gradient(135deg, #0a7d48 0%, #046938 60%, #034a28 100%);
+  box-shadow:
+    0 1.4rem 3.4rem rgba(3, 60, 32, 0.4),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+  color: var(--white);
+  font-family: var(--font-ui);
+  text-decoration: none;
+  transition:
+    transform var(--dur-settle) var(--ease-rebound),
+    box-shadow var(--dur-settle) var(--ease-foam),
+    opacity var(--dur-base) var(--ease-foam);
+}
+
+@media (hover: hover) {
+  .kusho-whatsapp:hover {
+    transform: translateY(-3px);
+    box-shadow:
+      0 2rem 4.4rem rgba(3, 60, 32, 0.46),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+  }
+}
+
+.kusho-whatsapp:active {
+  transform: scale(0.96);
+  transition-duration: var(--dur-instant);
+}
+
+.kusho-whatsapp:focus-visible {
+  outline: 0.3rem solid var(--kusho-gold);
+  outline-offset: 0.3rem;
+}
+
+/* White badge holding the WhatsApp mark */
+.kusho-whatsapp__icon {
+  position: relative;
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 4.6rem;
+  height: 4.6rem;
+  border-radius: 50%;
+  background: var(--white);
+  color: #1fa855;
+}
+
+.kusho-whatsapp__icon .kusho-icon {
+  width: 2.8rem;
+  height: 2.8rem;
+}
+
+/* A soft ring that pulses three times after the page settles, then stops */
+.kusho-whatsapp__icon::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 0.2rem solid var(--kusho-gold);
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html[data-kusho-motion] .kusho-whatsapp {
+    animation: kwa-in var(--dur-story) var(--ease-foam) 1.6s both;
+  }
+
+  html[data-kusho-motion] .kusho-whatsapp__icon::after {
+    animation: kwa-ring 2.4s var(--ease-foam) 3.2s 3;
+  }
+}
+
+@keyframes kwa-in {
+  from {
+    opacity: 0;
+    transform: translateY(2rem) scale(0.9);
+  }
+}
+
+@keyframes kwa-ring {
+  0% {
+    opacity: 0.85;
+    transform: scale(1);
+  }
+  80%,
+  100% {
+    opacity: 0;
+    transform: scale(1.65);
+  }
+}
+
+/* Label only on desktop; phones keep a compact round button */
+.kusho-whatsapp__label {
+  display: none;
+}
+
+@media screen and (min-width: 990px) {
+  .kusho-whatsapp {
+    padding-right: var(--sp-5);
+  }
+
+  .kusho-whatsapp__label {
+    display: grid;
+    gap: 0.1rem;
+    line-height: 1.2;
+  }
+
+  .kusho-whatsapp__kicker {
+    color: rgba(255, 255, 255, 0.78);
+    font-size: var(--fs-micro);
+    font-weight: 500;
+  }
+
+  .kusho-whatsapp__text {
+    font-size: var(--fs-small);
+    font-weight: 700;
+  }
+}
+
+/* Hide while a drawer or modal is open */
+body:has(cart-drawer.active, .menu-drawer-container[open], modal-dialog[open]) .kusho-whatsapp {
+  opacity: 0;
+  pointer-events: none;
+}

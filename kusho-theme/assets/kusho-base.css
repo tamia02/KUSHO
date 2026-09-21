@@ -1,0 +1,426 @@
+/* ==========================================================================
+   Kusho base layer — loads AFTER Dawn's base.css and re-skins it.
+   Keep this file to global rules only; component styles live in kusho-*.css.
+   ========================================================================== */
+
+/* ---- Body text (6.2): sentence case, no tracking, comfortable leading ---- */
+body {
+  font-family: var(--font-text);
+  font-size: var(--fs-body);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 1.7;
+  color: rgba(var(--color-foreground), 0.86);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ---- Headings: Josefin Sans Light, uppercase, letter-spaced, plenty of air ---- */
+h1,
+h2,
+h3,
+h4,
+h5,
+.h0,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5 {
+  font-family: var(--font-display);
+  font-weight: 300;
+  text-transform: uppercase;
+  color: rgb(var(--color-foreground));
+}
+
+.h0 {
+  font-size: var(--fs-h1);
+  line-height: 1.2;
+  letter-spacing: var(--track-display);
+}
+h1,
+.h1 {
+  font-size: var(--fs-h1);
+  line-height: 1.2;
+  letter-spacing: var(--track-display);
+}
+h2,
+.h2 {
+  font-size: var(--fs-h2);
+  line-height: 1.25;
+  letter-spacing: var(--track-heading);
+}
+h3,
+.h3 {
+  font-size: var(--fs-h3);
+  line-height: 1.3;
+  letter-spacing: var(--track-heading);
+}
+h4,
+.h4 {
+  font-size: var(--fs-h4);
+  font-weight: 400;
+  line-height: 1.35;
+  letter-spacing: 0.05em;
+}
+
+/* The display style: hero line + editorial quotes only. Thin, uppercase, wide. */
+.kusho-display {
+  font-family: var(--font-display);
+  font-size: var(--fs-display);
+  font-weight: 300;
+  font-style: normal;
+  line-height: 1.25;
+  letter-spacing: var(--track-display);
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+/* Uppercase label style shared by eyebrows, nav, tags and meta text */
+.kusho-label {
+  font-family: var(--font-ui);
+  font-size: var(--fs-label);
+  font-weight: 400;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+}
+
+.kusho-lead {
+  font-size: var(--fs-body-lg);
+  line-height: 1.6;
+  max-width: 62ch;
+}
+
+.caption,
+.caption-large,
+.caption-with-letter-spacing {
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  font-size: var(--fs-label);
+}
+
+/* ---- Numbers in prices align in columns ---- */
+.price,
+.kprice,
+.totals__total-value,
+.cart-item__totals {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- Focus (6.7): 3px ring, 2px offset; light ring on dark schemes ---- */
+*:focus-visible {
+  outline: 0.3rem solid rgb(var(--kusho-ring));
+  outline-offset: 0.2rem;
+  box-shadow: none;
+}
+
+/* ---- Buttons: square, uppercase, letter-spaced. Ink fill, green on hover.
+   Secondary is a 1px outline that fills on hover. ---- */
+.button,
+.shopify-challenge__button,
+.customer button {
+  font-family: var(--font-ui);
+  font-size: var(--fs-button);
+  font-weight: 600;
+  letter-spacing: var(--track-button);
+  text-transform: uppercase;
+  min-height: 5rem;
+  padding-inline: 3.2rem;
+  border-radius: 0;
+  box-shadow: none;
+  transition:
+    background-color var(--dur-base) var(--ease-foam),
+    color var(--dur-base) var(--ease-foam),
+    box-shadow var(--dur-base) var(--ease-foam),
+    transform var(--dur-quick) var(--ease-press);
+}
+
+.button::after,
+.shopify-challenge__button::after,
+.customer button::after {
+  box-shadow: none;
+}
+
+@media screen and (min-width: 990px) {
+  .button,
+  .shopify-challenge__button,
+  .customer button {
+    min-height: 5.4rem;
+    padding-inline: 3.6rem;
+  }
+}
+
+/* Light schemes: ink button turns green on hover. Dark schemes: white button turns cream. */
+@media (hover: hover) {
+  .button:not([disabled]):hover,
+  .shopify-challenge__button:hover,
+  .customer button:hover {
+    --color-button: 4, 105, 56;
+  }
+
+  .color-scheme-3 .button:not([disabled]):hover,
+  .color-scheme-6 .button:not([disabled]):hover {
+    --color-button: 245, 244, 240;
+  }
+}
+
+.button:not([disabled]):active,
+.shopify-challenge__button:active,
+.customer button:active {
+  transform: scale(0.98);
+  transition-duration: var(--dur-instant);
+}
+
+/* Secondary: hairline outline that fills */
+.button--secondary {
+  --color-button-text: var(--color-foreground);
+  background: transparent;
+  box-shadow: inset 0 0 0 1px rgb(var(--color-foreground));
+}
+
+@media (hover: hover) {
+  .button--secondary:not([disabled]):hover {
+    --color-button-text: var(--color-background);
+    background: rgb(var(--color-foreground));
+  }
+}
+
+/* Light versions for photo and dark backgrounds */
+.button--light {
+  --color-button: 255, 255, 255;
+  --color-button-text: 22, 33, 28;
+}
+
+@media (hover: hover) {
+  .button--light:not([disabled]):hover {
+    --color-button: 245, 244, 240;
+  }
+}
+
+.button--outline-light {
+  --color-button-text: 255, 255, 255;
+  background: transparent;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.85);
+}
+
+@media (hover: hover) {
+  .button--outline-light:not([disabled]):hover {
+    --color-button-text: 22, 33, 28;
+    background: #fff;
+  }
+}
+
+/* Buy now (GoKwik / express) uses the ink scheme */
+.button--ink {
+  --color-button: 22, 33, 28;
+  --color-button-text: 255, 255, 255;
+}
+
+/* ---- Tertiary link: uppercase, hairline underline that draws in from the left ---- */
+.kusho-link {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.5rem;
+  color: rgb(var(--color-foreground));
+  font-family: var(--font-ui);
+  font-size: var(--fs-button);
+  font-weight: 600;
+  letter-spacing: var(--track-button);
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.kusho-link::before {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 1px;
+  background: currentcolor;
+  opacity: 0.35;
+}
+
+.kusho-link::after {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 1px;
+  background: currentcolor;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--dur-settle) var(--ease-foam);
+}
+
+.kusho-link:hover::after,
+.kusho-link:focus-visible::after {
+  transform: scaleX(1);
+}
+
+/* ---- Skeleton shimmer (7.5) — only opacity/transform on a pseudo layer ---- */
+.kusho-skeleton {
+  position: relative;
+  overflow: hidden;
+  background: var(--foam);
+  border-radius: var(--r-md);
+}
+
+.kusho-skeleton::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.7), transparent);
+  transform: translateX(-100%);
+  animation: kusho-shimmer 1.4s var(--ease-linear) infinite;
+}
+
+@keyframes kusho-shimmer {
+  to {
+    transform: translateX(100%);
+  }
+}
+
+/* ---- Header gains a soft shadow after 80px of scroll (7.5) ---- */
+html[data-kusho-scrolled] .shopify-section-header-sticky .header-wrapper {
+  box-shadow: var(--shadow-1);
+}
+
+.header-wrapper {
+  transition: box-shadow var(--dur-base) var(--ease-foam);
+}
+
+/* ---- Cart count bump (7.5) ---- */
+.cart-count-bubble.is-bumping {
+  animation: kusho-bump var(--dur-settle) var(--ease-rebound);
+}
+
+@keyframes kusho-bump {
+  40% {
+    transform: scale(1.25);
+  }
+}
+
+/* ---- Utilities ---- */
+.kusho-container {
+  width: 100%;
+  max-width: var(--content-max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.kusho-section {
+  padding-block: var(--sp-8);
+}
+
+@media screen and (min-width: 990px) {
+  .kusho-section {
+    padding-block: var(--sp-9);
+  }
+}
+
+.kusho-hide-scrollbar {
+  scrollbar-width: none;
+}
+.kusho-hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* ---- Reduced motion: stop everything decorative (7.1 rule 5) ---- */
+@media (prefers-reduced-motion: reduce) {
+  .kusho-skeleton::after {
+    animation: none;
+  }
+  .button,
+  .shopify-challenge__button,
+  .customer button {
+    transition: none;
+  }
+}
+
+/* ---- Text wordmark (until the real logo is uploaded in Theme settings > Logo) ---- */
+.header__heading-link .h2,
+.header__heading-link .h1 {
+  color: rgb(var(--color-foreground));
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 1.8rem + 0.6vw, 2.6rem);
+  font-weight: 400;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+
+/* ==========================================================================
+   Shared section headings (used by homepage, content pages and product page)
+   ========================================================================== */
+.ksec-head {
+  max-width: 72rem;
+  margin: 0 0 var(--sp-7);
+}
+
+/* Centred variant, the default on the homepage */
+.ksec-head--center {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.ksec-head--center .ksec-eyebrow {
+  justify-content: center;
+}
+
+.ksec-head--center .ksec-lead {
+  margin-inline: auto;
+}
+
+.ksec-head--row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--sp-3) var(--sp-6);
+  max-width: none;
+}
+
+.ksec-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  margin: 0 0 var(--sp-4);
+  color: rgba(var(--color-foreground), 0.6);
+  font-family: var(--font-ui);
+  font-size: var(--fs-label);
+  font-weight: 400;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+}
+
+.ksec-eyebrow::before {
+  content: '';
+  width: 2.4rem;
+  height: 1px;
+  background: var(--kusho-gold);
+}
+
+.ksec-eyebrow--light {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.ksec-title {
+  margin: 0;
+  font-size: var(--fs-h2);
+  line-height: 1.25;
+  text-wrap: balance;
+}
+
+.ksec-lead {
+  margin: var(--sp-4) 0 0;
+  max-width: 56ch;
+  color: rgba(var(--color-foreground), 0.7);
+  font-size: var(--fs-body);
+  line-height: 1.75;
+}
+
+
+/* On dark sections the small heading turns pale */
+.color-scheme-3 .ksec-eyebrow,
+.color-scheme-6 .ksec-eyebrow {
+  color: rgba(255, 255, 255, 0.7);
+}

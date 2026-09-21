@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "main": {
+      "type": "kusho-article",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

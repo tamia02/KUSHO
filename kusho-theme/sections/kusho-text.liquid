@@ -1,0 +1,35 @@
+{{ 'kusho-page.css' | asset_url | stylesheet_tag }}
+
+<section class="ktext kusho-section color-{{ section.settings.color_scheme }} gradient">
+  <div class="page-width ktext__layout">
+    <div class="ktext__head">
+      {%- if section.settings.eyebrow != blank -%}<p class="ksec-eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+      <h2 class="ksec-title">{{ section.settings.heading | escape }}</h2>
+    </div>
+    <div class="ktext__body">
+      <div class="rte ktext__rte">{{ section.settings.text }}</div>
+      {%- if section.settings.button_label != blank -%}
+        <a class="button ktext__btn" href="{{ section.settings.button_link | default: '#' }}">{{ section.settings.button_label | escape }}</a>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Heading and text",
+  "tag": "div",
+  "class": "kusho-text-section",
+  "settings": [
+    { "type": "color_scheme", "id": "color_scheme", "label": "Colour scheme", "default": "scheme-1" },
+    { "type": "text", "id": "eyebrow", "label": "Small heading" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Our mission" },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Tell your story here.</p>" },
+    { "type": "text", "id": "button_label", "label": "Button label" },
+    { "type": "url", "id": "button_link", "label": "Button link" }
+  ],
+  "presets": [
+    { "name": "Heading and text" }
+  ]
+}
+{% endschema %}

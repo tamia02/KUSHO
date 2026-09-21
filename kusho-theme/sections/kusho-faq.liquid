@@ -1,0 +1,105 @@
+{{ 'kusho-home.css' | asset_url | stylesheet_tag }}
+{{ 'kusho-accordion.css' | asset_url | stylesheet_tag }}
+{%- if section.settings.show_search -%}
+  <script src="{{ 'kusho-faq.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
+{%- liquid
+  assign wa_number = settings.kusho_whatsapp_number | remove: '+' | remove: ' ' | remove: '-'
+-%}
+
+<section class="kfaqs kusho-section color-{{ section.settings.color_scheme }} gradient" aria-labelledby="kfaqs-title-{{ section.id }}">
+  <div class="page-width kfaqs__layout">
+    <div class="kfaqs__intro">
+      {%- if section.settings.eyebrow != blank -%}<p class="ksec-eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+      <h2 class="ksec-title" id="kfaqs-title-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
+      {%- if section.settings.text != blank -%}<p class="ksec-lead">{{ section.settings.text | escape }}</p>{%- endif -%}
+
+      {%- if section.settings.link_label != blank -%}
+        <a class="kusho-link" href="{{ section.settings.link | default: '#' }}">{{ section.settings.link_label | escape }}</a>
+      {%- endif -%}
+
+      {%- if section.settings.show_whatsapp and wa_number != blank -%}
+        <p class="kfaqs__help">
+          {{ 'kusho.product.details.faq_help' | t }}
+          <a class="kusho-link" href="https://wa.me/{{ wa_number }}" target="_blank" rel="noopener">{{ 'kusho.product.details.faq_cta' | t }}<span class="visually-hidden">{{ 'accessibility.link_messages.new_window' | t }}</span></a>
+        </p>
+      {%- endif -%}
+    </div>
+
+    <div class="kfaqs__main">
+      {%- if section.settings.show_search -%}
+        <div class="kfaqs__search">
+          <label class="visually-hidden" for="kfaq-search-{{ section.id }}">{{ 'kusho.home.faq_search' | t }}</label>
+          <input id="kfaq-search-{{ section.id }}" class="kfaqs__input" type="search" placeholder="{{ 'kusho.home.faq_search' | t }}" autocomplete="off" data-faq-search>
+          <p class="kfaqs__none" data-faq-none hidden>{{ 'kusho.home.faq_none' | t }}</p>
+        </div>
+      {%- endif -%}
+      <div class="kfaqs__list" data-faq-list>
+        {%- for block in section.blocks -%}
+          <details class="kacc kacc--faq" {{ block.shopify_attributes }}>
+            <summary class="kacc__summary">
+              <span>{{ block.settings.question | escape }}</span>
+              {% render 'kusho-icon', name: 'chevron-down', size: 20 %}
+            </summary>
+            <div class="kacc__body rte">{{ block.settings.answer }}</div>
+          </details>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{%- if section.blocks.size > 0 -%}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {%- for block in section.blocks -%}
+          {
+            "@type": "Question",
+            "name": {{ block.settings.question | json }},
+            "acceptedAnswer": { "@type": "Answer", "text": {{ block.settings.answer | strip_html | json }} }
+          }{% unless forloop.last %},{% endunless %}
+        {%- endfor -%}
+      ]
+    }
+  </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "FAQ",
+  "tag": "div",
+  "class": "kusho-faq-section",
+  "settings": [
+    { "type": "color_scheme", "id": "color_scheme", "label": "Colour scheme", "default": "scheme-1" },
+    { "type": "text", "id": "eyebrow", "label": "Small heading", "default": "Help" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Questions, answered" },
+    { "type": "textarea", "id": "text", "label": "Text" },
+    { "type": "text", "id": "link_label", "label": "Link label" },
+    { "type": "url", "id": "link", "label": "Link" },
+    { "type": "checkbox", "id": "show_search", "label": "Show the search box", "default": false },
+    { "type": "checkbox", "id": "show_whatsapp", "label": "Show the WhatsApp link", "default": true }
+  ],
+  "blocks": [
+    {
+      "type": "question",
+      "name": "Question",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question", "default": "Question" },
+        { "type": "richtext", "id": "answer", "label": "Answer", "default": "<p>Answer</p>" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ",
+      "blocks": [
+        { "type": "question" }
+      ]
+    }
+  ]
+}
+{% endschema %}

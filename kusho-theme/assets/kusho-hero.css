@@ -1,0 +1,279 @@
+/* Home hero: full-bleed photo or video, darkened, with centred thin uppercase type.
+   The header floats over it (see kusho-luxe.css) so the first screen is only the image and the words. */
+
+kusho-hero {
+  display: block;
+}
+
+.khero {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 100svh;
+  overflow: hidden;
+  background: var(--ink);
+  color: var(--white);
+  isolation: isolate;
+}
+
+.khero--tall {
+  min-height: 80svh;
+}
+
+.khero--medium {
+  min-height: 65svh;
+}
+
+@media screen and (max-width: 749px) {
+  .khero--full {
+    min-height: 92svh;
+  }
+}
+
+.khero__media {
+  position: absolute;
+  inset: -6% 0;
+  z-index: -1;
+}
+
+.khero__img,
+.khero__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 45%;
+}
+
+/* The 16:9 footage has the person right of centre; on tall phone screens keep them in frame */
+@media screen and (max-width: 749px) {
+  .khero__img,
+  .khero__video {
+    object-position: 68% 45%;
+  }
+}
+
+.khero__shade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to bottom, rgba(10, 16, 13, 0.55) 0%, rgba(10, 16, 13, 0.15) 35%, rgba(10, 16, 13, 0.2) 65%, rgba(10, 16, 13, 0.6) 100%),
+    rgba(10, 16, 13, 0.18);
+  pointer-events: none;
+}
+
+/* ---- Copy ---- */
+.khero__content {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  max-width: 82rem;
+  padding: var(--sp-10) var(--gutter) var(--sp-9);
+  text-align: center;
+}
+
+.khero__eyebrow {
+  margin: 0 0 var(--sp-5);
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.khero__title {
+  margin: 0;
+  color: var(--white);
+}
+
+.khero__word {
+  display: inline-block;
+}
+
+.khero__sub {
+  max-width: 50ch;
+  margin: var(--sp-5) 0 0;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: var(--fs-body);
+  line-height: 1.75;
+}
+
+.khero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-4) var(--sp-6);
+  margin-top: var(--sp-7);
+}
+
+.khero__secondary {
+  color: var(--white);
+}
+
+/* ---- Scroll cue ---- */
+.khero__scroll {
+  position: absolute;
+  bottom: var(--sp-6);
+  left: 50%;
+  display: grid;
+  justify-items: center;
+  gap: var(--sp-3);
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  transform: translateX(-50%);
+}
+
+.khero__mouse {
+  display: block;
+  width: 2.4rem;
+  height: 3.8rem;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 1.2rem;
+}
+
+.khero__mouse span {
+  display: block;
+  width: 0.3rem;
+  height: 0.6rem;
+  margin: 0.6rem auto 0;
+  border-radius: 0.2rem;
+  background: var(--white);
+}
+
+/* ---- Thin strip below: assurances left, featured product right ---- */
+.khero__bar {
+  border-bottom: 1px solid var(--line);
+  background: var(--foam);
+  color: var(--ink);
+}
+
+.khero__bar-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3) var(--sp-6);
+  min-height: 5.6rem;
+  padding-block: var(--sp-3);
+}
+
+.khero__assure {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2) var(--sp-6);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.khero__assure li {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  color: rgba(22, 33, 28, 0.8);
+}
+
+.khero__assure .kusho-icon {
+  color: var(--kusho-gold-text);
+}
+
+.khero__feature {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-3);
+  color: var(--ink);
+  font-size: var(--fs-small);
+  text-decoration: none;
+}
+
+.khero__feature-label {
+  color: rgba(22, 33, 28, 0.55);
+}
+
+.khero__feature-title {
+  font-weight: 600;
+}
+
+.khero__feature-price {
+  color: rgba(22, 33, 28, 0.7);
+}
+
+.khero__feature .kusho-icon {
+  transition: transform var(--dur-base) var(--ease-foam);
+}
+
+@media (hover: hover) {
+  .khero__feature:hover .kusho-icon {
+    transform: translateX(0.4rem);
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .khero__feature {
+    width: 100%;
+    justify-content: space-between;
+    padding-top: var(--sp-3);
+    border-top: 1px solid var(--line);
+  }
+}
+
+/* ==========================================================================
+   Motion: only with the master switch on and no reduced-motion preference
+   ========================================================================== */
+@media (prefers-reduced-motion: no-preference) {
+  html[data-kusho-motion] .khero__eyebrow {
+    animation: khero-rise var(--dur-story) var(--ease-foam) 200ms both;
+  }
+
+  html[data-kusho-motion] .khero__word {
+    animation: khero-rise var(--dur-story) var(--ease-foam) both;
+    animation-delay: calc(var(--i) * 90ms + 350ms);
+  }
+
+  html[data-kusho-motion] .khero__sub,
+  html[data-kusho-motion] .khero__actions {
+    animation: khero-rise var(--dur-story) var(--ease-foam) 1000ms both;
+  }
+
+  html[data-kusho-motion] .khero__scroll {
+    animation: khero-fade 1.2s var(--ease-foam) 1600ms both;
+  }
+
+  html[data-kusho-motion] .khero__mouse span {
+    animation: khero-wheel 2.2s ease-in-out 2s infinite;
+  }
+
+  /* Slow Ken Burns on the photo, settling to rest */
+  html[data-kusho-motion] .khero__img {
+    animation: khero-zoom 6s var(--ease-foam) both;
+  }
+}
+
+@keyframes khero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(1.4rem);
+  }
+}
+
+@keyframes khero-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes khero-zoom {
+  from {
+    transform: scale(1.08);
+  }
+}
+
+@keyframes khero-wheel {
+  0%,
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 0.2;
+    transform: translateY(0.8rem);
+  }
+}

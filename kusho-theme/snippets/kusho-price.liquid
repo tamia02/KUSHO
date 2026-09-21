@@ -1,0 +1,54 @@
+{% comment %}
+  Kusho price block (guide 10.6 "Price component").
+
+  Rules:
+  - The MRP is struck through ONLY when compare_at_price is higher than price.
+    (Fixes the live-site cases where MRP was lower than, or equal to, the sale price.)
+  - "% off" is calculated here, never typed by hand.
+  - Variants with different prices show "From ₹x".
+  - Amounts never show paise (money_without_trailing_zeros).
+
+  Accepts:
+  - product: {Object} Product (required)
+  - size: {String} 'card' or 'pdp'. Default: 'card' (optional)
+  - show_tax_note: {Boolean} Show "Inclusive of all taxes". Default: false (optional)
+
+  Usage:
+  {% render 'kusho-price', product: card_product %}
+{% endcomment %}
+
+{%- liquid
+  assign price_now = product.price
+  assign price_was = product.compare_at_price
+  assign is_on_sale = false
+  if price_was > price_now and product.available
+    assign is_on_sale = true
+    assign percent_off = price_was | minus: price_now | times: 100.0 | divided_by: price_was | round
+  endif
+  assign price_size = size | default: 'card'
+-%}
+
+<div class="kprice kprice--{{ price_size }}{% if is_on_sale %} kprice--sale{% endif %}">
+  {%- if product.price_varies and is_on_sale == false -%}
+    <span class="kprice__from">{{ 'kusho.price.from' | t }}</span>
+  {%- endif -%}
+
+  <span class="kprice__now">
+    <span class="visually-hidden">{% if is_on_sale %}{{ 'kusho.price.sale' | t }}{% else %}{{ 'kusho.price.regular' | t }}{% endif %}</span>
+    {{ price_now | money_without_trailing_zeros }}
+  </span>
+
+  {%- if is_on_sale -%}
+    <s class="kprice__was">
+      <span class="visually-hidden">{{ 'kusho.price.regular' | t }}</span>
+      {{ price_was | money_without_trailing_zeros }}
+    </s>
+    {%- if percent_off > 0 -%}
+      <span class="kprice__off">{{ 'kusho.price.percent_off' | t: percent: percent_off }}</span>
+    {%- endif -%}
+  {%- endif -%}
+</div>
+
+{%- if show_tax_note -%}
+  <p class="kprice__note">{{ 'kusho.price.tax_note' | t }}</p>
+{%- endif -%}

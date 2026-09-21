@@ -1,0 +1,806 @@
+/* ==========================================================================
+   Premium layer: ribbon, photo bento, before/after, stacking cards, reveal + parallax,
+   scroll progress. All motion is transform / opacity only and switches off for
+   visitors who prefer reduced motion (and via Theme settings > Kusho > Motion).
+   ========================================================================== */
+
+/* ---------------------------------------------------------------- reveal */
+[data-reveal-pending]:not(.is-in) {
+  opacity: 0;
+  transform: translate3d(0, 2.6rem, 0);
+}
+
+[data-reveal='image'][data-reveal-pending]:not(.is-in) {
+  transform: translate3d(0, 3.6rem, 0) scale(0.96);
+}
+
+[data-reveal-pending].is-in {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 800ms var(--ease-foam) calc(var(--ri, 0) * 80ms),
+    transform 1000ms var(--ease-foam) calc(var(--ri, 0) * 80ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal-pending]:not(.is-in) {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------------------------------------------------------------- scroll progress */
+.kusho-progress {
+  display: block;
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 0.3rem;
+  background: linear-gradient(90deg, var(--kusho-gold), var(--kusho-green));
+  pointer-events: none;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+}
+
+/* ---------------------------------------------------------------- text ribbon */
+.kribbon {
+  position: relative;
+  padding-block: var(--sp-6);
+  overflow: hidden;
+}
+
+.kribbon__marquee {
+  position: relative;
+  display: block;
+}
+
+.kribbon__viewport {
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.kribbon__viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.kribbon__list {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-7);
+  width: max-content;
+  margin: 0;
+  padding: 0 var(--sp-7) 0 var(--sp-5);
+  list-style: none;
+}
+
+.kribbon__item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-7);
+}
+
+.kribbon__text {
+  color: transparent;
+  font-family: var(--font-display);
+  font-size: clamp(4.4rem, 2.6rem + 5.6vw, 10rem);
+  font-style: italic;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  white-space: nowrap;
+  -webkit-text-stroke: 0.15rem rgb(var(--color-foreground));
+}
+
+.kribbon__item:nth-child(even) .kribbon__text {
+  color: rgb(var(--color-foreground));
+  -webkit-text-stroke: 0;
+}
+
+.kribbon__mark {
+  flex: none;
+  color: var(--kusho-gold);
+}
+
+.kribbon__marquee.is-marquee .kribbon__viewport {
+  overflow: hidden;
+}
+
+.kribbon__marquee.is-marquee .kribbon__list {
+  animation: kribbon-scroll 60s var(--ease-linear) infinite;
+}
+
+.kribbon__marquee.is-marquee[data-paused] .kribbon__list,
+.kribbon__marquee.is-marquee[data-offscreen] .kribbon__list {
+  animation-play-state: paused;
+}
+
+@media (hover: hover) {
+  .kribbon__marquee.is-marquee:hover .kribbon__list {
+    animation-play-state: paused;
+  }
+}
+
+.kribbon__pause {
+  display: none;
+}
+
+.kribbon__marquee.is-marquee .kribbon__pause {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  right: var(--sp-3);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--tap);
+  height: var(--tap);
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: rgb(var(--color-background));
+  color: rgb(var(--color-foreground));
+  cursor: pointer;
+  box-shadow: var(--shadow-1);
+  transform: translateY(-50%);
+}
+
+.kribbon__pause [hidden] {
+  display: none;
+}
+
+@keyframes kribbon-scroll {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ---------------------------------------------------------------- photo bento */
+.kbento__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: 22rem;
+  gap: var(--sp-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.kbento__tile--1 {
+  grid-column: span 2;
+}
+
+@media screen and (min-width: 750px) {
+  .kbento__grid {
+    grid-auto-rows: 26rem;
+    gap: var(--sp-4);
+  }
+}
+
+@media screen and (min-width: 990px) {
+  .kbento__grid {
+    grid-template-columns: 1.15fr 1fr 1fr;
+    grid-auto-rows: 29rem;
+  }
+
+  .kbento__tile--1 {
+    grid-column: 1;
+    grid-row: span 2;
+  }
+}
+
+.kbento__link {
+  position: relative;
+  display: block;
+  height: 100%;
+  overflow: hidden;
+  border-radius: var(--r-lg);
+  background: var(--kusho-green-deep);
+  color: var(--white);
+  text-decoration: none;
+  isolation: isolate;
+}
+
+.kbento__media {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+
+.kbento__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 55% 50%;
+  transition: transform 1.2s var(--ease-foam);
+}
+
+@media (hover: hover) {
+  .kbento__link:hover .kbento__img {
+    transform: scale(1.07);
+  }
+
+  .kbento__link:hover .kbento__go {
+    transform: translate(0.4rem, -0.4rem) rotate(-45deg);
+    background: var(--kusho-gold);
+  }
+}
+
+.kbento__shade {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(to top, rgba(3, 30, 16, 0.82), rgba(3, 30, 16, 0.08) 58%);
+}
+
+.kbento__label {
+  position: absolute;
+  right: 9rem;
+  bottom: var(--sp-5);
+  left: var(--sp-5);
+  display: grid;
+  gap: var(--sp-2);
+  justify-items: start;
+}
+
+.kbento__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 4.4rem;
+  height: 4.4rem;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.16);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+
+.kbento__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+.kbento__text {
+  color: rgba(255, 255, 255, 0.86);
+  font-size: var(--fs-small);
+  line-height: 1.5;
+}
+
+.kbento__go {
+  position: absolute;
+  right: var(--sp-5);
+  bottom: var(--sp-5);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 5.2rem;
+  height: 5.2rem;
+  border-radius: 50%;
+  background: var(--white);
+  color: var(--kusho-green);
+  transition:
+    transform var(--dur-settle) var(--ease-rebound),
+    background-color var(--dur-base) ease;
+}
+
+/* ---------------------------------------------------------------- before / after */
+.kcmp__widget {
+  display: grid;
+  gap: var(--sp-7);
+  align-items: center;
+}
+
+@media screen and (min-width: 990px) {
+  .kcmp__widget {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 54rem);
+    gap: var(--sp-9);
+  }
+}
+
+.kcmp__tabs {
+  display: grid;
+  gap: var(--sp-3);
+  margin-top: var(--sp-6);
+}
+
+.kcmp__tab {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-4);
+  width: 100%;
+  padding: var(--sp-4) var(--sp-5);
+  border: 1.5px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--white);
+  color: var(--ink);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background-color var(--dur-base) ease,
+    border-color var(--dur-base) ease,
+    color var(--dur-base) ease,
+    transform var(--dur-settle) var(--ease-rebound);
+}
+
+.kcmp__tab:active {
+  transform: scale(0.985);
+  transition-duration: var(--dur-instant);
+}
+
+.kcmp__tab-icon {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 4.4rem;
+  height: 4.4rem;
+  border-radius: 50%;
+  background: var(--kusho-green-mist);
+  color: var(--kusho-green);
+  transition: inherit;
+}
+
+.kcmp__tab-body {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.kcmp__tab-title {
+  font-family: var(--font-ui);
+  font-size: var(--fs-h4);
+  font-weight: 600;
+}
+
+.kcmp__tab-text {
+  color: var(--stone);
+  font-size: var(--fs-small);
+  line-height: 1.5;
+}
+
+.kcmp__tab[aria-selected='true'] {
+  border-color: var(--kusho-green);
+  background: var(--kusho-green);
+  color: var(--white);
+}
+
+.kcmp__tab[aria-selected='true'] .kcmp__tab-icon {
+  background: rgba(255, 255, 255, 0.18);
+  color: var(--white);
+}
+
+.kcmp__tab[aria-selected='true'] .kcmp__tab-text {
+  color: rgba(255, 255, 255, 0.86);
+}
+
+.kcmp__panels {
+  width: min(100%, 54rem);
+  margin-inline: auto;
+}
+
+.kcmp__panel[hidden] {
+  display: none;
+}
+
+.kcmp__stage {
+  position: relative;
+  aspect-ratio: 600 / 680;
+  overflow: hidden;
+  border-radius: var(--r-lg);
+  background: var(--foam);
+  box-shadow: var(--shadow-2);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.kcmp__img {
+  position: absolute;
+  inset: 0;
+}
+
+.kcmp__img img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.kcmp__img--before {
+  clip-path: inset(0 calc(100% - var(--pos, 50%)) 0 0);
+}
+
+.kcmp__tag {
+  position: absolute;
+  bottom: var(--sp-4);
+  padding: 0.7rem var(--sp-4);
+  border-radius: var(--r-pill);
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--ink);
+  font-family: var(--font-ui);
+  font-size: var(--fs-small);
+  font-weight: 600;
+  line-height: 1.2;
+  box-shadow: var(--shadow-1);
+}
+
+.kcmp__tag--before {
+  left: var(--sp-4);
+}
+
+.kcmp__tag--after {
+  right: var(--sp-4);
+  background: var(--kusho-green);
+  color: var(--white);
+}
+
+.kcmp__handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--pos, 50%);
+  width: 0.3rem;
+  margin-left: -0.15rem;
+  background: var(--white);
+  box-shadow: 0 0 2rem rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+}
+
+.kcmp__grip {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 5.6rem;
+  height: 5.6rem;
+  border: 0.3rem solid var(--kusho-gold);
+  border-radius: 50%;
+  background: var(--white);
+  color: var(--ink);
+  box-shadow: var(--shadow-2);
+  transform: translate(-50%, -50%);
+}
+
+.kcmp__range {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: ew-resize;
+  touch-action: pan-y;
+}
+
+.kcmp__stage:has(.kcmp__range:focus-visible) .kcmp__grip {
+  outline: 0.3rem solid rgb(var(--kusho-ring));
+  outline-offset: 0.3rem;
+}
+
+.kcmp__hint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  margin: var(--sp-4) 0 0;
+  color: var(--stone);
+  font-size: var(--fs-small);
+}
+
+/* ---------------------------------------------------------------- stacking cards */
+.kstack__layout {
+  display: grid;
+  gap: var(--sp-6);
+}
+
+.kstack__index {
+  display: none;
+}
+
+@media screen and (min-width: 990px) {
+  .kstack__layout {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.5fr);
+    gap: var(--sp-9);
+    align-items: start;
+  }
+
+  /* The intro column must be as tall as the cards, or the sticky block has nowhere to travel */
+  .kstack__intro {
+    align-self: stretch;
+  }
+
+  .kstack__sticky {
+    position: sticky;
+    top: 14rem;
+  }
+
+  .kstack__index {
+    display: grid;
+    gap: var(--sp-1);
+    margin: var(--sp-7) 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .kstack__index-item {
+    display: flex;
+    align-items: baseline;
+    gap: var(--sp-4);
+    padding: var(--sp-3) 0;
+    border-top: 1px solid var(--line);
+    color: var(--stone);
+    font-family: var(--font-ui);
+    font-size: var(--fs-h4);
+    font-weight: 600;
+    transition: color var(--dur-base) ease;
+  }
+
+  .kstack__index-num {
+    color: var(--line);
+    font-size: var(--fs-small);
+    transition: color var(--dur-base) ease;
+  }
+
+  .kstack__index-item.is-active {
+    color: var(--ink);
+  }
+
+  .kstack__index-item.is-active .kstack__index-num {
+    color: var(--kusho-gold);
+  }
+}
+
+.kstack__cards {
+  display: grid;
+  gap: var(--sp-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media screen and (min-width: 990px) {
+  .kstack__cards {
+    gap: 0;
+  }
+
+  .kstack__card {
+    position: sticky;
+    top: calc(12rem + var(--n, 0) * 2.4rem);
+    height: min(64vh, 58rem);
+    margin-bottom: var(--sp-6);
+  }
+}
+
+.kstack__inner {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: var(--r-lg);
+  background: var(--kusho-green-deep);
+  color: var(--white);
+  box-shadow: var(--shadow-2);
+  isolation: isolate;
+  transform-origin: 50% 0;
+}
+
+@media screen and (min-width: 990px) {
+  .kstack__inner {
+    height: 100%;
+    aspect-ratio: auto;
+  }
+}
+
+.kstack__media {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+
+.kstack__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.kstack__shade {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(to top, rgba(3, 30, 16, 0.88), rgba(3, 30, 16, 0.05) 62%);
+}
+
+.kstack__dim {
+  position: absolute;
+  inset: 0;
+  background: #031e10;
+  opacity: var(--dim, 0);
+  pointer-events: none;
+}
+
+.kstack__body {
+  position: absolute;
+  right: var(--sp-5);
+  bottom: var(--sp-5);
+  left: var(--sp-5);
+  display: grid;
+  justify-items: start;
+  gap: var(--sp-3);
+}
+
+@media screen and (min-width: 990px) {
+  .kstack__body {
+    right: var(--sp-7);
+    bottom: var(--sp-7);
+    left: var(--sp-7);
+    max-width: 46rem;
+  }
+}
+
+.kstack__num {
+  color: var(--kusho-gold);
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  font-weight: 700;
+}
+
+.kstack__title {
+  margin: 0;
+  color: var(--white);
+  font-size: var(--fs-h1);
+  line-height: 1.05;
+}
+
+.kstack__text {
+  margin: 0;
+  max-width: 40ch;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: var(--fs-body-lg);
+  line-height: 1.55;
+}
+
+.kstack__btn.button {
+  --color-button: 255, 255, 255;
+  --color-button-text: 4, 105, 56;
+  gap: var(--sp-2);
+  margin-top: var(--sp-2);
+}
+
+/* ---------------------------------------------------------------- why: photo strip + split panel photos */
+.kwhy__photo {
+  margin: var(--sp-8) 0 0;
+  overflow: hidden;
+  border-radius: var(--r-lg);
+}
+
+.kwhy__photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.ksplit__photo {
+  display: block;
+  width: calc(100% + var(--sp-6) * 2);
+  margin: calc(var(--sp-6) * -1) calc(var(--sp-6) * -1) var(--sp-3);
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: var(--r-lg) var(--r-lg) 0 0;
+}
+
+@media screen and (min-width: 990px) {
+  .ksplit__photo {
+    width: calc(100% + var(--sp-7) * 2);
+    margin: calc(var(--sp-7) * -1) calc(var(--sp-7) * -1) var(--sp-3);
+  }
+}
+
+.ksplit__photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ---------------------------------------------------------------- product cards: photo zoom on hover */
+@media (hover: hover) {
+  .kcard:hover .kcard__media {
+    transform: none;
+  }
+
+  .kcard:hover .kcard__img--primary,
+  .kcard:hover .kcard__img--hover {
+    transform: scale(1.05);
+  }
+}
+
+.kcard__img {
+  transition:
+    transform 1.1s var(--ease-foam),
+    opacity var(--dur-base) var(--ease-foam);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kribbon__marquee.is-marquee .kribbon__list,
+  .kcmp__tab,
+  .kbento__img,
+  .kcard__img {
+    animation: none;
+    transition: none;
+  }
+}
+
+/* ---------------------------------------------------------------- video slots
+   A clip sits over its photo and fades in only once it is really playing, so people
+   who never get a video (reduced motion, data-saver, slow connection) still see the photo. */
+.kusho-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity var(--dur-story) var(--ease-foam);
+}
+
+.kusho-video.is-playing {
+  opacity: 1;
+}
+
+.kwhy__photo {
+  position: relative;
+}
+
+.kwhy__photo:has(.kusho-video) img {
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.kusho-video__toggle {
+  position: absolute;
+  z-index: 6;
+  right: var(--sp-3);
+  bottom: var(--sp-3);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--tap);
+  height: var(--tap);
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  background: rgba(3, 30, 16, 0.55);
+  color: var(--white);
+  cursor: pointer;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  transition: transform var(--dur-base) var(--ease-rebound);
+}
+
+.kusho-video__toggle[hidden] {
+  display: none;
+}
+
+@media (hover: hover) {
+  .kusho-video__toggle:hover {
+    transform: scale(1.08);
+  }
+}
+
+.kusho-video__toggle:focus-visible {
+  outline: 0.3rem solid var(--kusho-gold);
+  outline-offset: 0.2rem;
+}
+
+/* On the hero the bottom-right holds the floating chat button on some screens: keep the toggle top-left */
+.khero__media .kusho-video__toggle {
+  top: auto;
+  right: auto;
+  bottom: 12%;
+  left: var(--sp-4);
+}

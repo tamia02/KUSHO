@@ -1,0 +1,182 @@
+{{ 'kusho-hero.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign headline_words = section.settings.headline | split: ' '
+  assign feature = section.settings.product
+  assign height_class = 'khero--' | append: section.settings.height
+-%}
+
+<kusho-hero class="khero {{ height_class }}" data-kusho-hero>
+  <div class="khero__media" data-parallax="-0.08">
+    {%- if section.settings.image != blank -%}
+      {{
+        section.settings.image
+        | image_url: width: 2400
+        | image_tag:
+          loading: 'eager',
+          fetchpriority: 'high',
+          widths: '800, 1200, 1600, 2000, 2400',
+          sizes: '100vw',
+          alt: section.settings.image_alt,
+          class: 'khero__img'
+      }}
+    {%- else -%}
+      <img
+        class="khero__img"
+        src="{{ 'kusho-photo-hero-sleep.webp' | asset_url }}"
+        alt="{{ section.settings.image_alt | escape }}"
+        width="1000"
+        height="1000"
+        fetchpriority="high"
+      >
+    {%- endif -%}
+    {%- if section.settings.video != blank -%}
+      {{
+        section.settings.video
+        | video_tag:
+          image_size: '1600x',
+          autoplay: false,
+          loop: true,
+          muted: true,
+          controls: false,
+          playsinline: true,
+          preload: 'none',
+          class: 'kusho-video khero__video'
+      }}
+    {%- endif -%}
+    <span class="khero__shade" aria-hidden="true"></span>
+  </div>
+
+  <div class="khero__content">
+    {%- if section.settings.eyebrow != blank -%}
+      <p class="khero__eyebrow kusho-label">{{ section.settings.eyebrow | escape }}</p>
+    {%- endif -%}
+
+    <h1 class="khero__title kusho-display">
+      {%- for word in headline_words -%}
+        <span class="khero__word" style="--i: {{ forloop.index0 }};">{{ word | escape }}</span>
+        {%- unless forloop.last %} {% endunless -%}
+      {%- endfor -%}
+    </h1>
+
+    {%- if section.settings.subline != blank -%}
+      <p class="khero__sub">{{ section.settings.subline | escape }}</p>
+    {%- endif -%}
+
+    <div class="khero__actions">
+      {%- if section.settings.cta_primary_label != blank -%}
+        <a href="{{ section.settings.cta_primary_link | default: '#' }}" class="button button--outline-light khero__cta">
+          {{- section.settings.cta_primary_label | escape -}}
+        </a>
+      {%- endif -%}
+      {%- if section.settings.cta_secondary_label != blank -%}
+        <a href="{{ section.settings.cta_secondary_link | default: '#' }}" class="kusho-link khero__secondary">
+          {{- section.settings.cta_secondary_label | escape -}}
+        </a>
+      {%- endif -%}
+    </div>
+  </div>
+
+  {%- if section.settings.show_scroll_cue -%}
+    <a class="khero__scroll" href="#kusho-after-hero" aria-label="{{ 'kusho.home.scroll' | t }}">
+      <span class="khero__mouse" aria-hidden="true"><span></span></span>
+      <span class="kusho-label">{{ 'kusho.home.scroll' | t }}</span>
+    </a>
+  {%- endif -%}
+</kusho-hero>
+
+{%- if section.blocks.size > 0 or feature != blank -%}
+  <div class="khero__bar" id="kusho-after-hero">
+    <div class="page-width khero__bar-inner">
+      {%- if section.blocks.size > 0 -%}
+        <ul class="khero__assure" role="list">
+          {%- for block in section.blocks -%}
+            <li class="kusho-label" {{ block.shopify_attributes }}>
+              {% render 'kusho-icon', name: block.settings.icon, size: 16 %}
+              <span>{{ block.settings.text | escape }}</span>
+            </li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+      {%- if feature != blank -%}
+        <a class="khero__feature" href="{{ feature.url }}">
+          <span class="kusho-label khero__feature-label">{{ 'kusho.home.featured' | t }}</span>
+          <span class="khero__feature-title">{{ feature.title | escape }}</span>
+          <span class="khero__feature-price">{{ feature.price | money_without_trailing_zeros }}</span>
+          {% render 'kusho-icon', name: 'arrow-right', size: 16 %}
+        </a>
+      {%- endif -%}
+    </div>
+  </div>
+{%- else -%}
+  <span id="kusho-after-hero"></span>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Hero",
+  "tag": "section",
+  "class": "kusho-hero-section",
+  "max_blocks": 4,
+  "settings": [
+    { "type": "header", "content": "Photo or video" },
+    { "type": "image_picker", "id": "image", "label": "Photo (landscape, at least 2000px wide)", "info": "A real photo of a person using a Kusho product. Leave empty to use the built-in photo." },
+    { "type": "text", "id": "image_alt", "label": "Photo description", "default": "A woman sleeping peacefully on a Kusho pillow" },
+    { "type": "video", "id": "video", "label": "Video (optional)", "info": "Silent loop under 6 MB. Plays over the photo; the photo shows until it starts." },
+    {
+      "type": "select",
+      "id": "height",
+      "label": "Height",
+      "options": [
+        { "value": "full", "label": "Full screen" },
+        { "value": "tall", "label": "Tall (80%)" },
+        { "value": "medium", "label": "Medium (65%)" }
+      ],
+      "default": "full"
+    },
+    { "type": "checkbox", "id": "show_scroll_cue", "label": "Show the scroll hint", "default": true },
+    { "type": "header", "content": "Text" },
+    { "type": "text", "id": "eyebrow", "label": "Small heading", "default": "The comfort you deserve" },
+    { "type": "text", "id": "headline", "label": "Headline", "default": "Wake up without the ache" },
+    { "type": "textarea", "id": "subline", "label": "Sub-line", "default": "Memory foam pillows and cushions, made for the way India sleeps, works and travels." },
+    { "type": "header", "content": "Buttons" },
+    { "type": "text", "id": "cta_primary_label", "label": "Primary button label", "default": "Shop bestsellers" },
+    { "type": "url", "id": "cta_primary_link", "label": "Primary button link" },
+    { "type": "text", "id": "cta_secondary_label", "label": "Secondary link label", "default": "Find what I need" },
+    { "type": "url", "id": "cta_secondary_link", "label": "Secondary link" },
+    { "type": "header", "content": "Strip below the hero" },
+    { "type": "product", "id": "product", "label": "Featured product", "info": "Shows the product's name and price in the thin strip under the hero." }
+  ],
+  "blocks": [
+    {
+      "type": "assurance",
+      "name": "Assurance",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "return", "label": "Returns" },
+            { "value": "cash", "label": "Cash on delivery" },
+            { "value": "truck", "label": "Delivery" },
+            { "value": "shield", "label": "Secure" },
+            { "value": "check", "label": "Check" },
+            { "value": "moon", "label": "Sleep" }
+          ],
+          "default": "check"
+        },
+        { "type": "text", "id": "text", "label": "Text", "default": "7-day returns" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero",
+      "blocks": [
+        { "type": "assurance" }
+      ]
+    }
+  ]
+}
+{% endschema %}

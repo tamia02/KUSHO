@@ -1,0 +1,67 @@
+/* Accordions (native <details>), shared by the product page, FAQ and policy pages. */
+
+.kacc {
+  border-top: 1px solid var(--line);
+}
+
+.kacc__summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  min-height: 5.6rem;
+  color: var(--ink);
+  font-family: var(--font-ui);
+  font-size: var(--fs-h4);
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+}
+
+.kacc__summary::-webkit-details-marker {
+  display: none;
+}
+
+.kacc__summary .kusho-icon {
+  flex: none;
+  color: var(--kusho-green);
+  transition: transform var(--dur-base) var(--ease-foam);
+}
+
+.kacc[open] > .kacc__summary .kusho-icon {
+  transform: rotate(180deg);
+}
+
+.kacc[open] > .kacc__body {
+  animation: kacc-open var(--dur-base) var(--ease-foam);
+}
+
+@keyframes kacc-open {
+  from {
+    opacity: 0;
+    transform: translateY(-0.6rem);
+  }
+}
+
+.kacc__body {
+  padding-bottom: var(--sp-5);
+  color: rgba(var(--color-foreground), 0.86);
+  line-height: 1.7;
+}
+
+.kacc__body p {
+  margin: 0 0 var(--sp-3);
+}
+
+.kacc__body p:last-child {
+  margin-bottom: 0;
+}
+
+.kacc__body ul,
+.kacc__list {
+  display: grid;
+  gap: var(--sp-2);
+  margin: 0;
+  padding-left: 2rem;
+}
+

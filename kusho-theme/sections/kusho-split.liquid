@@ -1,0 +1,94 @@
+{{ 'kusho-home.css' | asset_url | stylesheet_tag }}
+
+<section class="ksplit kusho-section" aria-label="{{ section.settings.heading | escape }}">
+  <div class="page-width">
+    <header class="ksec-head">
+      {%- if section.settings.eyebrow != blank -%}<p class="ksec-eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+      <h2 class="ksec-title">{{ section.settings.heading | escape }}</h2>
+    </header>
+
+    <ul class="ksplit__grid" role="list">
+      {%- for block in section.blocks -%}
+        <li class="ksplit__card color-{{ block.settings.color_scheme }} gradient" {{ block.shopify_attributes }}>
+          {%- if block.settings.scene != 'none' or block.settings.image != blank -%}
+            <span class="ksplit__photo">
+              {%- if block.settings.image != blank -%}
+                {{ block.settings.image | image_url: width: 900 | image_tag: loading: 'lazy', widths: '450, 700, 900', sizes: '(min-width: 990px) 46vw, 100vw', alt: '' }}
+              {%- else -%}
+                {%- assign split_photo = 'kusho-photo-' | append: block.settings.scene | append: '.webp' -%}
+                <img src="{{ split_photo | asset_url }}" alt="" width="1000" height="700" loading="lazy">
+              {%- endif -%}
+            </span>
+          {%- endif -%}
+          <span class="ksplit__icon">{% render 'kusho-icon', name: block.settings.icon, size: 30 %}</span>
+          <h3 class="ksplit__title">{{ block.settings.title | escape }}</h3>
+          <p class="ksplit__text">{{ block.settings.text | escape }}</p>
+          {%- if block.settings.button_label != blank -%}
+            <a class="button ksplit__btn" href="{{ block.settings.button_link | default: '#' }}">{{ block.settings.button_label | escape }}</a>
+          {%- endif -%}
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Two panels (business)",
+  "tag": "div",
+  "class": "kusho-split-section",
+  "max_blocks": 3,
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Small heading", "default": "Kusho for business" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Comfort for teams, and for shelves" }
+  ],
+  "blocks": [
+    {
+      "type": "panel",
+      "name": "Panel",
+      "settings": [
+        { "type": "color_scheme", "id": "color_scheme", "label": "Colour scheme", "default": "scheme-4" },
+        {
+          "type": "select",
+          "id": "scene",
+          "label": "Built-in photo",
+          "options": [
+            { "value": "none", "label": "No photo" },
+            { "value": "gift", "label": "Gifting" },
+            { "value": "work-2", "label": "At the desk" },
+            { "value": "drive-2", "label": "Driving" },
+            { "value": "sleep-2", "label": "Sleeping" }
+          ],
+          "default": "none"
+        },
+        { "type": "image_picker", "id": "image", "label": "Your own photo (optional)" },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "gift", "label": "Gift" },
+            { "value": "truck", "label": "Delivery" },
+            { "value": "heart", "label": "Heart" },
+            { "value": "shield", "label": "Shield" }
+          ],
+          "default": "gift"
+        },
+        { "type": "text", "id": "title", "label": "Title", "default": "Corporate gifting" },
+        { "type": "textarea", "id": "text", "label": "Text" },
+        { "type": "text", "id": "button_label", "label": "Button label", "default": "Enquire" },
+        { "type": "url", "id": "button_link", "label": "Button link" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Two panels (business)",
+      "blocks": [
+        { "type": "panel" },
+        { "type": "panel" }
+      ]
+    }
+  ]
+}
+{% endschema %}

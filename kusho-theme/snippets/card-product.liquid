@@ -1,0 +1,268 @@
+{% comment %}
+  Kusho product card (guide 10.5). Drop-in replacement for Dawn's card-product,
+  same parameters so every existing section keeps working.
+
+  Anatomy, top to bottom:
+  1 image frame + hover image  2 badges (max 2)  3 quick add
+  4 rating (hidden at 0 reviews)  5 ONE title link  6 one-line benefit
+  7 price row  8 colour swatches
+
+  Accepts:
+  - card_product: {Object} Product (optional; renders a placeholder without it)
+  - media_aspect_ratio: {String} 'square' (default), 'portrait' (4:5) or 'adapt'
+  - show_secondary_image: {Boolean} Cross-fade to the second image on hover
+  - quick_add: {String} 'standard' or 'bulk' (treated as standard) or 'none'
+  - lazy_load: {Boolean} Default true; pass false for the first row above the fold
+  - section_id: {String} Unique id of the containing section
+  - product_view_context: {String} Analytics context
+  - skip_styles / show_vendor / show_rating / image_shape / extend_height /
+    horizontal_class / horizontal_quick_add: accepted for compatibility, ignored
+
+  Usage:
+  {% render 'card-product', card_product: product, section_id: section.id %}
+{% endcomment %}
+
+{%- if card_product and card_product != empty -%}
+  {%- liquid
+    assign card_ratio = 1
+    if media_aspect_ratio == 'portrait'
+      assign card_ratio = 0.8
+    elsif media_aspect_ratio == 'adapt' and card_product.featured_media.aspect_ratio
+      assign card_ratio = card_product.featured_media.aspect_ratio
+    endif
+
+    assign card_id = section_id | append: '-' | append: card_product.id
+    assign card_sizes = '(min-width: 1440px) 320px, (min-width: 990px) 25vw, (min-width: 750px) 33vw, 50vw'
+    assign img_loading = 'lazy'
+    if lazy_load == false
+      assign img_loading = 'eager'
+    endif
+
+    comment
+      Badges: sold out replaces everything; otherwise one tag badge + a discount badge (max 2).
+    endcomment
+    assign tag_badge_key = ''
+    assign discount_percent = 0
+    if card_product.available
+      for product_tag in card_product.tags
+        case product_tag
+          when 'badge:bestseller'
+            assign tag_badge_key = 'bestseller'
+            break
+          when 'badge:new'
+            assign tag_badge_key = 'new'
+            break
+          when 'badge:limited'
+            assign tag_badge_key = 'limited'
+            break
+          when 'badge:bogo'
+            assign tag_badge_key = 'bogo'
+            break
+          when 'badge:deal-of-the-day'
+            assign tag_badge_key = 'deal'
+            break
+        endcase
+      endfor
+      if card_product.compare_at_price > card_product.price
+        assign discount_percent = card_product.compare_at_price | minus: card_product.price | times: 100.0 | divided_by: card_product.compare_at_price | round
+      endif
+    endif
+
+    assign benefit = card_product.metafields.kusho.short_benefit.value
+    assign product_form_id = 'quick-add-' | append: card_id
+  -%}
+
+  <product-component view-event-payload="{{ card_product | standard_event_data: 'view', context: product_view_context | escape }}">
+    <article class="kcard{% unless card_product.available %} kcard--sold-out{% endunless %}">
+      <div class="kcard__media" style="--kcard-ratio: {{ card_ratio }};">
+        {%- if card_product.featured_media -%}
+          {{
+            card_product.featured_media
+            | image_url: width: 990
+            | image_tag:
+              widths: '360, 540, 720, 990',
+              sizes: card_sizes,
+              loading: img_loading,
+              alt: '',
+              class: 'kcard__img kcard__img--primary'
+          }}
+          {%- if show_secondary_image and card_product.media[1] != null -%}
+            {{
+              card_product.media[1]
+              | image_url: width: 990
+              | image_tag:
+                widths: '360, 540, 720, 990',
+                sizes: card_sizes,
+                loading: 'lazy',
+                alt: '',
+                class: 'kcard__img kcard__img--hover'
+            }}
+          {%- endif -%}
+        {%- else -%}
+          {{ 'product-apparel-2' | placeholder_svg_tag: 'kcard__img kcard__placeholder' }}
+        {%- endif -%}
+
+        <div class="kcard__badges">
+          {%- unless card_product.available -%}
+            <span class="kbadge kbadge--muted">{{ 'products.product.sold_out' | t }}</span>
+          {%- else -%}
+            {%- if tag_badge_key != blank -%}
+              <span class="kbadge kbadge--{{ tag_badge_key }}">
+                {%- case tag_badge_key -%}
+                  {%- when "bestseller" -%}{{ "kusho.badges.bestseller" | t }}
+                  {%- when "new" -%}{{ "kusho.badges.new" | t }}
+                  {%- when "limited" -%}{{ "kusho.badges.limited" | t }}
+                  {%- when "bogo" -%}{{ "kusho.badges.bogo" | t }}
+                  {%- when "deal" -%}{{ "kusho.badges.deal" | t }}
+                {%- endcase -%}
+              </span>
+            {%- endif -%}
+            {%- if discount_percent > 0 -%}
+              <span class="kbadge kbadge--ink">&ndash;{{ discount_percent }}%</span>
+            {%- endif -%}
+          {%- endunless -%}
+        </div>
+
+        {%- if quick_add != 'none' and quick_add != blank and card_product.available -%}
+          <div class="kcard__quick no-js-hidden">
+            {%- liquid
+              assign variant_first = card_product.selected_or_first_available_variant
+              assign needs_options = false
+              if card_product.variants_count > 1
+                assign needs_options = true
+              endif
+              if variant_first.quantity_rule.min > 1 or variant_first.quantity_rule.max != null or variant_first.quantity_rule.increment > 1
+                assign needs_options = true
+              endif
+            -%}
+            {%- if needs_options -%}
+              <modal-opener data-modal="#QuickAdd-{{ card_product.id }}">
+                <button
+                  id="{{ product_form_id }}-submit"
+                  type="button"
+                  class="quick-add__submit kcard__quick-btn button button--secondary"
+                  aria-haspopup="dialog"
+                  aria-labelledby="{{ product_form_id }}-submit title-{{ card_id }}"
+                  data-product-url="{{ card_product.url }}"
+                >
+                  <span class="kcard__quick-label">{{ 'products.product.choose_options' | t }}</span>
+                  {% render 'kusho-icon', name: 'plus', size: 20 %}
+                  {%- render 'loading-spinner' -%}
+                </button>
+              </modal-opener>
+              <quick-add-modal id="QuickAdd-{{ card_product.id }}" class="quick-add-modal">
+                <div
+                  role="dialog"
+                  aria-label="{{ 'products.product.choose_product_options' | t: product_name: card_product.title | escape }}"
+                  aria-modal="true"
+                  class="quick-add-modal__content global-settings-popup"
+                  tabindex="-1"
+                >
+                  <button
+                    id="ModalClose-{{ card_product.id }}"
+                    type="button"
+                    class="quick-add-modal__toggle"
+                    aria-label="{{ 'accessibility.close' | t }}"
+                  >
+                    {{- 'icon-close.svg' | inline_asset_content -}}
+                  </button>
+                  <div id="QuickAddInfo-{{ card_product.id }}" class="quick-add-modal__content-info"></div>
+                </div>
+              </quick-add-modal>
+            {%- else -%}
+              <product-form data-section-id="{{ section.id }}">
+                {%- form 'product',
+                  card_product,
+                  id: product_form_id,
+                  class: 'form',
+                  novalidate: 'novalidate',
+                  data-type: 'add-to-cart-form'
+                -%}
+                  <input
+                    type="hidden"
+                    name="id"
+                    value="{{ variant_first.id }}"
+                    class="product-variant-id"
+                  >
+                  <button
+                    id="{{ product_form_id }}-submit"
+                    type="submit"
+                    name="add"
+                    class="quick-add__submit kcard__quick-btn button button--secondary"
+                    aria-haspopup="dialog"
+                    aria-labelledby="{{ product_form_id }}-submit title-{{ card_id }}"
+                    aria-live="polite"
+                    data-sold-out-message="true"
+                  >
+                    <span class="kcard__quick-label">{{ 'products.product.add_to_cart' | t }}</span>
+                    <span class="sold-out-message hidden">{{ 'products.product.sold_out' | t }}</span>
+                    {% render 'kusho-icon', name: 'plus', size: 20 %}
+                    {%- render 'loading-spinner' -%}
+                  </button>
+                {%- endform -%}
+              </product-form>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      </div>
+
+      <div class="kcard__body">
+        {% render 'kusho-rating', product: card_product %}
+
+        <h3 class="kcard__title" id="title-{{ card_id }}">
+          <a href="{{ card_product.url }}" class="kcard__link">{{ card_product.title | escape }}</a>
+        </h3>
+
+        {%- if benefit != blank -%}
+          <p class="kcard__benefit">{{ benefit | escape }}</p>
+        {%- endif -%}
+
+        {% render 'kusho-price', product: card_product, size: 'card' %}
+
+        {%- liquid
+          assign colour_values = null
+          for option in card_product.options_with_values
+            assign option_name = option.name | downcase
+            if option_name contains 'colo'
+              assign colour_values = option.values
+              break
+            endif
+          endfor
+        -%}
+        {%- if colour_values != null and colour_values.size > 1 -%}
+          <ul class="kcard__swatches" aria-label="{{ 'kusho.card.colours' | t }}">
+            {%- for value in colour_values limit: 4 -%}
+              {%- liquid
+                assign swatch_bg = null
+                if value.swatch.image
+                  assign swatch_img = value.swatch.image | image_url: width: 50
+                  assign swatch_bg = 'url(' | append: swatch_img | append: ')'
+                elsif value.swatch.color
+                  assign swatch_bg = 'rgb(' | append: value.swatch.color.rgb | append: ')'
+                endif
+              -%}
+              <li class="kcard__swatch{% unless swatch_bg %} kcard__swatch--none{% endunless %}"{% if swatch_bg %} style="--kswatch: {{ swatch_bg }};"{% endif %}>
+                <span class="visually-hidden">{{ value }}</span>
+              </li>
+            {%- endfor -%}
+            {%- if colour_values.size > 4 -%}
+              <li class="kcard__swatch-more" aria-hidden="true">+{{ colour_values.size | minus: 4 }}</li>
+            {%- endif -%}
+          </ul>
+        {%- endif -%}
+      </div>
+    </article>
+  </product-component>
+{%- else -%}
+  <article class="kcard kcard--placeholder">
+    <div class="kcard__media" style="--kcard-ratio: 1;">
+      {{ 'product-apparel-2' | placeholder_svg_tag: 'kcard__img kcard__placeholder' }}
+    </div>
+    <div class="kcard__body">
+      <h3 class="kcard__title">{{ 'onboarding.product_title' | t }}</h3>
+      <div class="kprice kprice--card">
+        <span class="kprice__now">{{ 129900 | money_without_trailing_zeros }}</span>
+      </div>
+    </div>
+  </article>
+{%- endif -%}

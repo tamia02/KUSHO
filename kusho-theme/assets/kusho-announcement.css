@@ -1,0 +1,200 @@
+/* Announcement bar (guide 10.1): one message at a time, cross-faded with a small rise.
+   Deep-green bar, white text, a gold arrow on the link, and quiet round controls. */
+
+kusho-announcement {
+  display: block;
+}
+
+.kusho-announcement[hidden] {
+  display: none;
+}
+
+.kusho-announcement {
+  --kusho-ring: 255, 255, 255;
+  position: relative;
+  background: linear-gradient(90deg, #034a28 0%, #046938 50%, #034a28 100%);
+  color: var(--white);
+  font-family: var(--font-ui);
+  font-size: var(--fs-small);
+  line-height: 1.4;
+}
+
+/* Sale style: gold bar with dark text */
+.kusho-announcement--sale {
+  --kusho-ring: 22, 33, 28;
+  background: linear-gradient(90deg, #c48f1f 0%, var(--kusho-gold) 50%, #c48f1f 100%);
+  color: var(--ink);
+}
+
+.kusho-announcement__inner {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  column-gap: var(--sp-1);
+  min-height: var(--tap);
+}
+
+@media screen and (min-width: 750px) {
+  .kusho-announcement__inner {
+    grid-template-columns: minmax(9rem, auto) 1fr minmax(9rem, auto);
+  }
+}
+
+.kusho-announcement__controls {
+  display: none;
+  align-items: center;
+}
+
+@media screen and (min-width: 750px) {
+  .kusho-announcement__controls {
+    display: flex;
+  }
+}
+
+/* The right-hand controls (pause, close) stay on phones */
+.kusho-announcement__controls--end {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* 44px touch target, 28px visible circle */
+.kusho-announcement__btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--tap);
+  height: var(--tap);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.kusho-announcement__btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.14;
+  transform: translate(-50%, -50%);
+  transition:
+    opacity var(--dur-base) var(--ease-foam),
+    transform var(--dur-base) var(--ease-rebound);
+}
+
+@media (hover: hover) {
+  .kusho-announcement__btn:hover::before {
+    opacity: 0.28;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+
+.kusho-announcement__btn .kusho-icon {
+  position: relative;
+}
+
+.kusho-announcement__btn[hidden],
+.kusho-announcement [hidden] {
+  display: none;
+}
+
+.kusho-announcement__center {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0 var(--sp-3);
+  text-align: center;
+}
+
+/* All messages share one grid cell so the bar never changes height */
+.kusho-announcement__messages {
+  display: grid;
+}
+
+.kusho-announcement__msg {
+  grid-area: 1 / 1;
+  margin: 0;
+  padding-block: var(--sp-1);
+  font-weight: 600;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(0.6rem);
+  transition:
+    opacity var(--dur-base) var(--ease-foam),
+    transform var(--dur-base) var(--ease-foam),
+    visibility 0s linear var(--dur-base);
+}
+
+.kusho-announcement__msg.is-active {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition-delay: 0s;
+}
+
+/* Link: no underline, a gold arrow that nudges forward on hover */
+.kusho-announcement__link {
+  color: inherit;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.kusho-announcement__link::after {
+  content: '\2192';
+  display: inline-block;
+  margin-left: var(--sp-2);
+  color: var(--kusho-gold);
+  font-weight: 700;
+  transition: transform var(--dur-base) var(--ease-rebound);
+}
+
+.kusho-announcement--sale .kusho-announcement__link::after {
+  color: var(--ink);
+}
+
+@media (hover: hover) {
+  .kusho-announcement__link:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--kusho-gold);
+    text-underline-offset: 0.4rem;
+  }
+
+  .kusho-announcement__link:hover::after {
+    transform: translateX(0.4rem);
+  }
+}
+
+.kusho-countdown {
+  display: inline-flex;
+  gap: var(--sp-1);
+  font-variant-numeric: tabular-nums;
+}
+
+.kusho-countdown[hidden] {
+  display: none;
+}
+
+.kusho-countdown__value {
+  font-family: var(--font-ui);
+  font-weight: 700;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kusho-announcement__msg,
+  .kusho-announcement__btn::before,
+  .kusho-announcement__link::after {
+    transition: none;
+  }
+
+  .kusho-announcement__msg {
+    transform: none;
+  }
+}

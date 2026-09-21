@@ -1,0 +1,627 @@
+{{ 'kusho-product.css' | asset_url | stylesheet_tag }}
+{{ 'kusho-accordion.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'kusho-product.js' | asset_url }}" defer="defer"></script>
+
+{%- liquid
+  assign current_variant = product.selected_or_first_available_variant
+  assign form_id = 'kusho-product-form-' | append: section.id
+  assign tagline = product.metafields.kusho.tagline.value
+  assign benefits = product.metafields.kusho.key_benefits.value | newline_to_br | split: '<br />'
+  assign best_for = product.metafields.kusho.best_for.value | newline_to_br | split: '<br />'
+  assign specs = product.metafields.kusho.specs.value | newline_to_br | split: '<br />'
+  assign in_box = product.metafields.kusho.in_the_box.value | newline_to_br | split: '<br />'
+  assign care = product.metafields.kusho.care.value | newline_to_br | split: '<br />'
+
+  assign is_on_sale = false
+  assign percent_off = 0
+  assign savings = 0
+  if current_variant.compare_at_price > current_variant.price and current_variant.available
+    assign is_on_sale = true
+    assign savings = current_variant.compare_at_price | minus: current_variant.price
+    assign percent_off = savings | times: 100.0 | divided_by: current_variant.compare_at_price | round
+  endif
+  assign savings_money = savings | money_without_trailing_zeros
+
+  assign review_count = product.metafields.reviews.rating_count.value | plus: 0
+  assign review_average = product.metafields.reviews.rating.value.rating | plus: 0.0
+
+  assign badge_key = ''
+  for product_tag in product.tags
+    case product_tag
+      when 'badge:bestseller'
+        assign badge_key = 'bestseller'
+      when 'badge:new'
+        assign badge_key = 'new'
+      when 'badge:limited'
+        assign badge_key = 'limited'
+      when 'badge:bogo'
+        assign badge_key = 'bogo'
+      when 'badge:deal-of-the-day'
+        assign badge_key = 'deal'
+    endcase
+  endfor
+
+  assign low_stock = false
+  if current_variant.inventory_management and current_variant.inventory_quantity > 0 and current_variant.inventory_quantity <= section.settings.low_stock_threshold
+    assign low_stock = true
+  endif
+-%}
+
+<section
+  class="kpdp"
+  data-kusho-product
+  data-section-id="{{ section.id }}"
+  data-currency="₹"
+  data-delivery-days="{{ section.settings.delivery_days }}"
+  data-cod="{{ section.settings.show_cod }}"
+  data-low-stock="{{ section.settings.low_stock_threshold }}"
+  data-strings-sold-out="{{ 'kusho.product.sold_out' | t | escape }}"
+  data-strings-add="{{ 'kusho.product.add_to_cart' | t | escape }}"
+  data-strings-added="{{ 'kusho.product.added' | t | escape }}"
+  data-strings-only-left="{{ 'kusho.product.only_left' | t: count: '__COUNT__' | escape }}"
+  data-strings-save="{{ 'kusho.product.you_save' | t: amount: '__AMOUNT__' | escape }}"
+  data-strings-off="{{ 'kusho.price.percent_off' | t: percent: '__PERCENT__' | escape }}"
+  data-strings-pincode-error="{{ 'kusho.product.pincode_error' | t | escape }}"
+  data-strings-delivery-by="{{ 'kusho.product.delivery_by' | t: date: '__DATE__' | escape }}"
+  data-strings-cod="{{ 'kusho.product.cod_available' | t | escape }}"
+  data-strings-copied="{{ 'kusho.product.code_copied' | t | escape }}"
+  data-strings-link-copied="{{ 'kusho.product.link_copied' | t | escape }}"
+  data-strings-buy-error="{{ 'kusho.product.buy_error' | t | escape }}"
+>
+  <div class="kpdp__inner page-width">
+    <nav class="kpdp__crumbs" aria-label="{{ 'kusho.product.breadcrumb' | t }}">
+      <ol class="kpdp__crumb-list">
+        <li><a href="{{ routes.root_url }}">{{ 'kusho.product.home' | t }}</a></li>
+        <li>
+          {%- if collection -%}
+            <a href="{{ collection.url }}">{{ collection.title | escape }}</a>
+          {%- else -%}
+            <a href="{{ routes.all_products_collection_url }}">{{ 'kusho.product.all_products' | t }}</a>
+          {%- endif -%}
+        </li>
+        <li aria-current="page"><span>{{ product.title | escape }}</span></li>
+      </ol>
+    </nav>
+
+    <div class="kpdp__grid">
+      <div class="kpdp__gallery">
+        {% render 'kusho-gallery', product: product, current_variant: current_variant, section_id: section.id %}
+      </div>
+
+      <div class="kpdp__info">
+        {%- if badge_key != blank or is_on_sale -%}
+          <div class="kpdp__badges">
+            {%- if badge_key != blank -%}
+              <span class="kbadge kbadge--{{ badge_key }}">
+                {%- case badge_key -%}
+                  {%- when 'bestseller' -%}{{ 'kusho.badges.bestseller' | t }}
+                  {%- when 'new' -%}{{ 'kusho.badges.new' | t }}
+                  {%- when 'limited' -%}{{ 'kusho.badges.limited' | t }}
+                  {%- when 'bogo' -%}{{ 'kusho.badges.bogo' | t }}
+                  {%- when 'deal' -%}{{ 'kusho.badges.deal' | t }}
+                {%- endcase -%}
+              </span>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+
+        <h1 class="kpdp__title">{{ product.title | escape }}</h1>
+
+        {%- if review_count >= 1 and review_average > 0 -%}
+          <a class="kpdp__rating" href="#kusho-reviews" aria-label="{{ 'kusho.product.rated' | t: rating: review_average }}, {{ 'kusho.product.reviews_link' | t: count: review_count }}">
+            <span class="kpdp__stars">{% render 'kusho-icon', name: 'star', size: 16 %}</span>
+            <strong>{{ review_average | round: 1 }}</strong>
+            <span class="kpdp__rating-count">{{ 'kusho.product.reviews_link' | t: count: review_count }}</span>
+          </a>
+        {%- endif -%}
+
+        {%- if tagline != blank -%}
+          <p class="kpdp__tagline">{{ tagline | escape }}</p>
+        {%- endif -%}
+
+        <div class="kpdp__price" data-price-block>
+          <div class="kprice kprice--pdp{% if is_on_sale %} kprice--sale{% endif %}">
+            <span class="kprice__now" data-price-now>{{ current_variant.price | money_without_trailing_zeros }}</span>
+            <s class="kprice__was" data-price-was{% unless is_on_sale %} hidden{% endunless %}>{{ current_variant.compare_at_price | money_without_trailing_zeros }}</s>
+            <span class="kprice__off" data-price-off{% unless is_on_sale %} hidden{% endunless %}>{{ 'kusho.price.percent_off' | t: percent: percent_off }}</span>
+          </div>
+          <p class="kpdp__save" data-price-save{% unless is_on_sale %} hidden{% endunless %}>
+            {{ 'kusho.product.you_save' | t: amount: savings_money }}
+          </p>
+          <p class="kprice__note">{{ 'kusho.price.tax_note' | t }}</p>
+        </div>
+
+        {%- if section.blocks.size > 0 -%}
+          {%- capture offers_html -%}
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'offer' -%}
+                {%- assign show_offer = true -%}
+                {%- if block.settings.only_tag != blank and product.tags contains block.settings.only_tag -%}
+                  {%- assign show_offer = true -%}
+                {%- elsif block.settings.only_tag != blank -%}
+                  {%- assign show_offer = false -%}
+                {%- endif -%}
+                {%- if show_offer and block.settings.text != blank -%}
+                  <li class="koffer" {{ block.shopify_attributes }}>
+                    <span class="koffer__icon">{% render 'kusho-icon', name: 'tag', size: 18 %}</span>
+                    <span class="koffer__text">{{ block.settings.text | escape }}</span>
+                    {%- if block.settings.code != blank -%}
+                      <button type="button" class="koffer__code" data-copy-code="{{ block.settings.code | escape }}">
+                        <span class="visually-hidden">{{ 'kusho.product.use_code' | t }}</span>
+                        <strong>{{ block.settings.code | escape }}</strong>
+                        <span class="koffer__copy">{{ 'kusho.product.copy_code' | t }}</span>
+                      </button>
+                    {%- endif -%}
+                  </li>
+                {%- endif -%}
+              {%- endif -%}
+            {%- endfor -%}
+          {%- endcapture -%}
+          {%- assign offers_trimmed = offers_html | strip -%}
+          {%- if offers_trimmed != blank -%}
+            <div class="kpdp__offers">
+              <h2 class="kpdp__mini-title">{{ 'kusho.product.offers' | t }}</h2>
+              <ul class="kpdp__offer-list" role="list">{{ offers_html }}</ul>
+            </div>
+          {%- endif -%}
+        {%- endif -%}
+
+        {%- if product.metafields.kusho.key_benefits.value != blank -%}
+          <ul class="kpdp__benefits" role="list" aria-label="{{ 'kusho.product.key_benefits' | t }}">
+            {%- for line in benefits -%}
+              {%- assign item = line | strip -%}
+              {%- if item != blank -%}
+                <li>
+                  <span class="kpdp__check">{% render 'kusho-icon', name: 'check', size: 16 %}</span>
+                  <span>{{ item | escape }}</span>
+                </li>
+              {%- endif -%}
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+
+        {%- if product.metafields.kusho.best_for.value != blank -%}
+          <div class="kpdp__bestfor">
+            <span class="kpdp__mini-title">{{ 'kusho.product.best_for' | t }}</span>
+            <ul class="kpdp__chips" role="list">
+              {%- for line in best_for -%}
+                {%- assign item = line | strip -%}
+                {%- if item != blank -%}<li class="kchip">{{ item | escape }}</li>{%- endif -%}
+              {%- endfor -%}
+            </ul>
+          </div>
+        {%- endif -%}
+
+        {%- unless product.has_only_default_variant -%}
+          <div class="kpdp__options" data-options>
+            {%- for option in product.options_with_values -%}
+              {%- liquid
+                assign option_index = forloop.index0
+                assign option_key = option.name | downcase
+                assign is_colour = false
+                if option_key contains 'colo'
+                  assign is_colour = true
+                endif
+                assign selected_value = current_variant.options[option_index]
+              -%}
+              <fieldset class="kopt" data-option-index="{{ option_index }}">
+                <legend class="kopt__legend">
+                  <span>{{ option.name | escape }}</span>
+                  <span class="kopt__selected" data-option-label>{{ selected_value | escape }}</span>
+                </legend>
+                <div class="kopt__values">
+                  {%- for value in option.values -%}
+                    {%- liquid
+                      assign value_name = value | append: ''
+                      assign input_id = 'kopt-' | append: section.id | append: '-' | append: option_index | append: '-' | append: forloop.index
+                      assign swatch_bg = null
+                      if is_colour
+                        if value.swatch.image
+                          assign swatch_img = value.swatch.image | image_url: width: 80
+                          assign swatch_bg = 'url(' | append: swatch_img | append: ')'
+                        elsif value.swatch.color
+                          assign swatch_bg = 'rgb(' | append: value.swatch.color.rgb | append: ')'
+                        endif
+                      endif
+                    -%}
+                    <input
+                      class="kopt__input"
+                      type="radio"
+                      id="{{ input_id }}"
+                      name="kopt-{{ section.id }}-{{ option_index }}"
+                      value="{{ value_name | escape }}"
+                      data-option-value
+                      {% if value_name == selected_value %}checked{% endif %}
+                    >
+                    {%- if swatch_bg -%}
+                      <label class="kopt__swatch" for="{{ input_id }}" style="--kswatch: {{ swatch_bg }};">
+                        <span class="visually-hidden">{{ value_name | escape }}</span>
+                      </label>
+                    {%- else -%}
+                      <label class="kopt__pill" for="{{ input_id }}">{{ value_name | escape }}</label>
+                    {%- endif -%}
+                  {%- endfor -%}
+                </div>
+              </fieldset>
+            {%- endfor -%}
+          </div>
+        {%- endunless -%}
+
+        <p class="kpdp__stock" data-stock{% unless low_stock %} hidden{% endunless %}>
+          {%- if low_stock -%}{{ 'kusho.product.only_left' | t: count: current_variant.inventory_quantity }}{%- endif -%}
+        </p>
+
+        <product-form class="kpdp__form" data-section-id="{{ section.id }}">
+          <div class="product-form__error-message-wrapper kpdp__error" role="alert" hidden>
+            <span class="product-form__error-message"></span>
+          </div>
+          {%- form 'product', product, id: form_id, class: 'kpdp__form-inner', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+            <input type="hidden" name="id" value="{{ current_variant.id }}" class="product-variant-id" data-variant-id>
+
+            <div class="kpdp__buy-row">
+              <div class="kqty" data-qty>
+                <button type="button" class="kqty__btn" data-qty-minus aria-label="{{ 'kusho.product.decrease' | t }}">
+                  {% render 'kusho-icon', name: 'minus', size: 18 %}
+                </button>
+                <input
+                  class="kqty__input"
+                  type="number"
+                  name="quantity"
+                  value="1"
+                  min="1"
+                  inputmode="numeric"
+                  aria-label="{{ 'kusho.product.quantity' | t }}"
+                  data-qty-input
+                >
+                <button type="button" class="kqty__btn" data-qty-plus aria-label="{{ 'kusho.product.increase' | t }}">
+                  {% render 'kusho-icon', name: 'plus', size: 18 %}
+                </button>
+              </div>
+
+              <button
+                type="submit"
+                name="add"
+                class="button kpdp__atc"
+                data-atc
+                aria-live="polite"
+                {% unless current_variant.available %}disabled{% endunless %}
+              >
+                <span data-atc-label>
+                  {%- if current_variant.available -%}{{ 'kusho.product.add_to_cart' | t }}{%- else -%}{{ 'kusho.product.sold_out' | t }}{%- endif -%}
+                </span>
+                <span class="sold-out-message hidden">{{ 'kusho.product.sold_out' | t }}</span>
+                {%- render 'loading-spinner' -%}
+              </button>
+            </div>
+
+            <button type="button" class="button button--ink kpdp__buynow" data-buy-now {% unless current_variant.available %}disabled{% endunless %}>
+              {{ 'kusho.product.buy_now' | t }}
+            </button>
+          {%- endform -%}
+        </product-form>
+
+        {%- if section.settings.show_pincode -%}
+          <form class="kdeliv" data-pincode-form novalidate>
+            <label class="kdeliv__label" for="kusho-pin-{{ section.id }}">
+              {% render 'kusho-icon', name: 'truck', size: 20 %}
+              {{ 'kusho.product.delivery_title' | t }}
+            </label>
+            <div class="kdeliv__row">
+              <input
+                id="kusho-pin-{{ section.id }}"
+                class="kdeliv__input"
+                type="text"
+                inputmode="numeric"
+                pattern="[0-9]{6}"
+                maxlength="6"
+                autocomplete="postal-code"
+                placeholder="{{ 'kusho.product.pincode_placeholder' | t }}"
+                data-pincode-input
+              >
+              <button type="submit" class="button button--secondary kdeliv__btn">{{ 'kusho.product.check' | t }}</button>
+            </div>
+            <p class="kdeliv__msg" data-pincode-msg role="status" aria-live="polite"></p>
+          </form>
+        {%- endif -%}
+
+        <ul class="kpdp__trust" role="list" aria-label="{{ 'kusho.product.trust_label' | t }}">
+          {%- if section.settings.trust_1 != blank -%}
+            <li>{% render 'kusho-icon', name: 'truck', size: 24 %}<span>{{ section.settings.trust_1 | escape }}</span></li>
+          {%- endif -%}
+          {%- if section.settings.trust_2 != blank -%}
+            <li>{% render 'kusho-icon', name: 'cash', size: 24 %}<span>{{ section.settings.trust_2 | escape }}</span></li>
+          {%- endif -%}
+          {%- if section.settings.trust_3 != blank -%}
+            <li>{% render 'kusho-icon', name: 'return', size: 24 %}<span>{{ section.settings.trust_3 | escape }}</span></li>
+          {%- endif -%}
+          {%- if section.settings.trust_4 != blank -%}
+            <li>{% render 'kusho-icon', name: 'shield', size: 24 %}<span>{{ section.settings.trust_4 | escape }}</span></li>
+          {%- endif -%}
+        </ul>
+
+        <div class="kpdp__actions">
+          {%- if section.settings.show_share -%}
+            <button type="button" class="kpdp__link-btn" data-share data-share-title="{{ product.title | escape }}" data-share-url="{{ shop.url }}{{ product.url }}">
+              {% render 'kusho-icon', name: 'share', size: 18 %}
+              {{ 'kusho.product.share' | t }}
+            </button>
+          {%- endif -%}
+          {%- if section.settings.show_whatsapp_help and settings.kusho_whatsapp_number != blank -%}
+            {%- liquid
+              assign wa_number = settings.kusho_whatsapp_number | remove: '+' | remove: ' ' | remove: '-'
+              assign wa_text = 'Hi Kusho, I have a question about ' | append: product.title | url_encode
+            -%}
+            <a class="kpdp__link-btn" href="https://wa.me/{{ wa_number }}?text={{ wa_text }}" target="_blank" rel="noopener">
+              {% render 'kusho-icon', name: 'whatsapp', size: 18 %}
+              {{ 'kusho.product.help_cta' | t }}
+              <span class="visually-hidden">{{ 'accessibility.link_messages.new_window' | t }}</span>
+            </a>
+          {%- endif -%}
+        </div>
+
+        <div class="kpdp__accordions">
+          {%- if product.description != blank -%}
+            <details class="kacc" open>
+              <summary class="kacc__summary">
+                <span>{{ 'kusho.product.description' | t }}</span>
+                {% render 'kusho-icon', name: 'chevron-down', size: 20 %}
+              </summary>
+              <div class="kacc__body rte">{{ product.description }}</div>
+            </details>
+          {%- endif -%}
+
+          {%- if specs.size > 0 and product.metafields.kusho.specs.value != blank -%}
+            <details class="kacc">
+              <summary class="kacc__summary">
+                <span>{{ 'kusho.product.specifications' | t }}</span>
+                {% render 'kusho-icon', name: 'chevron-down', size: 20 %}
+              </summary>
+              <div class="kacc__body">
+                <dl class="kspecs">
+                  {%- for line in specs -%}
+                    {%- assign item = line | strip -%}
+                    {%- if item contains ':' -%}
+                      {%- assign parts = item | split: ':' -%}
+                      {%- assign spec_label = parts | first -%}
+                      {%- assign spec_value = item | remove_first: spec_label | remove_first: ':' | strip -%}
+                      <div class="kspecs__row">
+                        <dt>{{ spec_label | strip | escape }}</dt>
+                        <dd>{{ spec_value | escape }}</dd>
+                      </div>
+                    {%- endif -%}
+                  {%- endfor -%}
+                </dl>
+              </div>
+            </details>
+          {%- endif -%}
+
+          {%- if in_box.size > 0 and product.metafields.kusho.in_the_box.value != blank -%}
+            <details class="kacc">
+              <summary class="kacc__summary">
+                <span>{{ 'kusho.product.in_the_box' | t }}</span>
+                {% render 'kusho-icon', name: 'chevron-down', size: 20 %}
+              </summary>
+              <div class="kacc__body">
+                <ul class="kacc__list">
+                  {%- for line in in_box -%}
+                    {%- assign item = line | strip -%}
+                    {%- if item != blank -%}<li>{{ item | escape }}</li>{%- endif -%}
+                  {%- endfor -%}
+                </ul>
+              </div>
+            </details>
+          {%- endif -%}
+
+          {%- if product.metafields.kusho.care.value != blank -%}
+            <details class="kacc">
+              <summary class="kacc__summary">
+                <span>{{ 'kusho.product.care' | t }}</span>
+                {% render 'kusho-icon', name: 'chevron-down', size: 20 %}
+              </summary>
+              <div class="kacc__body">
+                <ul class="kacc__list">
+                  {%- for line in care -%}
+                    {%- assign item = line | strip -%}
+                    {%- if item != blank -%}<li>{{ item | escape }}</li>{%- endif -%}
+                  {%- endfor -%}
+                </ul>
+              </div>
+            </details>
+          {%- elsif section.settings.care_text != blank -%}
+            <details class="kacc">
+              <summary class="kacc__summary">
+                <span>{{ 'kusho.product.care' | t }}</span>
+                {% render 'kusho-icon', name: 'chevron-down', size: 20 %}
+              </summary>
+              <div class="kacc__body rte">{{ section.settings.care_text }}</div>
+            </details>
+          {%- endif -%}
+
+          {%- if section.settings.shipping_text != blank -%}
+            <details class="kacc">
+              <summary class="kacc__summary">
+                <span>{{ 'kusho.product.delivery_returns' | t }}</span>
+                {% render 'kusho-icon', name: 'chevron-down', size: 20 %}
+              </summary>
+              <div class="kacc__body rte">{{ section.settings.shipping_text }}</div>
+            </details>
+          {%- endif -%}
+        </div>
+
+        {%- for block in section.blocks -%}
+          {%- if block.type == '@app' -%}
+            <div class="kpdp__app">{% render block %}</div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+
+  {%- if section.settings.show_sticky_bar -%}
+    <div class="ksticky" data-sticky aria-hidden="true" inert>
+      <div class="ksticky__inner page-width">
+        <div class="ksticky__product">
+          {%- if product.featured_media -%}
+            {{
+              product.featured_media
+              | image_url: width: 160
+              | image_tag: widths: '80, 160', sizes: '56px', loading: 'lazy', alt: '', class: 'ksticky__img'
+            }}
+          {%- endif -%}
+          <div class="ksticky__text">
+            <p class="ksticky__title">{{ product.title | escape }}</p>
+            <p class="ksticky__price" data-sticky-price>{{ current_variant.price | money_without_trailing_zeros }}</p>
+          </div>
+        </div>
+        <button type="button" class="button ksticky__btn" data-sticky-atc {% unless current_variant.available %}disabled{% endunless %}>
+          <span data-sticky-label>
+            {%- if current_variant.available -%}{{ 'kusho.product.add_to_cart' | t }}{%- else -%}{{ 'kusho.product.sold_out' | t }}{%- endif -%}
+          </span>
+        </button>
+      </div>
+    </div>
+  {%- endif -%}
+
+  <script type="application/json" data-variants>
+    [
+      {%- for variant in product.variants -%}
+        {
+          "id": {{ variant.id }},
+          "title": {{ variant.title | json }},
+          "options": {{ variant.options | json }},
+          "available": {{ variant.available | json }},
+          "price": {{ variant.price }},
+          "compare_at_price": {{ variant.compare_at_price | default: 0 }},
+          "media_id": {{ variant.featured_media.id | default: 0 }},
+          "inventory_quantity": {{ variant.inventory_quantity | default: 0 }},
+          "inventory_management": {{ variant.inventory_management | json }}
+        }{% unless forloop.last %},{% endunless %}
+      {%- endfor -%}
+    ]
+  </script>
+
+  <script type="application/ld+json">
+    {{ product | structured_data }}
+  </script>
+</section>
+
+{% schema %}
+{
+  "name": "Product",
+  "tag": "section",
+  "class": "kusho-product-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Delivery"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_pincode",
+      "label": "Show the pincode delivery checker",
+      "default": true,
+      "info": "Shows an estimate from the range below. Connect your courier's serviceability service later for exact dates."
+    },
+    {
+      "type": "range",
+      "id": "delivery_days",
+      "label": "Delivery estimate (working days)",
+      "min": 1,
+      "max": 15,
+      "step": 1,
+      "default": 7,
+      "info": "The checker shows a date this many working days ahead (Sundays skipped)."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_cod",
+      "label": "Mention cash on delivery in the estimate",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Stock"
+    },
+    {
+      "type": "range",
+      "id": "low_stock_threshold",
+      "label": "Show \"Only N left\" at or below",
+      "min": 1,
+      "max": 20,
+      "step": 1,
+      "default": 10
+    },
+    {
+      "type": "header",
+      "content": "Trust row (confirm each claim is true)"
+    },
+    { "type": "text", "id": "trust_1", "label": "Promise 1", "default": "Delivery across India" },
+    { "type": "text", "id": "trust_2", "label": "Promise 2", "default": "Cash on delivery" },
+    { "type": "text", "id": "trust_3", "label": "Promise 3", "default": "7-day returns" },
+    { "type": "text", "id": "trust_4", "label": "Promise 4", "default": "Secure payments" },
+    {
+      "type": "header",
+      "content": "Extras"
+    },
+    {
+      "type": "richtext",
+      "id": "care_text",
+      "label": "Care text (shown when a product has no care metafield)",
+      "default": "<p>The memory foam core is not washable. Every Kusho product comes with a removable, machine-washable cover for easy cleaning.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "shipping_text",
+      "label": "Delivery and returns text",
+      "default": "<p>Delivery time depends on your pincode. Enter it above the buy button to see an estimate.</p><p>Returns follow our returns policy. If something is not right, message us and we will help.</p>"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_share",
+      "label": "Show share button",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_whatsapp_help",
+      "label": "Show the WhatsApp help link",
+      "default": true,
+      "info": "Needs a WhatsApp number in Theme settings > Kusho."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_sticky_bar",
+      "label": "Show the sticky add-to-cart bar",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "offer",
+      "name": "Offer",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Offer text",
+          "default": "Extra 10% off when you pay online"
+        },
+        {
+          "type": "text",
+          "id": "code",
+          "label": "Coupon code (optional)"
+        },
+        {
+          "type": "text",
+          "id": "only_tag",
+          "label": "Only show on products with this tag (optional)",
+          "info": "Example: badge:bogo"
+        }
+      ]
+    },
+    {
+      "type": "@app"
+    }
+  ]
+}
+{% endschema %}

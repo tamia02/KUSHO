@@ -1,0 +1,28 @@
+{% comment %}
+  Floating WhatsApp button (guide 10.6). Theme-native so it is lighter than a chat app.
+  Hidden while a drawer is open and lifted above the sticky add-to-cart bar via
+  the --kusho-sticky-offset custom property (set by the product page later).
+  Configure in Theme settings > Kusho > WhatsApp.
+{% endcomment %}
+
+{%- if settings.kusho_whatsapp_enabled and settings.kusho_whatsapp_number != blank -%}
+  {%- liquid
+    assign wa_number = settings.kusho_whatsapp_number | remove: '+' | remove: ' ' | remove: '-'
+    assign wa_text = settings.kusho_whatsapp_message | append: ' ' | append: canonical_url | url_encode
+  -%}
+  <a
+    class="kusho-whatsapp"
+    href="https://wa.me/{{ wa_number }}?text={{ wa_text }}"
+    target="_blank"
+    rel="noopener"
+    data-kusho-whatsapp
+  >
+    <span class="kusho-whatsapp__icon" aria-hidden="true">{% render 'kusho-icon', name: 'whatsapp', size: 26 %}</span>
+    <span class="kusho-whatsapp__label">
+      <span class="kusho-whatsapp__kicker">{{ 'kusho.float.kicker' | t }}</span>
+      <span class="kusho-whatsapp__text">{{ settings.kusho_whatsapp_label | escape }}</span>
+    </span>
+    <span class="visually-hidden">{{ 'accessibility.link_messages.new_window' | t }}</span>
+  </a>
+  {{ 'kusho-whatsapp.css' | asset_url | stylesheet_tag }}
+{%- endif -%}

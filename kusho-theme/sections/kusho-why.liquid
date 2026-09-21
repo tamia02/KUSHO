@@ -1,0 +1,109 @@
+{{ 'kusho-home.css' | asset_url | stylesheet_tag }}
+
+<section class="kwhy kusho-section color-{{ section.settings.color_scheme }} gradient" aria-labelledby="kwhy-title-{{ section.id }}">
+  <div class="page-width kwhy__layout">
+    <div class="kwhy__intro">
+      {%- if section.settings.eyebrow != blank -%}<p class="ksec-eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+      <h2 class="ksec-title kwhy__title" id="kwhy-title-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
+      {%- if section.settings.text != blank -%}<p class="ksec-lead kwhy__lead">{{ section.settings.text | escape }}</p>{%- endif -%}
+      {%- if section.settings.button_label != blank -%}
+        <a class="button kwhy__btn" href="{{ section.settings.button_link | default: '#' }}">{{ section.settings.button_label | escape }}</a>
+      {%- endif -%}
+    </div>
+
+    <ul class="kwhy__list" role="list">
+      {%- for block in section.blocks -%}
+        <li class="kwhy__item" {{ block.shopify_attributes }}>
+          <span class="kwhy__icon">{% render 'kusho-icon', name: block.settings.icon, size: 26 %}</span>
+          <div>
+            <h3 class="kwhy__item-title">{{ block.settings.title | escape }}</h3>
+            <p class="kwhy__item-text">{{ block.settings.text | escape }}</p>
+          </div>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+
+  {%- if section.settings.show_photo -%}
+    <div class="page-width">
+      <figure class="kwhy__photo" data-reveal="image">
+        {%- if section.settings.image != blank -%}
+          {{ section.settings.image | image_url: width: 1600 | image_tag: loading: 'lazy', widths: '800, 1200, 1600', sizes: '(min-width: 1400px) 1300px, 92vw', alt: section.settings.image_alt }}
+        {%- else -%}
+          <img src="{{ 'kusho-photo-strip-life.webp' | asset_url }}" alt="{{ section.settings.image_alt | escape }}" width="1223" height="691" loading="lazy">
+        {%- endif -%}
+        {%- if section.settings.video != blank -%}
+          {{
+            section.settings.video
+            | video_tag:
+              image_size: '1600x',
+              autoplay: false,
+              loop: true,
+              muted: true,
+              controls: false,
+              playsinline: true,
+              preload: 'none',
+              class: 'kusho-video kwhy__video'
+          }}
+        {%- endif -%}
+      </figure>
+    </div>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Why Kusho",
+  "tag": "div",
+  "class": "kusho-why-section",
+  "max_blocks": 6,
+  "settings": [
+    { "type": "color_scheme", "id": "color_scheme", "label": "Colour scheme", "default": "scheme-3" },
+    { "type": "text", "id": "eyebrow", "label": "Small heading", "default": "Why Kusho" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "The comfort you deserve, made for India" },
+    { "type": "textarea", "id": "text", "label": "Text" },
+    { "type": "text", "id": "button_label", "label": "Button label" },
+    { "type": "url", "id": "button_link", "label": "Button link" },
+    { "type": "checkbox", "id": "show_photo", "label": "Show a photo strip below", "default": false },
+    { "type": "image_picker", "id": "image", "label": "Photo strip (optional)", "info": "Leave empty to use the built-in photo." },
+    { "type": "video", "id": "video", "label": "Video over the strip (optional)", "info": "Silent loop, 16:9, under 6 MB. The photo shows until it plays." },
+    { "type": "text", "id": "image_alt", "label": "Photo description", "default": "People using Kusho at home, at work and on the road" }
+  ],
+  "blocks": [
+    {
+      "type": "reason",
+      "name": "Reason",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "check", "label": "Check" },
+            { "value": "shield", "label": "Shield" },
+            { "value": "heart", "label": "Heart" },
+            { "value": "return", "label": "Return" },
+            { "value": "moon", "label": "Sleep" },
+            { "value": "truck", "label": "Delivery" },
+            { "value": "back", "label": "Back" },
+            { "value": "plane", "label": "Travel" },
+            { "value": "gift", "label": "Gift" },
+            { "value": "car", "label": "Car" }
+          ],
+          "default": "check"
+        },
+        { "type": "text", "id": "title", "label": "Title", "default": "Made for India" },
+        { "type": "textarea", "id": "text", "label": "Text", "default": "Designed keeping Indian lifestyles in mind." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Why Kusho",
+      "blocks": [
+        { "type": "reason" }
+      ]
+    }
+  ]
+}
+{% endschema %}

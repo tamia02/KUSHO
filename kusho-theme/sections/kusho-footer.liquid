@@ -1,0 +1,261 @@
+{{ 'kusho-footer.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign wa_number = settings.kusho_whatsapp_number | remove: '+' | remove: ' ' | remove: '-'
+  assign wa_signup_text = 'kusho.footer.whatsapp_message' | t | url_encode
+-%}
+
+<footer class="kfooter color-{{ section.settings.color_scheme }} gradient">
+  {%- if settings.kusho_trust_line != blank -%}
+    <div class="kfooter__trust">
+      <div class="page-width">
+        <p class="kfooter__trust-line">{{ settings.kusho_trust_line | escape }}</p>
+      </div>
+    </div>
+  {%- endif -%}
+
+  <div class="kfooter__inner page-width">
+    <div class="kfooter__signup">
+      {%- if section.settings.signup_heading != blank -%}
+        <h2 class="kfooter__signup-title h3">{{ section.settings.signup_heading | escape }}</h2>
+      {%- endif -%}
+      {%- if section.settings.signup_text != blank -%}
+        <p class="kfooter__signup-text">{{ section.settings.signup_text | escape }}</p>
+      {%- endif -%}
+
+      {%- form 'customer', id: 'KushoFooterForm', class: 'kfooter__form' -%}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        <label class="visually-hidden" for="KushoFooterEmail-{{ section.id }}">{{ 'newsletter.label' | t }}</label>
+        <input
+          id="KushoFooterEmail-{{ section.id }}"
+          class="kfooter__input"
+          type="email"
+          name="contact[email]"
+          value="{{ form.email }}"
+          placeholder="{{ 'newsletter.label' | t }}"
+          autocomplete="email"
+          autocorrect="off"
+          autocapitalize="off"
+          required
+          {% if form.errors %}aria-invalid="true" aria-describedby="KushoFooterMsg-{{ section.id }}"{% endif %}
+        >
+        <button type="submit" class="kfooter__submit button" name="commit">
+          {{ 'kusho.footer.subscribe' | t }}
+        </button>
+
+        {%- if form.errors -%}
+          <p class="kfooter__message kfooter__message--error" id="KushoFooterMsg-{{ section.id }}" role="alert">
+            {{- form.errors.translated_fields.email | capitalize }} {{ form.errors.messages.email -}}
+          </p>
+        {%- elsif form.posted_successfully? -%}
+          <p class="kfooter__message" id="KushoFooterMsg-{{ section.id }}" role="status" tabindex="-1">
+            {{- 'newsletter.success' | t -}}
+          </p>
+        {%- endif -%}
+      {%- endform -%}
+
+      {%- if section.settings.show_whatsapp_signup and wa_number != blank -%}
+        <a class="kfooter__wa kusho-link" href="https://wa.me/{{ wa_number }}?text={{ wa_signup_text }}" target="_blank" rel="noopener">
+          {% render 'kusho-icon', name: 'whatsapp', size: 20 %}
+          {{ 'kusho.footer.whatsapp_signup' | t }}
+          <span class="visually-hidden">{{ 'accessibility.link_messages.new_window' | t }}</span>
+        </a>
+      {%- endif -%}
+    </div>
+
+    <div class="kfooter__columns">
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'link_list' -%}
+            {%- if block.settings.menu != blank and block.settings.menu.links.size > 0 -%}
+              <nav class="kfooter__col" aria-labelledby="KushoFooterHead-{{ block.id }}" {{ block.shopify_attributes }}>
+                <h2 class="kfooter__heading" id="KushoFooterHead-{{ block.id }}">{{ block.settings.heading | escape }}</h2>
+                <ul class="kfooter__links" role="list">
+                  {%- for link in block.settings.menu.links -%}
+                    <li><a href="{{ link.url }}" class="kfooter__link">{{ link.title | escape }}</a></li>
+                  {%- endfor -%}
+                </ul>
+              </nav>
+            {%- endif -%}
+          {%- when 'contact' -%}
+            <div class="kfooter__col kfooter__col--contact" {{ block.shopify_attributes }}>
+              <h2 class="kfooter__heading">{{ block.settings.heading | escape }}</h2>
+              <ul class="kfooter__links" role="list">
+                {%- if block.settings.email != blank -%}
+                  <li><a href="mailto:{{ block.settings.email }}" class="kfooter__link">{{ block.settings.email }}</a></li>
+                {%- endif -%}
+                {%- if block.settings.phone != blank -%}
+                  <li><a href="tel:{{ block.settings.phone | remove: ' ' }}" class="kfooter__link">{{ block.settings.phone }}</a></li>
+                {%- endif -%}
+                {%- if block.settings.hours != blank -%}
+                  <li class="kfooter__muted">{{ block.settings.hours | escape }}</li>
+                {%- endif -%}
+              </ul>
+            </div>
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+  </div>
+
+  <div class="kfooter__legal page-width">
+    <div class="kfooter__legal-text">
+      {%- if settings.kusho_legal_name != blank -%}
+        <p class="kfooter__muted"><strong>{{ settings.kusho_legal_name | escape }}</strong></p>
+      {%- endif -%}
+      {%- if settings.kusho_legal_address != blank -%}
+        <p class="kfooter__muted">{{ settings.kusho_legal_address | escape | newline_to_br }}</p>
+      {%- endif -%}
+      {%- if settings.kusho_gstin != blank -%}
+        <p class="kfooter__muted">{{ 'kusho.footer.gstin' | t }}: {{ settings.kusho_gstin | escape }}</p>
+      {%- endif -%}
+      {%- if settings.kusho_grievance_url != blank -%}
+        <p><a href="{{ settings.kusho_grievance_url }}" class="kfooter__link">{{ 'kusho.footer.grievance' | t }}</a></p>
+      {%- endif -%}
+    </div>
+
+    <div class="kfooter__meta">
+      {%- if section.settings.show_social -%}
+        {% render 'social-icons', class: 'kfooter__social' %}
+      {%- endif -%}
+
+      {%- if section.settings.show_payment_icons and shop.enabled_payment_types.size > 0 -%}
+        <ul class="kfooter__payments" role="list" aria-label="{{ 'sections.footer.payment' | t }}">
+          {%- for type in shop.enabled_payment_types -%}
+            <li>{{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}</li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+    </div>
+  </div>
+
+  <div class="kfooter__bottom page-width">
+    <p class="kfooter__muted">&copy; {{ 'now' | date: '%Y' }} {{ shop.name | escape }}. {{ section.settings.tagline | escape }}</p>
+    {%- if shop.policies.size > 0 -%}
+      <ul class="kfooter__policies" role="list">
+        {%- for policy in shop.policies -%}
+          <li><a href="{{ policy.url }}" class="kfooter__link">{{ policy.title | escape }}</a></li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+  </div>
+
+  {%- if section.settings.show_wordmark -%}
+    <div class="kfooter__wordmark" aria-hidden="true">{{ shop.name | escape }}</div>
+  {%- endif -%}
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "tag": "section",
+  "class": "section-footer",
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Colour scheme",
+      "default": "scheme-3"
+    },
+    {
+      "type": "header",
+      "content": "Sign-up"
+    },
+    {
+      "type": "text",
+      "id": "signup_heading",
+      "label": "Heading",
+      "default": "Sleep tips and early access to sales"
+    },
+    {
+      "type": "text",
+      "id": "signup_text",
+      "label": "Text",
+      "default": "One helpful email a month. No spam."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_whatsapp_signup",
+      "label": "Show WhatsApp opt-in link",
+      "default": true,
+      "info": "Needs a WhatsApp number in Theme settings > Kusho."
+    },
+    {
+      "type": "header",
+      "content": "Bottom"
+    },
+    {
+      "type": "text",
+      "id": "tagline",
+      "label": "Tagline after the copyright",
+      "default": "The Comfort You Deserve"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_social",
+      "label": "Show social icons",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_payment_icons",
+      "label": "Show payment icons",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_wordmark",
+      "label": "Show large outlined wordmark",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "link_list",
+      "name": "Link list",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Shop"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Menu"
+        }
+      ]
+    },
+    {
+      "type": "contact",
+      "name": "Contact",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Contact"
+        },
+        {
+          "type": "text",
+          "id": "email",
+          "label": "Email"
+        },
+        {
+          "type": "text",
+          "id": "phone",
+          "label": "Phone"
+        },
+        {
+          "type": "text",
+          "id": "hours",
+          "label": "Support hours",
+          "default": "Mon–Sat, 10am–7pm"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

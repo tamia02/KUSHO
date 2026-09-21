@@ -1,0 +1,22 @@
+{
+  "sections": {
+    "hero": {
+      "type": "kusho-page-hero",
+      "settings": {
+        "color_scheme": "scheme-2",
+        "eyebrow": "Help"
+      }
+    },
+    "main": {
+      "type": "kusho-page",
+      "settings": {
+        "show_toc": true,
+        "show_help": true
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "main"
+  ]
+}

@@ -1,0 +1,163 @@
+{{ 'kusho-announcement.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'kusho-announcement.js' | asset_url }}" defer="defer"></script>
+
+{%- liquid
+  assign show_countdown = false
+  if section.settings.countdown_end != blank
+    assign end_stamp = section.settings.countdown_end | append: ' +0530'
+    assign end_seconds = end_stamp | date: '%s' | plus: 0
+    assign now_seconds = 'now' | date: '%s' | plus: 0
+    if end_seconds > now_seconds
+      assign show_countdown = true
+      assign remaining = end_seconds | minus: now_seconds
+      assign end_ms = end_seconds | times: 1000
+    endif
+  endif
+  assign message_count = section.blocks.size
+-%}
+
+{%- if message_count > 0 -%}
+  <kusho-announcement
+    class="kusho-announcement kusho-announcement--{{ section.settings.style }}"
+    data-interval="4000"
+    role="region"
+    aria-label="{{ 'kusho.announcement.region' | t }}"
+  >
+    <script>
+      try {
+        if (sessionStorage.getItem('kusho:announcement-dismissed') === '1') {
+          document.currentScript.parentElement.hidden = true;
+        }
+      } catch (e) {}
+    </script>
+    <div class="kusho-announcement__inner page-width">
+      <div class="kusho-announcement__controls">
+        {%- if message_count > 1 -%}
+          <button type="button" class="kusho-announcement__btn" data-action="prev" aria-label="{{ 'kusho.announcement.previous' | t }}">
+            {% render 'kusho-icon', name: 'chevron-left', size: 18 %}
+          </button>
+          <button type="button" class="kusho-announcement__btn" data-action="next" aria-label="{{ 'kusho.announcement.next' | t }}">
+            {% render 'kusho-icon', name: 'chevron-right', size: 18 %}
+          </button>
+        {%- endif -%}
+      </div>
+
+      <div class="kusho-announcement__center">
+        <div class="kusho-announcement__messages" aria-live="off" data-messages>
+          {%- for block in section.blocks -%}
+            <p
+              class="kusho-announcement__msg{% if forloop.first %} is-active{% endif %}"
+              data-message
+              {% unless forloop.first %}inert{% endunless %}
+              {{ block.shopify_attributes }}
+            >
+              {%- if block.settings.link != blank -%}
+                <a href="{{ block.settings.link }}" class="kusho-announcement__link">{{ block.settings.text | escape }}</a>
+              {%- else -%}
+                <span>{{ block.settings.text | escape }}</span>
+              {%- endif -%}
+            </p>
+          {%- endfor -%}
+        </div>
+
+        {%- if show_countdown -%}
+          <kusho-countdown class="kusho-countdown" data-end="{{ end_ms }}">
+            <span class="kusho-countdown__label">{{ 'kusho.announcement.ends_in' | t }}</span>
+            <span class="kusho-countdown__value" data-countdown-value>
+              {{- remaining | divided_by: 86400 | floor }}d
+              {{ remaining | modulo: 86400 | divided_by: 3600 | floor }}h
+              {{ remaining | modulo: 3600 | divided_by: 60 | floor }}m
+              {{ remaining | modulo: 60 }}s
+            </span>
+          </kusho-countdown>
+        {%- endif -%}
+      </div>
+
+      <div class="kusho-announcement__controls kusho-announcement__controls--end">
+        {%- if message_count > 1 -%}
+          <button
+            type="button"
+            class="kusho-announcement__btn"
+            data-action="pause"
+            aria-pressed="false"
+            aria-label="{{ 'kusho.announcement.pause' | t }}"
+            data-label-pause="{{ 'kusho.announcement.pause' | t }}"
+            data-label-play="{{ 'kusho.announcement.play' | t }}"
+          >
+            <span data-icon-pause>{% render 'kusho-icon', name: 'pause', size: 16 %}</span>
+            <span data-icon-play hidden>{% render 'kusho-icon', name: 'play', size: 16 %}</span>
+          </button>
+        {%- endif -%}
+        {%- if section.settings.dismissible -%}
+          <button type="button" class="kusho-announcement__btn" data-action="dismiss" aria-label="{{ 'kusho.announcement.dismiss' | t }}">
+            {% render 'kusho-icon', name: 'x', size: 18 %}
+          </button>
+        {%- endif -%}
+      </div>
+    </div>
+  </kusho-announcement>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Announcement bar",
+  "tag": "section",
+  "class": "kusho-announcement-section",
+  "max_blocks": 3,
+  "settings": [
+    {
+      "type": "select",
+      "id": "style",
+      "label": "Style",
+      "options": [
+        { "value": "default", "label": "Default (soft green)" },
+        { "value": "sale", "label": "Sale (solid green)" }
+      ],
+      "default": "default"
+    },
+    {
+      "type": "checkbox",
+      "id": "dismissible",
+      "label": "Allow visitors to dismiss the bar",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Countdown"
+    },
+    {
+      "type": "text",
+      "id": "countdown_end",
+      "label": "Countdown ends at (IST)",
+      "info": "Format: 2026-09-27 23:59. Leave blank for no countdown. It hides itself when the time passes."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "message",
+      "name": "Message",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Message",
+          "default": "Buy one, get one free on neck pillows"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Announcement bar",
+      "blocks": [
+        { "type": "message" }
+      ]
+    }
+  ]
+}
+{% endschema %}

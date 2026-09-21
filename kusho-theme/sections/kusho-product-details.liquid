@@ -1,0 +1,132 @@
+{{ 'kusho-product.css' | asset_url | stylesheet_tag }}
+{{ 'kusho-accordion.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign features = product.metafields.kusho.features.value | newline_to_br | split: '<br />'
+  assign steps = product.metafields.kusho.how_to.value | newline_to_br | split: '<br />'
+  assign faqs = product.metafields.kusho.faqs.value | newline_to_br | split: '<br />'
+  assign wa_number = settings.kusho_whatsapp_number | remove: '+' | remove: ' ' | remove: '-'
+  assign wa_text = 'Hi Kusho, I have a question about ' | append: product.title | url_encode
+-%}
+
+{%- if product.metafields.kusho.features.value != blank -%}
+  <section class="kstory kusho-section color-scheme-2 gradient" aria-labelledby="kstory-title-{{ section.id }}">
+    <div class="page-width">
+      <h2 class="kstory__title" id="kstory-title-{{ section.id }}">{{ 'kusho.product.details.why_title' | t }}</h2>
+      <ul class="kstory__grid" role="list">
+        {%- for line in features -%}
+          {%- assign item = line | strip -%}
+          {%- if item contains '|' -%}
+            {%- assign parts = item | split: '|' -%}
+            {%- assign feature_title = parts | first | strip -%}
+            {%- assign feature_text = item | remove_first: parts.first | remove_first: '|' | strip -%}
+            <li class="kfeature">
+              <span class="kfeature__icon">{% render 'kusho-icon', name: 'check', size: 24 %}</span>
+              <h3 class="kfeature__title">{{ feature_title | escape }}</h3>
+              <p class="kfeature__text">{{ feature_text | escape }}</p>
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+    </div>
+  </section>
+{%- endif -%}
+
+{%- if product.metafields.kusho.how_to.value != blank -%}
+  <section class="khow kusho-section" aria-labelledby="khow-title-{{ section.id }}">
+    <div class="page-width">
+      <h2 class="kstory__title" id="khow-title-{{ section.id }}">{{ 'kusho.product.details.how_title' | t }}</h2>
+      <ol class="khow__steps" role="list">
+        {%- for line in steps -%}
+          {%- assign item = line | strip -%}
+          {%- if item != blank -%}
+            <li class="khow__step">
+              <span class="khow__num" aria-hidden="true">{{ forloop.index }}</span>
+              <p class="khow__text">{{ item | escape }}</p>
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ol>
+    </div>
+  </section>
+{%- endif -%}
+
+{%- if product.metafields.kusho.faqs.value != blank or section.blocks.size > 0 -%}
+  <section class="kfaq kusho-section color-scheme-2 gradient" aria-labelledby="kfaq-title-{{ section.id }}">
+    <div class="page-width kfaq__grid">
+      <div class="kfaq__intro">
+        <h2 class="kstory__title" id="kfaq-title-{{ section.id }}">{{ 'kusho.product.details.faq_title' | t }}</h2>
+        {%- if wa_number != blank -%}
+          <p class="kfaq__help">{{ 'kusho.product.details.faq_help' | t }}</p>
+          <a class="kusho-link" href="https://wa.me/{{ wa_number }}?text={{ wa_text }}" target="_blank" rel="noopener">
+            {{ 'kusho.product.details.faq_cta' | t }}
+            <span class="visually-hidden">{{ 'accessibility.link_messages.new_window' | t }}</span>
+          </a>
+        {%- endif -%}
+      </div>
+
+      <div class="kfaq__list">
+        {%- for line in faqs -%}
+          {%- assign item = line | strip -%}
+          {%- if item contains '||' -%}
+            {%- assign parts = item | split: '||' -%}
+            {%- assign question = parts | first | strip -%}
+            {%- assign answer = item | remove_first: parts.first | remove_first: '||' | strip -%}
+            <details class="kacc kacc--faq">
+              <summary class="kacc__summary">
+                <span>{{ question | escape }}</span>
+                {% render 'kusho-icon', name: 'chevron-down', size: 20 %}
+              </summary>
+              <div class="kacc__body"><p>{{ answer | escape }}</p></div>
+            </details>
+          {%- endif -%}
+        {%- endfor -%}
+
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'question' -%}
+            <details class="kacc kacc--faq" {{ block.shopify_attributes }}>
+              <summary class="kacc__summary">
+                <span>{{ block.settings.question | escape }}</span>
+                {% render 'kusho-icon', name: 'chevron-down', size: 20 %}
+              </summary>
+              <div class="kacc__body rte">{{ block.settings.answer }}</div>
+            </details>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Product story and FAQ",
+  "tag": "div",
+  "class": "kusho-product-details",
+  "blocks": [
+    {
+      "type": "question",
+      "name": "Shared question",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "How do I care for my pillow?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>Remove the cover and machine wash it cold. Do not wash the foam core.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product story and FAQ"
+    }
+  ]
+}
+{% endschema %}

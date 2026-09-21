@@ -1,0 +1,54 @@
+{{ 'kusho-product.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign review_count = product.metafields.reviews.rating_count.value | plus: 0
+  assign review_average = product.metafields.reviews.rating.value.rating | plus: 0.0
+-%}
+
+<section class="krev kusho-section{% if section.blocks.size == 0 %} krev--solo{% endif %}" id="kusho-reviews" aria-labelledby="krev-title-{{ section.id }}">
+  <div class="page-width">
+    <h2 class="kstory__title" id="krev-title-{{ section.id }}">{{ 'kusho.product.reviews.title' | t }}</h2>
+
+    <div class="krev__layout">
+      <div class="krev__summary" role="group" aria-label="{{ 'kusho.product.reviews.summary' | t }}">
+        {%- if review_count >= 1 and review_average > 0 -%}
+          <p class="krev__score">{{ review_average | round: 1 }}<span class="krev__out"> / 5</span></p>
+          <div class="krev__stars" role="img" aria-label="{{ 'kusho.product.rated' | t: rating: review_average }}">
+            {%- for i in (1..5) -%}
+              <span class="krev__star">{% render 'kusho-icon', name: 'star', size: 20 %}</span>
+            {%- endfor -%}
+          </div>
+          <p class="krev__count">{{ 'kusho.product.reviews.based_on' | t: count: review_count }}</p>
+        {%- else -%}
+          <p class="krev__none">{{ 'kusho.product.reviews.none' | t }}</p>
+        {%- endif -%}
+      </div>
+
+      <div class="krev__widget">
+        {%- for block in section.blocks -%}
+          {%- if block.type == '@app' -%}
+            {% render block %}
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product reviews",
+  "tag": "div",
+  "class": "kusho-product-reviews",
+  "blocks": [
+    {
+      "type": "@app"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product reviews"
+    }
+  ]
+}
+{% endschema %}

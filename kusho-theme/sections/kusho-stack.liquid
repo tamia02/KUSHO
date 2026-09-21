@@ -1,0 +1,113 @@
+<script src="{{ 'kusho-stack.js' | asset_url }}" defer="defer"></script>
+
+<section class="kstack kusho-section" aria-labelledby="kstack-title-{{ section.id }}">
+  <div class="page-width kstack__layout">
+    <div class="kstack__intro" data-reveal>
+      <div class="kstack__sticky">
+        {%- if section.settings.eyebrow != blank -%}<p class="ksec-eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+        <h2 class="ksec-title" id="kstack-title-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
+        {%- if section.settings.text != blank -%}<p class="ksec-lead">{{ section.settings.text | escape }}</p>{%- endif -%}
+        <ol class="kstack__index" role="list" aria-hidden="true">
+          {%- for block in section.blocks -%}
+            <li class="kstack__index-item{% if forloop.first %} is-active{% endif %}" data-index-item>
+              <span class="kstack__index-num">0{{ forloop.index }}</span>
+              <span>{{ block.settings.title | escape }}</span>
+            </li>
+          {%- endfor -%}
+        </ol>
+      </div>
+    </div>
+
+    <ol class="kstack__cards" role="list" data-stack>
+      {%- for block in section.blocks -%}
+        {%- assign default_photo = 'kusho-photo-' | append: block.settings.scene | append: '.webp' -%}
+        <li class="kstack__card" data-card style="--n: {{ forloop.index0 }};" {{ block.shopify_attributes }}>
+          <div class="kstack__inner">
+            <span class="kstack__media">
+              {%- if block.settings.image != blank -%}
+                {{ block.settings.image | image_url: width: 1400 | image_tag: loading: 'lazy', widths: '700, 1000, 1400', sizes: '(min-width: 990px) 56vw, 100vw', alt: block.settings.image_alt, class: 'kstack__img' }}
+              {%- else -%}
+                <img class="kstack__img" src="{{ default_photo | asset_url }}" alt="{{ block.settings.image_alt | escape }}" width="1000" height="700" loading="lazy">
+              {%- endif -%}
+              {%- if block.settings.video != blank -%}
+                {{
+                  block.settings.video
+                  | video_tag:
+                    image_size: '1000x',
+                    autoplay: false,
+                    loop: true,
+                    muted: true,
+                    controls: false,
+                    playsinline: true,
+                    preload: 'none',
+                    class: 'kusho-video kstack__video'
+                }}
+              {%- endif -%}
+            </span>
+            <span class="kstack__shade" aria-hidden="true"></span>
+            <div class="kstack__body">
+              <span class="kstack__num" aria-hidden="true">0{{ forloop.index }}</span>
+              <h3 class="kstack__title">{{ block.settings.title | escape }}</h3>
+              <p class="kstack__text">{{ block.settings.text | escape }}</p>
+              {%- if block.settings.link_label != blank -%}
+                <a class="button kstack__btn" href="{{ block.settings.link | default: '#' }}">{{ block.settings.link_label | escape }}{% render 'kusho-icon', name: 'arrow-right', size: 18 %}</a>
+              {%- endif -%}
+            </div>
+            <span class="kstack__dim" aria-hidden="true"></span>
+          </div>
+        </li>
+      {%- endfor -%}
+    </ol>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "How to use (stacked)",
+  "tag": "div",
+  "class": "kusho-stack-section",
+  "max_blocks": 5,
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Small heading", "default": "How to use Kusho" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Comfort for every part of your day" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Pick the moment you want to feel better in. Here is how each piece is meant to be used." }
+  ],
+  "blocks": [
+    {
+      "type": "moment",
+      "name": "Moment",
+      "settings": [
+        {
+          "type": "select",
+          "id": "scene",
+          "label": "Built-in photo",
+          "options": [
+            { "value": "sleep-2", "label": "Sleeping" },
+            { "value": "drive-2", "label": "Driving" },
+            { "value": "work", "label": "Working" },
+            { "value": "travel-2", "label": "Travelling" }
+          ],
+          "default": "sleep-2"
+        },
+        { "type": "image_picker", "id": "image", "label": "Your own photo (optional)" },
+        { "type": "video", "id": "video", "label": "Video (optional)", "info": "Silent loop, 16:9, under 5 MB. Plays over the photo while the card is on screen." },
+        { "type": "text", "id": "image_alt", "label": "Photo description" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Sleep" },
+        { "type": "textarea", "id": "text", "label": "How to use it", "default": "Rest your head in the centre of the pillow so the curve supports your neck." },
+        { "type": "url", "id": "link", "label": "Button link" },
+        { "type": "text", "id": "link_label", "label": "Button label", "default": "Shop pillows" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "How to use (stacked)",
+      "blocks": [
+        { "type": "moment" },
+        { "type": "moment" },
+        { "type": "moment" }
+      ]
+    }
+  ]
+}
+{% endschema %}

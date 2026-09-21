@@ -1,0 +1,493 @@
+{
+  "sections": {
+    "hero": {
+      "type": "kusho-hero",
+      "blocks": {
+        "a1": {
+          "type": "assurance",
+          "settings": {
+            "icon": "return",
+            "text": "7-day returns"
+          }
+        },
+        "a2": {
+          "type": "assurance",
+          "settings": {
+            "icon": "cash",
+            "text": "Cash on delivery"
+          }
+        },
+        "a3": {
+          "type": "assurance",
+          "settings": {
+            "icon": "check",
+            "text": "Washable covers"
+          }
+        }
+      },
+      "block_order": [
+        "a1",
+        "a2",
+        "a3"
+      ],
+      "settings": {
+        "color_scheme": "scheme-3",
+        "product": "kusho-cervical-butterfly-pillow",
+        "eyebrow": "The Comfort You Deserve",
+        "headline": "Wake up without the ache",
+        "subline": "Memory foam pillows and cushions, made for the way India sleeps, works and travels.",
+        "cta_primary_label": "Shop bestsellers",
+        "cta_primary_link": "/collections/best-sellers",
+        "cta_secondary_label": "Find what I need",
+        "cta_secondary_link": "#kusho-need"
+      }
+    },
+    "ribbon": {
+      "type": "kusho-ribbon",
+      "blocks": {
+        "w1": {
+          "type": "word",
+          "settings": {
+            "text": "Sleep better"
+          }
+        },
+        "w2": {
+          "type": "word",
+          "settings": {
+            "text": "Sit taller"
+          }
+        },
+        "w3": {
+          "type": "word",
+          "settings": {
+            "text": "Travel easier"
+          }
+        },
+        "w4": {
+          "type": "word",
+          "settings": {
+            "text": "Made for India"
+          }
+        }
+      },
+      "block_order": [
+        "w1",
+        "w2",
+        "w3",
+        "w4"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "label": "What Kusho is about"
+      }
+    },
+    "need": {
+      "type": "kusho-bento",
+      "blocks": {
+        "t1": {
+          "type": "tile",
+          "settings": {
+            "scene": "sleep",
+            "icon": "moon",
+            "title": "Sleep",
+            "text": "Pillows for calmer nights and easier mornings",
+            "link": "/collections/pillows"
+          }
+        },
+        "t2": {
+          "type": "tile",
+          "settings": {
+            "scene": "drive",
+            "icon": "car",
+            "title": "Drive",
+            "text": "Seat and lumbar support",
+            "link": "/collections/cars"
+          }
+        },
+        "t3": {
+          "type": "tile",
+          "settings": {
+            "scene": "work",
+            "icon": "back",
+            "title": "Work",
+            "text": "Cushions for the desk chair",
+            "link": "/collections/cushions"
+          }
+        },
+        "t4": {
+          "type": "tile",
+          "settings": {
+            "scene": "travel",
+            "icon": "plane",
+            "title": "Travel",
+            "text": "Neck pillows that come with you",
+            "link": "/collections/travel"
+          }
+        },
+        "t5": {
+          "type": "tile",
+          "settings": {
+            "scene": "gift",
+            "icon": "gift",
+            "title": "Gifting",
+            "text": "Cuddle pillows and combos",
+            "link": "/collections/combos"
+          }
+        }
+      },
+      "block_order": [
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5"
+      ],
+      "settings": {
+        "eyebrow": "Shop by need",
+        "heading": "What do you need comfort for?"
+      }
+    },
+    "bestsellers": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "best-sellers",
+        "products_to_show": 8,
+        "title": "Bestsellers",
+        "heading_size": "h2",
+        "columns_desktop": 4,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "outline",
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": true,
+        "quick_add": "standard",
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
+        "padding_top": 56,
+        "padding_bottom": 56
+      }
+    },
+    "compare": {
+      "type": "kusho-compare",
+      "blocks": {
+        "s1": {
+          "type": "scene",
+          "settings": {
+            "label": "Sleeping",
+            "caption": "A pillow that does not support your neck can leave you stiff by morning.",
+            "icon": "moon",
+            "scene": "sleep",
+            "before_label": "Before",
+            "after_label": "With Kusho",
+            "before_alt": "A woman holding her neck in discomfort in the morning",
+            "after_alt": "A woman sleeping comfortably on a Kusho pillow"
+          }
+        },
+        "s2": {
+          "type": "scene",
+          "settings": {
+            "label": "Sitting",
+            "caption": "Long hours at a desk are easier with the lower back supported.",
+            "icon": "back",
+            "scene": "sit",
+            "before_label": "Before",
+            "after_label": "With Kusho",
+            "before_alt": "A woman hunched at a desk, holding her lower back",
+            "after_alt": "A man sitting upright at a desk with a Kusho cushion"
+          }
+        },
+        "s3": {
+          "type": "scene",
+          "settings": {
+            "label": "Travelling",
+            "caption": "A slumped neck on a long journey gets a proper rest.",
+            "icon": "plane",
+            "scene": "travel",
+            "before_label": "Before",
+            "after_label": "With Kusho",
+            "before_alt": "A man with his head slumped forward in a seat",
+            "after_alt": "A man resting his neck against a Kusho neck cushion"
+          }
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2",
+        "s3"
+      ],
+      "settings": {
+        "color_scheme": "scheme-2",
+        "eyebrow": "See the difference",
+        "heading": "Your body notices when the support is right",
+        "text": "Drag the handle to compare. Support that lines your neck and back up is easier to live with, night after night and mile after mile."
+      }
+    },
+    "stack": {
+      "type": "kusho-stack",
+      "blocks": {
+        "m1": {
+          "type": "moment",
+          "settings": {
+            "scene": "sleep-2",
+            "image_alt": "A man sleeping on a Kusho contour pillow",
+            "title": "Sleep",
+            "text": "Rest your head in the centre of the pillow so the curve supports your neck.",
+            "link": "/collections/pillows",
+            "link_label": "Shop pillows"
+          }
+        },
+        "m2": {
+          "type": "moment",
+          "settings": {
+            "scene": "drive-2",
+            "image_alt": "A man resting against a Kusho neck cushion in a car",
+            "title": "Drive",
+            "text": "Strap the cushion to the headrest, or set the lumbar cushion at the small of your back.",
+            "link": "/collections/cars",
+            "link_label": "Shop for the car"
+          }
+        },
+        "m3": {
+          "type": "moment",
+          "settings": {
+            "scene": "work",
+            "image_alt": "A woman working at a desk with good posture",
+            "title": "Work",
+            "text": "Set the cushion against the chair back at your lower back and keep your feet flat on the floor.",
+            "link": "/collections/cushions",
+            "link_label": "Shop cushions"
+          }
+        },
+        "m4": {
+          "type": "moment",
+          "settings": {
+            "scene": "travel-2",
+            "image_alt": "A woman resting on a Kusho travel neck pillow",
+            "title": "Travel",
+            "text": "Wrap it around your neck with the opening at the front and let your head rest.",
+            "link": "/collections/travel",
+            "link_label": "Shop travel"
+          }
+        }
+      },
+      "block_order": [
+        "m1",
+        "m2",
+        "m3",
+        "m4"
+      ],
+      "settings": {
+        "eyebrow": "How to use Kusho",
+        "heading": "Comfort for every part of your day",
+        "text": "Pick the moment you want to feel better in. Here is how each piece is meant to be used."
+      }
+    },
+    "why": {
+      "type": "kusho-why",
+      "blocks": {
+        "r1": {
+          "type": "reason",
+          "settings": {
+            "icon": "heart",
+            "title": "Made for India",
+            "text": "Designed keeping Indian lifestyles in mind."
+          }
+        },
+        "r2": {
+          "type": "reason",
+          "settings": {
+            "icon": "moon",
+            "title": "Premium memory foam",
+            "text": "Adaptable, durable, and high-quality materials."
+          }
+        },
+        "r3": {
+          "type": "reason",
+          "settings": {
+            "icon": "check",
+            "title": "Affordable luxury",
+            "text": "Comfort that does not cost a fortune."
+          }
+        },
+        "r4": {
+          "type": "reason",
+          "settings": {
+            "icon": "shield",
+            "title": "Customer first",
+            "text": "Transparent policies, easy returns, dedicated support."
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4"
+      ],
+      "settings": {
+        "color_scheme": "scheme-6",
+        "eyebrow": "Why Kusho",
+        "heading": "The comfort you deserve, made for India",
+        "text": "Our mission is to bring world-class comfort solutions within reach of every Indian home, office and traveller.",
+        "button_label": "Read our story",
+        "button_link": "/pages/about-us",
+        "show_photo": true,
+        "image_alt": "People using Kusho at home, at work and on the road"
+      }
+    },
+    "combos": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "combos",
+        "products_to_show": 3,
+        "title": "Combos and gifting",
+        "heading_size": "h2",
+        "columns_desktop": 3,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "outline",
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": true,
+        "quick_add": "standard",
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
+        "padding_top": 56,
+        "padding_bottom": 32
+      }
+    },
+    "business": {
+      "type": "kusho-split",
+      "blocks": {
+        "b1": {
+          "type": "panel",
+          "settings": {
+            "color_scheme": "scheme-6",
+            "scene": "gift",
+            "icon": "gift",
+            "title": "Corporate gifting",
+            "text": "Comfort your team will use every day. Tell us what you have in mind and we will help you plan it.",
+            "button_label": "Enquire about gifting",
+            "button_link": "/pages/corporate-gifting"
+          }
+        },
+        "b2": {
+          "type": "panel",
+          "settings": {
+            "color_scheme": "scheme-2",
+            "scene": "work-2",
+            "icon": "truck",
+            "title": "Become a retailer",
+            "text": "Stock Kusho in your store and offer your customers comfort they can feel.",
+            "button_label": "Become a retailer",
+            "button_link": "/pages/become-a-retailer"
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2"
+      ],
+      "settings": {
+        "eyebrow": "Kusho for business",
+        "heading": "Comfort for teams, and for shelves"
+      }
+    },
+    "journal": {
+      "type": "kusho-journal",
+      "settings": {
+        "eyebrow": "The Kusho journal",
+        "heading": "Read before you buy",
+        "blog": "news",
+        "posts_to_show": 3,
+        "link_label": "All articles",
+        "link": "/blogs/news"
+      }
+    },
+    "faq": {
+      "type": "kusho-faq",
+      "blocks": {
+        "f1": {
+          "type": "question",
+          "settings": {
+            "question": "What materials are used in Kusho products?",
+            "answer": "<p>Kusho products use high-quality memory foam, latex foam, PU foam, and durable, breathable fabrics for comfort and support.</p>"
+          }
+        },
+        "f2": {
+          "type": "question",
+          "settings": {
+            "question": "Are Kusho products washable?",
+            "answer": "<p>The memory foam core is not washable, but all Kusho products come with a removable, machine-washable cover for easy cleaning and maintenance.</p>"
+          }
+        },
+        "f3": {
+          "type": "question",
+          "settings": {
+            "question": "Is Cash on Delivery available on Kusho.in?",
+            "answer": "<p>COD and online payments are available on Kusho.in, depending on delivery serviceability.</p>"
+          }
+        },
+        "f4": {
+          "type": "question",
+          "settings": {
+            "question": "How long does delivery take?",
+            "answer": "<p>Standard delivery usually takes 3–7 working days. Delivery timelines may vary slightly depending on location and unforeseen circumstances.</p>"
+          }
+        },
+        "f5": {
+          "type": "question",
+          "settings": {
+            "question": "Can Kusho products be returned or replaced?",
+            "answer": "<p>Yes, Kusho products can be replaced if damaged or defective, according to the website’s return policy</p>"
+          }
+        },
+        "f6": {
+          "type": "question",
+          "settings": {
+            "question": "Is there a warranty on Kusho products?",
+            "answer": "<p>Yes. All Kusho products come with a standard warranty against only manufacturing defects.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "f1",
+        "f2",
+        "f3",
+        "f4",
+        "f5",
+        "f6"
+      ],
+      "settings": {
+        "color_scheme": "scheme-2",
+        "eyebrow": "Help",
+        "heading": "Questions, answered",
+        "text": "The things people ask us most.",
+        "link_label": "See all questions",
+        "link": "/pages/faqs",
+        "show_search": false,
+        "show_whatsapp": true
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "ribbon",
+    "need",
+    "bestsellers",
+    "compare",
+    "stack",
+    "why",
+    "combos",
+    "business",
+    "journal",
+    "faq"
+  ]
+}

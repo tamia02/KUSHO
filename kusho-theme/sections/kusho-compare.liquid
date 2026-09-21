@@ -1,0 +1,153 @@
+<script src="{{ 'kusho-compare.js' | asset_url }}" defer="defer"></script>
+
+<section class="kcmp kusho-section color-{{ section.settings.color_scheme }} gradient" aria-labelledby="kcmp-title-{{ section.id }}">
+  <div class="page-width">
+    <kusho-compare class="kcmp__widget">
+      <div class="kcmp__intro" data-reveal>
+        {%- if section.settings.eyebrow != blank -%}<p class="ksec-eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+        <h2 class="ksec-title" id="kcmp-title-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
+        {%- if section.settings.text != blank -%}<p class="ksec-lead">{{ section.settings.text | escape }}</p>{%- endif -%}
+
+        <div class="kcmp__tabs" role="tablist" aria-label="{{ section.settings.heading | escape }}">
+          {%- for block in section.blocks -%}
+            <button
+              type="button"
+              role="tab"
+              class="kcmp__tab"
+              id="kcmp-tab-{{ block.id }}"
+              aria-controls="kcmp-panel-{{ block.id }}"
+              aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+              tabindex="{% if forloop.first %}0{% else %}-1{% endif %}"
+              data-tab
+              {{ block.shopify_attributes }}
+            >
+              <span class="kcmp__tab-icon">{% render 'kusho-icon', name: block.settings.icon, size: 22 %}</span>
+              <span class="kcmp__tab-body">
+                <span class="kcmp__tab-title">{{ block.settings.label | escape }}</span>
+                {%- if block.settings.caption != blank -%}<span class="kcmp__tab-text">{{ block.settings.caption | escape }}</span>{%- endif -%}
+              </span>
+            </button>
+          {%- endfor -%}
+        </div>
+      </div>
+
+      <div class="kcmp__panels" data-reveal="image">
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign before_default = 'kusho-photo-cmp-' | append: block.settings.scene | append: '-before.webp'
+            assign after_default = 'kusho-photo-cmp-' | append: block.settings.scene | append: '-after.webp'
+          -%}
+          <div
+            class="kcmp__panel"
+            role="tabpanel"
+            id="kcmp-panel-{{ block.id }}"
+            aria-labelledby="kcmp-tab-{{ block.id }}"
+            data-panel
+            {% unless forloop.first %}hidden{% endunless %}
+          >
+            <div class="kcmp__stage" style="--pos: 58%;" data-stage>
+              <div class="kcmp__img kcmp__img--after">
+                {%- if block.settings.after_image != blank -%}
+                  {{ block.settings.after_image | image_url: width: 1000 | image_tag: loading: 'lazy', widths: '500, 750, 1000', sizes: '(min-width: 990px) 560px, 100vw', alt: block.settings.after_alt }}
+                {%- else -%}
+                  <img src="{{ after_default | asset_url }}" alt="{{ block.settings.after_alt | escape }}" width="600" height="680" loading="lazy">
+                {%- endif -%}
+                <span class="kcmp__tag kcmp__tag--after">{{ block.settings.after_label | escape }}</span>
+              </div>
+              <div class="kcmp__img kcmp__img--before" data-before>
+                {%- if block.settings.before_image != blank -%}
+                  {{ block.settings.before_image | image_url: width: 1000 | image_tag: loading: 'lazy', widths: '500, 750, 1000', sizes: '(min-width: 990px) 560px, 100vw', alt: block.settings.before_alt }}
+                {%- else -%}
+                  <img src="{{ before_default | asset_url }}" alt="{{ block.settings.before_alt | escape }}" width="600" height="680" loading="lazy">
+                {%- endif -%}
+                <span class="kcmp__tag kcmp__tag--before">{{ block.settings.before_label | escape }}</span>
+              </div>
+              <span class="kcmp__handle" aria-hidden="true">
+                <span class="kcmp__grip">{% render 'kusho-icon', name: 'chevron-left', size: 16 %}{% render 'kusho-icon', name: 'chevron-right', size: 16 %}</span>
+              </span>
+              <input
+                class="kcmp__range"
+                type="range"
+                min="0"
+                max="100"
+                value="58"
+                step="1"
+                aria-label="{{ 'kusho.home.compare_label' | t }}"
+                aria-valuetext="{{ 'kusho.home.compare_value' | t: pct: 58 }}"
+                data-range
+              >
+            </div>
+            <p class="kcmp__hint" aria-hidden="true">
+              {% render 'kusho-icon', name: 'chevron-left', size: 16 %}
+              {{ 'kusho.home.compare_hint' | t }}
+              {% render 'kusho-icon', name: 'chevron-right', size: 16 %}
+            </p>
+          </div>
+        {%- endfor -%}
+      </div>
+    </kusho-compare>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Before and after",
+  "tag": "div",
+  "class": "kusho-compare-section",
+  "max_blocks": 4,
+  "settings": [
+    { "type": "color_scheme", "id": "color_scheme", "label": "Colour scheme", "default": "scheme-2" },
+    { "type": "text", "id": "eyebrow", "label": "Small heading", "default": "See the difference" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Your body notices when the support is right" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Drag the handle to compare. Support that lines your neck and back up is easier to live with." }
+  ],
+  "blocks": [
+    {
+      "type": "scene",
+      "name": "Scene",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Tab title", "default": "Sleeping" },
+        { "type": "text", "id": "caption", "label": "Tab text", "default": "A pillow that is too flat or too high can tilt your neck." },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Tab icon",
+          "options": [
+            { "value": "moon", "label": "Sleep" },
+            { "value": "car", "label": "Car" },
+            { "value": "back", "label": "Back" },
+            { "value": "plane", "label": "Travel" }
+          ],
+          "default": "moon"
+        },
+        {
+          "type": "select",
+          "id": "scene",
+          "label": "Built-in photos",
+          "options": [
+            { "value": "sleep", "label": "Sleeping" },
+            { "value": "sit", "label": "Sitting" },
+            { "value": "travel", "label": "Travelling" }
+          ],
+          "default": "sleep",
+          "info": "Used unless you upload your own below."
+        },
+        { "type": "image_picker", "id": "before_image", "label": "Before photo (optional)" },
+        { "type": "image_picker", "id": "after_image", "label": "After photo (optional)" },
+        { "type": "text", "id": "before_label", "label": "Before label", "default": "Before" },
+        { "type": "text", "id": "after_label", "label": "After label", "default": "With Kusho" },
+        { "type": "text", "id": "before_alt", "label": "Before photo description", "default": "A woman holding her neck in discomfort" },
+        { "type": "text", "id": "after_alt", "label": "After photo description", "default": "The same woman sleeping comfortably on a Kusho pillow" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Before and after",
+      "blocks": [
+        { "type": "scene" }
+      ]
+    }
+  ]
+}
+{% endschema %}

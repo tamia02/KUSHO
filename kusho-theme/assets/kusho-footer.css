@@ -1,0 +1,244 @@
+/* Footer (guide 10.7) — deep green, white text. */
+
+.kfooter {
+  position: relative;
+  overflow: hidden;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: var(--fs-small);
+}
+
+.kfooter a {
+  color: inherit;
+}
+
+.kfooter__muted {
+  margin: 0 0 var(--sp-1);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* ---- Trust line ---- */
+.kfooter__trust {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.kfooter__trust-line {
+  margin: 0;
+  padding-block: var(--sp-5);
+  color: var(--white);
+  font-family: var(--font-display);
+  font-size: var(--fs-h4);
+  font-weight: 600;
+  text-align: center;
+}
+
+/* ---- Top: sign-up + columns ---- */
+.kfooter__inner {
+  display: grid;
+  gap: var(--sp-7);
+  padding-block: var(--sp-8) var(--sp-7);
+}
+
+@media screen and (min-width: 990px) {
+  .kfooter__inner {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: var(--sp-9);
+    padding-block: var(--sp-9) var(--sp-8);
+  }
+}
+
+.kfooter__signup-title {
+  margin: 0 0 var(--sp-2);
+  color: var(--white);
+}
+
+.kfooter__signup-text {
+  margin: 0 0 var(--sp-5);
+  max-width: 42ch;
+  font-size: var(--fs-body);
+}
+
+.kfooter__form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  max-width: 46rem;
+}
+
+.kfooter__input {
+  flex: 1 1 20rem;
+  min-height: 5.2rem;
+  padding: 0 var(--sp-5);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: var(--r-pill);
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--white);
+  font: inherit;
+  font-size: var(--fs-body);
+}
+
+.kfooter__input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.kfooter__message {
+  flex-basis: 100%;
+  margin: var(--sp-1) 0 0;
+  color: var(--white);
+}
+
+.kfooter__message--error {
+  color: #ffd7d3;
+}
+
+.kfooter__wa {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  margin-top: var(--sp-4);
+  color: var(--white);
+}
+
+/* ---- Link columns ---- */
+.kfooter__columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--sp-6) var(--sp-4);
+  align-content: start;
+}
+
+@media screen and (min-width: 750px) {
+  .kfooter__columns {
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  }
+}
+
+.kfooter__heading {
+  margin: 0 0 var(--sp-3);
+  color: var(--white);
+  font-family: var(--font-ui);
+  font-size: var(--fs-body);
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+.kfooter__links {
+  display: grid;
+  gap: var(--sp-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.kfooter__link {
+  display: inline-block;
+  padding-block: var(--sp-1); /* comfortable tap height */
+  text-decoration: none;
+}
+
+.kfooter__link:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.3rem;
+}
+
+/* ---- Legal + meta ---- */
+.kfooter__legal {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-5);
+  padding-block: var(--sp-6);
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+@media screen and (min-width: 750px) {
+  .kfooter__legal {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+}
+
+.kfooter__legal-text p {
+  margin: 0 0 var(--sp-1);
+}
+
+.kfooter__meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+
+@media screen and (min-width: 750px) {
+  .kfooter__meta {
+    align-items: flex-end;
+  }
+}
+
+.kfooter__social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.kfooter__social .list-social__link {
+  color: var(--white);
+}
+
+.kfooter__payments {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.kfooter__bottom {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  padding-block: var(--sp-4) var(--sp-6);
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+@media screen and (min-width: 750px) {
+  .kfooter__bottom {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.kfooter__bottom .kfooter__muted {
+  margin: 0;
+}
+
+.kfooter__policies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 var(--sp-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* ---- Large outlined wordmark (brand moment) ---- */
+.kfooter__wordmark {
+  padding-inline: var(--gutter);
+  font-family: var(--font-display);
+  font-size: clamp(8rem, 26vw, 34rem);
+  font-style: italic;
+  font-weight: 700;
+  line-height: 0.78;
+  letter-spacing: -0.03em;
+  text-align: center;
+  text-transform: uppercase;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.22);
+  user-select: none;
+  white-space: nowrap;
+  overflow: hidden;
+  margin-bottom: -0.06em;
+}

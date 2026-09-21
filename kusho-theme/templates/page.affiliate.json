@@ -1,0 +1,76 @@
+{
+  "sections": {
+    "hero": {
+      "type": "kusho-page-hero",
+      "settings": {
+        "color_scheme": "scheme-2",
+        "eyebrow": "Community",
+        "heading": "Affiliate programme",
+        "text": "Share Kusho with your audience and work with us as an affiliate partner.",
+        "button_label": "Apply now",
+        "button_link": "#enquiry",
+        "scene": "travel-2",
+        "image_alt": "A woman resting on a Kusho neck pillow in a car"
+      }
+    },
+    "why": {
+      "type": "kusho-why",
+      "blocks": {
+        "r1": {
+          "type": "reason",
+          "settings": {
+            "icon": "heart",
+            "title": "Products your audience needs",
+            "text": "Comfort for sleep, work and travel that fits everyday life."
+          }
+        },
+        "r2": {
+          "type": "reason",
+          "settings": {
+            "icon": "check",
+            "title": "Simple to start",
+            "text": "Tell us about your channel and we will explain how it works."
+          }
+        },
+        "r3": {
+          "type": "reason",
+          "settings": {
+            "icon": "shield",
+            "title": "Support from our team",
+            "text": "We answer your questions and help you get going."
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3"
+      ],
+      "settings": {
+        "color_scheme": "scheme-2",
+        "eyebrow": "Why partner",
+        "heading": "Work with a comfort-first brand"
+      }
+    },
+    "enquiry": {
+      "type": "kusho-enquiry",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "eyebrow": "Application",
+        "heading": "Apply to join",
+        "text": "Tell us about your website, channel or community.",
+        "topic": "Affiliate",
+        "company_label": "Website or social handle",
+        "show_city": false,
+        "extra_label": "Audience size (approximate)",
+        "message_label": "Tell us about your audience",
+        "button_label": "Send application"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "why",
+    "enquiry"
+  ]
+}

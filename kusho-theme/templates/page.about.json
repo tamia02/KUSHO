@@ -1,0 +1,132 @@
+{
+  "sections": {
+    "hero": {
+      "type": "kusho-page-hero",
+      "settings": {
+        "color_scheme": "scheme-2",
+        "eyebrow": "About us",
+        "heading": "Comfort, designed.",
+        "text": "Welcome to Kusho, a comfort-first brand by 3C Ventures, dedicated to redefining the way India sleeps, works, and travels.",
+        "button_label": "Shop Kusho",
+        "button_link": "/collections/all",
+        "scene": "sleep-2",
+        "image_alt": "A man sleeping comfortably on a Kusho pillow"
+      }
+    },
+    "what": {
+      "type": "kusho-why",
+      "blocks": {
+        "r1": {
+          "type": "reason",
+          "settings": {
+            "icon": "moon",
+            "title": "Memory foam pillows",
+            "text": "Contour, curve, butterfly and baby pillows."
+          }
+        },
+        "r2": {
+          "type": "reason",
+          "settings": {
+            "icon": "back",
+            "title": "Lumbar and coccyx cushions",
+            "text": "For office chairs, home and car seats."
+          }
+        },
+        "r3": {
+          "type": "reason",
+          "settings": {
+            "icon": "plane",
+            "title": "Travel accessories",
+            "text": "Neck pillows, car headrests and comfort on the go."
+          }
+        },
+        "r4": {
+          "type": "reason",
+          "settings": {
+            "icon": "heart",
+            "title": "Wellness range",
+            "text": "Ergonomic designs that improve sleep and posture."
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4"
+      ],
+      "settings": {
+        "color_scheme": "scheme-2",
+        "eyebrow": "What we do",
+        "heading": "Premium memory foam comfort, crafted to support your lifestyle",
+        "text": "Every Kusho product is designed with precision, durability and care, so wherever life takes you, you carry The Comfort You Deserve."
+      }
+    },
+    "mission": {
+      "type": "kusho-text",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "eyebrow": "Our mission",
+        "heading": "World-class comfort, within reach",
+        "text": "<p>To bring world-class comfort solutions within the reach of every Indian home, office and traveller.</p><p>We aim to combine science, design and lifestyle needs to create products that do not just look good but actually change the way you live.</p>"
+      }
+    },
+    "why": {
+      "type": "kusho-why",
+      "blocks": {
+        "r1": {
+          "type": "reason",
+          "settings": {
+            "icon": "heart",
+            "title": "Made for India",
+            "text": "Designed keeping Indian lifestyles in mind."
+          }
+        },
+        "r2": {
+          "type": "reason",
+          "settings": {
+            "icon": "moon",
+            "title": "Premium memory foam",
+            "text": "Adaptable, durable, and high-quality materials."
+          }
+        },
+        "r3": {
+          "type": "reason",
+          "settings": {
+            "icon": "check",
+            "title": "Affordable luxury",
+            "text": "Comfort that does not cost a fortune."
+          }
+        },
+        "r4": {
+          "type": "reason",
+          "settings": {
+            "icon": "shield",
+            "title": "Customer first",
+            "text": "Transparent policies, easy returns, dedicated support."
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4"
+      ],
+      "settings": {
+        "color_scheme": "scheme-3",
+        "eyebrow": "Why choose us",
+        "heading": "The comfort you deserve",
+        "text": "At Kusho, we do not just sell pillows and cushions. We deliver confidence, relief and a healthier lifestyle, one product at a time.",
+        "button_label": "Shop bestsellers",
+        "button_link": "/collections/best-sellers"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "what",
+    "mission",
+    "why"
+  ]
+}

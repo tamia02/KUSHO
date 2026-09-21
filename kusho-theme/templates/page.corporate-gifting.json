@@ -1,0 +1,153 @@
+{
+  "sections": {
+    "hero": {
+      "type": "kusho-page-hero",
+      "settings": {
+        "color_scheme": "scheme-2",
+        "eyebrow": "Kusho for business",
+        "heading": "Corporate gifting",
+        "text": "Comfort your team will use every day. Tell us what you have in mind and we will help you plan it.",
+        "button_label": "Enquire now",
+        "button_link": "#enquiry",
+        "scene": "gift",
+        "image_alt": "A smiling man hugging a soft Kusho cushion"
+      }
+    },
+    "why": {
+      "type": "kusho-why",
+      "blocks": {
+        "r1": {
+          "type": "reason",
+          "settings": {
+            "icon": "gift",
+            "title": "Thoughtful and premium",
+            "text": "Memory foam pillows and cushions are premium, health-focused gifts for people of all ages."
+          }
+        },
+        "r2": {
+          "type": "reason",
+          "settings": {
+            "icon": "moon",
+            "title": "Useful every day",
+            "text": "Support for sleep, work and travel, so the gift is used and remembered."
+          }
+        },
+        "r3": {
+          "type": "reason",
+          "settings": {
+            "icon": "truck",
+            "title": "Made for bulk orders",
+            "text": "Tell us your quantity and timeline and we will help you plan delivery."
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3"
+      ],
+      "settings": {
+        "color_scheme": "scheme-2",
+        "eyebrow": "Why gift comfort",
+        "heading": "A gift that supports people every day"
+      }
+    },
+    "steps": {
+      "type": "kusho-steps",
+      "blocks": {
+        "s1": {
+          "type": "step",
+          "settings": {
+            "title": "Tell us your plan",
+            "text": "Share the occasion, quantity and the date you need the gifts by."
+          }
+        },
+        "s2": {
+          "type": "step",
+          "settings": {
+            "title": "Choose the products",
+            "text": "We suggest options for your team and confirm the details with you."
+          }
+        },
+        "s3": {
+          "type": "step",
+          "settings": {
+            "title": "We deliver",
+            "text": "Your order is prepared and sent to you or to your recipients."
+          }
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2",
+        "s3"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "eyebrow": "How it works",
+        "heading": "Simple, from enquiry to delivery"
+      }
+    },
+    "enquiry": {
+      "type": "kusho-enquiry",
+      "settings": {
+        "color_scheme": "scheme-2",
+        "eyebrow": "Enquiry",
+        "heading": "Plan your corporate gifting",
+        "text": "Send us a few details and our team will get back to you.",
+        "topic": "Corporate gifting",
+        "company_label": "Company",
+        "show_city": true,
+        "extra_label": "Approximate quantity",
+        "message_label": "What are you planning?",
+        "button_label": "Send enquiry"
+      }
+    },
+    "faq": {
+      "type": "kusho-faq",
+      "blocks": {
+        "q1": {
+          "type": "question",
+          "settings": {
+            "question": "Are Kusho products good for gifting?",
+            "answer": "<p>Yes. Kusho memory foam pillows and cushions are thoughtful, premium, and health-focused gifts, perfect for people of all ages.</p>"
+          }
+        },
+        "q2": {
+          "type": "question",
+          "settings": {
+            "question": "How long does delivery take?",
+            "answer": "<p>Standard delivery usually takes 3–7 working days. Delivery timelines may vary slightly depending on location and unforeseen circumstances.</p>"
+          }
+        },
+        "q3": {
+          "type": "question",
+          "settings": {
+            "question": "Can Kusho products be returned or replaced?",
+            "answer": "<p>Yes, Kusho products can be replaced if damaged or defective, according to the website’s return policy</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "eyebrow": "Help",
+        "heading": "Good to know",
+        "link_label": "All FAQs",
+        "link": "/pages/faqs",
+        "show_whatsapp": true
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "why",
+    "steps",
+    "enquiry",
+    "faq"
+  ]
+}

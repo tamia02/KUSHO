@@ -1,0 +1,92 @@
+{% comment %}
+  Kusho line icons — one family, 1.5px stroke, round caps and joins (guide 8.1).
+  Decorative by default (aria-hidden). Pass label to expose it to assistive tech.
+
+  Accepts:
+  - name: {String} star | plus | x | arrow-right | chevron-down | chevron-left | chevron-right | pause | play | truck | shield | return | cash | heart | whatsapp | check | neck | back | moon | car | plane | gift | share | tag | zoom | minus | mail | phone
+  - size: {Number} Pixel size. Default: 20 (optional)
+  - label: {String} Accessible name (optional)
+
+  Usage:
+  {% render 'kusho-icon', name: 'truck', size: 24 %}
+{% endcomment %}
+
+{%- liquid
+  assign icon_size = size | default: 20
+-%}
+<svg
+  class="kusho-icon kusho-icon--{{ name }}"
+  width="{{ icon_size }}"
+  height="{{ icon_size }}"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.5"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  focusable="false"
+  {% if label %}
+    role="img" aria-label="{{ label | escape }}"
+  {% else %}
+    aria-hidden="true"
+  {% endif %}
+>
+  {%- case name -%}
+    {%- when 'star' -%}
+      <path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z" fill="currentColor" stroke="none"/>
+    {%- when 'plus' -%}
+      <path d="M12 5v14M5 12h14"/>
+    {%- when 'x' -%}
+      <path d="M6 6l12 12M18 6L6 18"/>
+    {%- when 'arrow-right' -%}
+      <path d="M5 12h14M13 6l6 6-6 6"/>
+    {%- when 'chevron-down' -%}
+      <path d="M6 9l6 6 6-6"/>
+    {%- when 'chevron-left' -%}
+      <path d="M15 6l-6 6 6 6"/>
+    {%- when 'chevron-right' -%}
+      <path d="M9 6l6 6-6 6"/>
+    {%- when 'pause' -%}
+      <path d="M9 5v14M15 5v14"/>
+    {%- when 'play' -%}
+      <path d="M8 5l11 7-11 7z" fill="currentColor"/>
+    {%- when 'truck' -%}
+      <path d="M2.5 6.5h11v9.5h-11zM13.5 9.5h4l3 3v3.5h-7M7 19a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM17 19a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"/>
+    {%- when 'shield' -%}
+      <path d="M12 3l8 3v5.5c0 4.4-3.2 8-8 9.5-4.8-1.5-8-5.1-8-9.5V6zM9 12l2.2 2.2L15.5 10"/>
+    {%- when 'return' -%}
+      <path d="M3.5 12a8.5 8.5 0 108.5-8.5A8.5 8.5 0 005.9 6L3.5 8.5M3.5 3.5v5h5"/>
+    {%- when 'cash' -%}
+      <path d="M2.5 7h19v10h-19zM12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM6 10v.01M18 14v.01"/>
+    {%- when 'heart' -%}
+      <path d="M12 20s-7.5-4.6-9.2-9.4A5 5 0 0112 7.6a5 5 0 019.2 3C19.5 15.400 12 20 12 20z"/>
+    {%- when 'whatsapp' -%}
+      <path d="M3.2 20.8l1.5-4.6A8.6 8.6 0 1112 20.6a8.500 8.500 0 01-4.100-1.100zM9.200 8.400c-.3 2.600 2.900 6 6 6.200l1.300-1.500-2.100-1.100-1 .9a4.600 4.600 0 01-2.400-2.400l.9-1-1.100-2.100z"/>
+    {%- when 'check' -%}
+      <path d="M5 12.500l4.500 4.500L19 7.500"/>
+    {%- when 'neck' -%}
+      <path d="M9 5a3 3 0 106 0 3 3 0 00-6 0zM8 21v-6.500c0-1.500 1-2.500 2.500-3M16 21v-6.500c0-1.500-1-2.500-2.500-3"/>
+    {%- when 'back' -%}
+      <path d="M12 3v18M9 6h6M8.500 10h7M8 14h8M9 18h6"/>
+    {%- when 'moon' -%}
+      <path d="M20 14.500A8 8 0 019.500 4 8 8 0 1020 14.500z"/>
+    {%- when 'car' -%}
+      <path d="M5 16v-4l1.500-4.500A2 2 0 018.400 6h7.200a2 2 0 011.900 1.500L19 12v4M3.500 16h17M7.500 19a1.500 1.500 0 100-3 1.500 1.500 0 000 3zM16.500 19a1.500 1.500 0 100-3 1.500 1.500 0 000 3z"/>
+    {%- when 'plane' -%}
+      <path d="M17.800 19.200L16 11l3.500-3.500C21 6 21.500 4 21 3c-1-.5-3 0-4.500 1.500L13 8 4.800 6.200c-.5-.1-.9.1-1.100.5l-.3.5c-.2.5-.1 1 .3 1.300L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.500 5.300c.3.4.8.5 1.300.3l.5-.2c.4-.3.6-.7.5-1.200z"/>
+    {%- when 'share' -%}
+      <path d="M12 3v12M8 7l4-4 4 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/>
+    {%- when 'tag' -%}
+      <path d="M3 12V4h8l10 10-8 8zM7.500 8v.01"/>
+    {%- when 'zoom' -%}
+      <path d="M11 18a7 7 0 100-14 7 7 0 000 14zM21 21l-4.300-4.300M11 8v6M8 11h6"/>
+    {%- when 'minus' -%}
+      <path d="M5 12h14"/>
+    {%- when 'mail' -%}
+      <path d="M3 6h18v12H3zM3.500 7l8.500 6.500L20.500 7"/>
+    {%- when 'phone' -%}
+      <path d="M5 4h4l2 5-2.500 1.500a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/>
+    {%- when 'gift' -%}
+      <path d="M20 12v9H4v-9M2 7h20v5H2zM12 21V7M12 7H7.500a2.500 2.500 0 010-5C11 2 12 7 12 7zM12 7h4.500a2.500 2.500 0 000-5C13 2 12 7 12 7z"/>
+  {%- endcase -%}
+</svg>

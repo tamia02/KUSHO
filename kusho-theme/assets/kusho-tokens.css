@@ -1,0 +1,128 @@
+/* ==========================================================================
+   Kusho design tokens  (guide sections 6 + 7.2), "quiet luxury" revision.
+   NOTE: Dawn sets html { font-size: 62.5% } so 1rem = 10px in this theme.
+   Every rem value below is therefore written as (px / 10).
+
+   The look: near-monochrome (ink on white and cream), thin uppercase display type,
+   square corners, no drop shadows. Brand green is an accent, not a background.
+   Gold appears only as hairlines and tiny marks.
+   ========================================================================== */
+
+:root {
+  /* ---- Colour ---- */
+  --kusho-green: #046938;
+  --kusho-green-deep: #034a28;
+  --kusho-green-mist: #eef3f0;
+  --kusho-gold: #c9a961;
+  --kusho-gold-text: #8a6414; /* gold used as text under 24px */
+  --kusho-gold-mist: #f6f1e6;
+  --foam: #f5f4f0; /* warm off-white, the "paper" of the site */
+  --white: #fff;
+  --ink: #16211c;
+  --stone: #6b736f;
+  --line: #e2e2de;
+  --sale: #a33a2f; /* urgency + errors only */
+  --success: #046938;
+
+  --kusho-ring: 22, 33, 28; /* focus ring rgb; overridden on dark schemes */
+
+  /* ---- Type families ----
+     Display: Josefin Sans (thin geometric, worn uppercase and letter-spaced).
+     UI + text: Assistant (quiet humanist sans). */
+  --font-display: var(--font-heading-family), 'Josefin Sans', sans-serif;
+  --font-ui: var(--font-body-family), 'Assistant', sans-serif;
+  --font-text: var(--font-body-family), 'Assistant', sans-serif;
+
+  /* ---- Tracking for uppercase text ---- */
+  --track-display: 0.08em;
+  --track-heading: 0.06em;
+  --track-label: 0.18em;
+  --track-button: 0.16em;
+
+  /* ---- Fluid type scale: mobile 390px -> desktop 1440px ---- */
+  --fs-display: clamp(3.2rem, 2.2rem + 2.6vw, 5.8rem);
+  --fs-h1: clamp(2.8rem, 2.2rem + 1.5vw, 4.4rem);
+  --fs-h2: clamp(2.2rem, 1.9rem + 0.9vw, 3.2rem);
+  --fs-h3: clamp(1.8rem, 1.65rem + 0.4vw, 2.2rem);
+  --fs-h4: clamp(1.5rem, 1.45rem + 0.15vw, 1.7rem);
+  --fs-body-lg: clamp(1.7rem, 1.63rem + 0.19vw, 1.9rem);
+  --fs-body: clamp(1.5rem, 1.46rem + 0.1vw, 1.6rem);
+  --fs-small: clamp(1.3rem, 1.26rem + 0.1vw, 1.4rem);
+  --fs-micro: clamp(1.1rem, 1.06rem + 0.1vw, 1.2rem);
+  --fs-label: 1.1rem; /* uppercase labels, eyebrows, nav */
+  --fs-price: clamp(1.5rem, 1.46rem + 0.1vw, 1.6rem);
+  --fs-button: 1.2rem;
+
+  /* ---- Spacing, 4px base ---- */
+  --sp-1: 0.4rem;
+  --sp-2: 0.8rem;
+  --sp-3: 1.2rem;
+  --sp-4: 1.6rem;
+  --sp-5: 2.4rem;
+  --sp-6: 3.2rem;
+  --sp-7: 4.8rem;
+  --sp-8: 6.4rem;
+  --sp-9: 9.6rem;
+  --sp-10: 14.4rem;
+
+  /* ---- Radius: square. The pill survives only for the floating chat button ---- */
+  --r-xs: 0;
+  --r-sm: 0;
+  --r-md: 0;
+  --r-lg: 0;
+  --r-pill: 999px;
+
+  /* ---- Elevation: none. Depth comes from tone, not shadow ---- */
+  --shadow-0: none;
+  --shadow-1: none;
+  --shadow-2: none;
+
+  /* ---- Layout ---- */
+  --gutter: 2rem;
+  --content-max: 144rem;
+  --tap: 4.4rem; /* minimum touch target */
+
+  /* ---- Motion tokens (7.2) ---- */
+  --dur-instant: 100ms;
+  --dur-quick: 200ms;
+  --dur-base: 320ms;
+  --dur-settle: 560ms;
+  --dur-story: 900ms;
+  --dur-draw: 1400ms;
+
+  --ease-foam: cubic-bezier(0.16, 1, 0.3, 1); /* fast in, long settle (default) */
+  --ease-press: cubic-bezier(0.4, 0, 0.6, 1); /* the press-down */
+  --ease-rebound: cubic-bezier(0.22, 1.2, 0.36, 1); /* tiny overshoot, sparingly */
+  --ease-exit: cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-linear: linear;
+}
+
+@media screen and (min-width: 750px) {
+  :root {
+    --gutter: 4rem;
+  }
+}
+
+@media screen and (min-width: 990px) {
+  :root {
+    --gutter: 6.4rem;
+  }
+}
+
+/* Dark colour schemes (footer, ink blocks) need a light focus ring */
+.color-scheme-3,
+.color-scheme-6 {
+  --kusho-ring: 255, 255, 255;
+}
+
+/* Reduced motion collapses every duration (7.1 rule 5) */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-instant: 0ms;
+    --dur-quick: 0ms;
+    --dur-base: 0ms;
+    --dur-settle: 150ms;
+    --dur-story: 0ms;
+    --dur-draw: 0ms;
+  }
+}

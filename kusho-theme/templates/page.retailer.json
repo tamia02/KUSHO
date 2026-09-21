@@ -1,0 +1,113 @@
+{
+  "sections": {
+    "hero": {
+      "type": "kusho-page-hero",
+      "settings": {
+        "color_scheme": "scheme-2",
+        "eyebrow": "Partner with us",
+        "heading": "Become a retailer",
+        "text": "Stock Kusho in your store and offer your customers comfort they can feel.",
+        "button_label": "Apply now",
+        "button_link": "#enquiry",
+        "scene": "work-2",
+        "image_alt": "A man sitting comfortably in an office chair with lumbar support"
+      }
+    },
+    "why": {
+      "type": "kusho-why",
+      "blocks": {
+        "r1": {
+          "type": "reason",
+          "settings": {
+            "icon": "moon",
+            "title": "A range for every need",
+            "text": "Pillows, cushions, travel and combo products for sleep, work and the road."
+          }
+        },
+        "r2": {
+          "type": "reason",
+          "settings": {
+            "icon": "heart",
+            "title": "Made for India",
+            "text": "Designed keeping Indian homes, offices and travellers in mind."
+          }
+        },
+        "r3": {
+          "type": "reason",
+          "settings": {
+            "icon": "shield",
+            "title": "Support from our team",
+            "text": "A dedicated team to help you with products and orders."
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3"
+      ],
+      "settings": {
+        "color_scheme": "scheme-2",
+        "eyebrow": "Why Kusho",
+        "heading": "Comfort your customers will come back for"
+      }
+    },
+    "steps": {
+      "type": "kusho-steps",
+      "blocks": {
+        "s1": {
+          "type": "step",
+          "settings": {
+            "title": "Tell us about your store",
+            "text": "Share your store details, city and what you sell."
+          }
+        },
+        "s2": {
+          "type": "step",
+          "settings": {
+            "title": "We get in touch",
+            "text": "Our team reaches out to talk about products and terms."
+          }
+        },
+        "s3": {
+          "type": "step",
+          "settings": {
+            "title": "Start stocking",
+            "text": "Place your first order and put Kusho on your shelves."
+          }
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2",
+        "s3"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "eyebrow": "How it works",
+        "heading": "Getting started"
+      }
+    },
+    "enquiry": {
+      "type": "kusho-enquiry",
+      "settings": {
+        "color_scheme": "scheme-2",
+        "eyebrow": "Application",
+        "heading": "Tell us about your store",
+        "text": "Fill in the form and we will contact you.",
+        "topic": "Retailer",
+        "company_label": "Store name",
+        "show_city": true,
+        "extra_label": "GST number",
+        "message_label": "What do you sell?",
+        "button_label": "Send application"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "why",
+    "steps",
+    "enquiry"
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "sections": {
+    "hero": {
+      "type": "kusho-page-hero",
+      "settings": {
+        "color_scheme": "scheme-2",
+        "eyebrow": "Community",
+        "heading": "Campus ambassador",
+        "text": "Represent Kusho on your campus and share better comfort with your friends and classmates.",
+        "button_label": "Apply now",
+        "button_link": "#enquiry",
+        "scene": "work",
+        "image_alt": "A woman working at a desk with good posture"
+      }
+    },
+    "why": {
+      "type": "kusho-why",
+      "blocks": {
+        "r1": {
+          "type": "reason",
+          "settings": {
+            "icon": "heart",
+            "title": "Share what you like",
+            "text": "Introduce students to comfort that helps them study, sleep and travel."
+          }
+        },
+        "r2": {
+          "type": "reason",
+          "settings": {
+            "icon": "check",
+            "title": "Work with the Kusho team",
+            "text": "Get support and product information from our team."
+          }
+        },
+        "r3": {
+          "type": "reason",
+          "settings": {
+            "icon": "gift",
+            "title": "Grow with us",
+            "text": "Be among the first to hear about new products and offers."
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3"
+      ],
+      "settings": {
+        "color_scheme": "scheme-2",
+        "eyebrow": "Why join",
+        "heading": "Bring comfort to your campus"
+      }
+    },
+    "enquiry": {
+      "type": "kusho-enquiry",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "eyebrow": "Application",
+        "heading": "Apply to be a campus ambassador",
+        "text": "Tell us about yourself and your campus.",
+        "topic": "Campus ambassador",
+        "company_label": "College or university",
+        "show_city": true,
+        "extra_label": "Course and year",
+        "message_label": "Why would you like to join?",
+        "button_label": "Send application"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "why",
+    "enquiry"
+  ]
+}

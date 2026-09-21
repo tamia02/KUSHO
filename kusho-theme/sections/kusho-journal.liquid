@@ -1,0 +1,72 @@
+{{ 'kusho-home.css' | asset_url | stylesheet_tag }}
+{{ 'kusho-page.css' | asset_url | stylesheet_tag }}
+
+<section class="kjrn kusho-section" aria-labelledby="kjrn-title-{{ section.id }}">
+  <div class="page-width">
+    <header class="ksec-head ksec-head--row">
+      <div>
+        {%- if section.settings.eyebrow != blank -%}<p class="ksec-eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+        <h2 class="ksec-title" id="kjrn-title-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
+      </div>
+      {%- if section.settings.link_label != blank -%}
+        <a class="kusho-link" href="{{ section.settings.link | default: '#' }}">{{ section.settings.link_label | escape }}</a>
+      {%- endif -%}
+    </header>
+
+    {%- if section.settings.blog != blank and section.settings.blog.articles.size > 0 -%}
+      <ul class="kjrn__grid kblog__grid" role="list">
+        {%- for article in section.settings.blog.articles limit: section.settings.posts_to_show -%}
+          <li>{% render 'kusho-article-card', article: article %}</li>
+        {%- endfor -%}
+      </ul>
+    {%- else -%}
+    <ul class="kjrn__grid" role="list">
+      {%- for block in section.blocks -%}
+        <li class="kjrn__card" {{ block.shopify_attributes }}>
+          {%- if block.settings.tag != blank -%}<span class="kjrn__tag">{{ block.settings.tag | escape }}</span>{%- endif -%}
+          <h3 class="kjrn__title"><a class="kjrn__link" href="{{ block.settings.link | default: '#' }}">{{ block.settings.title | escape }}</a></h3>
+          {%- if block.settings.text != blank -%}<p class="kjrn__text">{{ block.settings.text | escape }}</p>{%- endif -%}
+          <span class="kjrn__more" aria-hidden="true">{{ 'kusho.home.read_more' | t }} {% render 'kusho-icon', name: 'arrow-right', size: 18 %}</span>
+        </li>
+      {%- endfor -%}
+    </ul>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "From the journal",
+  "tag": "div",
+  "class": "kusho-journal-section",
+  "max_blocks": 6,
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Small heading", "default": "The Kusho journal" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Read before you buy" },
+    { "type": "blog", "id": "blog", "label": "Blog", "info": "Shows the latest articles. Leave empty to use the manual articles below." },
+    { "type": "range", "id": "posts_to_show", "label": "Articles to show", "min": 2, "max": 6, "step": 1, "default": 3 },
+    { "type": "text", "id": "link_label", "label": "Link label", "default": "All articles" },
+    { "type": "url", "id": "link", "label": "Link" }
+  ],
+  "blocks": [
+    {
+      "type": "post",
+      "name": "Article",
+      "settings": [
+        { "type": "text", "id": "tag", "label": "Tag", "default": "Sleep" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Article title" },
+        { "type": "textarea", "id": "text", "label": "Short text" },
+        { "type": "url", "id": "link", "label": "Link" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "From the journal",
+      "blocks": [
+        { "type": "post" }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,18 @@
+# dependencies
+node_modules/
+
+# local preview logs
+preview/*.log
+
+# recon scratch: raw downloads and scraped HTML from kusho.in (regenerate with the scripts in recon/)
+recon/all/
+recon/chosen/
+recon/out/
+recon/*.html
+recon/*-sheet.jpg
+
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/

@@ -1,0 +1,96 @@
+{{ 'kusho-page.css' | asset_url | stylesheet_tag }}
+
+<section class="kenq kusho-section color-{{ section.settings.color_scheme }} gradient" id="enquiry" aria-labelledby="kenq-title-{{ section.id }}">
+  <div class="page-width kenq__layout">
+    <div class="kenq__intro">
+      {%- if section.settings.eyebrow != blank -%}<p class="ksec-eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+      <h2 class="ksec-title" id="kenq-title-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
+      {%- if section.settings.text != blank -%}<p class="ksec-lead">{{ section.settings.text | escape }}</p>{%- endif -%}
+      <p class="kenq__reply">{% render 'kusho-icon', name: 'check', size: 18 %} {{ 'kusho.contact.reply' | t }}</p>
+    </div>
+
+    <div class="kenq__form-wrap">
+      {%- form 'contact', id: 'KushoEnquiryForm', class: 'kform' -%}
+        <input type="hidden" name="contact[Enquiry type]" value="{{ section.settings.topic | escape }}">
+        {%- if form.posted_successfully? -%}
+          <p class="kform__success" role="status" tabindex="-1">{{ 'kusho.contact.success' | t }}</p>
+        {%- endif -%}
+        {%- if form.errors -%}
+          <div class="kform__errors" role="alert">
+            <p>{{ 'kusho.contact.errors' | t }}</p>
+            <ul>
+              {%- for field in form.errors -%}
+                <li>{{ form.errors.translated_fields[field] | capitalize }} {{ form.errors.messages[field] }}</li>
+              {%- endfor -%}
+            </ul>
+          </div>
+        {%- endif -%}
+
+        <div class="kform__row">
+          <div class="kform__field">
+            <label class="kform__label" for="KEnq-name-{{ section.id }}">{{ 'kusho.contact.name' | t }}</label>
+            <input class="kform__input" id="KEnq-name-{{ section.id }}" name="contact[name]" type="text" autocomplete="name" required>
+          </div>
+          <div class="kform__field">
+            <label class="kform__label" for="KEnq-email-{{ section.id }}">{{ 'kusho.contact.email_label' | t }}</label>
+            <input class="kform__input" id="KEnq-email-{{ section.id }}" name="contact[email]" type="email" autocomplete="email" required>
+          </div>
+        </div>
+        <div class="kform__row">
+          <div class="kform__field">
+            <label class="kform__label" for="KEnq-phone-{{ section.id }}">{{ 'kusho.contact.phone_label' | t }}</label>
+            <input class="kform__input" id="KEnq-phone-{{ section.id }}" name="contact[phone]" type="tel" inputmode="tel" autocomplete="tel" required>
+          </div>
+          {%- if section.settings.company_label != blank -%}
+            <div class="kform__field">
+              <label class="kform__label" for="KEnq-company-{{ section.id }}">{{ section.settings.company_label | escape }}</label>
+              <input class="kform__input" id="KEnq-company-{{ section.id }}" name="contact[{{ section.settings.company_label | escape }}]" type="text" autocomplete="organization">
+            </div>
+          {%- endif -%}
+        </div>
+        <div class="kform__row">
+          {%- if section.settings.show_city -%}
+            <div class="kform__field">
+              <label class="kform__label" for="KEnq-city-{{ section.id }}">{{ 'kusho.contact.city' | t }}</label>
+              <input class="kform__input" id="KEnq-city-{{ section.id }}" name="contact[City]" type="text" autocomplete="address-level2">
+            </div>
+          {%- endif -%}
+          {%- if section.settings.extra_label != blank -%}
+            <div class="kform__field">
+              <label class="kform__label" for="KEnq-extra-{{ section.id }}">{{ section.settings.extra_label | escape }}</label>
+              <input class="kform__input" id="KEnq-extra-{{ section.id }}" name="contact[{{ section.settings.extra_label | escape }}]" type="text">
+            </div>
+          {%- endif -%}
+        </div>
+        <div class="kform__field">
+          <label class="kform__label" for="KEnq-body-{{ section.id }}">{{ section.settings.message_label | escape }}</label>
+          <textarea class="kform__input kform__textarea" id="KEnq-body-{{ section.id }}" name="contact[body]" rows="4" required></textarea>
+        </div>
+        <button type="submit" class="button kform__submit">{{ section.settings.button_label | escape }}</button>
+      {%- endform -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Enquiry form",
+  "tag": "div",
+  "class": "kusho-enquiry-section",
+  "settings": [
+    { "type": "color_scheme", "id": "color_scheme", "label": "Colour scheme", "default": "scheme-2" },
+    { "type": "text", "id": "eyebrow", "label": "Small heading", "default": "Get in touch" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Tell us what you need" },
+    { "type": "textarea", "id": "text", "label": "Text" },
+    { "type": "text", "id": "topic", "label": "Enquiry type (added to the email)", "default": "Corporate gifting" },
+    { "type": "text", "id": "company_label", "label": "Company field label (blank to hide)", "default": "Company" },
+    { "type": "checkbox", "id": "show_city", "label": "Ask for the city", "default": true },
+    { "type": "text", "id": "extra_label", "label": "Extra field label (blank to hide)", "default": "Approximate quantity" },
+    { "type": "text", "id": "message_label", "label": "Message label", "default": "How can we help?" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Send enquiry" }
+  ],
+  "presets": [
+    { "name": "Enquiry form" }
+  ]
+}
+{% endschema %}

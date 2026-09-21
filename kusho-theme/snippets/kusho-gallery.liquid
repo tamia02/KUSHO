@@ -1,0 +1,108 @@
+{% comment %}
+  Kusho product gallery (guide 11.3 #2).
+  - Swipeable scroll-snap stage (mobile + desktop), thumbnail rail (left on desktop, below on mobile)
+  - Each image carries a caption from its alt text (Front view, Dimensions, In use …)
+  - Counter, previous/next arrows, and a zoom lightbox (native <dialog>)
+  - Choosing a colour jumps to that variant's image (handled in kusho-product.js)
+
+  Accepts:
+  - product: {Object} Product (required)
+  - current_variant: {Object} Selected variant (required)
+  - section_id: {String} Unique id (required)
+{% endcomment %}
+
+{%- assign media_total = product.media.size -%}
+
+<kusho-gallery class="kgal" data-total="{{ media_total }}">
+  {%- if media_total > 1 -%}
+    <div class="kgal__thumbs kusho-hide-scrollbar" role="group" aria-label="{{ 'kusho.product.gallery.label' | t }}">
+      {%- for media in product.media -%}
+        <button
+          type="button"
+          class="kgal__thumb"
+          data-thumb="{{ forloop.index0 }}"
+          aria-label="{{ 'kusho.product.gallery.show_image' | t: index: forloop.index, alt: media.alt }}"
+          {% if forloop.first %}aria-current="true"{% endif %}
+        >
+          {{
+            media
+            | image_url: width: 240
+            | image_tag: loading: 'lazy', widths: '120, 240', sizes: '72px', alt: '', class: 'kgal__thumb-img'
+          }}
+        </button>
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+
+  <div class="kgal__stage">
+    <ul class="kgal__track kusho-hide-scrollbar" tabindex="0" aria-label="{{ 'kusho.product.gallery.label' | t }}" data-track>
+      {%- for media in product.media -%}
+        {%- liquid
+          assign slide_loading = 'lazy'
+          assign slide_priority = 'auto'
+          assign slide_alt = media.alt | default: product.title
+          if forloop.first
+            assign slide_loading = 'eager'
+            assign slide_priority = 'high'
+          endif
+        -%}
+        <li
+          class="kgal__slide"
+          data-slide="{{ forloop.index0 }}"
+          data-media-id="{{ media.id }}"
+          data-zoom-src="{{ media | image_url: width: 1600 }}"
+          data-zoom-alt="{{ media.alt | escape }}"
+        >
+          {{
+            media
+            | image_url: width: 1200
+            | image_tag:
+              widths: '480, 720, 990, 1200',
+              sizes: '(min-width: 990px) 54vw, 100vw',
+              loading: slide_loading,
+              fetchpriority: slide_priority,
+              alt: slide_alt,
+              class: 'kgal__img'
+          }}
+          {%- if media.alt != blank -%}
+            <span class="kgal__caption">{{ media.alt | escape }}</span>
+          {%- endif -%}
+        </li>
+      {%- endfor -%}
+    </ul>
+
+    {%- if media_total > 1 -%}
+      <p class="kgal__counter" aria-live="polite" data-counter>
+        <span data-counter-current>1</span> / {{ media_total }}
+      </p>
+      <button type="button" class="kgal__arrow kgal__arrow--prev" data-prev aria-label="{{ 'kusho.product.gallery.previous' | t }}">
+        {% render 'kusho-icon', name: 'chevron-left', size: 22 %}
+      </button>
+      <button type="button" class="kgal__arrow kgal__arrow--next" data-next aria-label="{{ 'kusho.product.gallery.next' | t }}">
+        {% render 'kusho-icon', name: 'chevron-right', size: 22 %}
+      </button>
+    {%- endif -%}
+
+    <button type="button" class="kgal__zoom" data-open-zoom aria-label="{{ 'kusho.product.gallery.zoom' | t }}">
+      {% render 'kusho-icon', name: 'zoom', size: 22 %}
+    </button>
+  </div>
+
+  <dialog class="kgal__lightbox" data-lightbox aria-label="{{ 'kusho.product.gallery.lightbox' | t }}">
+    <button type="button" class="kgal__lb-close" data-close-zoom aria-label="{{ 'kusho.product.gallery.close' | t }}">
+      {% render 'kusho-icon', name: 'x', size: 24 %}
+    </button>
+    <figure class="kgal__lb-figure" data-lb-figure>
+      <img class="kgal__lb-img" data-lb-img alt="" width="1600" height="1600">
+      <figcaption class="kgal__lb-caption" data-lb-caption></figcaption>
+    </figure>
+    {%- if media_total > 1 -%}
+      <button type="button" class="kgal__arrow kgal__arrow--prev kgal__arrow--lb" data-lb-prev aria-label="{{ 'kusho.product.gallery.previous' | t }}">
+        {% render 'kusho-icon', name: 'chevron-left', size: 22 %}
+      </button>
+      <button type="button" class="kgal__arrow kgal__arrow--next kgal__arrow--lb" data-lb-next aria-label="{{ 'kusho.product.gallery.next' | t }}">
+        {% render 'kusho-icon', name: 'chevron-right', size: 22 %}
+      </button>
+    {%- endif -%}
+  </dialog>
+</kusho-gallery>

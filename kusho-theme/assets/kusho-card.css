@@ -1,0 +1,333 @@
+/* ==========================================================================
+   Product card, price, rating, badges  (guide 10.5, 10.6, 7.5)
+   ========================================================================== */
+
+.kcard {
+  position: relative; /* anchors the stretched title link */
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  color: rgb(var(--color-foreground));
+}
+
+/* ---- Image frame ---- */
+.kcard__media {
+  position: relative;
+  aspect-ratio: var(--kcard-ratio, 1);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--white);
+}
+
+.kcard__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.kcard__placeholder {
+  background: var(--foam);
+  fill: var(--stone);
+}
+
+.kcard__img--hover {
+  opacity: 0;
+  transition: opacity var(--dur-base) var(--ease-foam);
+}
+
+.kcard--sold-out .kcard__img {
+  filter: grayscale(0.3);
+  opacity: 0.85;
+}
+
+@media (hover: hover) {
+  .kcard__media {
+    transition: transform var(--dur-base) var(--ease-foam);
+  }
+
+  .kcard:hover .kcard__media {
+    transform: translateY(-2px);
+  }
+
+  .kcard:hover .kcard__img--hover {
+    opacity: 1;
+  }
+}
+
+/* ---- Badges (max 2, top-left) ---- */
+.kcard__badges {
+  position: absolute;
+  z-index: 2;
+  top: var(--sp-2);
+  left: var(--sp-2);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--sp-1);
+  pointer-events: none;
+}
+
+.kbadge {
+  display: inline-block;
+  padding: 0.3rem var(--sp-2);
+  border-radius: var(--r-xs);
+  font-family: var(--font-ui);
+  font-size: var(--fs-micro);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+  background: var(--white);
+  color: var(--ink);
+}
+
+.kbadge--bestseller,
+.kbadge--bogo,
+.kbadge--deal {
+  background: var(--kusho-gold-mist);
+  color: var(--kusho-gold-text);
+}
+
+.kbadge--new {
+  background: var(--kusho-green-mist);
+  color: var(--kusho-green);
+}
+
+.kbadge--limited {
+  background: var(--white);
+  color: var(--ink);
+  box-shadow: inset 0 0 0 1px var(--ink);
+}
+
+.kbadge--ink {
+  background: var(--ink);
+  color: var(--white);
+}
+
+.kbadge--muted {
+  background: var(--foam);
+  color: var(--stone);
+}
+
+/* ---- Quick add: "+" circle on touch, slide-up pill on hover-capable desktop ---- */
+.kcard__quick {
+  position: absolute;
+  z-index: 3;
+  right: var(--sp-2);
+  bottom: var(--sp-2);
+}
+
+.kcard__quick product-form,
+.kcard__quick modal-opener {
+  display: block;
+}
+
+.kcard__quick-btn.button {
+  width: var(--tap);
+  min-width: 0;
+  height: var(--tap);
+  min-height: 0;
+  padding: 0;
+  border-radius: 50%;
+  box-shadow: var(--shadow-1);
+}
+
+.kcard__quick-label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.kcard__quick-btn.loading .kusho-icon,
+.kcard__quick-btn.loading .kcard__quick-label {
+  visibility: hidden;
+}
+
+@media (hover: hover) and (min-width: 990px) {
+  .kcard__quick {
+    left: var(--sp-2);
+    transform: translateY(calc(100% + var(--sp-4)));
+    opacity: 0;
+    transition:
+      transform var(--dur-base) var(--ease-foam),
+      opacity var(--dur-base) var(--ease-foam);
+  }
+
+  .kcard:hover .kcard__quick,
+  .kcard:focus-within .kcard__quick {
+    transform: none;
+    opacity: 1;
+  }
+
+  .kcard__quick-btn.button {
+    width: 100%;
+    height: auto;
+    min-height: 4.8rem;
+    padding-inline: var(--sp-4);
+    border-radius: var(--r-pill);
+  }
+
+  .kcard__quick-label {
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip-path: none;
+    white-space: normal;
+  }
+
+  .kcard__quick-btn .kusho-icon {
+    display: none;
+  }
+}
+
+/* ---- Body ---- */
+.kcard__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--sp-1);
+  padding-top: var(--sp-3);
+}
+
+.kcard__title {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: var(--fs-h4);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.kcard__link {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* One link per card: stretch the title link over the whole card */
+.kcard__link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.kcard__link:focus-visible {
+  outline: none;
+}
+
+.kcard__link:focus-visible::after {
+  outline: 0.3rem solid rgb(var(--kusho-ring));
+  outline-offset: 0.2rem;
+  border-radius: var(--r-md);
+}
+
+.kcard__benefit {
+  margin: 0;
+  max-width: 100%;
+  overflow: hidden;
+  color: var(--stone);
+  font-size: var(--fs-small);
+  line-height: 1.4;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ---- Swatches ---- */
+.kcard__swatches {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-1);
+  margin: var(--sp-1) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.kcard__swatch {
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 50%;
+  background: var(--kswatch, var(--foam));
+  background-size: cover;
+  box-shadow: inset 0 0 0 1px rgba(22, 33, 28, 0.18);
+}
+
+.kcard__swatch-more {
+  color: var(--stone);
+  font-size: var(--fs-small);
+}
+
+/* ==========================================================================
+   Price
+   ========================================================================== */
+.kprice {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.2rem var(--sp-2);
+  color: var(--ink);
+}
+
+.kprice__now {
+  font-family: var(--font-display);
+  font-size: var(--fs-price);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+
+.kprice--card .kprice__now {
+  font-size: var(--fs-h4);
+}
+
+.kprice__from,
+.kprice__was {
+  color: var(--stone);
+  font-size: var(--fs-small);
+}
+
+.kprice__off {
+  color: var(--kusho-green);
+  font-family: var(--font-ui);
+  font-size: var(--fs-small);
+  font-weight: 600;
+}
+
+.kprice__note {
+  margin: var(--sp-1) 0 0;
+  color: var(--stone);
+  font-size: var(--fs-small);
+}
+
+/* ==========================================================================
+   Rating
+   ========================================================================== */
+.krating {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
+  color: var(--stone);
+  font-size: var(--fs-small);
+  line-height: 1;
+}
+
+.krating__star {
+  display: inline-flex;
+  color: var(--kusho-gold);
+}
+
+.krating__value {
+  color: var(--ink);
+  font-family: var(--font-ui);
+  font-weight: 600;
+}

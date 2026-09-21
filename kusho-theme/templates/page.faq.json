@@ -1,0 +1,144 @@
+{
+  "sections": {
+    "hero": {
+      "type": "kusho-page-hero",
+      "settings": {
+        "color_scheme": "scheme-2",
+        "eyebrow": "Help",
+        "heading": "Frequently asked questions",
+        "text": "Answers to the things people ask us most."
+      }
+    },
+    "faq": {
+      "type": "kusho-faq",
+      "blocks": {
+        "q1": {
+          "type": "question",
+          "settings": {
+            "question": "What is Kusho?",
+            "answer": "<p>Kusho is an Indian comfort-focused brand offering premium memory foam pillows and cushions designed to give you the comfort you deserve.</p>"
+          }
+        },
+        "q2": {
+          "type": "question",
+          "settings": {
+            "question": "What materials are used in Kusho products?",
+            "answer": "<p>Kusho products use high-quality memory foam, latex foam, PU foam, and durable, breathable fabrics for comfort and support.</p>"
+          }
+        },
+        "q3": {
+          "type": "question",
+          "settings": {
+            "question": "Are Kusho products washable?",
+            "answer": "<p>The memory foam core is not washable, but all Kusho products come with a removable, machine-washable cover for easy cleaning and maintenance.</p>"
+          }
+        },
+        "q4": {
+          "type": "question",
+          "settings": {
+            "question": "Are Kusho pillows hypoallergenic?",
+            "answer": "<p>Yes. Kusho pillows are hypoallergenic, dust-mite resistant, and safe for people with sensitive skin or allergies.</p>"
+          }
+        },
+        "q5": {
+          "type": "question",
+          "settings": {
+            "question": "Is Cash on Delivery available on Kusho.in?",
+            "answer": "<p>COD and online payments are available on Kusho.in, depending on delivery serviceability.</p>"
+          }
+        },
+        "q6": {
+          "type": "question",
+          "settings": {
+            "question": "How long does delivery take?",
+            "answer": "<p>Standard delivery usually takes 3–7 working days. Delivery timelines may vary slightly depending on location and unforeseen circumstances.</p>"
+          }
+        },
+        "q7": {
+          "type": "question",
+          "settings": {
+            "question": "Can Kusho products be returned or replaced?",
+            "answer": "<p>Yes, Kusho products can be replaced if damaged or defective, according to the website’s return policy</p>"
+          }
+        },
+        "q8": {
+          "type": "question",
+          "settings": {
+            "question": "Are Kusho products good for gifting?",
+            "answer": "<p>Yes. Kusho memory foam pillows and cushions are thoughtful, premium, and health-focused gifts, perfect for people of all ages.</p>"
+          }
+        },
+        "q9": {
+          "type": "question",
+          "settings": {
+            "question": "How can I contact Kusho for support?",
+            "answer": "<p>You can reach us anytime through: ; Email: support@kusho.in ; Website: www.kusho.in (Contact Us section)</p>"
+          }
+        },
+        "q10": {
+          "type": "question",
+          "settings": {
+            "question": "Do Kusho pillows help with neck and back pain?",
+            "answer": "<p>Yes. They support your neck and spine to reduce pressure and keep you comfortable while sleeping, sitting, or travelling.</p>"
+          }
+        },
+        "q11": {
+          "type": "question",
+          "settings": {
+            "question": "Are Kusho pillows suitable for all sleeping positions?",
+            "answer": "<p>Kusho pillows are thoughtfully designed to support side, back, and stomach sleepers, meeting all your comfort and support needs.</p>"
+          }
+        },
+        "q12": {
+          "type": "question",
+          "settings": {
+            "question": "How do I choose the right Kusho product for me?",
+            "answer": "<p>Pick the pillow that fits your sleeping position(side,back or stomach) and support needs(neck,back,travel). Reach out to our team anytime for assistance.</p>"
+          }
+        },
+        "q13": {
+          "type": "question",
+          "settings": {
+            "question": "Can Kusho cushions improve posture?",
+            "answer": "<p>Yes. They provide targeted support for your spine, neck, and back, promoting better posture while sitting, sleeping, or travelling.</p>"
+          }
+        },
+        "q14": {
+          "type": "question",
+          "settings": {
+            "question": "Is there a warranty on Kusho products?",
+            "answer": "<p>Yes. All Kusho products come with a standard warranty against only manufacturing defects.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5",
+        "q6",
+        "q7",
+        "q8",
+        "q9",
+        "q10",
+        "q11",
+        "q12",
+        "q13",
+        "q14"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "eyebrow": "FAQs",
+        "heading": "Find your answer",
+        "text": "Search, or browse the questions below.",
+        "show_search": true,
+        "show_whatsapp": true
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "faq"
+  ]
+}

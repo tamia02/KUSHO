@@ -1,0 +1,101 @@
+{{ 'kusho-trust.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'kusho-marquee.js' | asset_url }}" defer="defer"></script>
+
+<section class="ktrust color-{{ section.settings.color_scheme }} gradient" aria-label="{{ 'kusho.trust.label' | t }}">
+  <div class="page-width">
+    <kusho-marquee class="ktrust__marquee">
+      <div class="ktrust__viewport">
+        <ul class="ktrust__list" role="list" data-marquee-list>
+          {%- if section.settings.rating_text != blank -%}
+            <li class="ktrust__item ktrust__item--rating">
+              <span class="ktrust__star">{% render 'kusho-icon', name: 'star', size: 16 %}</span>
+              <span>{{ section.settings.rating_text | escape }}</span>
+            </li>
+          {%- endif -%}
+          {%- for block in section.blocks -%}
+            <li class="ktrust__item" {{ block.shopify_attributes }}>
+              {%- if block.settings.icon != 'none' -%}
+                {% render 'kusho-icon', name: block.settings.icon, size: 22 %}
+              {%- endif -%}
+              <span>{{ block.settings.text | escape }}</span>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </div>
+      <button
+        type="button"
+        class="ktrust__pause"
+        data-marquee-toggle
+        aria-pressed="false"
+        aria-label="{{ 'kusho.trust.pause' | t }}"
+        data-label-pause="{{ 'kusho.trust.pause' | t }}"
+        data-label-play="{{ 'kusho.trust.play' | t }}"
+      >
+        <span data-icon-pause>{% render 'kusho-icon', name: 'pause', size: 16 %}</span>
+        <span data-icon-play hidden>{% render 'kusho-icon', name: 'play', size: 16 %}</span>
+      </button>
+    </kusho-marquee>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Trust strip",
+  "tag": "section",
+  "class": "kusho-trust-section",
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Colour scheme",
+      "default": "scheme-2"
+    },
+    {
+      "type": "text",
+      "id": "rating_text",
+      "label": "Rating summary",
+      "info": "Only use real numbers. Example: 4.8 from 10,000+ reviews. Leave blank to hide."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Promise",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "truck", "label": "Delivery" },
+            { "value": "cash", "label": "Cash on delivery" },
+            { "value": "return", "label": "Returns" },
+            { "value": "shield", "label": "Secure" },
+            { "value": "check", "label": "Check" },
+            { "value": "none", "label": "None" }
+          ],
+          "default": "truck"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Free delivery"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Trust strip",
+      "blocks": [
+        { "type": "item", "settings": { "icon": "truck", "text": "Free delivery" } },
+        { "type": "item", "settings": { "icon": "cash", "text": "Cash on delivery" } },
+        { "type": "item", "settings": { "icon": "return", "text": "7-day easy returns" } },
+        { "type": "item", "settings": { "icon": "shield", "text": "Secure payments" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

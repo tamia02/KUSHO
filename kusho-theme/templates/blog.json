@@ -1,0 +1,14 @@
+{
+  "sections": {
+    "main": {
+      "type": "kusho-blog",
+      "settings": {
+        "eyebrow": "The Kusho journal",
+        "text": "Simple, honest reading about sleep, sitting and travelling comfortably."
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

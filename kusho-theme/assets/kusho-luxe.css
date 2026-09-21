@@ -1,0 +1,755 @@
+/* ==========================================================================
+   Kusho "quiet luxury" layer. Loads last, on every page.
+   Turns the brighter first build into a calm, editorial store: thin uppercase type, square
+   edges, hairlines instead of shadows, one accent at a time. Component files stay as the base;
+   this file only overrides what changed in the direction.
+   ========================================================================== */
+
+/* ---------------------------------------------------------------- announcement bar: slim, black */
+.kusho-announcement.kusho-announcement,
+.kusho-announcement.kusho-announcement--sale {
+  background: var(--ink);
+  color: var(--white);
+  font-size: var(--fs-label);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+}
+
+.kusho-announcement__inner {
+  min-height: 3.8rem;
+}
+
+.kusho-announcement__msg {
+  font-weight: 400;
+  padding-block: 0.6rem;
+}
+
+.kusho-announcement__link {
+  font-weight: 600;
+}
+
+.kusho-announcement__link::after {
+  color: var(--kusho-gold);
+}
+
+.kusho-announcement__btn::before {
+  width: 2.4rem;
+  height: 2.4rem;
+}
+
+.kusho-countdown__value {
+  font-weight: 600;
+}
+
+/* ---------------------------------------------------------------- header: thin, uppercase, hairline */
+.header-wrapper {
+  border-bottom: 1px solid var(--line);
+}
+
+.header__menu-item,
+.header__menu-item span,
+.list-menu__item--link {
+  font-family: var(--font-ui);
+  font-size: var(--fs-label);
+  font-weight: 400;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+}
+
+.header__menu-item {
+  padding-inline: var(--sp-4);
+}
+
+.header__inline-menu .list-menu--inline {
+  gap: 0;
+}
+
+/* Underline that draws in instead of Dawn's fade */
+.header__menu-item span {
+  position: relative;
+  padding-bottom: 0.3rem;
+}
+
+.header__menu-item span::after {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 1px;
+  background: currentcolor;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--dur-base) var(--ease-foam);
+}
+
+.header__menu-item:hover span::after,
+.header__menu-item[aria-expanded='true'] span::after,
+.header__active-menu-item::after {
+  transform: scaleX(1);
+}
+
+.header__active-menu-item {
+  text-decoration: none;
+}
+
+.header__heading-logo {
+  max-height: 4.4rem;
+  width: auto;
+}
+
+/* Mega menu: quiet columns */
+.mega-menu__content {
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  padding-block: var(--sp-7);
+}
+
+.mega-menu__list .mega-menu__link--level-2 {
+  font-family: var(--font-display);
+  font-size: var(--fs-h4);
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.mega-menu__list .mega-menu__link {
+  font-size: var(--fs-small);
+  letter-spacing: 0.02em;
+}
+
+/* ---------------------------------------------------------------- transparent header over the homepage hero
+   Dawn keeps the header sticky and in flow. On the homepage the hero is pulled up under it, and while the
+   page is at the top (no data-kusho-scrolled on <html>) the header is transparent with white text. */
+.template-index .kusho-hero-section .khero {
+  margin-top: calc(-1 * var(--header-height, 8.8rem));
+  padding-top: var(--header-height, 8.8rem);
+}
+
+.template-index .section-header {
+  z-index: 4;
+}
+
+html:not([data-kusho-scrolled]) .template-index .section-header .header-wrapper {
+  background: transparent;
+  border-bottom-color: rgba(255, 255, 255, 0.16);
+}
+
+.template-index .section-header .header-wrapper {
+  transition:
+    background-color var(--dur-base) var(--ease-foam),
+    border-color var(--dur-base) var(--ease-foam);
+}
+
+html:not([data-kusho-scrolled]) .template-index .section-header .header {
+  --color-foreground: 255, 255, 255;
+  color: var(--white);
+}
+
+html:not([data-kusho-scrolled]) .template-index .section-header .header__menu-item,
+html:not([data-kusho-scrolled]) .template-index .section-header .header__icon,
+html:not([data-kusho-scrolled]) .template-index .section-header .header__heading-link {
+  color: var(--white);
+}
+
+/* The bundled logo is green and gold; over a dark photo it becomes white */
+.template-index .section-header .header__heading-logo {
+  transition: filter var(--dur-base) var(--ease-foam);
+}
+
+html:not([data-kusho-scrolled]) .template-index .section-header .header__heading-logo {
+  filter: brightness(0) invert(1);
+}
+
+/* Once scrolled, a near-white frosted bar */
+html[data-kusho-scrolled] .template-index .section-header .header-wrapper {
+  background: rgba(255, 255, 255, 0.94);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+
+/* Menus and search that open over the transparent header need dark text */
+.template-index .section-header .mega-menu__content,
+.template-index .section-header .search-modal__content,
+.template-index .section-header .menu-drawer {
+  --color-foreground: 22, 33, 28;
+  color: var(--ink);
+}
+
+/* ---------------------------------------------------------------- product cards: photo, name, price, nothing else shouting */
+.kcard {
+  border: 0;
+  background: transparent;
+}
+
+.kcard__media {
+  border-radius: 0;
+  background: var(--foam);
+}
+
+.kcard__body {
+  padding-inline: 0;
+  text-align: center;
+}
+
+.kcard__title {
+  font-family: var(--font-ui);
+  font-size: var(--fs-small);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.kcard__benefit {
+  color: var(--stone);
+  font-size: var(--fs-small);
+}
+
+.kprice,
+.kprice--card {
+  font-family: var(--font-ui);
+  font-size: var(--fs-price);
+  font-weight: 400;
+}
+
+.kprice__now {
+  font-weight: 400;
+}
+
+.kprice__was {
+  color: var(--stone);
+}
+
+.kprice__off {
+  color: var(--kusho-gold-text);
+  font-size: var(--fs-label);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+}
+
+.kbadge {
+  border-radius: 0;
+  padding: 0.5rem 0.9rem;
+  background: var(--white);
+  color: var(--ink);
+  font-family: var(--font-ui);
+  font-size: var(--fs-micro);
+  font-weight: 400;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  box-shadow: none;
+}
+
+.kbadge--bestseller,
+.kbadge--deal,
+.kbadge--bogo,
+.kbadge--new,
+.kbadge--limited {
+  background: var(--ink);
+  color: var(--white);
+}
+
+.kbadge--muted {
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--stone);
+}
+
+.kcard__quick-btn.button {
+  border-radius: 0;
+}
+
+.krating {
+  justify-content: center;
+}
+
+.krating__star {
+  color: var(--kusho-gold);
+}
+
+.kcard__swatches {
+  justify-content: center;
+}
+
+.kcard__swatch {
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 50%;
+}
+
+/* ---------------------------------------------------------------- section spacing: more air */
+.kusho-section {
+  padding-block: var(--sp-9);
+}
+
+@media screen and (min-width: 990px) {
+  .kusho-section {
+    padding-block: var(--sp-10);
+  }
+}
+
+/* ---------------------------------------------------------------- text ribbon: thin, uppercase, quiet */
+.kribbon {
+  padding-block: var(--sp-6);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.kribbon__text,
+.kribbon__item:nth-child(even) .kribbon__text {
+  color: rgba(var(--color-foreground), 0.9);
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 1.3rem + 0.8vw, 2.4rem);
+  font-style: normal;
+  font-weight: 300;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  -webkit-text-stroke: 0;
+}
+
+.kribbon__list {
+  gap: var(--sp-8);
+}
+
+.kribbon__item {
+  gap: var(--sp-8);
+}
+
+.kribbon__mark {
+  color: var(--kusho-gold);
+  transform: scale(0.5);
+}
+
+.kribbon__marquee.is-marquee .kribbon__list {
+  animation-duration: 90s;
+}
+
+.kribbon__marquee.is-marquee .kribbon__pause {
+  border-color: var(--line);
+  box-shadow: none;
+}
+
+/* ---------------------------------------------------------------- shop by need: square tiles, text only */
+.kbento__grid {
+  gap: 0.2rem;
+}
+
+.kbento__link {
+  border-radius: 0;
+}
+
+.kbento__icon,
+.kbento__go {
+  display: none;
+}
+
+.kbento__label {
+  right: var(--sp-5);
+  bottom: var(--sp-5);
+  gap: var(--sp-2);
+}
+
+.kbento__title {
+  font-size: var(--fs-h3);
+  font-weight: 300;
+  letter-spacing: var(--track-heading);
+  text-transform: uppercase;
+}
+
+.kbento__text {
+  font-size: var(--fs-small);
+}
+
+.kbento__label::after {
+  content: '';
+  width: 3.2rem;
+  height: 1px;
+  background: var(--white);
+  transition: width var(--dur-settle) var(--ease-foam);
+}
+
+@media (hover: hover) {
+  .kbento__link:hover .kbento__label::after {
+    width: 6rem;
+  }
+}
+
+/* ---------------------------------------------------------------- before / after: text tabs, square stage */
+.kcmp__tab {
+  padding: var(--sp-4) 0;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  background: transparent;
+  color: var(--ink);
+}
+
+.kcmp__tab[aria-selected='true'] {
+  border-bottom-color: var(--ink);
+  background: transparent;
+  color: var(--ink);
+}
+
+.kcmp__tab-icon {
+  display: none;
+}
+
+.kcmp__tab-title {
+  font-family: var(--font-display);
+  font-size: var(--fs-h4);
+  font-weight: 400;
+  letter-spacing: var(--track-heading);
+  text-transform: uppercase;
+}
+
+.kcmp__tab[aria-selected='true'] .kcmp__tab-text,
+.kcmp__tab-text {
+  color: var(--stone);
+}
+
+.kcmp__tabs {
+  gap: 0;
+}
+
+.kcmp__stage {
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.kcmp__tag {
+  border-radius: 0;
+  font-family: var(--font-ui);
+  font-size: var(--fs-micro);
+  font-weight: 400;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+}
+
+.kcmp__tag--after {
+  background: var(--ink);
+}
+
+.kcmp__handle {
+  border-color: var(--white);
+}
+
+.kcmp__grip {
+  border-radius: 50%;
+  background: var(--white);
+  color: var(--ink);
+  box-shadow: none;
+}
+
+.kcmp__hint {
+  font-size: var(--fs-label);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+}
+
+/* ---------------------------------------------------------------- how to use: square cards, thin titles */
+.kstack__inner {
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.kstack__num {
+  color: var(--kusho-gold);
+  font-family: var(--font-ui);
+  font-size: var(--fs-label);
+  font-weight: 400;
+  letter-spacing: var(--track-label);
+}
+
+.kstack__title {
+  font-weight: 300;
+  letter-spacing: var(--track-heading);
+}
+
+.kstack__btn.button {
+  --color-button-text: 255, 255, 255;
+  background: transparent;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.85);
+}
+
+@media (hover: hover) {
+  .kstack__btn.button:hover {
+    --color-button-text: 22, 33, 28;
+    background: #fff;
+  }
+}
+
+.kstack__index-item {
+  font-family: var(--font-display);
+  font-size: var(--fs-h4);
+  font-weight: 300;
+  letter-spacing: var(--track-heading);
+  text-transform: uppercase;
+}
+
+.kstack__index-num {
+  font-family: var(--font-ui);
+  font-size: var(--fs-label);
+  letter-spacing: var(--track-label);
+}
+
+/* ---------------------------------------------------------------- why / business / journal / faq */
+.kwhy__icon,
+.ksplit__icon {
+  border-radius: 0;
+  border: 1px solid var(--line);
+  background: transparent;
+}
+
+.kwhy__item-title,
+.ksplit__title,
+.kjrn__title {
+  font-weight: 400;
+  letter-spacing: 0.05em;
+}
+
+.kwhy__photo,
+.ksplit__photo,
+.ksplit__card,
+.kjrn__card {
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.ksplit__card {
+  border: 1px solid var(--line);
+}
+
+.kjrn__card {
+  border: 0;
+}
+
+.kjrn__tag {
+  border-radius: 0;
+  background: transparent;
+  padding: 0;
+  color: var(--kusho-gold-text);
+  font-size: var(--fs-label);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+}
+
+.kfaqs__input {
+  border-radius: 0;
+}
+
+/* ---------------------------------------------------------------- floating chat: ink, square-cornered badge stays round */
+.kusho-whatsapp.kusho-whatsapp {
+  background: var(--ink);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+}
+
+@media (hover: hover) {
+  .kusho-whatsapp.kusho-whatsapp:hover {
+    background: var(--kusho-green-deep);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+  }
+}
+
+.kusho-whatsapp__kicker {
+  font-size: var(--fs-micro);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.kusho-whatsapp__text {
+  font-weight: 400;
+}
+
+/* ---------------------------------------------------------------- footer: ink black, hairlines */
+.kfooter {
+  --color-background: 22, 33, 28;
+  background: var(--ink);
+}
+
+.kfooter__heading {
+  font-family: var(--font-ui);
+  font-size: var(--fs-label);
+  font-weight: 400;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.kfooter__link {
+  font-size: var(--fs-small);
+}
+
+.kfooter__input {
+  border-radius: 0;
+}
+
+.kfooter__wordmark {
+  font-family: var(--font-display);
+  font-weight: 300;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+
+/* ---------------------------------------------------------------- collection and search pages: Dawn parts that still showed */
+.collection-hero__title,
+.template-search__header {
+  font-weight: 300;
+  letter-spacing: var(--track-display);
+  text-transform: uppercase;
+}
+
+.collection-hero__description {
+  color: var(--stone);
+}
+
+.facets-container,
+.facets__form {
+  font-family: var(--font-ui);
+}
+
+.facet-filters__label,
+.facets__summary,
+.product-count__text,
+.product-count,
+.facets__disclosure summary span,
+.facet-filters__sort {
+  font-size: var(--fs-label) !important;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+}
+
+.facet-filters__sort,
+.select__select {
+  border-radius: 0;
+}
+
+.select .select__select {
+  box-shadow: none;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.facets__disclosure,
+.facets__disclosure-vertical {
+  border: 0;
+}
+
+.pagination__item {
+  font-family: var(--font-ui);
+  font-size: var(--fs-label);
+  letter-spacing: var(--track-label);
+}
+
+.pagination__item--current::after,
+.pagination__item:hover::after {
+  height: 1px;
+}
+
+/* Dawn's own buttons and inputs elsewhere (cart, account, contact) */
+.field__input,
+.select__select,
+.customer .field input,
+.text-area,
+.quantity {
+  border-radius: 0;
+}
+
+.field__input,
+.text-area,
+.quantity {
+  box-shadow: none;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background: transparent;
+}
+
+.field:hover .field__input,
+.field__input:focus-visible,
+.text-area:focus-visible {
+  box-shadow: none;
+  border-bottom-color: var(--ink);
+}
+
+.field__label,
+.form__label {
+  font-family: var(--font-ui);
+  font-size: var(--fs-label);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+}
+
+/* Breadcrumbs, tags and small meta share the label style */
+.kph__crumbs,
+.kph__crumbs a {
+  font-family: var(--font-ui);
+  font-size: var(--fs-label);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+}
+
+.kph__photo {
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* Trust marquee */
+.ktrust__item {
+  font-family: var(--font-ui);
+  font-size: var(--fs-label);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+}
+
+/* ---------------------------------------------------------------- homepage section headings sit centred */
+.template-index .ksec-head:not(.ksec-head--row) {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.template-index .ksec-head:not(.ksec-head--row) .ksec-eyebrow {
+  justify-content: center;
+}
+
+.template-index .ksec-head:not(.ksec-head--row) .ksec-lead {
+  margin-inline: auto;
+}
+
+/* Product grid gets a hairline gap instead of card gutters */
+.product-grid {
+  --grid-desktop-horizontal-spacing: 2.4rem;
+  --grid-desktop-vertical-spacing: 6.4rem;
+  --grid-mobile-horizontal-spacing: 1.2rem;
+  --grid-mobile-vertical-spacing: 4rem;
+}
+
+/* ---------------------------------------------------------------- product page: square controls, quiet chips */
+.kgal__caption,
+.kgal__counter,
+.kchip,
+.kopt__pill,
+.kqty,
+.kdeliv__input,
+.ktoast,
+.kblog__tag,
+.kjrn__tag,
+.kfaqs__input,
+.kfooter__input {
+  border-radius: 0;
+}
+
+.kqty__btn {
+  border-radius: 0;
+}
+
+.kchip,
+.kopt__pill,
+.kblog__tag {
+  font-family: var(--font-ui);
+  font-size: var(--fs-label);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+}
+
+.kgal__counter {
+  font-family: var(--font-ui);
+  font-size: var(--fs-label);
+  letter-spacing: var(--track-label);
+}

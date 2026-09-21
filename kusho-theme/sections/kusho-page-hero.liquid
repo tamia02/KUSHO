@@ -1,0 +1,90 @@
+{{ 'kusho-page.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign hero_title = section.settings.heading
+  if hero_title == blank
+    assign hero_title = page.title | default: blog.title | default: article.title
+  endif
+  assign scene = section.settings.scene
+  assign has_photo = false
+  if section.settings.image != blank or scene != 'none'
+    assign has_photo = true
+  endif
+  assign scene_file = 'kusho-photo-' | append: scene | append: '.webp'
+-%}
+
+<section class="kph color-{{ section.settings.color_scheme }} gradient{% if has_photo %} kph--photo{% endif %}">
+  <div class="page-width kph__inner">
+    <div class="kph__copy">
+    <nav class="kph__crumbs" aria-label="{{ 'kusho.product.breadcrumb' | t }}">
+      <ol>
+        <li><a href="{{ routes.root_url }}">{{ 'kusho.product.home' | t }}</a></li>
+        <li aria-current="page"><span>{{ hero_title | escape }}</span></li>
+      </ol>
+    </nav>
+    {%- if section.settings.eyebrow != blank -%}<p class="ksec-eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+    <h1 class="kph__title">{{ hero_title | escape }}</h1>
+    {%- if section.settings.text != blank -%}<p class="kph__text">{{ section.settings.text | escape }}</p>{%- endif -%}
+    {%- if section.settings.button_label != blank -%}
+      <div class="kph__actions">
+        <a class="button" href="{{ section.settings.button_link | default: '#' }}">{{ section.settings.button_label | escape }}</a>
+        {%- if section.settings.link_label != blank -%}
+          <a class="kusho-link" href="{{ section.settings.link | default: '#' }}">{{ section.settings.link_label | escape }}</a>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+    </div>
+
+    {%- if has_photo -%}
+      <div class="kph__photo" data-reveal="image">
+        {%- if section.settings.image != blank -%}
+          {{ section.settings.image | image_url: width: 1000 | image_tag: loading: 'eager', widths: '500, 750, 1000', sizes: '(min-width: 990px) 44vw, 100vw', alt: section.settings.image_alt }}
+        {%- else -%}
+          <img src="{{ scene_file | asset_url }}" alt="{{ section.settings.image_alt | escape }}" width="1000" height="1000" loading="eager">
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Page header",
+  "tag": "div",
+  "class": "kusho-page-hero-section",
+  "settings": [
+    { "type": "color_scheme", "id": "color_scheme", "label": "Colour scheme", "default": "scheme-2" },
+    { "type": "text", "id": "eyebrow", "label": "Small heading" },
+    { "type": "text", "id": "heading", "label": "Heading", "info": "Leave blank to use the page title." },
+    { "type": "textarea", "id": "text", "label": "Text" },
+    { "type": "text", "id": "button_label", "label": "Button label" },
+    { "type": "url", "id": "button_link", "label": "Button link" },
+    { "type": "text", "id": "link_label", "label": "Link label" },
+    { "type": "url", "id": "link", "label": "Link" },
+    { "type": "header", "content": "Photo" },
+    {
+      "type": "select",
+      "id": "scene",
+      "label": "Built-in photo",
+      "options": [
+        { "value": "none", "label": "No photo" },
+        { "value": "sleep", "label": "Sleeping" },
+        { "value": "sleep-2", "label": "Sleeping (side)" },
+        { "value": "drive", "label": "Driving" },
+        { "value": "work", "label": "Working" },
+        { "value": "work-2", "label": "Working (chair)" },
+        { "value": "travel", "label": "Travelling" },
+        { "value": "travel-2", "label": "Travelling (car)" },
+        { "value": "gift", "label": "Gifting" }
+      ],
+      "default": "none",
+      "info": "Used unless you upload your own photo below."
+    },
+    { "type": "image_picker", "id": "image", "label": "Your own photo (optional)" },
+    { "type": "text", "id": "image_alt", "label": "Photo description", "default": "A person using a Kusho product" }
+  ],
+  "presets": [
+    { "name": "Page header" }
+  ]
+}
+{% endschema %}

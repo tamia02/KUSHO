@@ -1,0 +1,63 @@
+<script src="{{ 'kusho-marquee.js' | asset_url }}" defer="defer"></script>
+
+<section class="kribbon color-{{ section.settings.color_scheme }} gradient" aria-label="{{ section.settings.label | escape }}">
+  <kusho-marquee class="kribbon__marquee" data-always>
+    <div class="kribbon__viewport" aria-hidden="true">
+      <ul class="kribbon__list" data-marquee-list role="presentation">
+        {%- for block in section.blocks -%}
+          <li class="kribbon__item" {{ block.shopify_attributes }}>
+            <span class="kribbon__text">{{ block.settings.text | escape }}</span>
+            <svg class="kribbon__mark" viewBox="0 0 60 24" width="60" height="24" focusable="false"><path d="M2 12C14 -2 24 26 36 12S52 2 58 12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
+          </li>
+        {%- endfor -%}
+      </ul>
+    </div>
+    <ul class="visually-hidden">
+      {%- for block in section.blocks -%}<li>{{ block.settings.text | escape }}</li>{%- endfor -%}
+    </ul>
+    <button
+      type="button"
+      class="kribbon__pause"
+      data-marquee-toggle
+      aria-pressed="false"
+      aria-label="{{ 'kusho.trust.pause' | t }}"
+      data-label-pause="{{ 'kusho.trust.pause' | t }}"
+      data-label-play="{{ 'kusho.trust.play' | t }}"
+    >
+      <span data-icon-pause>{% render 'kusho-icon', name: 'pause', size: 16 %}</span>
+      <span data-icon-play hidden>{% render 'kusho-icon', name: 'play', size: 16 %}</span>
+    </button>
+  </kusho-marquee>
+</section>
+
+{% schema %}
+{
+  "name": "Text ribbon",
+  "tag": "div",
+  "class": "kusho-ribbon-section",
+  "max_blocks": 8,
+  "settings": [
+    { "type": "color_scheme", "id": "color_scheme", "label": "Colour scheme", "default": "scheme-1" },
+    { "type": "text", "id": "label", "label": "Accessible label", "default": "What Kusho is about" }
+  ],
+  "blocks": [
+    {
+      "type": "word",
+      "name": "Words",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Text", "default": "Sleep better" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Text ribbon",
+      "blocks": [
+        { "type": "word" },
+        { "type": "word" },
+        { "type": "word" }
+      ]
+    }
+  ]
+}
+{% endschema %}

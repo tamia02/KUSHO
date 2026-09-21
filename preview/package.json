@@ -1,0 +1,13 @@
+{
+  "name": "kusho-local-preview",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Renders the Kusho Shopify theme locally with sample data. Preview only, never pushed to Shopify.",
+  "scripts": {
+    "start": "node server.mjs"
+  },
+  "dependencies": {
+    "liquidjs": "^10.21.0"
+  }
+}

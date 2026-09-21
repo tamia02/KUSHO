@@ -1,0 +1,39 @@
+{% comment %}
+  Article card used by the journal section, the blog page and "keep reading".
+
+  Accepts:
+  - article: {Object} Article (required)
+  - lazy: {Boolean} lazy-load the image. Default true (optional)
+{% endcomment %}
+
+{%- liquid
+  assign tag_label = article.tags | first
+  assign summary = article.excerpt_or_content | strip_html | strip | truncate: 130
+-%}
+
+<article class="kart">
+  <div class="kart__media">
+    {%- if article.image -%}
+      {{
+        article.image
+        | image_url: width: 800
+        | image_tag:
+          widths: '400, 600, 800',
+          sizes: '(min-width: 990px) 30vw, (min-width: 750px) 45vw, 92vw',
+          loading: 'lazy',
+          alt: '',
+          class: 'kart__img'
+      }}
+    {%- else -%}
+      <span class="kart__placeholder" aria-hidden="true"></span>
+    {%- endif -%}
+  </div>
+  <div class="kart__body">
+    {%- if tag_label != blank -%}<span class="kjrn__tag">{{ tag_label | escape }}</span>{%- endif -%}
+    <h3 class="kart__title"><a class="kart__link" href="{{ article.url }}">{{ article.title | escape }}</a></h3>
+    {%- if summary != blank -%}<p class="kart__text">{{ summary }}</p>{%- endif -%}
+    <p class="kart__meta">
+      <time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%-d %B %Y' }}</time>
+    </p>
+  </div>
+</article>

@@ -1,0 +1,91 @@
+{{ 'kusho-page.css' | asset_url | stylesheet_tag }}
+{{ 'kusho-home.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign words = article.content | strip_html | split: ' ' | size
+  assign minutes = words | divided_by: 200.0 | ceil | at_least: 1
+  assign wa_number = settings.kusho_whatsapp_number | remove: '+' | remove: ' ' | remove: '-'
+  assign tag_label = article.tags | first
+  assign hero_alt = article.image.alt | default: article.title
+-%}
+
+<article class="kpost kusho-section">
+  <div class="page-width">
+    <nav class="kph__crumbs kpost__crumbs" aria-label="{{ 'kusho.product.breadcrumb' | t }}">
+      <ol>
+        <li><a href="{{ routes.root_url }}">{{ 'kusho.product.home' | t }}</a></li>
+        <li><a href="{{ blog.url }}">{{ blog.title | escape }}</a></li>
+        <li aria-current="page"><span>{{ article.title | escape }}</span></li>
+      </ol>
+    </nav>
+
+    <header class="kpost__head">
+      {%- if tag_label != blank -%}<span class="kjrn__tag">{{ tag_label | escape }}</span>{%- endif -%}
+      <h1 class="kpost__title">{{ article.title | escape }}</h1>
+      <p class="kpost__meta">
+        <time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%-d %B %Y' }}</time>
+        <span aria-hidden="true">&middot;</span>
+        {{ 'kusho.blog.minutes' | t: count: minutes }}
+      </p>
+    </header>
+
+    {%- if article.image -%}
+      <figure class="kpost__figure">
+        {{
+          article.image
+          | image_url: width: 1400
+          | image_tag:
+            widths: '700, 1000, 1400',
+            sizes: '(min-width: 990px) 900px, 100vw',
+            loading: 'eager',
+            fetchpriority: 'high',
+            alt: hero_alt,
+            class: 'kpost__img'
+        }}
+      </figure>
+    {%- endif -%}
+
+    <div class="kpost__content rte">{{ article.content }}</div>
+
+    <aside class="kpost__cta" aria-label="{{ 'kusho.blog.cta_title' | t }}">
+      <h2 class="kpost__cta-title">{{ 'kusho.blog.cta_title' | t }}</h2>
+      <p>{{ 'kusho.blog.cta_text' | t }}</p>
+      <div class="kpost__cta-actions">
+        <a class="button" href="{{ routes.collections_url }}/best-sellers">{{ 'kusho.blog.cta_button' | t }}</a>
+        {%- if wa_number != blank -%}
+          <a class="kusho-link" href="https://wa.me/{{ wa_number }}" target="_blank" rel="noopener">{{ 'kusho.product.help_cta' | t }}<span class="visually-hidden">{{ 'accessibility.link_messages.new_window' | t }}</span></a>
+        {%- endif -%}
+      </div>
+    </aside>
+
+    {%- if blog.articles.size > 1 -%}
+      <section class="kpost__more" aria-labelledby="kpost-more-{{ section.id }}">
+        <h2 class="ksec-title" id="kpost-more-{{ section.id }}">{{ 'kusho.blog.keep_reading' | t }}</h2>
+        <ul class="kjrn__grid kblog__grid" role="list">
+          {%- assign shown = 0 -%}
+          {%- for other in blog.articles -%}
+            {%- if other.id != article.id and shown < 3 -%}
+              <li>{% render 'kusho-article-card', article: other %}</li>
+              {%- assign shown = shown | plus: 1 -%}
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      </section>
+    {%- endif -%}
+  </div>
+
+  <script type="application/ld+json">
+    {{ article | structured_data }}
+  </script>
+</article>
+
+{% schema %}
+{
+  "name": "Article",
+  "tag": "div",
+  "class": "kusho-article-section",
+  "presets": [
+    { "name": "Article" }
+  ]
+}
+{% endschema %}

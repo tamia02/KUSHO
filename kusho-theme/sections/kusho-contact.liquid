@@ -1,0 +1,130 @@
+{{ 'kusho-page.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign wa_number = settings.kusho_whatsapp_number | remove: '+' | remove: ' ' | remove: '-'
+-%}
+
+<section class="kcontact kusho-section" aria-labelledby="kcontact-title-{{ section.id }}">
+  <div class="page-width kcontact__layout">
+    <div class="kcontact__cards">
+      <h2 class="visually-hidden" id="kcontact-title-{{ section.id }}">{{ 'kusho.contact.title' | t }}</h2>
+
+      {%- if section.settings.email != blank -%}
+        <a class="kcard-contact" href="mailto:{{ section.settings.email }}">
+          <span class="kcard-contact__icon">{% render 'kusho-icon', name: 'mail', size: 24 %}</span>
+          <span class="kcard-contact__label">{{ 'kusho.contact.email' | t }}</span>
+          <span class="kcard-contact__value">{{ section.settings.email }}</span>
+        </a>
+      {%- endif -%}
+
+      {%- if section.settings.phone != blank -%}
+        <a class="kcard-contact" href="tel:{{ section.settings.phone | remove: ' ' }}">
+          <span class="kcard-contact__icon">{% render 'kusho-icon', name: 'phone', size: 24 %}</span>
+          <span class="kcard-contact__label">{{ 'kusho.contact.phone' | t }}</span>
+          <span class="kcard-contact__value">{{ section.settings.phone }}</span>
+        </a>
+      {%- endif -%}
+
+      {%- if wa_number != blank -%}
+        <a class="kcard-contact" href="https://wa.me/{{ wa_number }}" target="_blank" rel="noopener">
+          <span class="kcard-contact__icon">{% render 'kusho-icon', name: 'whatsapp', size: 24 %}</span>
+          <span class="kcard-contact__label">{{ 'kusho.contact.whatsapp' | t }}</span>
+          <span class="kcard-contact__value">{{ 'kusho.contact.whatsapp_hint' | t }}</span>
+          <span class="visually-hidden">{{ 'accessibility.link_messages.new_window' | t }}</span>
+        </a>
+      {%- endif -%}
+
+      {%- if section.settings.hours != blank -%}
+        <div class="kcard-contact kcard-contact--static">
+          <span class="kcard-contact__icon">{% render 'kusho-icon', name: 'moon', size: 24 %}</span>
+          <span class="kcard-contact__label">{{ 'kusho.contact.hours' | t }}</span>
+          <span class="kcard-contact__value">{{ section.settings.hours | escape }}</span>
+        </div>
+      {%- endif -%}
+
+      {%- if settings.kusho_legal_name != blank -%}
+        <div class="kcontact__legal">
+          <h3 class="kcontact__legal-title">{{ 'kusho.contact.legal' | t }}</h3>
+          <p><strong>{{ settings.kusho_legal_name | escape }}</strong></p>
+          {%- if settings.kusho_legal_address != blank -%}<p>{{ settings.kusho_legal_address | escape | newline_to_br }}</p>{%- endif -%}
+          {%- if settings.kusho_gstin != blank -%}<p>{{ 'kusho.footer.gstin' | t }}: {{ settings.kusho_gstin | escape }}</p>{%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    <div class="kcontact__form-wrap">
+      <h2 class="kcontact__form-title">{{ section.settings.form_title | escape }}</h2>
+      {%- if section.settings.form_text != blank -%}<p class="kcontact__form-text">{{ section.settings.form_text | escape }}</p>{%- endif -%}
+
+      {%- form 'contact', id: 'KushoContactForm', class: 'kform' -%}
+        {%- if form.posted_successfully? -%}
+          <p class="kform__success" role="status" tabindex="-1">{{ 'kusho.contact.success' | t }}</p>
+        {%- endif -%}
+        {%- if form.errors -%}
+          <div class="kform__errors" role="alert">
+            <p>{{ 'kusho.contact.errors' | t }}</p>
+            <ul>
+              {%- for field in form.errors -%}
+                <li>{{ form.errors.translated_fields[field] | capitalize }} {{ form.errors.messages[field] }}</li>
+              {%- endfor -%}
+            </ul>
+          </div>
+        {%- endif -%}
+
+        <div class="kform__row">
+          <div class="kform__field">
+            <label class="kform__label" for="KContact-name">{{ 'kusho.contact.name' | t }}</label>
+            <input class="kform__input" id="KContact-name" name="contact[name]" type="text" autocomplete="name" value="{{ form.name }}" required>
+          </div>
+          <div class="kform__field">
+            <label class="kform__label" for="KContact-email">{{ 'kusho.contact.email_label' | t }}</label>
+            <input class="kform__input" id="KContact-email" name="contact[email]" type="email" autocomplete="email" value="{{ form.email }}" required>
+          </div>
+        </div>
+        <div class="kform__row">
+          <div class="kform__field">
+            <label class="kform__label" for="KContact-phone">{{ 'kusho.contact.phone_label' | t }}</label>
+            <input class="kform__input" id="KContact-phone" name="contact[phone]" type="tel" inputmode="tel" autocomplete="tel" value="{{ form.phone }}">
+          </div>
+          <div class="kform__field">
+            <label class="kform__label" for="KContact-order">{{ 'kusho.contact.order' | t }}</label>
+            <input class="kform__input" id="KContact-order" name="contact[Order number]" type="text">
+          </div>
+        </div>
+        <div class="kform__field">
+          <label class="kform__label" for="KContact-topic">{{ 'kusho.contact.topic' | t }}</label>
+          <select class="kform__input kform__select" id="KContact-topic" name="contact[Topic]">
+            <option>{{ 'kusho.contact.topic_order' | t }}</option>
+            <option>{{ 'kusho.contact.topic_product' | t }}</option>
+            <option>{{ 'kusho.contact.topic_return' | t }}</option>
+            <option>{{ 'kusho.contact.topic_gifting' | t }}</option>
+            <option>{{ 'kusho.contact.topic_other' | t }}</option>
+          </select>
+        </div>
+        <div class="kform__field">
+          <label class="kform__label" for="KContact-body">{{ 'kusho.contact.message' | t }}</label>
+          <textarea class="kform__input kform__textarea" id="KContact-body" name="contact[body]" rows="5" required>{{ form.body }}</textarea>
+        </div>
+        <button type="submit" class="button kform__submit">{{ 'kusho.contact.send' | t }}</button>
+      {%- endform -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Contact",
+  "tag": "div",
+  "class": "kusho-contact-section",
+  "settings": [
+    { "type": "text", "id": "email", "label": "Email", "default": "support@kusho.in" },
+    { "type": "text", "id": "phone", "label": "Phone", "default": "+91 7049726060" },
+    { "type": "text", "id": "hours", "label": "Support hours", "default": "Monday to Friday, 10 AM to 6 PM" },
+    { "type": "text", "id": "form_title", "label": "Form heading", "default": "Send us a message" },
+    { "type": "textarea", "id": "form_text", "label": "Form text", "default": "Tell us what you need and we will get back to you." }
+  ],
+  "presets": [
+    { "name": "Contact" }
+  ]
+}
+{% endschema %}

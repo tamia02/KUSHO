@@ -1,0 +1,37 @@
+{% comment %}
+  Kusho rating summary: ★ 4.8 (126)
+  Renders nothing when there are no reviews (guide 4 #7 and 10.5).
+
+  Reads Shopify's standard review metafields (reviews.rating, reviews.rating_count),
+  which most review apps write. If the store's review app uses different metafields,
+  pass rating and count explicitly.
+
+  Accepts:
+  - product: {Object} Product (optional if rating + count are passed)
+  - rating: {Number} Average rating (optional)
+  - count: {Number} Number of reviews (optional)
+
+  Usage:
+  {% render 'kusho-rating', product: card_product %}
+{% endcomment %}
+
+{%- liquid
+  assign review_average = rating
+  assign review_count = count
+  if review_average == blank and product.metafields.reviews.rating.value
+    assign review_average = product.metafields.reviews.rating.value.rating
+  endif
+  if review_count == blank and product.metafields.reviews.rating_count.value
+    assign review_count = product.metafields.reviews.rating_count.value
+  endif
+  assign review_count = review_count | plus: 0
+  assign review_average = review_average | plus: 0.0
+-%}
+
+{%- if review_count >= 1 and review_average > 0 -%}
+  <div class="krating" role="img" aria-label="{{ 'kusho.rating.label' | t: rating: review_average, count: review_count }}">
+    <span class="krating__star">{% render 'kusho-icon', name: 'star', size: 14 %}</span>
+    <span class="krating__value" aria-hidden="true">{{ review_average | round: 1 }}</span>
+    <span class="krating__count" aria-hidden="true">({{ review_count }})</span>
+  </div>
+{%- endif -%}

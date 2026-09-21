@@ -1,0 +1,68 @@
+{
+  "name": "Footer group",
+  "type": "footer",
+  "sections": {
+    "footer": {
+      "type": "kusho-footer",
+      "blocks": {
+        "shop": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Shop",
+            "menu": "footer-shop"
+          }
+        },
+        "help": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Help",
+            "menu": "footer-help"
+          }
+        },
+        "company": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Company",
+            "menu": "footer-company"
+          }
+        },
+        "partner": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Partner with us",
+            "menu": "footer-partner"
+          }
+        },
+        "contact": {
+          "type": "contact",
+          "settings": {
+            "heading": "Contact",
+            "email": "support@kusho.in",
+            "phone": "+91 7049726060",
+            "hours": "Mon–Fri, 10 AM – 6 PM"
+          }
+        }
+      },
+      "block_order": [
+        "shop",
+        "help",
+        "company",
+        "partner",
+        "contact"
+      ],
+      "settings": {
+        "color_scheme": "scheme-6",
+        "signup_heading": "Sleep tips and early access to sales",
+        "signup_text": "One helpful email a month. No spam.",
+        "show_whatsapp_signup": true,
+        "tagline": "The Comfort You Deserve",
+        "show_social": true,
+        "show_payment_icons": true,
+        "show_wordmark": true
+      }
+    }
+  },
+  "order": [
+    "footer"
+  ]
+}

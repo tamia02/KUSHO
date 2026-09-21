@@ -1,0 +1,165 @@
+{
+  "sections": {
+    "main": {
+      "type": "kusho-product",
+      "blocks": {
+        "o1": {
+          "type": "offer",
+          "settings": {
+            "text": "Buy one, get one free on selected products",
+            "code": "",
+            "only_tag": "badge:bogo"
+          }
+        }
+      },
+      "block_order": [
+        "o1"
+      ],
+      "settings": {
+        "show_pincode": true,
+        "delivery_days": 7,
+        "show_cod": true,
+        "low_stock_threshold": 10,
+        "trust_1": "Delivery across India",
+        "trust_2": "Cash on delivery",
+        "trust_3": "7-day returns",
+        "trust_4": "Secure payments",
+        "shipping_text": "<p>We dispatch orders within 24 hours of confirmation and deliver across India in 2–7 business days after dispatch. Cash on delivery and online payment are available depending on your pincode.</p><p>You can return a product within 7 days of delivery, in its original condition. Refunds are processed within 7 working days after we receive it and complete a quality check. Products carry a standard warranty against manufacturing defects.</p><p><a href=\"/policies/shipping-policy\">Shipping policy</a> &middot; <a href=\"/pages/return-refund\">Return and refund</a></p>",
+        "show_share": true,
+        "show_whatsapp_help": true,
+        "show_sticky_bar": true,
+        "care_text": "<p>The memory foam core is not washable. Every Kusho product comes with a removable, machine-washable cover for easy cleaning.</p>"
+      }
+    },
+    "details": {
+      "type": "kusho-product-details",
+      "blocks": {
+        "q1": {
+          "type": "question",
+          "settings": {
+            "question": "What materials are used in Kusho products?",
+            "answer": "<p>Kusho products use high-quality memory foam, latex foam, PU foam, and durable, breathable fabrics for comfort and support.</p>"
+          }
+        },
+        "q2": {
+          "type": "question",
+          "settings": {
+            "question": "Are Kusho products washable?",
+            "answer": "<p>The memory foam core is not washable, but all Kusho products come with a removable, machine-washable cover for easy cleaning and maintenance.</p>"
+          }
+        },
+        "q3": {
+          "type": "question",
+          "settings": {
+            "question": "Are Kusho pillows hypoallergenic?",
+            "answer": "<p>Yes. Kusho pillows are hypoallergenic, dust-mite resistant, and safe for people with sensitive skin or allergies.</p>"
+          }
+        },
+        "q4": {
+          "type": "question",
+          "settings": {
+            "question": "Is Cash on Delivery available on Kusho.in?",
+            "answer": "<p>COD and online payments are available on Kusho.in, depending on delivery serviceability.</p>"
+          }
+        },
+        "q5": {
+          "type": "question",
+          "settings": {
+            "question": "How long does delivery take?",
+            "answer": "<p>Standard delivery usually takes 3–7 working days. Delivery timelines may vary slightly depending on location and unforeseen circumstances.</p>"
+          }
+        },
+        "q6": {
+          "type": "question",
+          "settings": {
+            "question": "Can Kusho products be returned or replaced?",
+            "answer": "<p>Yes, Kusho products can be replaced if damaged or defective, according to the website’s return policy</p>"
+          }
+        },
+        "q7": {
+          "type": "question",
+          "settings": {
+            "question": "Do Kusho pillows help with neck and back pain?",
+            "answer": "<p>Yes. They support your neck and spine to reduce pressure and keep you comfortable while sleeping, sitting, or travelling.</p>"
+          }
+        },
+        "q8": {
+          "type": "question",
+          "settings": {
+            "question": "Are Kusho pillows suitable for all sleeping positions?",
+            "answer": "<p>Kusho pillows are thoughtfully designed to support side, back, and stomach sleepers, meeting all your comfort and support needs.</p>"
+          }
+        },
+        "q9": {
+          "type": "question",
+          "settings": {
+            "question": "How do I choose the right Kusho product for me?",
+            "answer": "<p>Pick the pillow that fits your sleeping position(side,back or stomach) and support needs(neck,back,travel). Reach out to our team anytime for assistance.</p>"
+          }
+        },
+        "q10": {
+          "type": "question",
+          "settings": {
+            "question": "Can Kusho cushions improve posture?",
+            "answer": "<p>Yes. They provide targeted support for your spine, neck, and back, promoting better posture while sitting, sleeping, or travelling.</p>"
+          }
+        },
+        "q11": {
+          "type": "question",
+          "settings": {
+            "question": "Is there a warranty on Kusho products?",
+            "answer": "<p>Yes. All Kusho products come with a standard warranty against only manufacturing defects.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5",
+        "q6",
+        "q7",
+        "q8",
+        "q9",
+        "q10",
+        "q11"
+      ],
+      "settings": {}
+    },
+    "reviews": {
+      "type": "kusho-product-reviews",
+      "settings": {}
+    },
+    "recommendations": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "best-sellers",
+        "products_to_show": 4,
+        "title": "You may also like",
+        "heading_size": "h2",
+        "columns_desktop": 4,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": false,
+        "view_all_style": "outline",
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": true,
+        "quick_add": "standard",
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
+        "padding_top": 48,
+        "padding_bottom": 64
+      }
+    }
+  },
+  "order": [
+    "main",
+    "details",
+    "reviews",
+    "recommendations"
+  ]
+}
