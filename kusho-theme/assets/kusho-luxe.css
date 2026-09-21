@@ -107,7 +107,7 @@
 .mega-menu__list .mega-menu__link--level-2 {
   font-family: var(--font-display);
   font-size: var(--fs-h4);
-  font-weight: 400;
+  font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
@@ -349,7 +349,7 @@ html[data-kusho-scrolled] .template-index .section-header .header-wrapper {
 
 .kbento__title {
   font-size: var(--fs-h3);
-  font-weight: 300;
+  font-weight: 600;
   letter-spacing: var(--track-heading);
   text-transform: uppercase;
 }
@@ -395,7 +395,7 @@ html[data-kusho-scrolled] .template-index .section-header .header-wrapper {
 .kcmp__tab-title {
   font-family: var(--font-display);
   font-size: var(--fs-h4);
-  font-weight: 400;
+  font-weight: 600;
   letter-spacing: var(--track-heading);
   text-transform: uppercase;
 }
@@ -459,7 +459,7 @@ html[data-kusho-scrolled] .template-index .section-header .header-wrapper {
 }
 
 .kstack__title {
-  font-weight: 300;
+  font-weight: 600;
   letter-spacing: var(--track-heading);
 }
 
@@ -479,7 +479,7 @@ html[data-kusho-scrolled] .template-index .section-header .header-wrapper {
 .kstack__index-item {
   font-family: var(--font-display);
   font-size: var(--fs-h4);
-  font-weight: 300;
+  font-weight: 600;
   letter-spacing: var(--track-heading);
   text-transform: uppercase;
 }
@@ -582,7 +582,7 @@ html[data-kusho-scrolled] .template-index .section-header .header-wrapper {
 
 .kfooter__wordmark {
   font-family: var(--font-display);
-  font-weight: 300;
+  font-weight: 600;
   letter-spacing: 0.3em;
   text-transform: uppercase;
 }
@@ -590,7 +590,7 @@ html[data-kusho-scrolled] .template-index .section-header .header-wrapper {
 /* ---------------------------------------------------------------- collection and search pages: Dawn parts that still showed */
 .collection-hero__title,
 .template-search__header {
-  font-weight: 300;
+  font-weight: 600;
   letter-spacing: var(--track-display);
   text-transform: uppercase;
 }

@@ -34,8 +34,8 @@
   --font-text: var(--font-body-family), 'Assistant', sans-serif;
 
   /* ---- Tracking for uppercase text ---- */
-  --track-display: 0.08em;
-  --track-heading: 0.06em;
+  --track-display: 0.1em;
+  --track-heading: 0.08em;
   --track-label: 0.18em;
   --track-button: 0.16em;
 

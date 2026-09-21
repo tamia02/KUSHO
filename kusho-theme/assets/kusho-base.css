@@ -15,7 +15,7 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* ---- Headings: Josefin Sans Light, uppercase, letter-spaced, plenty of air ---- */
+/* ---- Headings: Josefin Sans SemiBold, uppercase, letter-spaced. The hero alone is lighter. ---- */
 h1,
 h2,
 h3,
@@ -28,7 +28,7 @@ h5,
 .h4,
 .h5 {
   font-family: var(--font-display);
-  font-weight: 300;
+  font-weight: 600;
   text-transform: uppercase;
   color: rgb(var(--color-foreground));
 }
@@ -59,7 +59,7 @@ h3,
 h4,
 .h4 {
   font-size: var(--fs-h4);
-  font-weight: 400;
+  font-weight: 600;
   line-height: 1.35;
   letter-spacing: 0.05em;
 }
@@ -68,7 +68,7 @@ h4,
 .kusho-display {
   font-family: var(--font-display);
   font-size: var(--fs-display);
-  font-weight: 300;
+  font-weight: 400;
   font-style: normal;
   line-height: 1.25;
   letter-spacing: var(--track-display);

@@ -129,7 +129,7 @@ export function createTheme({ themeDir }) {
   // ---- pages -------------------------------------------------------------------------------
   const FONTS =
     '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' +
-    '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&family=Josefin+Sans:ital,wght@0,300;0,400;0,600;1,300&display=swap">';
+    '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&family=Josefin+Sans:wght@300;400;600;700&display=swap">';
 
   const PREVIEW_CSS = '<style>.cart-count-bubble{display:none}</style>';
 

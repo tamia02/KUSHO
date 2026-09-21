@@ -1,0 +1,87 @@
+{%- liquid
+  comment
+    Full-screen dark slide: a line drawing of a person resting on a contoured pillow draws itself,
+    then three short statements rise in. Third screen of the homepage sequence.
+  endcomment
+  assign words = section.settings.heading | split: ' '
+-%}
+
+<section class="kslide kslide--dark color-scheme-6" data-slide data-slide-label="{{ section.settings.dot_label | default: 'Anatomy' | escape }}" aria-labelledby="kslide-title-{{ section.id }}">
+  <div class="page-width kslide__inner kslide__inner--split">
+    <div class="kslide__art" data-slide-item style="--d: 0;">
+      <svg class="kslide__svg" viewBox="0 0 640 360" fill="none" aria-hidden="true" focusable="false">
+        <!-- bed line -->
+        <path class="kslide__line" pathLength="1" d="M20 300 H620" stroke-width="1.5"/>
+        <!-- contoured pillow -->
+        <path class="kslide__line kslide__line--pillow" pathLength="1" d="M200 300 C 200 250, 230 232, 300 232 C 340 232, 352 218, 392 222 C 440 226, 470 260, 470 300 Z" stroke-width="2"/>
+        <!-- inner contour showing the two heights -->
+        <path class="kslide__line kslide__line--inner" pathLength="1" d="M228 296 C 232 262, 262 248, 300 248 C 336 248, 350 236, 388 240 C 426 244, 446 268, 446 296" stroke-width="1.2"/>
+        <!-- head resting -->
+        <path class="kslide__line kslide__line--head" pathLength="1" d="M394 236 C 394 196, 436 176, 462 190 C 496 208, 490 254, 456 268" stroke-width="2"/>
+        <!-- neck and shoulder line -->
+        <path class="kslide__line kslide__line--body" pathLength="1" d="M456 268 C 480 280, 520 282, 540 300" stroke-width="2"/>
+        <!-- spine alignment guide -->
+        <path class="kslide__line kslide__line--spine" pathLength="1" d="M300 208 C 360 206, 430 210, 600 214" stroke-width="1" stroke-dasharray="4 6"/>
+        <!-- gold marks -->
+        <circle class="kslide__dot" cx="300" cy="208" r="4"/>
+        <circle class="kslide__dot" cx="430" cy="210" r="4"/>
+        <circle class="kslide__dot" cx="600" cy="214" r="4"/>
+      </svg>
+    </div>
+
+    <div class="kslide__copy">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="ksec-eyebrow ksec-eyebrow--light" data-slide-item style="--d: 1;">{{ section.settings.eyebrow | escape }}</p>
+      {%- endif -%}
+      <h2 class="kslide__title kslide__title--left" id="kslide-title-{{ section.id }}" data-slide-item style="--d: 2;">
+        {%- for word in words -%}
+          <span class="kslide__word" style="--i: {{ forloop.index0 }};">{{ word | escape }}</span>
+          {%- unless forloop.last %} {% endunless -%}
+        {%- endfor -%}
+      </h2>
+      {%- if section.blocks.size > 0 -%}
+        <ol class="kslide__facts" role="list">
+          {%- for block in section.blocks -%}
+            <li data-slide-item style="--d: {{ forloop.index | plus: 2 }};" {{ block.shopify_attributes }}>
+              <span class="kslide__num">0{{ forloop.index }}</span>
+              <span class="kslide__fact-title">{{ block.settings.title | escape }}</span>
+              <span class="kslide__fact-text">{{ block.settings.text | escape }}</span>
+            </li>
+          {%- endfor -%}
+        </ol>
+      {%- endif -%}
+      {%- if section.settings.button_label != blank -%}
+        <a class="kusho-link kslide__link" href="{{ section.settings.button_link | default: '#' }}" data-slide-item style="--d: 6;">{{ section.settings.button_label | escape }}</a>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Slide: anatomy",
+  "tag": "div",
+  "class": "kusho-slide-section",
+  "max_blocks": 4,
+  "settings": [
+    { "type": "text", "id": "dot_label", "label": "Dot label", "default": "Why it works" },
+    { "type": "text", "id": "eyebrow", "label": "Small heading", "default": "Anatomy of comfort" },
+    { "type": "text", "id": "heading", "label": "Headline", "default": "Built around the curve of your neck" },
+    { "type": "text", "id": "button_label", "label": "Link label", "default": "See how it works" },
+    { "type": "url", "id": "button_link", "label": "Link" }
+  ],
+  "blocks": [
+    {
+      "type": "fact",
+      "name": "Fact",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "Contoured memory foam" },
+        { "type": "text", "id": "text", "label": "Text", "default": "Moulds to your neck and shoulders, then recovers its shape." }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "Slide: anatomy", "blocks": [ { "type": "fact" }, { "type": "fact" }, { "type": "fact" } ] }
+  ]
+}
+{% endschema %}

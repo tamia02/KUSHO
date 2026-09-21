@@ -289,7 +289,7 @@
 .kpdp .kacc summary {
   font-family: var(--font-display);
   font-size: var(--fs-h4);
-  font-weight: 400;
+  font-weight: 600;
   letter-spacing: var(--track-heading);
   text-transform: uppercase;
 }
@@ -312,7 +312,7 @@
 
 .krev .krev__score {
   font-family: var(--font-display);
-  font-weight: 300;
+  font-weight: 600;
 }
 
 .krev .krev__stars,
@@ -326,12 +326,37 @@
 }
 
 /* ---------------------------------------------------------------- collection page */
+/* Compact band: title, one line, count, then the browse strip. No tall photo. */
+.kcol.kph {
+  padding-block: var(--sp-6) 0;
+}
+
+@media screen and (min-width: 990px) {
+  .kcol.kph {
+    padding-block: var(--sp-7) 0;
+  }
+}
+
+.kcol .kph__crumbs ol {
+  margin-bottom: var(--sp-4);
+}
+
 .kcol .kph__title {
   margin-bottom: 0;
+  font-size: var(--fs-h1);
+}
+
+.kcol .kph__text {
+  margin-top: var(--sp-3);
+  max-width: 64ch;
+}
+
+.kcol .ksec-eyebrow {
+  margin-bottom: var(--sp-3);
 }
 
 .kcol__count {
-  margin: var(--sp-4) 0 0;
+  margin: var(--sp-3) 0 0;
   color: var(--stone);
 }
 
@@ -346,8 +371,9 @@
 }
 
 .kcol__nav {
-  margin-top: var(--sp-7);
+  margin-top: var(--sp-5);
   border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
 }
 
 .kcol__nav-list {
@@ -367,7 +393,7 @@
 .kcol__nav-link {
   position: relative;
   display: inline-block;
-  padding: var(--sp-4) var(--sp-5) var(--sp-4) 0;
+  padding: var(--sp-3) var(--sp-5) var(--sp-3) 0;
   margin-right: var(--sp-4);
   color: var(--stone);
   text-decoration: none;
@@ -400,13 +426,13 @@
 
 .facets-container {
   border-bottom: 1px solid var(--line);
-  padding-bottom: var(--sp-3);
-  margin-bottom: var(--sp-6);
+  padding-bottom: var(--sp-2);
+  margin-bottom: var(--sp-5);
 }
 
-/* Cards: 4:5 photo on cream */
+/* Cards: the product photos are square, so show them whole */
 .kcard__media {
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 1 / 1;
 }
 
 .kcard__img {

@@ -29,6 +29,26 @@
   }
 }
 
+/* Title words rise one after another inside a revealing block */
+.kword {
+  display: inline-block;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html[data-kusho-motion] [data-reveal-pending]:not(.is-in) .kword {
+    opacity: 0;
+    transform: translateY(0.5em);
+  }
+
+  html[data-kusho-motion] [data-reveal-pending].is-in .kword {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity 600ms var(--ease-foam) calc(var(--w, 0) * 50ms + 100ms),
+      transform 800ms var(--ease-foam) calc(var(--w, 0) * 50ms + 100ms);
+  }
+}
+
 /* ---------------------------------------------------------------- scroll progress */
 .kusho-progress {
   display: block;

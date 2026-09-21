@@ -55,6 +55,23 @@
       })
     );
 
+    // Section titles rise in word by word once their block reveals
+    scope.querySelectorAll('.ksec-title:not([data-words])').forEach((title) => {
+      if (title.children.length) return; // leave titles with markup alone
+      const words = title.textContent.trim().split(/\s+/);
+      if (words.length < 2 || words.length > 12) return;
+      title.setAttribute('data-words', '');
+      title.textContent = '';
+      words.forEach((word, i) => {
+        const span = document.createElement('span');
+        span.className = 'kword';
+        span.style.setProperty('--w', String(i));
+        span.textContent = word;
+        title.appendChild(span);
+        if (i < words.length - 1) title.appendChild(document.createTextNode(' '));
+      });
+    });
+
     targets.forEach((el) => {
       if (el.classList.contains('is-in') || el.hasAttribute('data-reveal-pending')) return;
       const rect = el.getBoundingClientRect();

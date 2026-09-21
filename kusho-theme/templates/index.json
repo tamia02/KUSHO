@@ -475,10 +475,97 @@
         "show_search": false,
         "show_whatsapp": true
       }
+    },
+    "slide-product": {
+      "type": "kusho-slide-product",
+      "blocks": {
+        "c1": {
+          "type": "chip",
+          "settings": {
+            "label": "Pillows",
+            "link": "/collections/pillows"
+          }
+        },
+        "c2": {
+          "type": "chip",
+          "settings": {
+            "label": "Cushions",
+            "link": "/collections/cushions"
+          }
+        },
+        "c3": {
+          "type": "chip",
+          "settings": {
+            "label": "Combos",
+            "link": "/collections/combos"
+          }
+        },
+        "c4": {
+          "type": "chip",
+          "settings": {
+            "label": "Travel",
+            "link": "/collections/travel"
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3",
+        "c4"
+      ],
+      "settings": {
+        "color_scheme": "scheme-2",
+        "dot_label": "The pillow",
+        "heading": "Contoured to follow the curve of your neck",
+        "product": "kusho-dreamer-counter-pillow",
+        "image_index": 0,
+        "button_label": "Shop this pillow"
+      }
+    },
+    "slide-dark": {
+      "type": "kusho-slide-dark",
+      "blocks": {
+        "f1": {
+          "type": "fact",
+          "settings": {
+            "title": "Contoured memory foam",
+            "text": "Moulds to your neck and shoulders, then recovers its shape every night."
+          }
+        },
+        "f2": {
+          "type": "fact",
+          "settings": {
+            "title": "Two heights, one pillow",
+            "text": "A higher and a lower edge, so side and back sleepers both stay aligned."
+          }
+        },
+        "f3": {
+          "type": "fact",
+          "settings": {
+            "title": "Breathable bamboo cover",
+            "text": "Removable and machine-washable, cool against the skin."
+          }
+        }
+      },
+      "block_order": [
+        "f1",
+        "f2",
+        "f3"
+      ],
+      "settings": {
+        "dot_label": "Why it works",
+        "eyebrow": "Anatomy of comfort",
+        "heading": "Built around the curve of your neck",
+        "button_label": "See the pillows",
+        "button_link": "/collections/pillows"
+      }
     }
   },
   "order": [
     "hero",
+    "slide-product",
+    "slide-dark",
     "ribbon",
     "need",
     "bestsellers",

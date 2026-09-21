@@ -1,0 +1,410 @@
+/* ==========================================================================
+   Homepage opening sequence: full-screen slides that snap, with dot navigation.
+   Entrances play when a slide gets .is-active (kusho-slides.js). Everything is visible and static
+   without motion, and there is no snapping then either.
+   ========================================================================== */
+
+/* Snap only when the script has confirmed motion is allowed */
+html.kusho-snap {
+  scroll-snap-type: y proximity;
+}
+
+html.kusho-snap .kusho-hero-section .khero,
+html.kusho-snap .kslide {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+.kslide {
+  position: relative;
+  display: grid;
+  align-items: center;
+  min-height: 100svh;
+  overflow: hidden;
+}
+
+.kslide__inner {
+  display: grid;
+  justify-items: center;
+  gap: var(--sp-5);
+  width: 100%;
+  padding-block: var(--sp-8);
+  text-align: center;
+}
+
+.kslide__inner--split {
+  justify-items: stretch;
+  text-align: left;
+}
+
+@media screen and (min-width: 990px) {
+  .kslide__inner--split {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    align-items: center;
+    gap: var(--sp-9);
+  }
+}
+
+/* ---- product slide ---- */
+.kslide__chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--sp-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.kslide__chip {
+  display: inline-block;
+  padding: 0.7rem 1.4rem;
+  border: 1px solid var(--line);
+  color: var(--stone);
+  font-family: var(--font-ui);
+  font-size: var(--fs-label);
+  letter-spacing: var(--track-label);
+  text-decoration: none;
+  text-transform: uppercase;
+  transition:
+    color var(--dur-base) var(--ease-foam),
+    border-color var(--dur-base) var(--ease-foam),
+    background-color var(--dur-base) var(--ease-foam);
+}
+
+.kslide__chip.is-current,
+.kslide__chip:hover {
+  border-color: var(--kusho-green);
+  background: var(--kusho-green);
+  color: var(--white);
+}
+
+.kslide__title {
+  max-width: 22ch;
+  margin: 0;
+  font-size: var(--fs-h1);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: var(--track-heading);
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.kslide__title--left {
+  max-width: 18ch;
+  color: var(--white);
+}
+
+.kslide__word {
+  display: inline-block;
+}
+
+.kslide__figure {
+  width: min(100%, 76rem);
+  aspect-ratio: 7 / 4;
+}
+
+.kslide__img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.kslide__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-3) var(--sp-5);
+}
+
+.kslide__name {
+  font-family: var(--font-ui);
+  font-size: var(--fs-small);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.kslide__price {
+  font-family: var(--font-ui);
+  font-size: var(--fs-body);
+}
+
+.kslide__was {
+  margin-right: var(--sp-2);
+  color: var(--stone);
+}
+
+/* ---- dark anatomy slide ---- */
+.kslide--dark {
+  background: #0c1410;
+  color: var(--white);
+}
+
+.kslide__art {
+  width: 100%;
+}
+
+.kslide__svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.kslide__line {
+  stroke: rgba(255, 255, 255, 0.85);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+
+.kslide__line--spine {
+  stroke: var(--kusho-gold);
+}
+
+.kslide__dot {
+  fill: var(--kusho-gold);
+  opacity: 0;
+}
+
+.kslide__facts {
+  display: grid;
+  gap: var(--sp-4);
+  margin: var(--sp-6) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.kslide__facts li {
+  display: grid;
+  grid-template-columns: 3.2rem minmax(0, 1fr);
+  gap: 0 var(--sp-3);
+  padding-top: var(--sp-4);
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.kslide__num {
+  grid-row: span 2;
+  color: var(--kusho-gold);
+  font-family: var(--font-ui);
+  font-size: var(--fs-label);
+  letter-spacing: var(--track-label);
+  padding-top: 0.3rem;
+}
+
+.kslide__fact-title {
+  font-family: var(--font-display);
+  font-size: var(--fs-h4);
+  font-weight: 600;
+  letter-spacing: var(--track-heading);
+  text-transform: uppercase;
+}
+
+.kslide__fact-text {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: var(--fs-small);
+  line-height: 1.6;
+}
+
+.kslide__link {
+  margin-top: var(--sp-6);
+  color: var(--white);
+}
+
+/* ---- dots ---- */
+.kdots {
+  position: fixed;
+  z-index: 30;
+  top: 50%;
+  left: var(--sp-4);
+  transform: translateY(-50%);
+  transition: opacity var(--dur-base) var(--ease-foam);
+}
+
+.kdots.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media screen and (max-width: 749px) {
+  .kdots {
+    display: none;
+  }
+}
+
+.kdots ol {
+  display: grid;
+  gap: var(--sp-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.kdots__dot {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  color: inherit;
+  text-decoration: none;
+}
+
+.kdots__mark {
+  display: block;
+  width: 0.8rem;
+  height: 0.8rem;
+  border: 1px solid currentcolor;
+  border-radius: 50%;
+  transition:
+    transform var(--dur-base) var(--ease-rebound),
+    background-color var(--dur-base) var(--ease-foam);
+}
+
+.kdots__dot.is-current .kdots__mark {
+  background: currentcolor;
+  transform: scale(1.3);
+}
+
+.kdots__label {
+  font-family: var(--font-ui);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateX(-0.4rem);
+  transition:
+    opacity var(--dur-base) var(--ease-foam),
+    transform var(--dur-base) var(--ease-foam);
+}
+
+.kdots__dot:hover .kdots__label,
+.kdots__dot:focus-visible .kdots__label {
+  opacity: 1;
+  transform: none;
+}
+
+/* Dots take the colour of the slide behind them: light on dark slides */
+.kdots {
+  color: var(--ink);
+  mix-blend-mode: difference;
+}
+
+.kdots__dot {
+  color: var(--white);
+}
+
+/* ==========================================================================
+   Entrances (motion on only)
+   ========================================================================== */
+@media (prefers-reduced-motion: no-preference) {
+  html[data-kusho-motion] .kslide [data-slide-item] {
+    opacity: 0;
+    transform: translateY(1.6rem);
+    transition:
+      opacity var(--dur-story) var(--ease-foam),
+      transform var(--dur-story) var(--ease-foam);
+    transition-delay: calc(var(--d, 0) * 120ms);
+  }
+
+  html[data-kusho-motion] .kslide.is-active [data-slide-item] {
+    opacity: 1;
+    transform: none;
+  }
+
+  html[data-kusho-motion] .kslide__word {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(0.6em);
+    transition:
+      opacity 700ms var(--ease-foam),
+      transform 900ms var(--ease-foam);
+    transition-delay: calc(var(--i, 0) * 60ms + 200ms);
+  }
+
+  html[data-kusho-motion] .kslide.is-active .kslide__word {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* The product photo settles in with a slight scale */
+  html[data-kusho-motion] .kslide__figure {
+    transform: translateY(2rem) scale(0.96);
+  }
+
+  html[data-kusho-motion] .kslide.is-active .kslide__figure {
+    transform: none;
+  }
+
+  /* Line drawing: each path draws in turn, the spine guide last, then the gold marks pop */
+  html[data-kusho-motion] .kslide__line {
+    transition: stroke-dashoffset 1.4s var(--ease-foam);
+  }
+
+  html[data-kusho-motion] .kslide.is-active .kslide__line {
+    stroke-dashoffset: 0;
+  }
+
+  html[data-kusho-motion] .kslide.is-active .kslide__line--pillow {
+    transition-delay: 300ms;
+  }
+
+  html[data-kusho-motion] .kslide.is-active .kslide__line--inner {
+    transition-delay: 800ms;
+  }
+
+  html[data-kusho-motion] .kslide.is-active .kslide__line--head {
+    transition-delay: 1100ms;
+  }
+
+  html[data-kusho-motion] .kslide.is-active .kslide__line--body {
+    transition-delay: 1500ms;
+  }
+
+  html[data-kusho-motion] .kslide.is-active .kslide__line--spine {
+    transition-delay: 2000ms;
+  }
+
+  html[data-kusho-motion] .kslide__dot {
+    transform-box: fill-box;
+    transform-origin: center;
+    transform: scale(0);
+    transition:
+      opacity 400ms var(--ease-foam),
+      transform 600ms var(--ease-rebound);
+  }
+
+  html[data-kusho-motion] .kslide.is-active .kslide__dot {
+    opacity: 1;
+    transform: scale(1);
+    transition-delay: 2600ms;
+  }
+
+  html[data-kusho-motion] .kslide.is-active .kslide__dot:nth-of-type(2) {
+    transition-delay: 2750ms;
+  }
+
+  html[data-kusho-motion] .kslide.is-active .kslide__dot:nth-of-type(3) {
+    transition-delay: 2900ms;
+  }
+}
+
+/* Without motion the drawing is complete */
+@media (prefers-reduced-motion: reduce) {
+  .kslide__line {
+    stroke-dashoffset: 0;
+  }
+
+  .kslide__dot {
+    opacity: 1;
+  }
+}
+
+html:not([data-kusho-motion]) .kslide__line {
+  stroke-dashoffset: 0;
+}
+
+html:not([data-kusho-motion]) .kslide__dot {
+  opacity: 1;
+}
