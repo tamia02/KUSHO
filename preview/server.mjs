@@ -155,6 +155,11 @@ const server = http.createServer(async (req, res) => {
   try {
     const { pathname } = new URL(req.url, 'http://localhost');
 
+    if (pathname === '/__search-index.json') {
+      const items = mock.products.map((p) => ({ title: p.title, handle: p.handle, url: '/products/' + p.handle, type: p.type || '', tags: (p.tags || []).join(' '), price: p.price / 100, compare: (p.compare_at_price || 0) / 100, image: p.featured_image && p.featured_image.src ? p.featured_image.src + '?width=600&ar=1' : '' }));
+      return send(res, 200, JSON.stringify(items), 'application/json');
+    }
+
     if (pathname.startsWith('/assets/')) {
       const file = path.join(themeDir, 'assets', path.basename(pathname));
       if (!fs.existsSync(file)) return send(res, 404, 'Not found', 'text/plain');

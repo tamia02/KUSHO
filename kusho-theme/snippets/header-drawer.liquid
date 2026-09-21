@@ -139,7 +139,18 @@
               {%- endfor -%}
             </ul>
           </nav>
-          <div class="menu-drawer__utility-links">
+          <div class="menu-drawer__help">
+              <p class="kusho-label menu-drawer__help-title">{{ 'kusho.page.help_title' | t }}</p>
+              {%- if settings.kusho_whatsapp_number != blank -%}
+                {%- assign drawer_wa = settings.kusho_whatsapp_number | remove: '+' | remove: ' ' | remove: '-' -%}
+                <a class="menu-drawer__help-link" href="https://wa.me/{{ drawer_wa }}" target="_blank" rel="noopener">{% render 'kusho-icon', name: 'whatsapp', size: 18 %}{{ 'kusho.page.whatsapp' | t }}</a>
+              {%- endif -%}
+              {%- if settings.theme_support_email != blank -%}
+                <a class="menu-drawer__help-link" href="mailto:{{ settings.theme_support_email }}">{% render 'kusho-icon', name: 'mail', size: 18 %}{{ settings.theme_support_email }}</a>
+              {%- endif -%}
+              <a class="menu-drawer__help-link" href="/pages/return-refund">{% render 'kusho-icon', name: 'return', size: 18 %}7-day returns · Cash on delivery</a>
+            </div>
+            <div class="menu-drawer__utility-links">
             {%- if show_country_selector or show_language_selector -%}
               <div class="menu-drawer__localization header-localization">
                 {%- if show_country_selector -%}

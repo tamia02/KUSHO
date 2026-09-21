@@ -807,3 +807,134 @@ html[data-kusho-scrolled] .template-index .section-header .header-wrapper {
 .template-product .kusho-whatsapp .kusho-whatsapp__label {
   display: none;
 }
+
+/* ---------------------------------------------------------------- mobile menu drawer: labels, hairlines, socials in a row */
+.menu-drawer__inner-container {
+  background: var(--white);
+}
+
+.menu-drawer__navigation {
+  padding: var(--sp-3) 0;
+}
+
+.menu-drawer__menu-item {
+  padding: var(--sp-4) var(--sp-5);
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: var(--track-heading);
+  text-transform: uppercase;
+}
+
+.menu-drawer__menu-item--active,
+.menu-drawer__menu-item:hover {
+  color: var(--kusho-green);
+  background: transparent;
+}
+
+.menu-drawer__submenu .menu-drawer__menu-item {
+  font-family: var(--font-ui);
+  font-size: var(--fs-small);
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: none;
+}
+
+.menu-drawer__close-button {
+  font-family: var(--font-ui);
+  font-size: var(--fs-label);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+}
+
+.menu-drawer__utility-links {
+  padding: var(--sp-5);
+  background: var(--foam);
+}
+
+.menu-drawer__account {
+  font-family: var(--font-ui);
+  font-size: var(--fs-label);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+}
+
+.menu-drawer .list-social {
+  display: flex;
+  flex-direction: row;
+  gap: var(--sp-2);
+  margin-top: var(--sp-3);
+}
+
+.menu-drawer .list-social__item {
+  padding: 0;
+}
+
+.menu-drawer .list-social__link {
+  padding: var(--sp-2);
+}
+
+/* ---------------------------------------------------------------- empty cart */
+.cart__warnings {
+  padding: var(--sp-9) 0 var(--sp-7);
+  text-align: center;
+}
+
+.cart__empty-text {
+  margin: 0 0 var(--sp-5);
+  font-size: var(--fs-h2);
+}
+
+.cart__login-title {
+  margin: var(--sp-7) 0 var(--sp-2);
+  font-size: var(--fs-h4);
+}
+
+.cart__login-paragraph {
+  color: var(--stone);
+}
+
+.cart__login-paragraph a {
+  color: var(--kusho-green);
+}
+
+.is-empty .cart__footer,
+.is-empty .cart__items {
+  display: none;
+}
+
+/* ---------------------------------------------------------------- product card badges sit low: the product photos carry text at the top */
+.kcard__badges {
+  top: auto;
+  bottom: var(--sp-2);
+  left: var(--sp-2);
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.menu-drawer__help {
+  display: grid;
+  gap: var(--sp-3);
+  padding: var(--sp-5);
+  border-top: 1px solid var(--line);
+}
+
+.menu-drawer__help-title {
+  margin: 0 0 var(--sp-1);
+  color: var(--stone);
+}
+
+.menu-drawer__help-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-3);
+  color: var(--ink);
+  font-family: var(--font-ui);
+  font-size: var(--fs-small);
+  text-decoration: none;
+}
+
+.menu-drawer__help-link .kusho-icon {
+  color: var(--kusho-green);
+}

@@ -8,6 +8,7 @@ import { spawn } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { staticSearchMarkup } from './lib/static-search.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const dist = path.join(here, 'dist');
@@ -96,6 +97,13 @@ write('_mobile/index.html', `<!doctype html><meta charset="utf-8"><meta name="vi
 <p style="margin:0 0 12px;color:#5e6a64">Mobile view (390px) · <a id="d" href="/">open desktop view</a></p>
 <iframe id="f" style="width:390px;height:844px;border:0;border-radius:28px;background:#fff;box-shadow:0 12px 40px rgba(22,33,28,.18)"></iframe>
 <script>var p=new URLSearchParams(location.search).get('path')||'/';document.getElementById('f').src=p;document.getElementById('d').href=p;</script></body>`);
+
+// ---- static search: product index + a script on the search page, so /search?q= works without a server ----
+const idx = await (await fetch(BASE + '/__search-index.json')).json().catch(() => null);
+if (idx && pages.has('/search')) {
+  write('search-index.json', JSON.stringify(idx));
+  write('search/index.html', pages.get('/search').replace('</main>', staticSearchMarkup + '</main>'));
+}
 
 // ---- write assets ----
 let bytes = 0;

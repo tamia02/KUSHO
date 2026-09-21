@@ -56,9 +56,22 @@
         if (entry.isIntersecting) setActive(all.indexOf(entry.target));
       });
     },
-    { threshold: 0.55 }
+    { threshold: [0.3, 0.6] }
   );
   all.forEach((el) => io.observe(el));
+
+  // Safety net: a slide taller than the screen may never reach the ratio above, so also activate the slide whose
+  // top half is on screen as the page scrolls.
+  let raf = 0;
+  window.addEventListener('scroll', () => {
+    if (raf) return;
+    raf = window.requestAnimationFrame(() => {
+      raf = 0;
+      const mid = window.innerHeight * 0.5;
+      const i = all.findIndex((el) => { const r = el.getBoundingClientRect(); return r.top <= mid && r.bottom >= mid; });
+      if (i >= 0 && !all[i].classList.contains('is-active')) setActive(i);
+    });
+  }, { passive: true });
 
   // Dots only while the sequence is on screen
   const last = slides[slides.length - 1];
