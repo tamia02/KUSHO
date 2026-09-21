@@ -45,10 +45,10 @@ Add to cart and the cart drawer (buttons show a "preview only" message), collect
 
 ## Host it for the client (no Shopify needed)
 
- renders every page to static files in  (about 20 MB with the videos). The repo has a
- that runs this build, so on Vercel just import the GitHub repo and deploy: every page, the phone
-frame at , the videos and the 404 page all work. Search and add-to-cart are display only, as in the
-local preview. Any static host works the same way (upload the  folder).
+`npm run export` renders every page to static files in `dist/` (about 20 MB with the videos). The repo has a
+`vercel.json` that runs this build, so on Vercel just import the GitHub repo and deploy: every page, the phone
+frame at `/_mobile`, the videos and the 404 page all work. Search and add-to-cart are display only, as in the
+local preview. Any static host works the same way (upload the `dist` folder).
 
 ## Then connect the theme to Shopify
 
