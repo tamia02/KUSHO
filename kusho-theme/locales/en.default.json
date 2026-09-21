@@ -711,6 +711,13 @@
         "other": "{{ count }} products"
       },
       "browse": "Browse collections"
+    },
+    "popup": {
+      "phone": "Phone number",
+      "email": "Email",
+      "thanks": "Thank you",
+      "use_code": "Use this code at checkout",
+      "copy": "Copy"
     }
   }
 }

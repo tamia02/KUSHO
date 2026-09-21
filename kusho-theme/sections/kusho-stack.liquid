@@ -23,7 +23,7 @@
         {%- assign default_photo = 'kusho-photo-' | append: block.settings.scene | append: '.webp' -%}
         <li class="kstack__card" data-card style="--n: {{ forloop.index0 }};" {{ block.shopify_attributes }}>
           <div class="kstack__inner">
-            <span class="kstack__media">
+            {%- if block.settings.link != blank -%}<a class="kstack__media" href="{{ block.settings.link }}" tabindex="-1" aria-hidden="true">{%- else -%}<span class="kstack__media">{%- endif -%}
               {%- if block.settings.image != blank -%}
                 {{ block.settings.image | image_url: width: 1400 | image_tag: loading: 'lazy', widths: '700, 1000, 1400', sizes: '(min-width: 990px) 56vw, 100vw', alt: block.settings.image_alt, class: 'kstack__img' }}
               {%- else -%}
@@ -47,7 +47,7 @@
                 {%- assign clip = 'kusho-video-' | append: clip_name | append: '.mp4' -%}
                 <video class="kusho-video kstack__video" muted loop playsinline preload="none" aria-hidden="true"><source src="{{ clip | asset_url }}" type="video/mp4"></video>
               {%- endif -%}
-            </span>
+            {%- if block.settings.link != blank -%}</a>{%- else -%}</span>{%- endif -%}
             <span class="kstack__shade" aria-hidden="true"></span>
             <div class="kstack__body">
               <span class="kstack__num" aria-hidden="true">0{{ forloop.index }}</span>

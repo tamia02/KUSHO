@@ -1,0 +1,115 @@
+{% comment %}
+  Welcome offer popup (like the sign-up popup on kusho.in). Opens once after a delay or when the visitor
+  reaches the bottom of the first screen, remembers a dismissal for N days, and never shows on the cart,
+  checkout or policy pages. Submits Shopify's customer (newsletter) form: email is required by Shopify,
+  phone is stored on the customer as a note. For a phone-only / SMS capture use Shopify Forms or Klaviyo
+  and turn this section off.
+  On success the offer code is shown. The code itself must exist as a discount in Shopify admin.
+{% endcomment %}
+{{ 'kusho-popup.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'kusho-popup.js' | asset_url }}" defer="defer"></script>
+
+{%- liquid
+  assign skip = false
+  if template.name == 'cart' or request.page_type == 'policy' or template.name == 'password'
+    assign skip = true
+  endif
+  assign photo = section.settings.image
+  assign scene_file = 'kusho-photo-' | append: section.settings.scene | append: '.webp'
+-%}
+
+{%- if section.settings.enabled and skip == false -%}
+  <kusho-popup
+    class="kpop"
+    data-delay="{{ section.settings.delay | default: 6 }}"
+    data-days="{{ section.settings.days | default: 7 }}"
+    data-key="kusho:popup:{{ section.settings.offer_code | default: 'welcome' | handleize }}"
+    hidden
+  >
+    <div class="kpop__backdrop" data-popup-close></div>
+    <div class="kpop__dialog" role="dialog" aria-modal="true" aria-labelledby="kpop-title-{{ section.id }}">
+      <button type="button" class="kpop__close" data-popup-close aria-label="{{ 'accessibility.close' | t }}">{% render 'kusho-icon', name: 'x', size: 20 %}</button>
+
+      <div class="kpop__media" aria-hidden="true">
+        {%- if photo != blank -%}
+          {{ photo | image_url: width: 900 | image_tag: loading: 'lazy', widths: '450, 900', sizes: '420px', alt: '' }}
+        {%- else -%}
+          <img src="{{ scene_file | asset_url }}" alt="" width="900" height="900" loading="lazy">
+        {%- endif -%}
+        {%- if section.settings.badge != blank -%}<span class="kpop__badge">{{ section.settings.badge | escape }}</span>{%- endif -%}
+      </div>
+
+      <div class="kpop__body">
+        <div class="kpop__form" data-popup-form>
+          {%- if section.settings.eyebrow != blank -%}<p class="ksec-eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+          <h2 class="kpop__title" id="kpop-title-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
+          {%- if section.settings.text != blank -%}<p class="kpop__text">{{ section.settings.text | escape }}</p>{%- endif -%}
+
+          {%- form 'customer', id: 'kusho-popup-form', class: 'kpop__fields' -%}
+            <input type="hidden" name="contact[tags]" value="newsletter, popup">
+            {%- if section.settings.show_phone -%}
+              <label class="kpop__label" for="kpop-phone-{{ section.id }}">{{ 'kusho.popup.phone' | t }}</label>
+              <input class="kpop__input" id="kpop-phone-{{ section.id }}" type="tel" name="contact[note][Phone]" inputmode="tel" autocomplete="tel" placeholder="+91" pattern="[0-9+ ]{10,14}">
+            {%- endif -%}
+            <label class="kpop__label" for="kpop-email-{{ section.id }}">{{ 'kusho.popup.email' | t }}</label>
+            <input class="kpop__input" id="kpop-email-{{ section.id }}" type="email" name="contact[email]" autocomplete="email" required placeholder="you@example.com">
+            <button type="submit" class="button kpop__submit">{{ section.settings.button_label | escape }}</button>
+            <p class="kpop__fine">{{ section.settings.fine_print | escape }}</p>
+          {%- endform -%}
+        </div>
+
+        <div class="kpop__success" data-popup-success hidden>
+          <p class="ksec-eyebrow">{{ 'kusho.popup.thanks' | t }}</p>
+          <h2 class="kpop__title">{{ section.settings.success_heading | escape }}</h2>
+          {%- if section.settings.offer_code != blank -%}
+            <p class="kpop__text">{{ 'kusho.popup.use_code' | t }}</p>
+            <button type="button" class="kpop__code" data-popup-copy data-code="{{ section.settings.offer_code | escape }}">
+              <span>{{ section.settings.offer_code | escape }}</span>
+              <span class="kusho-label" data-copy-label>{{ 'kusho.popup.copy' | t }}</span>
+            </button>
+          {%- endif -%}
+          <a class="button kpop__submit" href="{{ section.settings.success_link | default: '/collections/all' }}">{{ section.settings.success_button | escape }}</a>
+        </div>
+      </div>
+    </div>
+  </kusho-popup>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Welcome offer popup",
+  "tag": "div",
+  "class": "kusho-popup-section",
+  "settings": [
+    { "type": "checkbox", "id": "enabled", "label": "Show the popup", "default": true },
+    { "type": "range", "id": "delay", "label": "Open after (seconds)", "min": 2, "max": 30, "step": 1, "default": 6 },
+    { "type": "range", "id": "days", "label": "Do not show again for (days)", "min": 1, "max": 30, "step": 1, "default": 7 },
+    { "type": "header", "content": "Offer" },
+    { "type": "text", "id": "badge", "label": "Corner badge", "default": "10% off" },
+    { "type": "text", "id": "eyebrow", "label": "Small heading", "default": "Festive welcome" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "10% off your first order" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Join the Kusho list for the code, early access to festive sales, and sleep tips once a month." },
+    { "type": "text", "id": "offer_code", "label": "Discount code", "default": "WELCOME10", "info": "Create this code under Discounts in Shopify admin." },
+    { "type": "checkbox", "id": "show_phone", "label": "Ask for a phone number too", "default": true, "info": "Saved on the customer as a note. Email is always required by Shopify." },
+    { "type": "text", "id": "button_label", "label": "Button", "default": "Get my code" },
+    { "type": "text", "id": "fine_print", "label": "Fine print", "default": "One code per customer. Unsubscribe any time." },
+    { "type": "header", "content": "After signing up" },
+    { "type": "text", "id": "success_heading", "label": "Heading", "default": "Your code is ready" },
+    { "type": "text", "id": "success_button", "label": "Button", "default": "Shop now" },
+    { "type": "url", "id": "success_link", "label": "Button link" },
+    { "type": "header", "content": "Photo" },
+    {
+      "type": "select",
+      "id": "scene",
+      "label": "Built-in photo",
+      "options": [
+        { "value": "gift", "label": "Gifting" },
+        { "value": "sleep-2", "label": "Sleeping" },
+        { "value": "travel-2", "label": "Travelling" }
+      ],
+      "default": "gift"
+    },
+    { "type": "image_picker", "id": "image", "label": "Your own photo (optional)" }
+  ]
+}
+{% endschema %}

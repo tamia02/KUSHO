@@ -100,8 +100,19 @@ html.kusho-snap .kslide {
 }
 
 .kslide__figure {
+  display: block;
   width: min(100%, 76rem);
   aspect-ratio: 7 / 4;
+  cursor: pointer;
+}
+
+.kslide__name {
+  color: inherit;
+  text-decoration: none;
+}
+
+.kslide__name:hover {
+  color: var(--kusho-green);
 }
 
 .kslide__img {

@@ -60,9 +60,133 @@
         "show_payment_icons": true,
         "show_wordmark": true
       }
+    },
+    "popup": {
+      "type": "kusho-popup",
+      "settings": {
+        "enabled": true,
+        "delay": 6,
+        "days": 7,
+        "badge": "10% off",
+        "eyebrow": "Festive welcome",
+        "heading": "10% off your first order",
+        "text": "Join the Kusho list for the code, early access to festive sales, and sleep tips once a month.",
+        "offer_code": "WELCOME10",
+        "show_phone": true,
+        "button_label": "Get my code",
+        "fine_print": "One code per customer. Unsubscribe any time.",
+        "success_heading": "Your code is ready",
+        "success_button": "Shop now",
+        "success_link": "/collections/all",
+        "scene": "gift"
+      }
+    },
+    "proof": {
+      "type": "kusho-proof",
+      "blocks": {
+        "p1": {
+          "type": "review",
+          "settings": {
+            "name": "Gagan Singh",
+            "rating": 5,
+            "verified": true,
+            "quote": "A drive of around 600 km never felt so easy.",
+            "product": "kusho-car-seat-cushion"
+          }
+        },
+        "p2": {
+          "type": "review",
+          "settings": {
+            "name": "Sumran Talreja",
+            "rating": 5,
+            "verified": true,
+            "quote": "The pillow gives very good support to my neck and head.",
+            "product": "kusho-cervical-butterfly-pillow"
+          }
+        },
+        "p3": {
+          "type": "review",
+          "settings": {
+            "name": "Prachi Lulla",
+            "rating": 5,
+            "verified": true,
+            "quote": "Best quality fabric and very comfortable cushion.",
+            "product": "kusho-tailbone-pro-cushion"
+          }
+        },
+        "p4": {
+          "type": "review",
+          "settings": {
+            "name": "Himanshu Gupta",
+            "rating": 5,
+            "verified": true,
+            "quote": "Very nice and comfy pillow, my daughter loves it.",
+            "product": "kusho-cuddle-sleep-pillow"
+          }
+        },
+        "p5": {
+          "type": "review",
+          "settings": {
+            "name": "Ashish Agrawal",
+            "rating": 5,
+            "verified": false,
+            "quote": "Genuinely impressed with the build quality of the cushion.",
+            "product": "kusho-tailbone-pro-cushion"
+          }
+        },
+        "p6": {
+          "type": "review",
+          "settings": {
+            "name": "Murli Sharma",
+            "rating": 5,
+            "verified": false,
+            "quote": "Amazing car neck cushion and the delivery was on time.",
+            "product": "kusho-car-neck-support-broad"
+          }
+        },
+        "p7": {
+          "type": "review",
+          "settings": {
+            "name": "Sorabh",
+            "rating": 5,
+            "verified": false,
+            "quote": "The long time pain has gone now. Thanks to Kusho.",
+            "product": "kusho-cervical-butterfly-pillow"
+          }
+        },
+        "p8": {
+          "type": "review",
+          "settings": {
+            "name": "Akash Dhaman",
+            "rating": 5,
+            "verified": false,
+            "quote": "An excellent choice for comfort and neck pain relief.",
+            "product": "kusho-travel-neck-pillow"
+          }
+        }
+      },
+      "block_order": [
+        "p1",
+        "p2",
+        "p3",
+        "p4",
+        "p5",
+        "p6",
+        "p7",
+        "p8"
+      ],
+      "settings": {
+        "enabled": true,
+        "first_delay": 9,
+        "show_for": 6,
+        "gap": 25,
+        "max_per_visit": 4
+      }
     }
   },
   "order": [
-    "footer"
+    "footer",
+    "popup",
+    "proof"
   ]
 }

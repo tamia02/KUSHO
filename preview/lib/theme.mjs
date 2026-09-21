@@ -44,6 +44,7 @@ export function createTheme({ themeDir }) {
     content_for_header: `<script>
       window.Shopify = { designMode: false, shop: 'kusho-preview.myshopify.com', locale: 'en', currency: { active: 'INR', rate: '1.0' }, country: 'IN', theme: { name: 'Kusho', id: 1 } };
       window.ShopifyAnalytics = { lib: { track() {}, page() {} } };
+      window.KushoPreview = true;
     </script>`,
   };
 

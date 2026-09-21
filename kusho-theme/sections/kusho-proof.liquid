@@ -1,0 +1,70 @@
+{% comment %}
+  Small notification in the corner that cycles through REAL customer reviews: stars, name, verified badge,
+  a line of the review and the product. Each block is one review (the defaults are copied from the store's
+  Judge.me reviews). It appears after a delay, stays a few seconds, waits, shows the next one; closing it
+  stops it for the session. Nothing here is invented: no "someone from Delhi just bought" that did not happen.
+{% endcomment %}
+{{ 'kusho-popup.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'kusho-proof.js' | asset_url }}" defer="defer"></script>
+
+{%- if section.settings.enabled and section.blocks.size > 0 and template.name != 'cart' -%}
+  <kusho-proof
+    data-first="{{ section.settings.first_delay | default: 9 }}"
+    data-show="{{ section.settings.show_for | default: 6 }}"
+    data-gap="{{ section.settings.gap | default: 24 }}"
+    data-max="{{ section.settings.max_per_visit | default: 4 }}"
+    aria-live="polite"
+  >
+    {%- for block in section.blocks -%}
+      {%- assign p = block.settings.product -%}
+      <div class="kproof__card" data-proof-item hidden {{ block.shopify_attributes }}>
+        {%- if p != blank and p.featured_image -%}
+          {{ p.featured_image | image_url: width: 120 | image_tag: loading: 'lazy', alt: '', class: 'kproof__img' }}
+        {%- else -%}
+          <img class="kproof__img" src="{{ 'kusho-photo-sleep-2.webp' | asset_url }}" alt="" width="52" height="52" loading="lazy">
+        {%- endif -%}
+        <div class="kproof__body">
+          <span>
+            <span class="kproof__stars" aria-label="{{ block.settings.rating }} out of 5">{% for i in (1..5) %}{% if i <= block.settings.rating %}{% render 'kusho-icon', name: 'star', size: 11 %}{% endif %}{% endfor %}</span>
+            <span class="kproof__name">{{ block.settings.name | escape }}</span>
+            {%- if block.settings.verified -%} <span class="kproof__verified">{{ 'kusho.product.reviews.verified' | t }}</span>{%- endif -%}
+          </span>
+          <span class="kproof__quote">“{{ block.settings.quote | escape }}”</span>
+          {%- if p != blank -%}<a class="kproof__product" href="{{ p.url }}">{{ p.title | escape }}</a>{%- endif -%}
+        </div>
+        <button type="button" class="kproof__close" data-proof-close aria-label="{{ 'accessibility.close' | t }}">{% render 'kusho-icon', name: 'x', size: 16 %}</button>
+      </div>
+    {%- endfor -%}
+  </kusho-proof>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Review notifications",
+  "tag": "div",
+  "class": "kusho-proof-section",
+  "max_blocks": 12,
+  "settings": [
+    { "type": "checkbox", "id": "enabled", "label": "Show review notifications", "default": true },
+    { "type": "range", "id": "first_delay", "label": "First one after (seconds)", "min": 3, "max": 60, "step": 1, "default": 9 },
+    { "type": "range", "id": "show_for", "label": "Show each for (seconds)", "min": 3, "max": 15, "step": 1, "default": 6 },
+    { "type": "range", "id": "gap", "label": "Pause between (seconds)", "min": 10, "max": 120, "step": 5, "default": 25 },
+    { "type": "range", "id": "max_per_visit", "label": "At most per page", "min": 1, "max": 10, "step": 1, "default": 4 },
+    { "type": "paragraph", "content": "Only real reviews belong here. Copy them from Judge.me exactly as written." }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        { "type": "text", "id": "name", "label": "Name", "default": "Gagan Singh" },
+        { "type": "range", "id": "rating", "label": "Stars", "min": 1, "max": 5, "step": 1, "default": 5 },
+        { "type": "checkbox", "id": "verified", "label": "Verified buyer", "default": true },
+        { "type": "text", "id": "quote", "label": "One line from the review", "default": "A drive of around 600 km never felt so easy." },
+        { "type": "product", "id": "product", "label": "Product" }
+      ]
+    }
+  ],
+  "presets": [ { "name": "Review notifications", "blocks": [ { "type": "review" } ] } ]
+}
+{% endschema %}

@@ -619,6 +619,18 @@
   position: absolute;
   inset: 0;
   z-index: -2;
+  display: block;
+}
+
+/* Clicks on the card fall through the overlays to the photo link */
+.kstack__shade,
+.kstack__dim {
+  pointer-events: none;
+}
+
+.kstack__body {
+  position: absolute;
+  z-index: 1;
 }
 
 .kstack__img {

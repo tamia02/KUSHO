@@ -1,0 +1,310 @@
+/* Welcome offer popup + real-review toast. Square, hairlines, brand green. */
+
+kusho-popup {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  padding: var(--sp-4);
+}
+
+kusho-popup[hidden] {
+  display: none;
+}
+
+.kpop__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 16, 13, 0.55);
+  opacity: 0;
+  transition: opacity var(--dur-base) var(--ease-foam);
+}
+
+.kpop__dialog {
+  position: relative;
+  display: grid;
+  width: min(100%, 86rem);
+  max-height: calc(100svh - var(--sp-8));
+  overflow: auto;
+  background: var(--white);
+  color: var(--ink);
+  opacity: 0;
+  transform: translateY(1.6rem) scale(0.98);
+  transition:
+    opacity var(--dur-settle) var(--ease-foam),
+    transform var(--dur-settle) var(--ease-foam);
+}
+
+@media screen and (min-width: 750px) {
+  .kpop__dialog {
+    grid-template-columns: 42% minmax(0, 1fr);
+  }
+}
+
+kusho-popup.is-open .kpop__backdrop {
+  opacity: 1;
+}
+
+kusho-popup.is-open .kpop__dialog {
+  opacity: 1;
+  transform: none;
+}
+
+.kpop__close {
+  position: absolute;
+  z-index: 2;
+  top: var(--sp-3);
+  right: var(--sp-3);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--tap);
+  height: var(--tap);
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.kpop__media {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: var(--foam);
+}
+
+@media screen and (min-width: 750px) {
+  .kpop__media {
+    aspect-ratio: auto;
+    min-height: 100%;
+  }
+}
+
+.kpop__media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.kpop__badge {
+  position: absolute;
+  top: var(--sp-3);
+  left: var(--sp-3);
+  padding: 0.6rem 1rem;
+  background: var(--kusho-gold);
+  color: var(--ink);
+  font-family: var(--font-ui);
+  font-size: var(--fs-label);
+  font-weight: 600;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+}
+
+.kpop__body {
+  padding: var(--sp-6) var(--sp-5) var(--sp-5);
+}
+
+@media screen and (min-width: 750px) {
+  .kpop__body {
+    padding: var(--sp-8) var(--sp-7);
+  }
+}
+
+.kpop__title {
+  margin: 0;
+  font-size: var(--fs-h2);
+}
+
+.kpop__text {
+  margin: var(--sp-3) 0 0;
+  color: rgba(22, 33, 28, 0.75);
+  line-height: 1.6;
+}
+
+.kpop__fields {
+  display: grid;
+  gap: var(--sp-2);
+  margin-top: var(--sp-5);
+}
+
+.kpop__label {
+  margin-top: var(--sp-2);
+  font-family: var(--font-ui);
+  font-size: var(--fs-label);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--stone);
+}
+
+.kpop__input {
+  width: 100%;
+  min-height: 4.6rem;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  background: transparent;
+  font-family: var(--font-text);
+  font-size: var(--fs-body);
+  color: var(--ink);
+}
+
+.kpop__input:focus-visible {
+  outline: 0;
+  border-bottom-color: var(--kusho-green);
+}
+
+.kpop__submit {
+  width: 100%;
+  margin-top: var(--sp-4);
+}
+
+.kpop__fine {
+  margin: var(--sp-2) 0 0;
+  color: var(--stone);
+  font-size: var(--fs-micro);
+}
+
+.kpop__success .kpop__submit {
+  margin-top: var(--sp-5);
+}
+
+.kpop__code {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  width: 100%;
+  margin-top: var(--sp-3);
+  padding: var(--sp-3) var(--sp-4);
+  border: 1px dashed var(--kusho-green);
+  background: var(--kusho-green-mist);
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+}
+
+.kpop__code .kusho-label {
+  color: var(--kusho-green);
+}
+
+/* ---------------------------------------------------------------- review toast */
+kusho-proof {
+  position: fixed;
+  z-index: 25;
+  left: var(--sp-4);
+  bottom: calc(7.2rem + var(--kusho-sticky-offset, 0px) + env(safe-area-inset-bottom, 0px));
+  display: block;
+  width: min(calc(100vw - var(--sp-8) - 7rem), 36rem);
+  pointer-events: none;
+}
+
+@media screen and (max-width: 749px) {
+  kusho-proof {
+    bottom: calc(9rem + var(--kusho-sticky-offset, 0px) + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+.kproof__card {
+  display: grid;
+  grid-template-columns: 5.2rem minmax(0, 1fr) auto;
+  gap: var(--sp-3);
+  align-items: center;
+  padding: var(--sp-3);
+  border: 1px solid var(--line);
+  background: var(--white);
+  color: var(--ink);
+  box-shadow: 0 1.2rem 3rem rgba(22, 33, 28, 0.12);
+  opacity: 0;
+  transform: translateY(1.2rem);
+  transition:
+    opacity var(--dur-base) var(--ease-foam),
+    transform var(--dur-settle) var(--ease-foam);
+  pointer-events: auto;
+}
+
+.kproof__card[hidden] {
+  display: none;
+}
+
+kusho-proof.is-visible .kproof__card {
+  opacity: 1;
+  transform: none;
+}
+
+.kproof__img {
+  width: 5.2rem;
+  height: 5.2rem;
+  object-fit: cover;
+  background: var(--foam);
+}
+
+.kproof__body {
+  display: grid;
+  gap: 0.2rem;
+  min-width: 0;
+  font-family: var(--font-ui);
+  font-size: var(--fs-small);
+  line-height: 1.35;
+}
+
+.kproof__stars {
+  display: inline-flex;
+  gap: 0.1rem;
+  color: var(--kusho-gold);
+}
+
+.kproof__name {
+  font-weight: 600;
+}
+
+.kproof__verified {
+  margin-left: 0.4rem;
+  color: var(--kusho-green);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.kproof__quote {
+  overflow: hidden;
+  color: rgba(22, 33, 28, 0.75);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.kproof__product {
+  color: var(--kusho-green);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.kproof__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.2rem;
+  height: 3.2rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--stone);
+  cursor: pointer;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kpop__backdrop,
+  .kpop__dialog,
+  .kproof__card {
+    transition: none;
+  }
+}

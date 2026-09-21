@@ -31,7 +31,7 @@
       {%- endfor -%}
     </h2>
 
-    <div class="kslide__figure" data-slide-item style="--d: 2;">
+    <a class="kslide__figure" data-slide-item style="--d: 2;" href="{{ product.url | default: '#' }}" aria-label="{{ product.title | escape }}">
       {%- if img != blank -%}
         {{
           img
@@ -41,11 +41,11 @@
       {%- else -%}
         <img class="kslide__img" src="{{ 'kusho-photo-product-slide.webp' | asset_url }}" alt="{{ product.title | escape }}" width="1400" height="800" loading="lazy">
       {%- endif -%}
-    </div>
+    </a>
 
     {%- if product != blank -%}
       <div class="kslide__meta" data-slide-item style="--d: 3;">
-        <span class="kslide__name">{{ product.title | escape }}</span>
+        <a class="kslide__name" href="{{ product.url }}">{{ product.title | escape }}</a>
         <span class="kslide__price">
           {%- if product.compare_at_price > product.price -%}
             <s class="kslide__was">{{ product.compare_at_price | money_without_trailing_zeros }}</s>
