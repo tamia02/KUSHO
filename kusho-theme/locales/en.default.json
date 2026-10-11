@@ -626,7 +626,8 @@
         "show_image": "Show image {{ index }}: {{ alt }}",
         "counter": "{{ index }} of {{ total }}",
         "lightbox": "Enlarged product image",
-        "swipe_up": "Swipe up for more"
+        "swipe_up": "Swipe up for more",
+        "back": "Back"
       },
       "sticky": {
         "label": "Quick add to cart"

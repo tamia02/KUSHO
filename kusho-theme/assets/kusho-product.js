@@ -140,11 +140,64 @@ if (!customElements.get('kusho-gallery')) {
         this.dialog.addEventListener('close', () => {
           this.lbImg.classList.remove('is-zoomed');
           this.goTo(this.lbIndex, { instant: true });
+          if (this.pushedState) { this.pushedState = false; window.history.back(); }
         });
+        window.addEventListener('popstate', () => {
+          if (this.dialog.open) { this.pushedState = false; this.dialog.close(); }
+        });
+      }
+
+      get isPhone() {
+        return window.matchMedia('(max-width: 989px)').matches;
+      }
+
+      /* Phones open the photos as a full screen you scroll through, so the stack is built once on first open. */
+      buildStack() {
+        const stack = this.dialog.querySelector('[data-lb-stack]');
+        if (!stack || stack.childElementCount) return stack;
+        this.slides.forEach((slide, i) => {
+          const li = document.createElement('li');
+          const img = document.createElement('img');
+          img.src = slide.dataset.zoomSrc;
+          img.alt = slide.dataset.zoomAlt || '';
+          img.loading = i < 2 ? 'eager' : 'lazy';
+          img.decoding = 'async';
+          li.appendChild(img);
+          stack.appendChild(li);
+        });
+        const count = this.dialog.querySelector('[data-lb-count]');
+        stack.addEventListener('scroll', () => {
+          if (this.countTick) return;
+          this.countTick = true;
+          window.requestAnimationFrame(() => {
+            this.countTick = false;
+            let nearest = 0;
+            let best = Infinity;
+            Array.from(stack.children).forEach((li, i) => {
+              const d = Math.abs(li.getBoundingClientRect().top - stack.getBoundingClientRect().top);
+              if (d < best) { best = d; nearest = i; }
+            });
+            this.lbIndex = nearest;
+            if (count) count.textContent = String(nearest + 1);
+          });
+        }, { passive: true });
+        return stack;
       }
 
       openLightbox(index) {
         if (!this.dialog || typeof this.dialog.showModal !== 'function') return;
+        if (this.isPhone) {
+          const stack = this.buildStack();
+          this.lbIndex = index;
+          const count = this.dialog.querySelector('[data-lb-count]');
+          if (count) count.textContent = String(index + 1);
+          this.dialog.showModal();
+          const target = stack && stack.children[index];
+          if (target) target.scrollIntoView({ block: 'start' });
+          // One history entry, so the phone's own back button closes the viewer instead of leaving the page.
+          try { window.history.pushState({ kushoGallery: true }, ''); this.pushedState = true; } catch (e) { this.pushedState = false; }
+          return;
+        }
         this.showInLightbox(index);
         this.dialog.showModal();
       }

@@ -101,6 +101,14 @@
   </div>
 
   <dialog class="kgal__lightbox" data-lightbox aria-label="{{ 'kusho.product.gallery.lightbox' | t }}">
+    <div class="kgal__lb-bar">
+      <button type="button" class="kgal__lb-back" data-close-zoom>
+        {% render 'kusho-icon', name: 'chevron-left', size: 18 %}
+        <span>{{ 'kusho.product.gallery.back' | t }}</span>
+      </button>
+      <p class="kgal__lb-count kusho-label"><span data-lb-count>1</span> / {{ media_total }}</p>
+    </div>
+    <ul class="kgal__lb-stack" data-lb-stack role="list"></ul>
     <button type="button" class="kgal__lb-close" data-close-zoom aria-label="{{ 'kusho.product.gallery.close' | t }}">
       {% render 'kusho-icon', name: 'x', size: 24 %}
     </button>
