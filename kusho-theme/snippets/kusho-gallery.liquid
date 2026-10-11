@@ -15,7 +15,17 @@
 
 {%- assign media_total = product.media.size -%}
 
-<kusho-gallery class="kgal{% if layout == 'stacked' %} kgal--rail{% endif %}" data-total="{{ media_total }}"{% if layout == 'stacked' %} data-axis="y"{% endif %}>
+{%- liquid
+  comment
+    The stage takes the shape of the product's own photos, so a 4:5 pack shot is not cropped to a square.
+  endcomment
+  assign gal_ratio = product.featured_media.aspect_ratio
+  if gal_ratio == blank or gal_ratio == 0
+    assign gal_ratio = 1
+  endif
+-%}
+
+<kusho-gallery class="kgal{% if layout == 'stacked' %} kgal--rail{% endif %}" data-total="{{ media_total }}" style="--kgal-ratio: {{ gal_ratio }};"{% if layout == 'stacked' %} data-axis="y"{% endif %}>
   {%- if media_total > 1 -%}
     <div class="kgal__thumbs kusho-hide-scrollbar" role="group" aria-label="{{ 'kusho.product.gallery.label' | t }}">
       {%- for media in product.media -%}

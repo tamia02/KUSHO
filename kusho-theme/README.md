@@ -87,6 +87,14 @@ add-to-cart bar, "you may also like".
 Return and refund (with "on this page" links), Corporate gifting, Become a retailer, Campus ambassador, Affiliate programme,
 Catalogue, the four policies (Terms, Privacy, Refund, Shipping), Blog (topic filters) and Article pages, 404.
 
+**Client product photos** (`../public/product-media/<product-handle>/`): photo sets the client supplies for a
+product, committed as sent, with the filename number setting the gallery order (`01-pack-shot.jpg`,
+`02-sleeping-on-it.jpg`, …). `node recon/apply-product-images.mjs` converts them to WebP into the preview and
+lines up that product's `images[]`. The Dreamer Butterfly Pillow (6) and Dreamer Slim Pillow (9) use these:
+1200x1500, clean white and lifestyle shots. **On Shopify the client uploads the same files to the product**, in
+the same order, replacing the photos currently on the store. Galleries follow each photo's own shape, so a 4:5
+set is never cropped to a square.
+
 **Photos** (`assets/kusho-photo-*.webp`, 17 files): cropped from the product galleries and blog images already on
 kusho.in, with any text baked into the image removed. Every photo can be replaced from the section settings in the theme
 editor (hero photo, before/after pairs, bento tiles, business panels) without touching code. Two things to know:

@@ -35,6 +35,8 @@ Change the port with `PORT=4000 npm start` (PowerShell: `$env:PORT=4000; npm sta
 | Every stylesheet and script in `kusho-theme/assets`, and the theme's settings | Fonts load from Google Fonts (production uses Shopify's font CDN) |
 
 To refresh the product data later, re-run the scripts in `../recon` (they copy from the live site into `data/`).
+That overwrites product photos with the live store's, so re-run `node ../recon/apply-product-images.mjs`
+afterwards to put the client's own photo sets (`../public/product-media/`) back.
 
 A small "Local preview · data from kusho.in" pill sits bottom-left of every page. Click it to hide it before a screen-share.
 

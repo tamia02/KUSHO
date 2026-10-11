@@ -10,6 +10,16 @@ const here = path.dirname(fileURLToPath(import.meta.url));
 const dataDir = path.resolve(here, '..', 'data');
 const readJson = (f) => JSON.parse(fs.readFileSync(path.join(dataDir, f), 'utf8'));
 
+// The data lists every photo on the live store, but only the ones downloaded into data/img are served here,
+// so a gallery offers exactly the photos that exist on disk.
+const photosOnDisk = (handle) => {
+  try {
+    return fs.readdirSync(path.join(dataDir, 'img', handle)).filter((f) => f.endsWith('.webp') && Number.isInteger(Number(f.slice(0, -5)))).length;
+  } catch (e) {
+    return 0;
+  }
+};
+
 // Real customer reviews pulled from the live store's Judge.me widget (recon/reviews.mjs)
 const reviewData = fs.existsSync(path.join(dataDir, 'reviews.json')) ? readJson('reviews.json') : {};
 
@@ -44,16 +54,21 @@ const cleanDescription = (html) => {
 };
 
 const mapProduct = (p) => {
-  const images = p.images.slice(0, 8);
-  const media = images.map((im, i) => ({
-    id: im.id,
-    src: `/data/img/${p.handle}/${i + 1}.webp`,
-    alt: '',
-    width: 1000,
-    height: 1000,
-    aspect_ratio: 1,
-    media_type: 'image',
-  }));
+  const images = p.images.slice(0, photosOnDisk(p.handle) || 8);
+  const media = images.map((im, i) => {
+    // Dimensions come from the data, so a gallery matches the real shape of the photo (square, 4:5, ...)
+    const w = im.width || 1000;
+    const h = im.height || 1000;
+    return {
+      id: im.id,
+      src: `/data/img/${p.handle}/${i + 1}.webp`,
+      alt: '',
+      width: w,
+      height: h,
+      aspect_ratio: Number((w / h).toFixed(4)),
+      media_type: 'image',
+    };
+  });
 
   const realOptions = p.options.filter((o) => !(o.name === 'Title' && o.values.length === 1));
   const variants = p.variants.map((v) => {

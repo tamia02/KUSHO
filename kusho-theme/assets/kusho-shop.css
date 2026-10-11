@@ -600,7 +600,7 @@
 .kpdp .kgal--rail .kgal__track {
   flex-direction: column;
   height: auto;
-  aspect-ratio: 1;
+  aspect-ratio: var(--kgal-ratio, 1);
   overflow-x: hidden;
   overflow-y: auto;
   scroll-snap-type: y mandatory;
@@ -776,4 +776,14 @@
   color: var(--stone);
   font-size: var(--fs-micro);
   text-align: center;
+}
+
+/* Portrait (4:5) product photos: keep the whole photo and its thumbnails on screen on desktop by capping
+   the stage to the viewport height. The width follows the photo's own ratio, so nothing is cropped or boxed. */
+@media screen and (min-width: 990px) {
+  .kpdp .kgal__stage,
+  .kpdp .kgal:not(.kgal--rail) .kgal__thumbs {
+    max-width: min(100%, calc(78svh * var(--kgal-ratio, 1)));
+    margin-inline: auto;
+  }
 }
