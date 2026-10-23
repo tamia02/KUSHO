@@ -90,8 +90,10 @@ Catalogue, the four policies (Terms, Privacy, Refund, Shipping), Blog (topic fil
 **Client product photos** (`../public/product-media/<product-handle>/`): photo sets the client supplies for a
 product, committed as sent, with the filename number setting the gallery order (`01-pack-shot.jpg`,
 `02-sleeping-on-it.jpg`, …). `node recon/apply-product-images.mjs` converts them to WebP into the preview and
-lines up that product's `images[]`. The Dreamer Butterfly Pillow (6) and Dreamer Slim Pillow (9) use these:
-1200x1500, clean white and lifestyle shots. **On Shopify the client uploads the same files to the product**, in
+lines up that product's `images[]`. **20 of the 22 products use these** (all but the Love Cuddle Combo and the
+Dreamer Contour Pillow, which the client has not supplied creatives for): 1200x1500 portrait throughout, each
+gallery opening on a clean pack shot. `node recon/fetch-client-media.mjs` re-pulls them from the client's Drive
+folders and `recon/to-portrait.mjs` puts a square creative into that 1200x1500 frame without cropping it. **On Shopify the client uploads the same files to the product**, in
 the same order, replacing the photos currently on the store. Galleries follow each photo's own shape, so a 4:5
 set is never cropped to a square.
 

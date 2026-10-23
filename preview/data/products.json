@@ -170,102 +170,66 @@
       "images": [
         {
           "id": 41285785485449,
-          "created_at": "2026-08-21T11:13:41+05:30",
           "position": 1,
-          "updated_at": "2026-08-21T11:13:42+05:30",
-          "product_id": 8428165234825,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/9_09ea67bc-309e-4630-94b5-2b8a8c8ad3cb.png?v=1787291022",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-car-comfort-combo/01-4.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 41285785550985,
-          "created_at": "2026-08-21T11:13:41+05:30",
           "position": 2,
-          "updated_at": "2026-08-21T11:13:43+05:30",
-          "product_id": 8428165234825,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/1_85227160-c578-4047-9435-16708c18c11d.png?v=1787291023",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-car-comfort-combo/02-1.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 41285785583753,
-          "created_at": "2026-08-21T11:13:41+05:30",
           "position": 3,
-          "updated_at": "2026-08-21T11:13:43+05:30",
-          "product_id": 8428165234825,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/3_ef7ea0bd-ac20-481e-9b2d-bc0109ed65ba.png?v=1787291023",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-car-comfort-combo/03-2.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 41285785387145,
-          "created_at": "2026-08-21T11:13:36+05:30",
           "position": 4,
-          "updated_at": "2026-08-21T11:13:38+05:30",
-          "product_id": 8428165234825,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/4_05a4f6a9-b102-46b8-b2f5-1b46532343ba.png?v=1787291018",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-car-comfort-combo/04-3.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 41285785419913,
-          "created_at": "2026-08-21T11:13:37+05:30",
           "position": 5,
-          "updated_at": "2026-08-21T11:13:38+05:30",
-          "product_id": 8428165234825,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/7_9c42aa4e-9233-4543-9071-eb501179eb66.png?v=1787291018",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-car-comfort-combo/05-5.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 41285785452681,
-          "created_at": "2026-08-21T11:13:40+05:30",
           "position": 6,
-          "updated_at": "2026-08-21T11:13:42+05:30",
-          "product_id": 8428165234825,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/6_a15df53d-f18f-434d-9191-cc9c42361936.png?v=1787291022",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-car-comfort-combo/06-6.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 41285785518217,
-          "created_at": "2026-08-21T11:13:41+05:30",
           "position": 7,
-          "updated_at": "2026-08-21T11:13:42+05:30",
-          "product_id": 8428165234825,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/8_385713d6-b5e3-4b2a-adb8-0d5a9193de02.png?v=1787291022",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-car-comfort-combo/07-7.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 41285785649289,
-          "created_at": "2026-08-21T11:13:41+05:30",
           "position": 8,
-          "updated_at": "2026-08-21T11:13:43+05:30",
-          "product_id": 8428165234825,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/2_63549a41-499a-47f6-b8d6-dc9c3cd8f83c.png?v=1787291023",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-car-comfort-combo/08-8.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 41285785616521,
-          "created_at": "2026-08-21T11:13:41+05:30",
           "position": 9,
-          "updated_at": "2026-08-21T11:13:43+05:30",
-          "product_id": 8428165234825,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/5_d972d813-2214-48c5-b1f0-db716746bc43.png?v=1787291023",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-car-comfort-combo/09-9.jpg",
+          "width": 1200,
+          "height": 1500
         }
       ],
       "options": [
@@ -394,185 +358,52 @@
       "images": [
         {
           "id": 38481403805833,
-          "created_at": "2026-01-20T18:13:59+05:30",
           "position": 1,
-          "updated_at": "2026-01-20T18:14:02+05:30",
-          "product_id": 8427232952457,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/103.jpg?v=1768913042",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-car-neck-pillow/01-172.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 38481403641993,
-          "created_at": "2026-01-20T18:13:59+05:30",
           "position": 2,
-          "updated_at": "2026-01-30T21:23:54+05:30",
-          "product_id": 8427232952457,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/98.jpg?v=1769788434",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-car-neck-pillow/02-173.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 38481403773065,
-          "created_at": "2026-01-20T18:13:59+05:30",
           "position": 3,
-          "updated_at": "2026-01-20T18:14:01+05:30",
-          "product_id": 8427232952457,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/102.jpg?v=1768913041",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-car-neck-pillow/03-174.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 38481403740297,
-          "created_at": "2026-01-20T18:13:59+05:30",
           "position": 4,
-          "updated_at": "2026-01-30T21:23:54+05:30",
-          "product_id": 8427232952457,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/101.jpg?v=1769788434",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-car-neck-pillow/04-175.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 40267888754825,
-          "created_at": "2026-06-02T18:29:31+05:30",
           "position": 5,
-          "updated_at": "2026-06-02T18:29:33+05:30",
-          "product_id": 8427232952457,
-          "variant_ids": [
-            45176066343049
-          ],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/grey3_5fbb0eb1-9e17-4b8b-a51b-a2109f721373.png?v=1780405173",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-car-neck-pillow/05-176.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 40267888590985,
-          "created_at": "2026-06-02T18:29:31+05:30",
           "position": 6,
-          "updated_at": "2026-06-02T18:29:33+05:30",
-          "product_id": 8427232952457,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/black2_8608f1aa-2d6f-4110-a4b6-09c1071082e1.png?v=1780405173",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-car-neck-pillow/06-177.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 38481403674761,
-          "created_at": "2026-01-20T18:13:59+05:30",
           "position": 7,
-          "updated_at": "2026-01-30T21:23:54+05:30",
-          "product_id": 8427232952457,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/99.jpg?v=1769788434",
-          "width": 1000,
-          "height": 1000
-        },
-        {
-          "id": 38481403707529,
-          "created_at": "2026-01-20T18:13:59+05:30",
-          "position": 8,
-          "updated_at": "2026-01-20T18:14:01+05:30",
-          "product_id": 8427232952457,
-          "variant_ids": [
-            45176066375817
-          ],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/100.jpg?v=1768913041",
-          "width": 1000,
-          "height": 1000
-        },
-        {
-          "id": 40267888492681,
-          "created_at": "2026-06-02T18:29:31+05:30",
-          "position": 9,
-          "updated_at": "2026-06-02T18:29:33+05:30",
-          "product_id": 8427232952457,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/black4_61917006-843b-4ddf-8d5c-813a986e22a0.png?v=1780405173",
-          "width": 1000,
-          "height": 1000
-        },
-        {
-          "id": 40267888656521,
-          "created_at": "2026-06-02T18:29:31+05:30",
-          "position": 10,
-          "updated_at": "2026-06-02T18:29:33+05:30",
-          "product_id": 8427232952457,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/black5_dbc5e20c-cf52-4802-827e-973ca21d3352.png?v=1780405173",
-          "width": 1000,
-          "height": 1000
-        },
-        {
-          "id": 40267888459913,
-          "created_at": "2026-06-02T18:29:31+05:30",
-          "position": 11,
-          "updated_at": "2026-06-02T18:29:32+05:30",
-          "product_id": 8427232952457,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/grey1_50b9c87d-6fdc-4b66-956f-f20c66073986.png?v=1780405172",
-          "width": 1000,
-          "height": 1000
-        },
-        {
-          "id": 40267888689289,
-          "created_at": "2026-06-02T18:29:31+05:30",
-          "position": 12,
-          "updated_at": "2026-06-02T18:29:33+05:30",
-          "product_id": 8427232952457,
-          "variant_ids": [
-            45176066310281
-          ],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/black1_c5521081-8390-401d-8d8d-5d4e344407e1.png?v=1780405173",
-          "width": 1000,
-          "height": 1000
-        },
-        {
-          "id": 40267888623753,
-          "created_at": "2026-06-02T18:29:31+05:30",
-          "position": 13,
-          "updated_at": "2026-06-02T18:29:33+05:30",
-          "product_id": 8427232952457,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/grey4_b40fa652-a107-4d68-a97f-0a14459a3d1b.png?v=1780405173",
-          "width": 1000,
-          "height": 1000
-        },
-        {
-          "id": 40267888525449,
-          "created_at": "2026-06-02T18:29:31+05:30",
-          "position": 14,
-          "updated_at": "2026-06-02T18:29:32+05:30",
-          "product_id": 8427232952457,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/black3_bc36ea11-89b5-4015-8675-a8cc633285dd.png?v=1780405172",
-          "width": 1000,
-          "height": 1000
-        },
-        {
-          "id": 40267888558217,
-          "created_at": "2026-06-02T18:29:31+05:30",
-          "position": 15,
-          "updated_at": "2026-06-02T18:29:33+05:30",
-          "product_id": 8427232952457,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/grey2_2da57ffb-c52b-4a40-8226-eab461690260.png?v=1780405173",
-          "width": 1000,
-          "height": 1000
-        },
-        {
-          "id": 40267888427145,
-          "created_at": "2026-06-02T18:29:30+05:30",
-          "position": 16,
-          "updated_at": "2026-06-02T18:29:32+05:30",
-          "product_id": 8427232952457,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/grey5_2f5a9d59-4a32-449c-8b8b-4cacc8ec1a49.png?v=1780405172",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-car-neck-pillow/07-178.jpg",
+          "width": 1200,
+          "height": 1500
         }
       ],
       "options": [
@@ -779,106 +610,52 @@
       "images": [
         {
           "id": 38481222631561,
-          "created_at": "2026-01-20T17:12:43+05:30",
           "position": 1,
-          "updated_at": "2026-01-20T17:12:45+05:30",
-          "product_id": 8391395770505,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/73.jpg?v=1768909365",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-ergo-lumbar-cushion/01-263.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 38481222664329,
-          "created_at": "2026-01-20T17:12:43+05:30",
           "position": 2,
-          "updated_at": "2026-01-20T17:12:45+05:30",
-          "product_id": 8391395770505,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/74.jpg?v=1768909365",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-ergo-lumbar-cushion/02-2631.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 38481222697097,
-          "created_at": "2026-01-20T17:12:43+05:30",
           "position": 3,
-          "updated_at": "2026-01-20T17:12:45+05:30",
-          "product_id": 8391395770505,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/75.jpg?v=1768909365",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-ergo-lumbar-cushion/03-2651.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 38481222729865,
-          "created_at": "2026-01-20T17:12:43+05:30",
           "position": 4,
-          "updated_at": "2026-01-30T21:37:36+05:30",
-          "product_id": 8391395770505,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/76.jpg?v=1769789256",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-ergo-lumbar-cushion/04-265.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 38481222762633,
-          "created_at": "2026-01-20T17:12:43+05:30",
           "position": 5,
-          "updated_at": "2026-01-30T21:37:36+05:30",
-          "product_id": 8391395770505,
-          "variant_ids": [
-            45199210479753
-          ],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/77.jpg?v=1769789256",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-ergo-lumbar-cushion/05-266.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 40267287888009,
-          "created_at": "2026-06-02T15:14:15+05:30",
           "position": 6,
-          "updated_at": "2026-06-02T15:14:17+05:30",
-          "product_id": 8391395770505,
-          "variant_ids": [
-            45199210512521
-          ],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/209.png?v=1780393457",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-ergo-lumbar-cushion/06-267.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 40267288150153,
-          "created_at": "2026-06-02T15:14:16+05:30",
           "position": 7,
-          "updated_at": "2026-06-02T15:14:17+05:30",
-          "product_id": 8391395770505,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/210.png?v=1780393457",
-          "width": 1000,
-          "height": 1000
-        },
-        {
-          "id": 40267287920777,
-          "created_at": "2026-06-02T15:14:15+05:30",
-          "position": 8,
-          "updated_at": "2026-06-02T15:14:17+05:30",
-          "product_id": 8391395770505,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/211.png?v=1780393457",
-          "width": 1000,
-          "height": 1000
-        },
-        {
-          "id": 40267287855241,
-          "created_at": "2026-06-02T15:14:15+05:30",
-          "position": 9,
-          "updated_at": "2026-06-02T15:14:17+05:30",
-          "product_id": 8391395770505,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/213.png?v=1780393457",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-ergo-lumbar-cushion/07-268.jpg",
+          "width": 1200,
+          "height": 1500
         }
       ],
       "options": [
@@ -1138,141 +915,59 @@
       "images": [
         {
           "id": 41044977746057,
-          "created_at": "2026-08-03T17:15:57+05:30",
           "position": 1,
-          "updated_at": "2026-08-03T17:15:59+05:30",
-          "product_id": 8391402553481,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/5_925178ec-2434-4c7f-b462-64309f169c2c.png?v=1785757559",
-          "width": 800,
-          "height": 800
+          "src": "product-media/kusho-car-neck-support-broad/01-26.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 41044977614985,
-          "created_at": "2026-08-03T17:15:57+05:30",
           "position": 2,
-          "updated_at": "2026-08-03T17:15:59+05:30",
-          "product_id": 8391402553481,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/1_4ae75d40-3657-4218-af38-ac2e955b4348.png?v=1785757559",
-          "width": 800,
-          "height": 800
+          "src": "product-media/kusho-car-neck-support-broad/02-27.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 41044977647753,
-          "created_at": "2026-08-03T17:15:57+05:30",
           "position": 3,
-          "updated_at": "2026-08-03T17:15:59+05:30",
-          "product_id": 8391402553481,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/2_e925806e-f9b1-4163-880d-4bb08877ead8.png?v=1785757559",
-          "width": 800,
-          "height": 800
+          "src": "product-media/kusho-car-neck-support-broad/03-27.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 41044977680521,
-          "created_at": "2026-08-03T17:15:57+05:30",
           "position": 4,
-          "updated_at": "2026-08-03T17:15:59+05:30",
-          "product_id": 8391402553481,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/3_da4c581c-96f4-4fd0-a055-9be6a8cdb8f2.png?v=1785757559",
-          "width": 800,
-          "height": 800
+          "src": "product-media/kusho-car-neck-support-broad/04-28.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 41044977713289,
-          "created_at": "2026-08-03T17:15:57+05:30",
           "position": 5,
-          "updated_at": "2026-08-03T17:15:59+05:30",
-          "product_id": 8391402553481,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/4_d783bd7e-5401-4f84-9fc6-4553be86c4d9.png?v=1785757559",
-          "width": 800,
-          "height": 800
+          "src": "product-media/kusho-car-neck-support-broad/05-29.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 41044977778825,
-          "created_at": "2026-08-03T17:15:57+05:30",
           "position": 6,
-          "updated_at": "2026-08-03T17:15:59+05:30",
-          "product_id": 8391402553481,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/6_a896f9d1-f6cf-4b0b-bc5f-7ceffa25e3ad.png?v=1785757559",
-          "width": 800,
-          "height": 800
+          "src": "product-media/kusho-car-neck-support-broad/06-30.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 41044977811593,
-          "created_at": "2026-08-03T17:15:57+05:30",
           "position": 7,
-          "updated_at": "2026-08-03T17:15:59+05:30",
-          "product_id": 8391402553481,
-          "variant_ids": [
-            45176084267145
-          ],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/7_6ebfc7de-7baf-4d80-b192-5767fdf54b23.png?v=1785757559",
-          "width": 800,
-          "height": 800
+          "src": "product-media/kusho-car-neck-support-broad/07-31.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 41044977844361,
-          "created_at": "2026-08-03T17:15:57+05:30",
           "position": 8,
-          "updated_at": "2026-08-03T17:15:59+05:30",
-          "product_id": 8391402553481,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/8_4ee28c1e-2608-4141-bcb0-4a2e2f155272.png?v=1785757559",
-          "width": 800,
-          "height": 800
-        },
-        {
-          "id": 41044977877129,
-          "created_at": "2026-08-03T17:15:57+05:30",
-          "position": 9,
-          "updated_at": "2026-08-03T17:15:59+05:30",
-          "product_id": 8391402553481,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/34a58e8f-dd1e-4437-bbc1-5880861445fe.png?v=1785757559",
-          "width": 1254,
-          "height": 1254
-        },
-        {
-          "id": 41044977909897,
-          "created_at": "2026-08-03T17:15:57+05:30",
-          "position": 10,
-          "updated_at": "2026-08-03T17:16:00+05:30",
-          "product_id": 8391402553481,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/691b60f1-c7c3-46f6-9ae6-014c7a927099.png?v=1785757560",
-          "width": 1254,
-          "height": 1254
-        },
-        {
-          "id": 41044977942665,
-          "created_at": "2026-08-03T17:15:57+05:30",
-          "position": 11,
-          "updated_at": "2026-08-03T17:15:59+05:30",
-          "product_id": 8391402553481,
-          "variant_ids": [
-            45176084201609
-          ],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/blackcarneckprocushion.png?v=1785757559",
-          "width": 1254,
-          "height": 1254
-        },
-        {
-          "id": 41044978008201,
-          "created_at": "2026-08-03T17:15:57+05:30",
-          "position": 12,
-          "updated_at": "2026-08-03T17:16:00+05:30",
-          "product_id": 8391402553481,
-          "variant_ids": [
-            45176084234377
-          ],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/carneckprocushion.png?v=1785757560",
-          "width": 1254,
-          "height": 1254
+          "src": "product-media/kusho-car-neck-support-broad/08-32.jpg",
+          "width": 1200,
+          "height": 1500
         }
       ],
       "options": [
@@ -1434,110 +1129,73 @@
       "images": [
         {
           "id": 41044740833417,
-          "created_at": "2026-08-03T16:55:30+05:30",
           "position": 1,
-          "updated_at": "2026-08-03T16:55:32+05:30",
-          "product_id": 8391398293641,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/14.png?v=1785756332",
-          "width": 1024,
-          "height": 1024
+          "src": "product-media/kusho-travel-neck-support/01-9.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 41044740636809,
-          "created_at": "2026-08-03T16:55:30+05:30",
           "position": 2,
-          "updated_at": "2026-08-03T16:55:32+05:30",
-          "product_id": 8391398293641,
-          "variant_ids": [
-            45199208349833
-          ],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/9_1.png?v=1785756332",
-          "width": 1024,
-          "height": 1024
+          "src": "product-media/kusho-travel-neck-support/02-8.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 41044740767881,
-          "created_at": "2026-08-03T16:55:30+05:30",
           "position": 3,
-          "updated_at": "2026-08-03T16:55:32+05:30",
-          "product_id": 8391398293641,
-          "variant_ids": [
-            45199208415369
-          ],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/12.png?v=1785756332",
-          "width": 1024,
-          "height": 1024
+          "src": "product-media/kusho-travel-neck-support/03-10.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 41044740735113,
-          "created_at": "2026-08-03T16:55:30+05:30",
           "position": 4,
-          "updated_at": "2026-08-03T16:55:32+05:30",
-          "product_id": 8391398293641,
-          "variant_ids": [
-            45199208448137
-          ],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/11.png?v=1785756332",
-          "width": 1024,
-          "height": 1024
+          "src": "product-media/kusho-travel-neck-support/04-11.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 41044740702345,
-          "created_at": "2026-08-03T16:55:30+05:30",
           "position": 5,
-          "updated_at": "2026-08-03T16:55:32+05:30",
-          "product_id": 8391398293641,
-          "variant_ids": [
-            47235179905161
-          ],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/10.png?v=1785756332",
-          "width": 1024,
-          "height": 1024
+          "src": "product-media/kusho-travel-neck-support/05-12.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 41044740604041,
-          "created_at": "2026-08-03T16:55:30+05:30",
           "position": 6,
-          "updated_at": "2026-08-03T16:55:32+05:30",
-          "product_id": 8391398293641,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/8_2.png?v=1785756332",
-          "width": 1024,
-          "height": 1024
+          "src": "product-media/kusho-travel-neck-support/06-13.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 41044740800649,
-          "created_at": "2026-08-03T16:55:30+05:30",
           "position": 7,
-          "updated_at": "2026-08-03T16:55:32+05:30",
-          "product_id": 8391398293641,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/13.png?v=1785756332",
-          "width": 1024,
-          "height": 1024
+          "src": "product-media/kusho-travel-neck-support/07-14.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 41044740866185,
-          "created_at": "2026-08-03T16:55:30+05:30",
           "position": 8,
-          "updated_at": "2026-08-03T16:55:32+05:30",
-          "product_id": 8391398293641,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/15.png?v=1785756332",
-          "width": 1024,
-          "height": 1024
+          "src": "product-media/kusho-travel-neck-support/08-15.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 41044740898953,
-          "created_at": "2026-08-03T16:55:30+05:30",
           "position": 9,
-          "updated_at": "2026-08-03T16:55:32+05:30",
-          "product_id": 8391398293641,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/16.png?v=1785756332",
-          "width": 1024,
-          "height": 1024
+          "src": "product-media/kusho-travel-neck-support/09-16.jpg",
+          "width": 1200,
+          "height": 1500
+        },
+        {
+          "id": 90925,
+          "position": 10,
+          "src": "product-media/kusho-travel-neck-support/10-17.jpg",
+          "width": 1200,
+          "height": 1500
         }
       ],
       "options": [
@@ -1590,69 +1248,59 @@
       "images": [
         {
           "id": 38488378736777,
-          "created_at": "2026-01-21T17:43:47+05:30",
           "position": 1,
-          "updated_at": "2026-01-21T17:43:49+05:30",
-          "product_id": 8391381549193,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/56_1.jpg?v=1768997629",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-tailbone-pro-cushion/01-75.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 38488378769545,
-          "created_at": "2026-01-21T17:43:47+05:30",
           "position": 2,
-          "updated_at": "2026-01-21T17:43:49+05:30",
-          "product_id": 8391381549193,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/57_1.jpg?v=1768997629",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-tailbone-pro-cushion/02-76.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 38488378802313,
-          "created_at": "2026-01-21T17:43:47+05:30",
           "position": 3,
-          "updated_at": "2026-01-21T17:43:49+05:30",
-          "product_id": 8391381549193,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/58_1.jpg?v=1768997629",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-tailbone-pro-cushion/03-77.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 38488378835081,
-          "created_at": "2026-01-21T17:43:47+05:30",
           "position": 4,
-          "updated_at": "2026-01-21T17:43:49+05:30",
-          "product_id": 8391381549193,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/59_1.jpg?v=1768997629",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-tailbone-pro-cushion/04-78.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 38488378867849,
-          "created_at": "2026-01-21T17:43:47+05:30",
           "position": 5,
-          "updated_at": "2026-01-21T17:43:49+05:30",
-          "product_id": 8391381549193,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/60_1.jpg?v=1768997629",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-tailbone-pro-cushion/05-79.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 38488378900617,
-          "created_at": "2026-01-21T17:43:47+05:30",
           "position": 6,
-          "updated_at": "2026-01-21T17:43:49+05:30",
-          "product_id": 8391381549193,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/61_1.jpg?v=1768997629",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-tailbone-pro-cushion/06-80.jpg",
+          "width": 1200,
+          "height": 1500
+        },
+        {
+          "id": 90626,
+          "position": 7,
+          "src": "product-media/kusho-tailbone-pro-cushion/07-81.jpg",
+          "width": 1200,
+          "height": 1500
+        },
+        {
+          "id": 90726,
+          "position": 8,
+          "src": "product-media/kusho-tailbone-pro-cushion/08-82.jpg",
+          "width": 1200,
+          "height": 1500
         }
       ],
       "options": [
@@ -1747,106 +1395,45 @@
       "images": [
         {
           "id": 38480344416393,
-          "created_at": "2026-01-20T16:30:31+05:30",
           "position": 1,
-          "updated_at": "2026-01-20T16:30:33+05:30",
-          "product_id": 8391379484809,
-          "variant_ids": [
-            45175970627721
-          ],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/46_64748d98-faff-4b20-a685-96ab6867565f.jpg?v=1768906833",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-tailbone-support-cushion/01-256.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 38480344449161,
-          "created_at": "2026-01-20T16:30:31+05:30",
           "position": 2,
-          "updated_at": "2026-01-20T16:30:33+05:30",
-          "product_id": 8391379484809,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/47_02214f23-63cf-4558-8fe8-fd8bfef30e81.jpg?v=1768906833",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-tailbone-support-cushion/02-257.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 38480344481929,
-          "created_at": "2026-01-20T16:30:31+05:30",
           "position": 3,
-          "updated_at": "2026-01-20T16:30:33+05:30",
-          "product_id": 8391379484809,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/48_23f7c379-0e74-420a-a44e-8ecf250c33e5.jpg?v=1768906833",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-tailbone-support-cushion/03-258.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 38480344514697,
-          "created_at": "2026-01-20T16:30:31+05:30",
           "position": 4,
-          "updated_at": "2026-01-30T21:39:24+05:30",
-          "product_id": 8391379484809,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/49_ce36d520-e737-4ff7-9196-1eaef6440d4a.jpg?v=1769789364",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-tailbone-support-cushion/04-259.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 38480344547465,
-          "created_at": "2026-01-20T16:30:31+05:30",
           "position": 5,
-          "updated_at": "2026-01-30T21:39:24+05:30",
-          "product_id": 8391379484809,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/50_e9d811cb-176f-420d-b016-c8e43e517652.jpg?v=1769789364",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-tailbone-support-cushion/05-260.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 40267146887305,
-          "created_at": "2026-06-02T14:14:47+05:30",
           "position": 6,
-          "updated_at": "2026-06-02T14:14:48+05:30",
-          "product_id": 8391379484809,
-          "variant_ids": [
-            45175970660489
-          ],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/204.png?v=1780389888",
-          "width": 1000,
-          "height": 1000
-        },
-        {
-          "id": 40267146985609,
-          "created_at": "2026-06-02T14:14:48+05:30",
-          "position": 7,
-          "updated_at": "2026-06-02T14:14:49+05:30",
-          "product_id": 8391379484809,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/207.png?v=1780389889",
-          "width": 1000,
-          "height": 1000
-        },
-        {
-          "id": 40267146920073,
-          "created_at": "2026-06-02T14:14:47+05:30",
-          "position": 8,
-          "updated_at": "2026-06-02T14:14:49+05:30",
-          "product_id": 8391379484809,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/208.png?v=1780389889",
-          "width": 1000,
-          "height": 1000
-        },
-        {
-          "id": 40267146854537,
-          "created_at": "2026-06-02T14:14:47+05:30",
-          "position": 9,
-          "updated_at": "2026-06-02T14:14:48+05:30",
-          "product_id": 8391379484809,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/205.png?v=1780389888",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-tailbone-support-cushion/06-261.jpg",
+          "width": 1200,
+          "height": 1500
         }
       ],
       "options": [
@@ -1898,58 +1485,52 @@
       "images": [
         {
           "id": 38406405456009,
-          "created_at": "2026-01-11T22:25:52+05:30",
           "position": 1,
-          "updated_at": "2026-01-11T22:25:54+05:30",
-          "product_id": 8391373652105,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/23.jpg?v=1768150554",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-car-seat-cushion/01-33.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 38406405488777,
-          "created_at": "2026-01-11T22:25:52+05:30",
           "position": 2,
-          "updated_at": "2026-01-11T22:25:54+05:30",
-          "product_id": 8391373652105,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/24.jpg?v=1768150554",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-car-seat-cushion/02-34.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 38406405521545,
-          "created_at": "2026-01-11T22:25:52+05:30",
           "position": 3,
-          "updated_at": "2026-01-30T21:22:02+05:30",
-          "product_id": 8391373652105,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/25.jpg?v=1769788322",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-car-seat-cushion/03-35.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 38406405554313,
-          "created_at": "2026-01-11T22:25:52+05:30",
           "position": 4,
-          "updated_at": "2026-01-30T21:22:02+05:30",
-          "product_id": 8391373652105,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/26.jpg?v=1769788322",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-car-seat-cushion/04-36.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 38406405587081,
-          "created_at": "2026-01-11T22:25:52+05:30",
           "position": 5,
-          "updated_at": "2026-01-30T21:22:02+05:30",
-          "product_id": 8391373652105,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/27.jpg?v=1769788322",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-car-seat-cushion/05-37.jpg",
+          "width": 1200,
+          "height": 1500
+        },
+        {
+          "id": 90522,
+          "position": 6,
+          "src": "product-media/kusho-car-seat-cushion/06-38.jpg",
+          "width": 1200,
+          "height": 1500
+        },
+        {
+          "id": 90622,
+          "position": 7,
+          "src": "product-media/kusho-car-seat-cushion/07-39.jpg",
+          "width": 1200,
+          "height": 1500
         }
       ],
       "options": [
@@ -2001,58 +1582,66 @@
       "images": [
         {
           "id": 38406309937289,
-          "created_at": "2026-01-11T22:15:24+05:30",
           "position": 1,
-          "updated_at": "2026-01-11T22:15:26+05:30",
-          "product_id": 8391343636617,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/8.jpg?v=1768149926",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-baby-care-pillow/01-9.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 38406309970057,
-          "created_at": "2026-01-11T22:15:24+05:30",
           "position": 2,
-          "updated_at": "2026-01-11T22:15:25+05:30",
-          "product_id": 8391343636617,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/9.jpg?v=1768149925",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-baby-care-pillow/02-10.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 38406310002825,
-          "created_at": "2026-01-11T22:15:24+05:30",
           "position": 3,
-          "updated_at": "2026-01-11T22:15:25+05:30",
-          "product_id": 8391343636617,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/10.jpg?v=1768149925",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-baby-care-pillow/03-11.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 38406310035593,
-          "created_at": "2026-01-11T22:15:24+05:30",
           "position": 4,
-          "updated_at": "2026-01-11T22:15:25+05:30",
-          "product_id": 8391343636617,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/11.jpg?v=1768149925",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-baby-care-pillow/04-12.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 38406310068361,
-          "created_at": "2026-01-11T22:15:24+05:30",
           "position": 5,
-          "updated_at": "2026-01-11T22:15:25+05:30",
-          "product_id": 8391343636617,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/12.jpg?v=1768149925",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-baby-care-pillow/05-13.jpg",
+          "width": 1200,
+          "height": 1500
+        },
+        {
+          "id": 90522,
+          "position": 6,
+          "src": "product-media/kusho-baby-care-pillow/06-14.jpg",
+          "width": 1200,
+          "height": 1500
+        },
+        {
+          "id": 90622,
+          "position": 7,
+          "src": "product-media/kusho-baby-care-pillow/07-15.jpg",
+          "width": 1200,
+          "height": 1500
+        },
+        {
+          "id": 90722,
+          "position": 8,
+          "src": "product-media/kusho-baby-care-pillow/08-16.jpg",
+          "width": 1200,
+          "height": 1500
+        },
+        {
+          "id": 90822,
+          "position": 9,
+          "src": "product-media/kusho-baby-care-pillow/09-17.jpg",
+          "width": 1200,
+          "height": 1500
         }
       ],
       "options": [
@@ -2104,80 +1693,59 @@
       "images": [
         {
           "id": 38405344526473,
-          "created_at": "2026-01-11T21:25:33+05:30",
           "position": 1,
-          "updated_at": "2026-01-11T21:25:34+05:30",
-          "product_id": 8391340687497,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/1.jpg?v=1768146934",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-comfy-wedge-pillow/01-1.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 38405344559241,
-          "created_at": "2026-01-11T21:25:33+05:30",
           "position": 2,
-          "updated_at": "2026-01-11T21:25:35+05:30",
-          "product_id": 8391340687497,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/2.jpg?v=1768146935",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-comfy-wedge-pillow/02-2.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 38405344592009,
-          "created_at": "2026-01-11T21:25:33+05:30",
           "position": 3,
-          "updated_at": "2026-01-11T21:25:35+05:30",
-          "product_id": 8391340687497,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/3.jpg?v=1768146935",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-comfy-wedge-pillow/03-3.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 38405344624777,
-          "created_at": "2026-01-11T21:25:33+05:30",
           "position": 4,
-          "updated_at": "2026-01-30T21:26:58+05:30",
-          "product_id": 8391340687497,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/4.jpg?v=1769788618",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-comfy-wedge-pillow/04-4.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 38405344657545,
-          "created_at": "2026-01-11T21:25:33+05:30",
           "position": 5,
-          "updated_at": "2026-01-30T21:26:58+05:30",
-          "product_id": 8391340687497,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/5.jpg?v=1769788618",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-comfy-wedge-pillow/05-5.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 38405344690313,
-          "created_at": "2026-01-11T21:25:33+05:30",
           "position": 6,
-          "updated_at": "2026-01-30T21:26:58+05:30",
-          "product_id": 8391340687497,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/6.jpg?v=1769788618",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-comfy-wedge-pillow/06-6.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 38405344723081,
-          "created_at": "2026-01-11T21:25:33+05:30",
           "position": 7,
-          "updated_at": "2026-01-30T21:26:58+05:30",
-          "product_id": 8391340687497,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/7.jpg?v=1769788618",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-comfy-wedge-pillow/07-7.jpg",
+          "width": 1200,
+          "height": 1500
+        },
+        {
+          "id": 90724,
+          "position": 8,
+          "src": "product-media/kusho-comfy-wedge-pillow/08-8.jpg",
+          "width": 1200,
+          "height": 1500
         }
       ],
       "options": [
@@ -2395,207 +1963,52 @@
       "images": [
         {
           "id": 38479674998921,
-          "created_at": "2026-01-20T12:32:40+05:30",
           "position": 1,
-          "updated_at": "2026-01-20T12:32:42+05:30",
-          "product_id": 8391336853641,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/36_1.jpg?v=1768892562",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-cuddle-pillow-for-him/01-249.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 38479675031689,
-          "created_at": "2026-01-20T12:32:40+05:30",
           "position": 2,
-          "updated_at": "2026-01-20T12:32:43+05:30",
-          "product_id": 8391336853641,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/37_1.jpg?v=1768892563",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-cuddle-pillow-for-him/02-250.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 38479675064457,
-          "created_at": "2026-01-20T12:32:40+05:30",
           "position": 3,
-          "updated_at": "2026-01-20T12:32:42+05:30",
-          "product_id": 8391336853641,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/38.jpg?v=1768892562",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-cuddle-pillow-for-him/03-251.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 38479675097225,
-          "created_at": "2026-01-20T12:32:40+05:30",
           "position": 4,
-          "updated_at": "2026-01-30T21:14:12+05:30",
-          "product_id": 8391336853641,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/39_1.jpg?v=1769787852",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-cuddle-pillow-for-him/04-252.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 38479675129993,
-          "created_at": "2026-01-20T12:32:40+05:30",
           "position": 5,
-          "updated_at": "2026-01-30T21:14:12+05:30",
-          "product_id": 8391336853641,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/40_1.jpg?v=1769787852",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-cuddle-pillow-for-him/05-253.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 38479675162761,
-          "created_at": "2026-01-20T12:32:40+05:30",
           "position": 6,
-          "updated_at": "2026-01-30T21:14:12+05:30",
-          "product_id": 8391336853641,
-          "variant_ids": [
-            45175724015753
-          ],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/41_1.jpg?v=1769787852",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-cuddle-pillow-for-him/06-254.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 38479675195529,
-          "created_at": "2026-01-20T12:32:40+05:30",
           "position": 7,
-          "updated_at": "2026-01-30T21:14:12+05:30",
-          "product_id": 8391336853641,
-          "variant_ids": [
-            45175723982985
-          ],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/42_1.jpg?v=1769787852",
-          "width": 1000,
-          "height": 1000
-        },
-        {
-          "id": 38479675228297,
-          "created_at": "2026-01-20T12:32:40+05:30",
-          "position": 8,
-          "updated_at": "2026-01-30T21:14:12+05:30",
-          "product_id": 8391336853641,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/43_1.jpg?v=1769787852",
-          "width": 1000,
-          "height": 1000
-        },
-        {
-          "id": 40267326193801,
-          "created_at": "2026-06-02T15:25:19+05:30",
-          "position": 9,
-          "updated_at": "2026-06-02T15:25:20+05:30",
-          "product_id": 8391336853641,
-          "variant_ids": [
-            45175724048521
-          ],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/wine1_2.png?v=1780394120",
-          "width": 1000,
-          "height": 1000
-        },
-        {
-          "id": 40267326455945,
-          "created_at": "2026-06-02T15:25:22+05:30",
-          "position": 10,
-          "updated_at": "2026-06-02T15:25:25+05:30",
-          "product_id": 8391336853641,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/wine2_2.png?v=1780394125",
-          "width": 1000,
-          "height": 1000
-        },
-        {
-          "id": 40267326423177,
-          "created_at": "2026-06-02T15:25:22+05:30",
-          "position": 11,
-          "updated_at": "2026-06-02T15:25:23+05:30",
-          "product_id": 8391336853641,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/203.png?v=1780394123",
-          "width": 1000,
-          "height": 1000
-        },
-        {
-          "id": 40267326390409,
-          "created_at": "2026-06-02T15:25:22+05:30",
-          "position": 12,
-          "updated_at": "2026-06-02T15:25:23+05:30",
-          "product_id": 8391336853641,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/wine5_2.png?v=1780394123",
-          "width": 1000,
-          "height": 1000
-        },
-        {
-          "id": 40267326357641,
-          "created_at": "2026-06-02T15:25:22+05:30",
-          "position": 13,
-          "updated_at": "2026-06-02T15:25:23+05:30",
-          "product_id": 8391336853641,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/200.png?v=1780394123",
-          "width": 1000,
-          "height": 1000
-        },
-        {
-          "id": 40267326324873,
-          "created_at": "2026-06-02T15:25:21+05:30",
-          "position": 14,
-          "updated_at": "2026-06-02T15:25:23+05:30",
-          "product_id": 8391336853641,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/202.png?v=1780394123",
-          "width": 1000,
-          "height": 1000
-        },
-        {
-          "id": 40267326292105,
-          "created_at": "2026-06-02T15:25:21+05:30",
-          "position": 15,
-          "updated_at": "2026-06-02T15:25:22+05:30",
-          "product_id": 8391336853641,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/wine4_2.png?v=1780394122",
-          "width": 1000,
-          "height": 1000
-        },
-        {
-          "id": 40267326161033,
-          "created_at": "2026-06-02T15:25:19+05:30",
-          "position": 16,
-          "updated_at": "2026-06-02T15:25:21+05:30",
-          "product_id": 8391336853641,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/201.png?v=1780394121",
-          "width": 1000,
-          "height": 1000
-        },
-        {
-          "id": 40267326226569,
-          "created_at": "2026-06-02T15:25:19+05:30",
-          "position": 17,
-          "updated_at": "2026-06-02T15:25:20+05:30",
-          "product_id": 8391336853641,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/199.png?v=1780394120",
-          "width": 1000,
-          "height": 1000
-        },
-        {
-          "id": 40267326259337,
-          "created_at": "2026-06-02T15:25:20+05:30",
-          "position": 18,
-          "updated_at": "2026-06-02T15:25:22+05:30",
-          "product_id": 8391336853641,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/wine3_2.png?v=1780394122",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-cuddle-pillow-for-him/07-255.jpg",
+          "width": 1200,
+          "height": 1500
         }
       ],
       "options": [
@@ -2749,58 +2162,52 @@
       "images": [
         {
           "id": 38481314218121,
-          "created_at": "2026-01-20T17:39:50+05:30",
           "position": 1,
-          "updated_at": "2026-01-20T17:39:51+05:30",
-          "product_id": 8367369126025,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/83.jpg?v=1768910991",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-dreamer-pillow/01-143.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 38481314250889,
-          "created_at": "2026-01-20T17:39:50+05:30",
           "position": 2,
-          "updated_at": "2026-01-20T17:39:51+05:30",
-          "product_id": 8367369126025,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/84.jpg?v=1768910991",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-dreamer-pillow/02-144.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 38481314283657,
-          "created_at": "2026-01-20T17:39:50+05:30",
           "position": 3,
-          "updated_at": "2026-01-20T17:39:53+05:30",
-          "product_id": 8367369126025,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/85.jpg?v=1768910993",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-dreamer-pillow/03-145.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 38481314316425,
-          "created_at": "2026-01-20T17:39:50+05:30",
           "position": 4,
-          "updated_at": "2026-01-30T21:32:19+05:30",
-          "product_id": 8367369126025,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/86.jpg?v=1769788939",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-dreamer-pillow/04-146.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 38481314349193,
-          "created_at": "2026-01-20T17:39:50+05:30",
           "position": 5,
-          "updated_at": "2026-01-30T21:32:19+05:30",
-          "product_id": 8367369126025,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/87.jpg?v=1769788939",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-dreamer-pillow/05-147.jpg",
+          "width": 1200,
+          "height": 1500
+        },
+        {
+          "id": 90520,
+          "position": 6,
+          "src": "product-media/kusho-dreamer-pillow/06-148.jpg",
+          "width": 1200,
+          "height": 1500
+        },
+        {
+          "id": 90620,
+          "position": 7,
+          "src": "product-media/kusho-dreamer-pillow/07-149.jpg",
+          "width": 1200,
+          "height": 1500
         }
       ],
       "options": [
@@ -2883,93 +2290,59 @@
       "images": [
         {
           "id": 41044131545225,
-          "created_at": "2026-08-03T15:49:11+05:30",
           "position": 1,
-          "updated_at": "2026-08-03T15:49:13+05:30",
-          "product_id": 8145246617737,
-          "variant_ids": [
-            47972332109961
-          ],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/8_1_0c47975e-9414-40cf-8d46-54c8a6c25fd7.png?v=1785752353",
-          "width": 1254,
-          "height": 1254
+          "src": "product-media/kusho-ultimate-pro-seating-combo/01-6.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 40941492797577,
-          "created_at": "2026-07-27T14:15:59+05:30",
           "position": 2,
-          "updated_at": "2026-07-27T14:16:01+05:30",
-          "product_id": 8145246617737,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/2_1.png?v=1785141961",
-          "width": 1254,
-          "height": 1254
+          "src": "product-media/kusho-ultimate-pro-seating-combo/02-1.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 41044131414153,
-          "created_at": "2026-08-03T15:49:11+05:30",
           "position": 3,
-          "updated_at": "2026-08-03T15:49:14+05:30",
-          "product_id": 8145246617737,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/4_1_f21c2081-bfd9-4a68-8258-e586823832e5.png?v=1785752354",
-          "width": 1254,
-          "height": 1254
+          "src": "product-media/kusho-ultimate-pro-seating-combo/03-2.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 41044131446921,
-          "created_at": "2026-08-03T15:49:11+05:30",
           "position": 4,
-          "updated_at": "2026-08-03T15:49:13+05:30",
-          "product_id": 8145246617737,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/5_1_544732c2-4da7-4a6c-96da-58ce9c0f85b4.png?v=1785752353",
-          "width": 1254,
-          "height": 1254
+          "src": "product-media/kusho-ultimate-pro-seating-combo/04-3.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 41044131479689,
-          "created_at": "2026-08-03T15:49:11+05:30",
           "position": 5,
-          "updated_at": "2026-08-03T15:49:13+05:30",
-          "product_id": 8145246617737,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/6_1_bce9d919-55cf-4a02-9a1f-d164d78679a7.png?v=1785752353",
-          "width": 1254,
-          "height": 1254
+          "src": "product-media/kusho-ultimate-pro-seating-combo/05-4.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 41044131512457,
-          "created_at": "2026-08-03T15:49:11+05:30",
           "position": 6,
-          "updated_at": "2026-08-03T15:49:13+05:30",
-          "product_id": 8145246617737,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/7_1_f6a573de-5e8a-41a4-9ea0-149ee8a6ec59.png?v=1785752353",
-          "width": 1254,
-          "height": 1254
+          "src": "product-media/kusho-ultimate-pro-seating-combo/06-5.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 41044131577993,
-          "created_at": "2026-08-03T15:49:11+05:30",
           "position": 7,
-          "updated_at": "2026-08-03T15:49:13+05:30",
-          "product_id": 8145246617737,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/9_dfe0991b-1a2d-476f-957f-2b0d3e7637d3.png?v=1785752353",
-          "width": 1254,
-          "height": 1254
+          "src": "product-media/kusho-ultimate-pro-seating-combo/07-7.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 41044131381385,
-          "created_at": "2026-08-03T15:49:11+05:30",
           "position": 8,
-          "updated_at": "2026-08-03T15:49:14+05:30",
-          "product_id": 8145246617737,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/3_1_bae4e12f-6646-4c70-a817-3c0517d5715b.png?v=1785752354",
-          "width": 1254,
-          "height": 1254
+          "src": "product-media/kusho-ultimate-pro-seating-combo/08-8.jpg",
+          "width": 1200,
+          "height": 1500
         }
       ],
       "options": [
@@ -3020,58 +2393,52 @@
       "images": [
         {
           "id": 38481372315785,
-          "created_at": "2026-01-20T18:04:13+05:30",
           "position": 1,
-          "updated_at": "2026-01-20T18:06:47+05:30",
-          "product_id": 8145094279305,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/93.jpg?v=1768912607",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-cervical-butterfly-pillow/01-157.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 38481372381321,
-          "created_at": "2026-01-20T18:04:14+05:30",
           "position": 2,
-          "updated_at": "2026-01-20T18:06:47+05:30",
-          "product_id": 8145094279305,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/95.jpg?v=1768912607",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-cervical-butterfly-pillow/02-158.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 38481372250249,
-          "created_at": "2026-01-20T18:04:12+05:30",
           "position": 3,
-          "updated_at": "2026-01-20T18:06:47+05:30",
-          "product_id": 8145094279305,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/97.jpg?v=1768912607",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-cervical-butterfly-pillow/03-159.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 38481372348553,
-          "created_at": "2026-01-20T18:04:14+05:30",
           "position": 4,
-          "updated_at": "2026-01-30T21:30:29+05:30",
-          "product_id": 8145094279305,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/94.jpg?v=1769788829",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-cervical-butterfly-pillow/04-160.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 38481372283017,
-          "created_at": "2026-01-20T18:04:13+05:30",
           "position": 5,
-          "updated_at": "2026-01-30T21:30:29+05:30",
-          "product_id": 8145094279305,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/96.jpg?v=1769788829",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-cervical-butterfly-pillow/05-161.jpg",
+          "width": 1200,
+          "height": 1500
+        },
+        {
+          "id": 90531,
+          "position": 6,
+          "src": "product-media/kusho-cervical-butterfly-pillow/06-162.jpg",
+          "width": 1200,
+          "height": 1500
+        },
+        {
+          "id": 90631,
+          "position": 7,
+          "src": "product-media/kusho-cervical-butterfly-pillow/07-163.jpg",
+          "width": 1200,
+          "height": 1500
         }
       ],
       "options": [
@@ -3198,119 +2565,73 @@
       "images": [
         {
           "id": 38406424789129,
-          "created_at": "2026-01-11T22:32:03+05:30",
           "position": 1,
-          "updated_at": "2026-01-11T22:32:15+05:30",
-          "product_id": 8145078681737,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/29.jpg?v=1768150935",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-cuddle-sleep-pillow/01-40.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 38406424756361,
-          "created_at": "2026-01-11T22:32:03+05:30",
           "position": 2,
-          "updated_at": "2026-01-11T22:32:15+05:30",
-          "product_id": 8145078681737,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/28.jpg?v=1768150935",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-cuddle-sleep-pillow/02-41.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 38406424821897,
-          "created_at": "2026-01-11T22:32:03+05:30",
           "position": 3,
-          "updated_at": "2026-01-11T22:32:05+05:30",
-          "product_id": 8145078681737,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/30.jpg?v=1768150925",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-cuddle-sleep-pillow/03-42.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 38406424854665,
-          "created_at": "2026-01-11T22:32:03+05:30",
           "position": 4,
-          "updated_at": "2026-01-11T22:32:04+05:30",
-          "product_id": 8145078681737,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/31.jpg?v=1768150924",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-cuddle-sleep-pillow/04-43.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 38406424887433,
-          "created_at": "2026-01-11T22:32:03+05:30",
           "position": 5,
-          "updated_at": "2026-01-30T21:25:24+05:30",
-          "product_id": 8145078681737,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/32.jpg?v=1769788524",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-cuddle-sleep-pillow/05-44.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 38406424920201,
-          "created_at": "2026-01-11T22:32:03+05:30",
           "position": 6,
-          "updated_at": "2026-01-30T21:25:24+05:30",
-          "product_id": 8145078681737,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/33.jpg?v=1769788524",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-cuddle-sleep-pillow/06-45.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 38406424952969,
-          "created_at": "2026-01-11T22:32:03+05:30",
           "position": 7,
-          "updated_at": "2026-01-30T21:25:24+05:30",
-          "product_id": 8145078681737,
-          "variant_ids": [
-            45175653892233
-          ],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/34.jpg?v=1769788524",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-cuddle-sleep-pillow/07-46.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 38406424985737,
-          "created_at": "2026-01-11T22:32:03+05:30",
           "position": 8,
-          "updated_at": "2026-01-30T21:25:24+05:30",
-          "product_id": 8145078681737,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/35.jpg?v=1769788524",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-cuddle-sleep-pillow/08-47.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 40267861426313,
-          "created_at": "2026-06-02T18:16:14+05:30",
           "position": 9,
-          "updated_at": "2026-06-02T18:16:16+05:30",
-          "product_id": 8145078681737,
-          "variant_ids": [
-            45175653859465
-          ],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/187_5a2b6ec6-65e1-42f7-8036-18df9d85a449.png?v=1780404376",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-cuddle-sleep-pillow/09-48.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 40267858083977,
-          "created_at": "2026-06-02T18:15:24+05:30",
           "position": 10,
-          "updated_at": "2026-06-02T18:15:25+05:30",
-          "product_id": 8145078681737,
-          "variant_ids": [
-            45175653925001
-          ],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/183_d4bdf48d-d666-4f39-83e5-6f27b9d8a823.png?v=1780404325",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-cuddle-sleep-pillow/10-49.jpg",
+          "width": 1200,
+          "height": 1500
         }
       ],
       "options": [
@@ -3363,69 +2684,59 @@
       "images": [
         {
           "id": 38488385290377,
-          "created_at": "2026-01-21T17:47:10+05:30",
           "position": 1,
-          "updated_at": "2026-01-21T17:47:11+05:30",
-          "product_id": 8144176775305,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/62_1.jpg?v=1768997831",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-ultimate-car-neck-rest-pillow/01-83.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 38488385323145,
-          "created_at": "2026-01-21T17:47:10+05:30",
           "position": 2,
-          "updated_at": "2026-01-21T17:47:11+05:30",
-          "product_id": 8144176775305,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/63_1.jpg?v=1768997831",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-ultimate-car-neck-rest-pillow/02-84.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 38488385355913,
-          "created_at": "2026-01-21T17:47:10+05:30",
           "position": 3,
-          "updated_at": "2026-01-21T17:47:12+05:30",
-          "product_id": 8144176775305,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/64_1.jpg?v=1768997832",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-ultimate-car-neck-rest-pillow/03-85.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 38488385388681,
-          "created_at": "2026-01-21T17:47:10+05:30",
           "position": 4,
-          "updated_at": "2026-01-21T17:47:12+05:30",
-          "product_id": 8144176775305,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/65_1.jpg?v=1768997832",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-ultimate-car-neck-rest-pillow/04-86.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 38488385421449,
-          "created_at": "2026-01-21T17:47:10+05:30",
           "position": 5,
-          "updated_at": "2026-01-21T17:47:11+05:30",
-          "product_id": 8144176775305,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/66_1.jpg?v=1768997831",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-ultimate-car-neck-rest-pillow/05-87.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 38488385454217,
-          "created_at": "2026-01-21T17:47:10+05:30",
           "position": 6,
-          "updated_at": "2026-01-21T17:47:11+05:30",
-          "product_id": 8144176775305,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/67_1.jpg?v=1768997831",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-ultimate-car-neck-rest-pillow/06-88.jpg",
+          "width": 1200,
+          "height": 1500
+        },
+        {
+          "id": 90635,
+          "position": 7,
+          "src": "product-media/kusho-ultimate-car-neck-rest-pillow/07-89.jpg",
+          "width": 1200,
+          "height": 1500
+        },
+        {
+          "id": 90735,
+          "position": 8,
+          "src": "product-media/kusho-ultimate-car-neck-rest-pillow/08-90.jpg",
+          "width": 1200,
+          "height": 1500
         }
       ],
       "options": [
@@ -3521,128 +2832,59 @@
       "images": [
         {
           "id": 38480775938185,
-          "created_at": "2026-01-20T16:57:29+05:30",
           "position": 1,
-          "updated_at": "2026-01-20T16:57:30+05:30",
-          "product_id": 8144142860425,
-          "variant_ids": [
-            45176021844105
-          ],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/61.jpg?v=1768908450",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-travel-neck-pillow/01-112.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 38480775970953,
-          "created_at": "2026-01-20T16:57:29+05:30",
           "position": 2,
-          "updated_at": "2026-01-20T16:57:31+05:30",
-          "product_id": 8144142860425,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/62.jpg?v=1768908451",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-travel-neck-pillow/02-113.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 40267126734985,
-          "created_at": "2026-06-02T14:10:20+05:30",
           "position": 3,
-          "updated_at": "2026-06-02T14:10:22+05:30",
-          "product_id": 8144142860425,
-          "variant_ids": [
-            45176021811337
-          ],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/wine1_1.png?v=1780389622",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-travel-neck-pillow/03-114.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 38480776003721,
-          "created_at": "2026-01-20T16:57:29+05:30",
           "position": 4,
-          "updated_at": "2026-01-20T16:57:31+05:30",
-          "product_id": 8144142860425,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/63.jpg?v=1768908451",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-travel-neck-pillow/04-115.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 38480776036489,
-          "created_at": "2026-01-20T16:57:29+05:30",
           "position": 5,
-          "updated_at": "2026-01-20T16:57:30+05:30",
-          "product_id": 8144142860425,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/64.jpg?v=1768908450",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-travel-neck-pillow/05-116.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 38480776069257,
-          "created_at": "2026-01-20T16:57:29+05:30",
           "position": 6,
-          "updated_at": "2026-01-20T16:57:31+05:30",
-          "product_id": 8144142860425,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/65.jpg?v=1768908451",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-travel-neck-pillow/06-117.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 38480776102025,
-          "created_at": "2026-01-20T16:57:29+05:30",
           "position": 7,
-          "updated_at": "2026-01-20T16:57:31+05:30",
-          "product_id": 8144142860425,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/66.jpg?v=1768908451",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-travel-neck-pillow/07-118.jpg",
+          "width": 1200,
+          "height": 1500
         },
         {
           "id": 40267126866057,
-          "created_at": "2026-06-02T14:10:21+05:30",
           "position": 8,
-          "updated_at": "2026-06-02T14:10:22+05:30",
-          "product_id": 8144142860425,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/wine2_1.png?v=1780389622",
-          "width": 1000,
-          "height": 1000
-        },
-        {
-          "id": 40267126767753,
-          "created_at": "2026-06-02T14:10:20+05:30",
-          "position": 9,
-          "updated_at": "2026-06-02T14:10:22+05:30",
-          "product_id": 8144142860425,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/wine3_1.png?v=1780389622",
-          "width": 1000,
-          "height": 1000
-        },
-        {
-          "id": 40267126800521,
-          "created_at": "2026-06-02T14:10:21+05:30",
-          "position": 10,
-          "updated_at": "2026-06-02T14:10:22+05:30",
-          "product_id": 8144142860425,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/wine4_1.png?v=1780389622",
-          "width": 1000,
-          "height": 1000
-        },
-        {
-          "id": 40267126833289,
-          "created_at": "2026-06-02T14:10:21+05:30",
-          "position": 11,
-          "updated_at": "2026-06-02T14:10:22+05:30",
-          "product_id": 8144142860425,
-          "variant_ids": [],
-          "src": "https://cdn.shopify.com/s/files/1/0703/5482/9449/files/wine5_1.png?v=1780389622",
-          "width": 1000,
-          "height": 1000
+          "src": "product-media/kusho-travel-neck-pillow/08-119.jpg",
+          "width": 1200,
+          "height": 1500
         }
       ],
       "options": [
